@@ -2,7 +2,6 @@ import type { PropsWithChildren } from "react";
 import clsx from "clsx";
 
 export interface ContentProps {
-  containerPaddingStyle?: string;
   extraClassName?: string;
 }
 
