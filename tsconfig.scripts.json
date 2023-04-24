@@ -11,5 +11,5 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["scripts/**/*.ts"],
-  "exclude": ["node_modules", "src", "aws-cdk", "cdk.out"]
+  "exclude": ["node_modules", "src"]
 }
