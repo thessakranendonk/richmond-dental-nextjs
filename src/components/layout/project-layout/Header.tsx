@@ -138,14 +138,15 @@ const DesktopNavBar: React.FC<
   useOnClickOutside(ref, () => {
     setIsClick(false);
   });
+
   return (
     <ul className="flex">
       {navigationLinks.map((link) => {
         return (
           <li key={link.name}>
             {!link.dropdown ? (
-              <Link
-                href={link.href}
+              <div
+                // href={link.href}
                 className={clsx(
                   currentActiveLocation?.includes(link.href)
                     ? activeLinkClassName
@@ -157,7 +158,7 @@ const DesktopNavBar: React.FC<
                 onClick={onLinkClick}
               >
                 <span className={clsx(hoverClassName)}>{link.name}</span>
-              </Link>
+              </div>
             ) : (
               <Popover as="div" className="h-full">
                 {({ close, open }) => (
