@@ -7,29 +7,31 @@ import Header from "./project-layout/Header";
 import { Wrapper } from "./project-layout/Wrapper";
 import logo from "../../../public/richmond2.png";
 import { useRouter } from "next/router";
-
-const navigationLinks: Array<NavigationLink> = [
-  { name: "HOME", href: "/" },
-  { name: "ABOUT", href: "/about" },
-  {
-    name: "GENERAL",
-    href: "/general",
-    dropdown: [
-      { name: "Test", href: "/portfolio#test" },
-      { name: "Personal", href: "/portfolio#personal" },
-    ],
-  },
-  { name: "COSMETIC", href: "/cosmetic" },
-  { name: "FORMS", href: "/forms" },
-  { name: "CONTACT US", href: "/contact" },
-];
+var generalJson = require("../../../data/dropdowns/general-dropdown.json");
 
 /**
  * Responsive web UI layout for RheumInfo.
  * Includes a header with responsive navigation menu and a footer.
  */
-export const ProjectLayout: React.FC<PropsWithChildren> = ({ children }) => {
+export const ProjectLayout: React.FC<PropsWithChildren> = (
+  { children },
+  props
+) => {
   const location = useRouter();
+
+  const navigationLinks: Array<NavigationLink> = [
+    { name: "HOME", href: "/" },
+    { name: "ABOUT", href: "/about" },
+    {
+      name: "GENERAL",
+      href: "/general",
+      dropdown: generalJson,
+    },
+    { name: "COSMETIC", href: "/cosmetic" },
+    { name: "FORMS", href: "/forms" },
+    { name: "CONTACT US", href: "/contact" },
+  ];
+
   return (
     <Wrapper>
       <Header
