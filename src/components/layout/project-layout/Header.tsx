@@ -145,7 +145,8 @@ const DesktopNavBar: React.FC<
         return (
           <li key={link.name}>
             {!link.dropdown ? (
-              <div
+              <Link
+                href={link.href}
                 className={clsx(
                   currentActiveLocation?.includes(link.href)
                     ? activeLinkClassName
@@ -157,7 +158,7 @@ const DesktopNavBar: React.FC<
                 onClick={onLinkClick}
               >
                 <span className={clsx(hoverClassName)}>{link.name}</span>
-              </div>
+              </Link>
             ) : (
               <Popover as="div" className="h-full">
                 {({ close, open }) => (
@@ -179,7 +180,7 @@ const DesktopNavBar: React.FC<
                       <Popover.Button
                         className={clsx(textClassName, linkClassName)}
                       >
-                        <span className={hoverClassName}>
+                        <Link className={hoverClassName} href={link.href}>
                           {link.name}
 
                           {link.dropdown && (
@@ -187,12 +188,12 @@ const DesktopNavBar: React.FC<
                               className={clsx(
                                 "ml-2 -mr-1 h-5 w-5 mt-1",
                                 arrowColor,
-                                open || isHover ? "rotate-0" : "rotate-180"
+                                isHover ? "rotate-0" : "rotate-180"
                               )}
                               aria-hidden="true"
                             />
                           )}
-                        </span>
+                        </Link>
                       </Popover.Button>
                     </div>
                     <Transition
@@ -211,7 +212,7 @@ const DesktopNavBar: React.FC<
                     >
                       <Popover.Panel
                         className={clsx(
-                          "absolute right-0 top-[4.75rem] mt-2 w-64 origin-top-right rounded-md bg-white shadow-md shadow-teal-800 ring-1 ring-black ring-opacity-5 focus:outline-none",
+                          "absolute top-[4.75rem] mt-2 w-64 origin-top-right rounded-md bg-white shadow-md shadow-teal-800 ring-1 ring-black ring-opacity-5 focus:outline-none",
                           dropdownBgColor
                         )}
                         ref={ref}
