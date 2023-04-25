@@ -1,10 +1,15 @@
+import { PageSection } from "../src/lib/constants";
 import fs from "fs";
 import path from "path";
-var files = fs.readdirSync("./general-data");
 
 const GENERAL_DROPDOWN_PATH = path.join(
   process.cwd(),
   "./data/dropdowns/general-dropdown.json"
+);
+
+const COSMETIC_DROPDOWN_PATH = path.join(
+  process.cwd(),
+  "./data/dropdowns/cosmetic-dropdown.json"
 );
 
 // remove the .mdx file type and replace dashes with spaces
@@ -18,13 +23,36 @@ const snakeCaseToTitleCase = (str: string): string => {
     });
 };
 
-let fileNames: { name: string; href: string }[] = [];
-for (let i = 0; i < files.length; i++) {
-  fileNames.push({
-    name: snakeCaseToTitleCase(files[i]),
-    href: `/general/${files[i].replace(/.mdx/gm, "")}`,
-  });
-}
+const writeDropdownArrToFile = (page: string): void => {
+  const files =
+    page === PageSection.GENERAL
+      ? fs.readdirSync("./data/general-data")
+      : fs.readdirSync("./data/cosmetic-data");
 
-if (fileNames)
-  fs.writeFileSync(GENERAL_DROPDOWN_PATH, JSON.stringify(fileNames, null, 2));
+  const pagePath =
+    page === PageSection.GENERAL
+      ? GENERAL_DROPDOWN_PATH
+      : COSMETIC_DROPDOWN_PATH;
+
+  let fileNames: { name: string; href: string }[] = [];
+  for (let i = 0; i < files.length; i++) {
+    fileNames.push({
+      name: snakeCaseToTitleCase(files[i]),
+      href: `/${page}/${files[i].replace(/.mdx/gm, "")}`,
+    });
+  }
+
+  if (fileNames) fs.writeFileSync(pagePath, JSON.stringify(fileNames, null, 2));
+};
+
+export const main = (): void => {
+  const dynamicPages = ["general", "cosmetic"];
+
+  dynamicPages.map((page) => {
+    console.debug(`generating dropdowns for ${page}`);
+
+    return writeDropdownArrToFile(page);
+  });
+};
+
+main();
