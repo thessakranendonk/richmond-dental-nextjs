@@ -1,10 +1,7 @@
 import React from "react";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { useRouter } from "next/router";
-import {
-  getAllGeneralPagePaths,
-  getGeneralPageData,
-} from "../../lib/general-page";
+import { getAllPagePaths, getPageData } from "../../lib/dynamic-page";
 import { MDXRemote } from "next-mdx-remote";
 import { mdxComponents } from "../../mdx/mdxComponents";
 
@@ -43,8 +40,9 @@ const GeneralPage: NextPage<GeneralPageProps> = (props) => {
 export default GeneralPage;
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const requestPageSlug = (params?.page ?? "") as string;
-  const postData = await getGeneralPageData(requestPageSlug);
+  const requestPageSlug = (params?.generalPage ?? "") as string;
+  const pageType = (params?.general ?? "") as string;
+  const postData = await getPageData(pageType, requestPageSlug);
 
   return {
     props: {
@@ -57,8 +55,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = locales
-    ? getAllGeneralPagePaths(locales)
-    : getAllGeneralPagePaths(["en"]);
+    ? getAllPagePaths("general", locales)
+    : getAllPagePaths("general", ["en"]);
 
   return {
     paths,
