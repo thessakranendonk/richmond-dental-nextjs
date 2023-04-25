@@ -1,0 +1,20 @@
+export const SliderData: { image: string }[] = [
+  {
+    image: "/DSC5520-1024x683.jpg",
+  },
+  { image: "/DSC5526-1024x683.jpg" },
+  { image: "/DSC5528-1024x683.jpg" },
+  { image: "/DSC5529.jpg" },
+  { image: "/DSC5531-1024x406.jpg" },
+  { image: "/DSC5532-1024x683.jpg" },
+  { image: "/DSC5539-1024x683.jpg" },
+  { image: "/DSC5542-1-1024x683.jpg" },
+  { image: "/DSC5543-1024x683.jpg" },
+  { image: "/DSC5549-1024x683.jpg" },
+  { image: "/DSC5558-1024x683.jpg" },
+  { image: "/DSC5562-1024x683.jpg" },
+  { image: "/DSC5576-586x1024.jpg" },
+  { image: "/DSC5580-1024x833.jpg" },
+  { image: "/DSC5581-1024x683.jpg" },
+  { image: "/DSC5599-1024x683.jpg" },
+];
