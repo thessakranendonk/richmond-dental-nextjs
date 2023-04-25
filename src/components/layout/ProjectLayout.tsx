@@ -7,7 +7,8 @@ import Header from "./project-layout/Header";
 import { Wrapper } from "./project-layout/Wrapper";
 import logo from "../../../public/richmond2.png";
 import { useRouter } from "next/router";
-var generalJson = require("../../../data/dropdowns/general-dropdown.json");
+const generalJson = require("../../../data/dropdowns/general-dropdown.json");
+var cosmeticJson = require("../../../data/dropdowns/cosmetic-dropdown.json");
 
 /**
  * Responsive web UI layout for RheumInfo.
@@ -27,7 +28,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
       href: "/general",
       dropdown: generalJson,
     },
-    { name: "COSMETIC", href: "/cosmetic" },
+    { name: "COSMETIC", href: "/cosmetic", dropdown: cosmeticJson },
     { name: "FORMS", href: "/forms" },
     { name: "CONTACT US", href: "/contact" },
   ];

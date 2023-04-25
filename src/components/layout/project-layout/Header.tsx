@@ -146,7 +146,6 @@ const DesktopNavBar: React.FC<
           <li key={link.name}>
             {!link.dropdown ? (
               <div
-                // href={link.href}
                 className={clsx(
                   currentActiveLocation?.includes(link.href)
                     ? activeLinkClassName
