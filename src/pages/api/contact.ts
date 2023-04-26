@@ -41,3 +41,11 @@ const generatePdf = async (formData: FormData) => {
 
   return pdfBase64;
 };
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === "POST") {
+    const { name, email, message } = req.body as FormData;
+
+    const pdf = await generatePdf({ name, email, message });
+  }
+};
