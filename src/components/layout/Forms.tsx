@@ -25,4 +25,16 @@ export default function Forms() {
     formState: { errors },
   } = useForm<FormData>();
   const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [preferredName, setPreferredName] = useState<string>("");
+  const [dateOfBirth, setDateOfBirth] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [maritalStatus, setMaritalStatus] = useState<string>("");
+  const [homePhone, setHomePhone] = useState<string>("");
+  const [mobilePhone, setMobilePhone] = useState<string>("");
+  const [workPhone, setWorkPhone] = useState<string>("");
+  const [ext, setExt] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [referral, setReferral] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
 }
