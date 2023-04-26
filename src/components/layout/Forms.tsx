@@ -38,7 +38,18 @@ const Forms = () => {
         e.preventDefault();
 
         try {
-            const response await axios.post(`api/contact`)
+            const response await axios.post(`api/contact`, formData);
+
+            if (response.status === 200) {
+                alert("your message has been sent!");
+            } else {
+                alert("an error occured. please try again later");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("an error occured. please try again later");
         }
-    }
+    };
+
+    
 }
