@@ -1,8 +1,8 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { Margins } from "pdfmake/interfaces";
 import nodemailer from "nodemailer";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NewLifecycle } from "react";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -32,13 +32,15 @@ const generatePdf = async (formData: FormData) => {
       header: {
         fontSize: 18,
         bold: true,
-        margin: [0, 0, 0, 10],
+        margin: [0, 0, 0, 10] as Margins,
       },
     },
   };
 
   const pdfDocGenerator = pdfMake.createPdf(docDefinition);
-  const pdfBase64 = await pdfDocGenerator.getBase64();
+  const pdfBase64 = await pdfDocGenerator.getBase64({
+    margin: [0, 0, 0, 0] as Margins,
+  });
 
   return pdfBase64;
 };
