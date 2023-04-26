@@ -16,6 +16,7 @@ interface FormData {
   email: string;
   referral: string;
   address: string;
+  suite: string;
   city: string;
   province: string;
   postalCode: string;

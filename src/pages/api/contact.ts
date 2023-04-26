@@ -28,6 +28,7 @@ interface FormData {
   email: string;
   referral: string;
   address: string;
+  suite: string;
   city: string;
   province: string;
   postalCode: string;
@@ -85,6 +86,7 @@ const generatePdf = async (formData: FormData) => {
       { text: `Email: ${formData.email}` },
       { text: `Referral: ${formData.referral}` },
       { text: `Address: ${formData.address}` },
+      { text: `Suite #: ${formData.suite}` },
       { text: `City: ${formData.city}` },
       { text: `Province: ${formData.province}` },
       { text: `Postal Code: ${formData.postalCode}` },
@@ -161,6 +163,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       email,
       referral,
       address,
+      suite,
       city,
       province,
       postalCode,
@@ -215,6 +218,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       email,
       referral,
       address,
+      suite,
       city,
       province,
       postalCode,
