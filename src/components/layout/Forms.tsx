@@ -184,22 +184,15 @@ export default function Forms() {
       alert("an error occurred. please try again later!");
     }
 
-    const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
+    // const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
     return (
       <form onSubmit={handleSubmit}>
-        {/* <input
-        type="text"
-        placeholder="First name"
-        id="firstName"
-        name="firstName"
-        value={firstName}
-        onChange={(e) => {
-          setFirstName(e.target.value);
-          handleChange(e);
-        }}
-        {...register("firstName", { required: true, maxLength: 80 })}
-      /> */}
+        <input
+          type="text"
+          placeholder="First name"
+          {...register("firstName", { required: true, maxLength: 80 })}
+        />
 
         <input
           type="text"
