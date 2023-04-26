@@ -59,7 +59,6 @@ interface FormData {
 export default function Forms() {
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
   const [firstName, setFirstName] = useState<string>("");
@@ -206,246 +205,230 @@ export default function Forms() {
       <input
         type="text"
         placeholder="Last name"
-        {...register("Last name", { required: true, maxLength: 100 })}
+        {...register("lastName", { required: true, maxLength: 100 })}
       />
       <input
         type="text"
         placeholder="Preferred Name"
-        {...register("Preferred Name", {})}
+        {...register("preferredName", {})}
       />
       <input
         type="text"
-        placeholder="Date Of Birth"
-        {...register("Date Of Birth", { required: true })}
+        placeholder="dateOfBirth"
+        {...register("dateOfBirth", { required: true })}
       />
 
-      <input {...register("Gender")} type="radio" value="Male" />
-      <input {...register("Gender")} type="radio" value="Female" />
-      <input {...register("Gender")} type="radio" value="Other" />
+      <input {...register("gender")} type="radio" value="Male" />
+      <input {...register("gender")} type="radio" value="Female" />
+      <input {...register("gender")} type="radio" value="Other" />
 
-      <input {...register("Marital Status")} type="radio" value="Single" />
-      <input {...register("Marital Status")} type="radio" value="Married" />
-      <input {...register("Marital Status")} type="radio" value="Divorced" />
-      <input {...register("Marital Status")} type="radio" value="Widow" />
-      <input {...register("Marital Status")} type="radio" value="Child" />
+      <input {...register("maritalStatus")} type="radio" value="Single" />
+      <input {...register("maritalStatus")} type="radio" value="Married" />
+      <input {...register("maritalStatus")} type="radio" value="Divorced" />
+      <input {...register("maritalStatus")} type="radio" value="Widow" />
+      <input {...register("maritalStatus")} type="radio" value="Child" />
       <input
         type="tel"
         placeholder="Home Phone"
-        {...register("Home Phone", {})}
+        {...register("homePhone", {})}
       />
       <input
         type="tel"
         placeholder="Mobile number"
-        {...register("Mobile number", { required: true, maxLength: 12 })}
+        {...register("mobilePhone", { required: true, maxLength: 12 })}
       />
       <input
         type="tel"
         placeholder="Work Phone"
-        {...register("Work Phone", {})}
+        {...register("workPhone", {})}
       />
-      <input type="text" placeholder="Ext" {...register("Ext", {})} />
+      <input type="text" placeholder="Ext" {...register("ext", {})} />
       <input
         type="email"
         placeholder="Email"
-        {...register("Email", { required: true, pattern: /^\S+@\S+$/i })}
+        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
       />
 
       <input
-        {...register("How did you hear about us?", { required: true })}
+        {...register("referral", { required: true })}
         type="radio"
         value="Search Engine/Social Media"
       />
       <input
-        {...register("How did you hear about us?", { required: true })}
+        {...register("referral", { required: true })}
         type="radio"
         value="Map"
       />
       <input
-        {...register("How did you hear about us?", { required: true })}
+        {...register("referral", { required: true })}
         type="radio"
         value="Our Existing Patient"
       />
       <input
-        {...register("How did you hear about us?", { required: true })}
+        {...register("referral", { required: true })}
         type="radio"
         value="Newspaper/Flyer"
       />
       <input
-        {...register("How did you hear about us?", { required: true })}
+        {...register("referral", { required: true })}
         type="radio"
         value="Other"
       />
       <input
         type="text"
         placeholder="Address"
-        {...register("Address", { required: true })}
+        {...register("address", { required: true })}
       />
       <input
         type="number"
         placeholder="Suite/Unit #"
-        {...register("Suite/Unit #", { required: true })}
+        {...register("suite", { required: true })}
       />
       <input
         type="text"
         placeholder="City"
-        {...register("City", { required: true })}
+        {...register("city", { required: true })}
       />
 
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Alberta"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="British Columbia"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Manitoba"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="New Brunswick"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Newfoundland and Labrador"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Northwest Territories"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Nova Scotia"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Nunavut"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Ontario"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Prince Edward Island"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Quebec"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Saskatchewan"
       />
       <input
-        {...register("Province", { required: true })}
+        {...register("province", { required: true })}
         type="radio"
         value="Yukon"
       />
       <input
         type="text"
         placeholder="Postal Code"
-        {...register("Postal Code", { required: true, max: 7, min: 6 })}
+        {...register("postalCode", { required: true, max: 7, min: 6 })}
       />
 
-      <input
-        {...register("Relationship to subscriber")}
-        type="radio"
-        value="Self"
-      />
-      <input
-        {...register("Relationship to subscriber")}
-        type="radio"
-        value="Spouse"
-      />
-      <input
-        {...register("Relationship to subscriber")}
-        type="radio"
-        value="Child"
-      />
+      <input {...register("subscriber")} type="radio" value="Self" />
+      <input {...register("subscriber")} type="radio" value="Spouse" />
+      <input {...register("subscriber")} type="radio" value="Child" />
       <input
         type="text"
         placeholder="Subscriber Name"
-        {...register("Subscriber Name", {})}
+        {...register("subscriberName", {})}
       />
       <input
         type="text"
         placeholder="Insurance Company"
-        {...register("Insurance Company", {})}
+        {...register("insuranceCompany", {})}
       />
       <input
         type="tel"
         placeholder="Phone Number"
-        {...register("Phone Number", {})}
+        {...register("insuranceTel", {})}
       />
       <input
         type="number"
         placeholder="Plan/Policy Number"
-        {...register("Plan/Policy Number", {})}
+        {...register("planNum", {})}
       />
       <input
         type="number"
         placeholder="Subscriber ID/Certificate #"
-        {...register("Subscriber ID/Certificate #", {})}
+        {...register("subscriberId", {})}
       />
       <input
         type="text"
         placeholder="Emergency Contact"
-        {...register("Emergency Contact", { required: true })}
+        {...register("emerContact", { required: true })}
       />
       <input
         type="text"
         placeholder="Relationship"
-        {...register("Relationship", {})}
+        {...register("emerRelationship", {})}
       />
       <input
         type="tel"
         placeholder="Emergency Phone Number"
-        {...register("Emergency Phone Number", {})}
+        {...register("emerTel", {})}
       />
       <input
         type="text"
         placeholder="Family Doctor's Name"
-        {...register("Family Doctor's Name", {})}
+        {...register("famDocName", {})}
       />
       <input
         type="text"
         placeholder="Family Doctor's Address"
-        {...register("Family Doctor's Address", {})}
+        {...register("famDocAddress", {})}
       />
       <input
         type="tel"
         placeholder="Family Doctor's Phone"
-        {...register("Family Doctor's Phone", {})}
+        {...register("famDocTel", {})}
       />
       <input
         type="text"
         placeholder="When was your last medical check-up?"
-        {...register("When was your last medical check-up?", {})}
+        {...register("medCheck", {})}
       />
 
-      <input {...register("Do you smoke?")} type="radio" value="No" />
-      <input {...register("Do you smoke?")} type="radio" value="Yes" />
-      <input {...register("Do you smoke?")} type="radio" value="Occasionally" />
-      <select
-        {...register(
-          "Are you bring treated for or have you had any of the following medical conditions?"
-        )}
-      >
+      <input {...register("smoke")} type="radio" value="No" />
+      <input {...register("smoke")} type="radio" value="Yes" />
+      <input {...register("smoke")} type="radio" value="Occasionally" />
+      <select {...register("medConditions")}>
         <option value="Arthritis">Arthritis</option>
         <option value=" AIDS/HIV"> AIDS/HIV</option>
         <option value=" Asthma"> Asthma</option>
@@ -474,13 +457,8 @@ export default function Forms() {
         <option value=" Have Fainted"> Have Fainted</option>
         <option value=" Bleeding Problems "> Bleeding Problems </option>
       </select>
-      <textarea
-        {...register(
-          "If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you may have. ",
-          {}
-        )}
-      />
-      <select {...register("Are you allergic to any of the following?")}>
+      <textarea {...register("otherMedConditons", {})} />
+      <select {...register("allergies")}>
         <option value="Anesthetic">Anesthetic</option>
         <option value=" Ibuprofen"> Ibuprofen</option>
         <option value=" Penicillin"> Penicillin</option>
@@ -490,100 +468,39 @@ export default function Forms() {
         <option value=" Codeine"> Codeine</option>
         <option value=" Latex"> Latex</option>
       </select>
-      <textarea
-        {...register(
-          "If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have. ",
-          {}
-        )}
-      />
+      <textarea {...register("otherAllergies", {})} />
 
       <input
-        {...register(
-          "Have you taken any long term medications in the past? Prescription or Non-Prescription",
-          { required: true }
-        )}
+        {...register("longTermMeds", { required: true })}
         type="radio"
         value="No"
       />
       <input
-        {...register(
-          "Have you taken any long term medications in the past? Prescription or Non-Prescription",
-          { required: true }
-        )}
+        {...register("longTermMeds", { required: true })}
         type="radio"
         value="Yes"
       />
 
+      <input {...register("dentalInjection")} type="radio" value="No" />
+      <input {...register("dentalInjection")} type="radio" value="Yes" />
       <input
-        {...register(
-          "Have you ever had an adverse reaction to a dental injection?"
-        )}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register(
-          "Have you ever had an adverse reaction to a dental injection?"
-        )}
-        type="radio"
-        value="Yes"
-      />
-      <input
-        {...register(
-          "Have you ever had an adverse reaction to a dental injection?"
-        )}
+        {...register("dentalInjection")}
         type="radio"
         value="Not Sure/Maybe"
       />
 
+      <input {...register("immuneSystem")} type="radio" value="No" />
+      <input {...register("immuneSystem")} type="radio" value="Yes" />
       <input
-        {...register(
-          "Do you have any conditions that affect your immune system? (e.g. leukaemia, AIDS, HIV infection, radiotherapy, chemotherapy, etc.)"
-        )}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register(
-          "Do you have any conditions that affect your immune system? (e.g. leukaemia, AIDS, HIV infection, radiotherapy, chemotherapy, etc.)"
-        )}
-        type="radio"
-        value="Yes"
-      />
-      <input
-        {...register(
-          "Do you have any conditions that affect your immune system? (e.g. leukaemia, AIDS, HIV infection, radiotherapy, chemotherapy, etc.)"
-        )}
+        {...register("immuneSystem")}
         type="radio"
         value="Not Sure/Maybe"
       />
 
-      <input
-        {...register(
-          "Have you ever been hospitalized for any illnesses or operations?"
-        )}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register(
-          "Have you ever been hospitalized for any illnesses or operations?"
-        )}
-        type="radio"
-        value="Yes"
-      />
-      <input
-        {...register(
-          "Have you ever been hospitalized for any illnesses or operations?"
-        )}
-        type="radio"
-        value="Not Sure/Maybe"
-      />
-      <select
-        {...register(
-          "Do you have or have you ever had any of the following? Please check."
-        )}
-      >
+      <input {...register("hospital")} type="radio" value="No" />
+      <input {...register("hospital")} type="radio" value="Yes" />
+      <input {...register("hospital")} type="radio" value="Not Sure/Maybe" />
+      <select {...register("illness")}>
         <option value="Chest Pain">Chest Pain</option>
         <option value=" Angina Heart Attack"> Angina Heart Attack</option>
         <option value=" Mitral Valve Prolapse"> Mitral Valve Prolapse</option>
@@ -595,131 +512,53 @@ export default function Forms() {
         <option value=" Osteoporosis"> Osteoporosis</option>
         <option value=" Bleeding Problems"> Bleeding Problems</option>
       </select>
-      <textarea
-        {...register(
-          "Have we missed anything that you would like to let us know about?",
-          {}
-        )}
-      />
+      <textarea {...register("otherIllness", {})} />
 
-      <input
-        {...register("For Women Only: Are you breastfeeding or pregnant?")}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register("For Women Only: Are you breastfeeding or pregnant?")}
-        type="radio"
-        value="Yes"
-      />
-      <input
-        {...register("For Women Only: Are you breastfeeding or pregnant?")}
-        type="radio"
-        value="Not Sure/Maybe"
-      />
-      <textarea {...register("Reason for your visit today?", {})} />
+      <input {...register("pregnant")} type="radio" value="No" />
+      <input {...register("pregnant")} type="radio" value="Yes" />
+      <input {...register("pregnant")} type="radio" value="Not Sure/Maybe" />
+      <textarea {...register("visitReason", {})} />
       <input
         type="text"
         placeholder="When was your last dental visit?"
-        {...register("When was your last dental visit?", {})}
+        {...register("lastVisit", {})}
       />
 
-      <input
-        {...register("Are you nervous during dental visits?")}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register("Are you nervous during dental visits?")}
-        type="radio"
-        value="Slightly"
-      />
-      <input
-        {...register("Are you nervous during dental visits?")}
-        type="radio"
-        value="Somewhat"
-      />
-      <input
-        {...register("Are you nervous during dental visits?")}
-        type="radio"
-        value="Extremely"
-      />
+      <input {...register("nervous")} type="radio" value="No" />
+      <input {...register("nervous")} type="radio" value="Slightly" />
+      <input {...register("nervous")} type="radio" value="Somewhat" />
+      <input {...register("nervous")} type="radio" value="Extremely" />
       <input
         type="text"
-        placeholder="When was your last dental x-ray? "
-        {...register("When was your last dental x-ray? ", {})}
+        placeholder="When was your last dental x-ray?"
+        {...register("lastXray", {})}
       />
-      <select {...register("Have you ever been to a dental specialist?")}>
+      <select {...register("dentalSpecialist")}>
         <option value="No">No</option>
         <option value=" Yes"> Yes</option>
         <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
       </select>
 
-      <input
-        {...register("Do your gums bleed when you brush or floss?")}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register("Do your gums bleed when you brush or floss?")}
-        type="radio"
-        value="Yes"
-      />
-      <input
-        {...register("Do your gums bleed when you brush or floss?")}
-        type="radio"
-        value="Not Sure/Maybe"
-      />
+      <input {...register("gumBleed")} type="radio" value="No" />
+      <input {...register("gumBleed")} type="radio" value="Yes" />
+      <input {...register("gumBleed")} type="radio" value="Not Sure/Maybe" />
 
-      <input
-        {...register(
-          "Have you been told to take antibiotics before a dental visit?"
-        )}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register(
-          "Have you been told to take antibiotics before a dental visit?"
-        )}
-        type="radio"
-        value="Yes"
-      />
-      <input
-        {...register(
-          "Have you been told to take antibiotics before a dental visit?"
-        )}
-        type="radio"
-        value="Not Sure/Maybe"
-      />
+      <input {...register("antibiotics")} type="radio" value="No" />
+      <input {...register("antibiotics")} type="radio" value="Yes" />
+      <input {...register("antibiotics")} type="radio" value="Not Sure/Maybe" />
 
-      <input
-        {...register("Do you have pain in the jaw or jaw joint?")}
-        type="radio"
-        value="No"
-      />
-      <input
-        {...register("Do you have pain in the jaw or jaw joint?")}
-        type="radio"
-        value="Yes"
-      />
-      <input
-        {...register("Do you have pain in the jaw or jaw joint?")}
-        type="radio"
-        value="Not Sure/Maybe"
-      />
+      <input {...register("jawPain")} type="radio" value="No" />
+      <input {...register("jawPain")} type="radio" value="Yes" />
+      <input {...register("jawPain")} type="radio" value="Not Sure/Maybe" />
       <input
         type="checkbox"
         placeholder="I, understand, certify that to the best of my knowledge, the above information is correct. I understand that any information that I refuse to provide may affect my health and dental treatment."
-        {...register(
-          "I, understand, certify that to the best of my knowledge, the above information is correct. I understand that any information that I refuse to provide may affect my health and dental treatment.",
-          { required: true }
-        )}
+        {...register("terms", { required: true })}
       />
       <input
         type="datetime-local"
         placeholder="Today's Date"
-        {...register("Today's Date", { required: true })}
+        {...register("date", { required: true })}
       />
 
       <input type="submit" />
