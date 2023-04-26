@@ -16,3 +16,29 @@ interface FormData {
   referral: string;
   address: string;
 }
+
+const Forms = {} => {
+    const [formData, setFormData] = useState<FormData>({
+        firstName: "",
+        lastName: "",
+        preferredName: "",
+        dateOfBirth: "",
+        gender: "",
+        maritalStatus: "",
+        homePhone: "",
+        mobilePhone: "",
+        workPhone: "",
+        ext: "",
+        email: "",
+        referral: "",
+        address: "",
+    })
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const response await axios.post(`api/contact`)
+        }
+    }
+}
