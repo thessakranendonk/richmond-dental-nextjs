@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 
@@ -115,6 +115,66 @@ export default function Forms() {
   const [terms, setTerms] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+      e.preventDefault();
+
+      try {
+          const response = await axios.post(`/api/contact`, {
+            firstName,
+            lastName,
+            preferredName,
+            dateOfBirth,
+            gender,
+            maritalStatus,
+            homePhone,
+            mobilePhone,
+            workPhone,
+            ext,
+            email,
+            referral,
+            address,
+            city,
+            province,
+            postalCode,
+            subscriber,
+            subscriberName,
+            insuranceCompany,
+            insuranceTel,
+            planNum,
+            subscriberId,
+            emerContact,
+            emerRelationship,
+            emerTel,
+            famDocName,
+            famDocAddress,
+            famDocTel,
+            medCheck,
+            smoke,
+            medConditions,
+            otherMedConditions,
+            allergies,
+            otherAllergies,
+            longTermMeds,
+            dentalInjection,
+            immuneSystem,
+            hospital,
+            illness,
+            otherIllness,
+            pregnant,
+            visitReason,
+            lastVisit,
+            nervous,
+            lastXray,
+            dentalSpecialist,
+            gumBleed,
+            antibiotics,
+            jawPain,
+            terms,
+            date,
+          })
+      }
+  }
+
   const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
   return (
@@ -129,7 +189,7 @@ export default function Forms() {
           setFirstName(e.target.value);
           handleChange(e);
         }}
-        {...register("First name", { required: true, maxLength: 80 })}
+        {...register("firstName", { required: true, maxLength: 80 })}
       />
 
       <input

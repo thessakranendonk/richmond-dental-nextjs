@@ -46,7 +46,7 @@ interface FormData {
   medCheck: string;
   smoke: string;
   medConditions: string;
-  otherMedConditons: string;
+  otherMedConditions: string;
   allergies: string;
   otherAllergies: string;
   longTermMeds: string;
@@ -102,7 +102,7 @@ const generatePdf = async (formData: FormData) => {
       { text: `Family Doctor Phone: ${formData.famDocTel}` },
       { text: `Medical Check: ${formData.medCheck}` },
       { text: `Medical Conditions: ${formData.medConditions}` },
-      { text: `Other Medical Conditions: ${formData.otherMedConditons}` },
+      { text: `Other Medical Conditions: ${formData.otherMedConditions}` },
       { text: `Allergies: ${formData.allergies}` },
       { text: `Other Allergies: ${formData.otherAllergies}` },
       { text: `Long Term Medication: ${formData.longTermMeds}` },
@@ -179,7 +179,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       medCheck,
       smoke,
       medConditions,
-      otherMedConditons,
+      otherMedConditions,
       allergies,
       otherAllergies,
       longTermMeds,
@@ -233,7 +233,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       medCheck,
       smoke,
       medConditions,
-      otherMedConditons,
+      otherMedConditions,
       allergies,
       otherAllergies,
       longTermMeds,
