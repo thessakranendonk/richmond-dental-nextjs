@@ -17,3 +17,12 @@ interface FormData {
   referral: string;
   address: string;
 }
+
+export default function Forms() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+  const [firstName, setFirstName] = useState<string>("");
+}
