@@ -2,6 +2,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import nodemailer from "nodemailer";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NewLifecycle } from "react";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -61,7 +62,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       ],
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, (error: Error | null, info: any) => {
       if (error) {
         console.error(error);
         res.status(500).send(`An error occured while sending the email`);
