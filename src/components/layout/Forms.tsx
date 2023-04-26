@@ -18,38 +18,36 @@ interface FormData {
 }
 
 const Forms = () => {
-    const [formData, setFormData] = useState<FormData>({
-        firstName: "",
-        lastName: "",
-        preferredName: "",
-        dateOfBirth: "",
-        gender: "",
-        maritalStatus: "",
-        homePhone: "",
-        mobilePhone: "",
-        workPhone: "",
-        ext: "",
-        email: "",
-        referral: "",
-        address: "",
-    })
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    preferredName: "",
+    dateOfBirth: "",
+    gender: "",
+    maritalStatus: "",
+    homePhone: "",
+    mobilePhone: "",
+    workPhone: "",
+    ext: "",
+    email: "",
+    referral: "",
+    address: "",
+  });
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        try {
-            const response await axios.post(`api/contact`, formData);
+    try {
+      const response = await axios.post(`api/contact`, formData);
 
-            if (response.status === 200) {
-                alert("your message has been sent!");
-            } else {
-                alert("an error occured. please try again later");
-            }
-        } catch (error) {
-            console.error(error);
-            alert("an error occured. please try again later");
-        }
-    };
-
-    
-}
+      if (response.status === 200) {
+        alert("your message has been sent!");
+      } else {
+        alert("an error occured. please try again later");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("an error occured. please try again later");
+    }
+  };
+};
