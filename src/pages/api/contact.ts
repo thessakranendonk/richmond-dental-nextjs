@@ -27,5 +27,17 @@ const generatePdf = async (formData: FormData) => {
       { text: `Email: ${formData.email}` },
       { text: `Message: ${formData.message}` },
     ],
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+        margin: [0, 0, 0, 10],
+      },
+    },
   };
+
+  const pdfDocGenerator = pdfMake.createPdf(docDefinition);
+  const pdfBase64 = await pdfDocGenerator.getBase64();
+
+  return pdfBase64;
 };
