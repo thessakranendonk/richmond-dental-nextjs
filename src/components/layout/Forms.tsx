@@ -115,65 +115,76 @@ export default function Forms() {
   const [terms, setTerms] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-      e.preventDefault();
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    e.preventDefault();
 
-      try {
-          const response = await axios.post(`/api/contact`, {
-            firstName,
-            lastName,
-            preferredName,
-            dateOfBirth,
-            gender,
-            maritalStatus,
-            homePhone,
-            mobilePhone,
-            workPhone,
-            ext,
-            email,
-            referral,
-            address,
-            city,
-            province,
-            postalCode,
-            subscriber,
-            subscriberName,
-            insuranceCompany,
-            insuranceTel,
-            planNum,
-            subscriberId,
-            emerContact,
-            emerRelationship,
-            emerTel,
-            famDocName,
-            famDocAddress,
-            famDocTel,
-            medCheck,
-            smoke,
-            medConditions,
-            otherMedConditions,
-            allergies,
-            otherAllergies,
-            longTermMeds,
-            dentalInjection,
-            immuneSystem,
-            hospital,
-            illness,
-            otherIllness,
-            pregnant,
-            visitReason,
-            lastVisit,
-            nervous,
-            lastXray,
-            dentalSpecialist,
-            gumBleed,
-            antibiotics,
-            jawPain,
-            terms,
-            date,
-          })
+    try {
+      const response = await axios.post(`/api/contact`, {
+        firstName,
+        lastName,
+        preferredName,
+        dateOfBirth,
+        gender,
+        maritalStatus,
+        homePhone,
+        mobilePhone,
+        workPhone,
+        ext,
+        email,
+        referral,
+        address,
+        city,
+        province,
+        postalCode,
+        subscriber,
+        subscriberName,
+        insuranceCompany,
+        insuranceTel,
+        planNum,
+        subscriberId,
+        emerContact,
+        emerRelationship,
+        emerTel,
+        famDocName,
+        famDocAddress,
+        famDocTel,
+        medCheck,
+        smoke,
+        medConditions,
+        otherMedConditions,
+        allergies,
+        otherAllergies,
+        longTermMeds,
+        dentalInjection,
+        immuneSystem,
+        hospital,
+        illness,
+        otherIllness,
+        pregnant,
+        visitReason,
+        lastVisit,
+        nervous,
+        lastXray,
+        dentalSpecialist,
+        gumBleed,
+        antibiotics,
+        jawPain,
+        terms,
+        date,
+      });
+
+      if (response.status === 200) {
+        alert("your message has been sent!");
+      } else {
+        alert("an error occurred. please try again later");
       }
-  }
+    } catch (error) {
+      console.error(error);
+      alert("an error occurred. please try again later!");
+    }
+  };
 
   const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
