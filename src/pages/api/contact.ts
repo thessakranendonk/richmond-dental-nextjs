@@ -18,3 +18,14 @@ interface FormData {
   email: string;
   message: string;
 }
+
+const generatePdf = async (formData: FormData) => {
+  const docDefinition = {
+    content: [
+      { text: "Contact Form Submission", style: "header" },
+      { text: `Name: ${formData.name}` },
+      { text: `Email: ${formData.email}` },
+      { text: `Message: ${formData.message}` },
+    ],
+  };
+};
