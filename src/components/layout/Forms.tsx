@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FormEventHandler } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 
@@ -115,10 +115,8 @@ export default function Forms() {
   const [terms, setTerms] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    e.preventDefault();
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
 
     try {
       const response = await axios.post(`/api/contact`, {
@@ -135,6 +133,7 @@ export default function Forms() {
         email,
         referral,
         address,
+        suite,
         city,
         province,
         postalCode,
@@ -184,13 +183,13 @@ export default function Forms() {
       console.error(error);
       alert("an error occurred. please try again later!");
     }
-  };
+  
 
   const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
+      {/* <input
         type="text"
         placeholder="First name"
         id="firstName"
@@ -201,7 +200,7 @@ export default function Forms() {
           handleChange(e);
         }}
         {...register("firstName", { required: true, maxLength: 80 })}
-      />
+      /> */}
 
       <input
         type="text"
