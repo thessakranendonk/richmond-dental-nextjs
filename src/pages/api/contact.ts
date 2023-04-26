@@ -12,3 +12,9 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD!,
   },
 });
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
