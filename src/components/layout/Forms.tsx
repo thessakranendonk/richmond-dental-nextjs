@@ -17,7 +17,7 @@ interface FormData {
   address: string;
 }
 
-const Forms = {} => {
+const Forms = () => {
     const [formData, setFormData] = useState<FormData>({
         firstName: "",
         lastName: "",
