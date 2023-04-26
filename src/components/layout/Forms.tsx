@@ -57,7 +57,7 @@ interface FormData {
   date: string;
 }
 
-export default function Forms() {
+const Forms: React.FC = () => {
   const {
     register,
     formState: { errors },
@@ -561,4 +561,8 @@ export default function Forms() {
       </form>
     );
   };
-}
+
+  return null;
+};
+
+export default Forms;
