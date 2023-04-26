@@ -38,9 +38,14 @@ const generatePdf = async (formData: FormData) => {
   };
 
   const pdfDocGenerator = pdfMake.createPdf(docDefinition);
-  const pdfBase64 = await pdfDocGenerator.getBase64({
-    margin: [0, 0, 0, 0] as Margins,
-  });
+  const getPdfBase64 = (): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      pdfDocGenerator.getBase64((result: string) => {
+        resolve(result);
+      });
+    });
+  };
+  const pdfBase64 = await getPdfBase64();
 
   return pdfBase64;
 };
