@@ -47,5 +47,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { name, email, message } = req.body as FormData;
 
     const pdf = await generatePdf({ name, email, message });
+
+    const mailOptions = {
+      from: process.env.EMAIL_ADDRESS!,
+      to: "felix.lai@hotmail.com",
+      subject: "New Patient Form Submission",
+      attachments: [
+        {
+          filename: "contact-form.pdf",
+          content: pdf,
+          encoding: "base64",
+        },
+      ],
+    };
   }
 };
