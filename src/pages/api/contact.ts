@@ -15,9 +15,57 @@ const transporter = nodemailer.createTransport({
 });
 
 interface FormData {
-  name: string;
+  firstName: string;
+  lastName: string;
+  preferredName: string;
+  dateOfBirth: string;
+  gender: string;
+  maritalStatus: string;
+  homePhone: string;
+  mobilePhone: string;
+  workPhone: string;
+  ext: string;
   email: string;
-  message: string;
+  referral: string;
+  address: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  subscriber: string;
+  subscriberName: string;
+  insuranceCompany: string;
+  insuranceTel: string;
+  planNum: string;
+  subscriberId: string;
+  emerContact: string;
+  emerRelationship: string;
+  emerTel: string;
+  famDocName: string;
+  famDocAddress: string;
+  famDocTel: string;
+  medCheck: string;
+  smoke: string;
+  medConditions: string;
+  otherMedConditons: string;
+  allergies: string;
+  otherAllergies: string;
+  longTermMeds: string;
+  dentalInjection: string;
+  immuneSystem: string;
+  hospital: string;
+  illness: string;
+  otherIllness: string;
+  pregnant: string;
+  visitReason: string;
+  lastVisit: string;
+  nervous: string;
+  lastXray: string;
+  dentalSpecialist: string;
+  gumBleed: string;
+  antibiotics: string;
+  jawPain: string;
+  terms: string;
+  date: string;
 }
 
 const generatePdf = async (formData: FormData) => {
