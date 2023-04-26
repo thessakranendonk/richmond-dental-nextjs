@@ -60,4 +60,6 @@ const Forms = () => {
       [name]: value,
     }));
   };
+
+  return <form onSubmit={handleSubmit}></form>;
 };
