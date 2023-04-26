@@ -60,5 +60,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
       ],
     };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send(`An error occured while sending the email`);
+      } else {
+        console.log(`Email sent: ${info.response}`);
+        res.status(200).send("Email sent successfully");
+      }
+    });
+  } else {
+    res.status(405).send(`Method not allowed`);
   }
 };
