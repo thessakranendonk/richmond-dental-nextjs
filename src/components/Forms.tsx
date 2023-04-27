@@ -473,6 +473,7 @@ const Forms: React.FC = () => {
             placeholder="First name *"
             className="ml-4 rounded-xl"
             {...register("firstName", { required: true, maxLength: 80 })}
+            onChange={handleChange}
           />
           <input
             type="text"
