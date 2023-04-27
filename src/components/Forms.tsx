@@ -192,7 +192,7 @@ const Forms: React.FC = () => {
     <div className="flex justify-start ml-4">
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <p>* marked are required fields.</p>
-        <label>Personal Information *</label>
+        <label className="ml-4">Personal Information *</label>
         <div className="flex flex-row">
           <input
             type="text"
@@ -221,7 +221,7 @@ const Forms: React.FC = () => {
             {...register("dateOfBirth", { required: true })}
           />
         </div>
-        <label>Gender</label>
+        <label className="ml-4">Gender</label>
         <select
           className="ml-4 w-40 h-8 py-1 rounded-xl"
           {...register("gender")}
@@ -233,7 +233,7 @@ const Forms: React.FC = () => {
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </select>
-        <label>Marital Status</label>
+        <label className="ml-4">Marital Status</label>
         <select
           className="ml-4 w-40 h-8 py-1 rounded-xl"
           {...register("maritalStatus")}
@@ -251,13 +251,13 @@ const Forms: React.FC = () => {
           <input
             type="tel"
             placeholder="Home Phone"
-            className="ml-4 rounded-xl"
+            className="ml-4 mt-4 rounded-xl"
             {...register("homePhone", {})}
           />
           <input
             type="tel"
             placeholder="Mobile number"
-            className="ml-4 rounded-xl"
+            className="ml-4 mt-4 rounded-xl"
             {...register("mobilePhone", { required: true, maxLength: 12 })}
           />
         </div>
@@ -265,19 +265,24 @@ const Forms: React.FC = () => {
           <input
             type="tel"
             placeholder="Work Phone"
-            className="ml-4 rounded-xl"
+            className="ml-4 mt-4 rounded-xl"
             {...register("workPhone", {})}
           />
-          <input type="text" placeholder="Ext" {...register("ext", {})} />
+          <input
+            type="text"
+            placeholder="Ext"
+            className="ml-4 mt-4 rounded-xl"
+            {...register("ext", {})}
+          />
         </div>
         <input
           type="email"
           placeholder="Email"
-          className="ml-4 rounded-xl"
+          className="ml-4 mt-4 rounded-xl"
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
-        <label>How did you hear about us? *</label>
-        <select {...register("referral")}>
+        <label className="ml-4">How did you hear about us? *</label>
+        <select className="ml-4 rounded-xl" {...register("referral")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -289,16 +294,18 @@ const Forms: React.FC = () => {
           <option value="Newspaper/Flyer">Newspaper/Flyer</option>
           <option value="Other">Other</option>
         </select>
-        <label>Address *</label>
+        <label className="ml-4">Address *</label>
         <div className="flex flex-row">
           <input
             type="text"
             placeholder="Address *"
+            className="ml-4 mt-4 rounded-xl"
             {...register("address", { required: true })}
           />
           <input
             type="number"
             placeholder="Suite/Unit #"
+            className="ml-4 mt-4 rounded-xl"
             {...register("suite")}
           />
         </div>
@@ -306,9 +313,10 @@ const Forms: React.FC = () => {
           <input
             type="text"
             placeholder="City *"
+            className="ml-4 mt-4 rounded-xl"
             {...register("city", { required: true })}
           />
-          <select {...register("province")}>
+          <select className="ml-4 mt-4 rounded-xl" {...register("province")}>
             <option value="" disabled selected hidden>
               Select Province *
             </option>
@@ -332,11 +340,12 @@ const Forms: React.FC = () => {
         <input
           type="text"
           placeholder="Postal Code *"
+          className="ml-4 mt-4 rounded-xl"
           {...register("postalCode", { required: true, max: 7, min: 6 })}
         />
-        <label>Primary Dental Benefit Plan</label>
-        <label>Relationship to Subscriber</label>
-        <select {...register("subscriber")}>
+        <label className="ml-4">Primary Dental Benefit Plan</label>
+        <label className="ml-4">Relationship to Subscriber</label>
+        <select className="ml-4 mt-4 rounded-xl" {...register("subscriber")}>
           <option value="" disabled selected hidden>
             Relationship
           </option>
@@ -348,11 +357,13 @@ const Forms: React.FC = () => {
           <input
             type="text"
             placeholder="Subscriber Name"
+            className="ml-4 mt-4 rounded-xl"
             {...register("subscriberName", {})}
           />
           <input
             type="text"
             placeholder="Insurance Company"
+            className="ml-4 mt-4 rounded-xl"
             {...register("insuranceCompany", {})}
           />
         </div>
@@ -360,47 +371,55 @@ const Forms: React.FC = () => {
           <input
             type="tel"
             placeholder="Phone Number"
+            className="ml-4 mt-4 rounded-xl"
             {...register("insuranceTel", {})}
           />
           <input
             type="number"
             placeholder="Plan/Policy Number"
+            className="ml-4 mt-4 rounded-xl"
             {...register("planNum", {})}
           />
         </div>
         <input
           type="number"
           placeholder="Subscriber ID/Certificate #"
+          className="ml-4 mt-4 rounded-xl"
           {...register("subscriberId", {})}
         />
-        <label>Emergency Contact *</label>
+        <label className="ml-4">Emergency Contact *</label>
         <div className="flex flex-row">
           <input
             type="text"
             placeholder="Name *"
+            className="ml-4 mt-4 rounded-xl"
             {...register("emerContact", { required: true })}
           />
           <input
             type="text"
             placeholder="Relationship"
+            className="ml-4 mt-4 rounded-xl"
             {...register("emerRelationship", {})}
           />
         </div>
         <input
           type="tel"
           placeholder="Phone Number"
+          className="ml-4 mt-4 rounded-xl"
           {...register("emerTel", {})}
         />
-        <label>Medical History</label>
+        <label className="ml-4">Medical History</label>
         <div className="flex flex-row">
           <input
             type="text"
             placeholder="Family Doctor's Name"
+            className="ml-4 mt-4 rounded-xl"
             {...register("famDocName", {})}
           />
           <input
             type="text"
             placeholder="Family Doctor's Address"
+            className="ml-4 mt-4 rounded-xl"
             {...register("famDocAddress", {})}
           />
         </div>
@@ -408,16 +427,18 @@ const Forms: React.FC = () => {
           <input
             type="tel"
             placeholder="Family Doctor's Phone"
+            className="ml-4 mt-4 rounded-xl"
             {...register("famDocTel", {})}
           />
           <input
             type="text"
             placeholder="When was your last medical check-up?"
+            className="ml-4 mt-4 rounded-xl"
             {...register("medCheck", {})}
           />
         </div>
-        <label>Do you smoke?</label>
-        <select {...register("smoke")}>
+        <label className="ml-4">Do you smoke?</label>
+        <select className="ml-4 mt-4 rounded-xl" {...register("smoke")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -425,11 +446,11 @@ const Forms: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="Occasionally">Occasionally</option>
         </select>
-        <label>
+        <label className="ml-4">
           Are you being treated for or have you had any of the following medical
           conditions?
         </label>
-        <div className="flex flex-row">
+        <div className="flex flex-row ml-4">
           <label>
             <input
               type="checkbox"
@@ -503,7 +524,7 @@ const Forms: React.FC = () => {
             Psychiatric Treatment
           </label>{" "}
         </div>
-        <div>
+        <div className="ml-4">
           <label>
             <input
               type="checkbox"
@@ -577,7 +598,7 @@ const Forms: React.FC = () => {
             Gum Disease
           </label>{" "}
         </div>
-        <div>
+        <div className="ml-4">
           <label>
             <input
               type="checkbox"
@@ -652,11 +673,14 @@ const Forms: React.FC = () => {
           </label>
         </div>
         <textarea
+          className="ml-4 mt-4 rounded-xl"
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           {...register("otherMedConditions", {})}
         />
-        <label>Are you allergic to any of the following?</label>
-        <div className="flex flex-row">
+        <label className="ml-4">
+          Are you allergic to any of the following?
+        </label>
+        <div className="flex flex-row ml-4">
           <label>
             <input
               type="checkbox"
@@ -686,7 +710,7 @@ const Forms: React.FC = () => {
             Aspirin
           </label>{" "}
         </div>
-        <div>
+        <div className="ml-4">
           <label>
             <input type="checkbox" value="iodine" {...register("allergies")} />
             Iodine
@@ -709,24 +733,28 @@ const Forms: React.FC = () => {
           </label>
         </div>
         <textarea
+          className="ml-4 mt-4 rounded-xl"
           placeholder="If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have."
           {...register("otherAllergies", {})}
         />
-        <label>
+        <label className="ml-4">
           Have you taken any long term medicaions in the past? Prescription or
           Non-Prescription
         </label>
-        <select {...register("longTermMeds")}>
+        <select className="ml-4 mt-4 rounded-xl" {...register("longTermMeds")}>
           <option value="" disabled selected hidden>
             Select
           </option>
           <option value="no">No</option>
           <option value="Yes">Yes</option>
         </select>
-        <label>
+        <label className="ml-4">
           Have you ever had an adverse reaction to a dental injection?
         </label>
-        <select {...register("dentalInjection")}>
+        <select
+          className="ml-4 mt-4 rounded-xl"
+          {...register("dentalInjection")}
+        >
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -734,11 +762,11 @@ const Forms: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label>
+        <label className="ml-4">
           Do you have any conditions that affect your immune system? (e.g.
           leukemia, AIDS, HIV infection, radiotherapy, chemotherapy, etc.)
         </label>
-        <select {...register("immuneSystem")}>
+        <select className="ml-4 mt-4 rounded-xl" {...register("immuneSystem")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -746,10 +774,10 @@ const Forms: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label>
+        <label className="ml-4">
           Have you ever been hospitalized for any illnesses or operations?
         </label>
-        <select {...register("hospital")}>
+        <select className="ml-4 mt-4 rounded-xl" {...register("hospital")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -757,10 +785,10 @@ const Forms: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label>
+        <label className="ml-4">
           Do you have or have you ever had any of the following? Please check.
         </label>
-        <div className="flex flex-row">
+        <div className="flex flex-row ml-4">
           <label>
             <input
               type="checkbox"
@@ -802,7 +830,7 @@ const Forms: React.FC = () => {
             Thyroid Disease
           </label>
         </div>
-        <div>
+        <div className="ml-4">
           <label>
             <input type="checkbox" value="seizures" {...register("illness")} />
             Seizures(Epilepsy)
@@ -841,11 +869,14 @@ const Forms: React.FC = () => {
           </label>
         </div>
         <textarea
+          className="ml-4 rounded-xl"
           placeholder="Have we missed anything that you would like to let us know about?"
           {...register("otherIllness", {})}
         />
-        <label>For Women Only: Are you breastfeeding or pregnant?</label>
-        <select {...register("pregnant")}>
+        <label className="ml-4">
+          For Women Only: Are you breastfeeding or pregnant?
+        </label>
+        <select className="ml-4 mt-4 rounded-xl" {...register("pregnant")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -853,18 +884,20 @@ const Forms: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label>Dental History</label>
+        <label className="ml-4">Dental History</label>
         <textarea
+          className="ml-4 mt-4 rounded-xl"
           placeholder="What is your reason for visit today?"
           {...register("visitReason", {})}
         />
         <input
           type="text"
           placeholder="When was your last dental visit?"
+          className="ml-4 mt-4 rounded-xl"
           {...register("lastVisit", {})}
         />
-        <label>Are you nervous during dental visits?</label>
-        <select {...register("nervous")}>
+        <label className="ml-4">Are you nervous during dental visits?</label>
+        <select className="ml-4 mt-4 rounded-xl" {...register("nervous")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -876,10 +909,16 @@ const Forms: React.FC = () => {
         <input
           type="text"
           placeholder="When was your last dental x-ray?"
+          className="ml-4 mt-4 rounded-xl"
           {...register("lastXray", {})}
         />
-        <label>Have you ever been to a dental specialist?</label>
-        <select {...register("dentalSpecialist")}>
+        <label className="ml-4">
+          Have you ever been to a dental specialist?
+        </label>
+        <select
+          className="ml-4 mt-4 rounded-xl"
+          {...register("dentalSpecialist")}
+        >
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -887,8 +926,10 @@ const Forms: React.FC = () => {
           <option value=" Yes"> Yes</option>
           <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
-        <label>Do your gums bleed when you brush or floss?</label>
-        <select {...register("gumBleed")}>
+        <label className="ml-4">
+          Do your gums bleed when you brush or floss?
+        </label>
+        <select className="ml-4 mt-4 rounded-xl" {...register("gumBleed")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -896,10 +937,10 @@ const Forms: React.FC = () => {
           <option value=" Yes"> Yes</option>
           <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
-        <label>
+        <label className="ml-4">
           Have you been told to take antibiotics before a dental visit?
         </label>
-        <select {...register("antibiotics")}>
+        <select className="ml-4 mt-4 rounded-xl" {...register("antibiotics")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -907,8 +948,10 @@ const Forms: React.FC = () => {
           <option value=" Yes"> Yes</option>
           <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
-        <label>Do you have pain in the jaw or jaw joint?</label>
-        <select {...register("jawPain")}>
+        <label className="ml-4">
+          Do you have pain in the jaw or jaw joint?
+        </label>
+        <select className="ml-4 mt-4 rounded-xl" {...register("jawPain")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -920,6 +963,7 @@ const Forms: React.FC = () => {
           <input
             type="checkbox"
             value="terms"
+            className="ml-4"
             {...register("terms", { required: true })}
           />
           * I, understand, certify that to the best of my knowledge, the above
@@ -929,6 +973,7 @@ const Forms: React.FC = () => {
         <input
           type="datetime-local"
           placeholder="Today's Date"
+          className="ml-4 mt-4 rounded-xl"
           {...register("date", { required: true })}
         />
         <input type="submit" />
