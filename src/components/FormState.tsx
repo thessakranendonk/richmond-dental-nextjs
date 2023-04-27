@@ -67,7 +67,7 @@ const initialFormState: FormState = {
   date: "",
 };
 
-function Form() {
+function NewPatientFormState() {
   const [formState, setFormState] = useState<FormState>(initialFormState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,3 +86,5 @@ function Form() {
 
   )
 }
+
+export default NewPatientFormState
