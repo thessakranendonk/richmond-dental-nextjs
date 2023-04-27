@@ -43,7 +43,7 @@ export interface FormData {
   medCheck: string;
   smoke: string;
   medConditions: string;
-  otherMedConditons: string;
+  otherMedConditions: string;
   allergies: string;
   otherAllergies: string;
   longTermMeds: string;

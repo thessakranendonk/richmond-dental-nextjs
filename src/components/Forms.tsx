@@ -35,7 +35,7 @@ interface FormData {
   medCheck: string;
   smoke: string;
   medConditions: string;
-  otherMedConditons: string;
+  otherMedConditions: string;
   allergies: string;
   otherAllergies: string;
   longTermMeds: string;
@@ -450,7 +450,7 @@ const Forms: React.FC = () => {
         <option value=" Have Fainted"> Have Fainted</option>
         <option value=" Bleeding Problems "> Bleeding Problems </option>
       </select>
-      <textarea {...register("otherMedConditons", {})} />
+      <textarea {...register("otherMedConditions", {})} />
       <select {...register("allergies")}>
         <option value="Anesthetic">Anesthetic</option>
         <option value=" Ibuprofen"> Ibuprofen</option>
