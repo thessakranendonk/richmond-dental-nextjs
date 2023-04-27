@@ -190,15 +190,16 @@ const Forms: React.FC = () => {
 
   return (
     <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+      <p>* marked are required fields.</p>
       <label>Personal Information *</label>
       <input
         type="text"
-        placeholder="First name"
+        placeholder="First name *"
         {...register("firstName", { required: true, maxLength: 80 })}
       />
       <input
         type="text"
-        placeholder="Last name"
+        placeholder="Last name *"
         {...register("lastName", { required: true, maxLength: 100 })}
       />
       <input
@@ -208,7 +209,7 @@ const Forms: React.FC = () => {
       />
       <input
         type="text"
-        placeholder="Date of Birth"
+        placeholder="Date of Birth *"
         {...register("dateOfBirth", { required: true })}
       />
       <label>Gender</label>
@@ -265,25 +266,21 @@ const Forms: React.FC = () => {
         <option value="Newspaper/Flyer">Newspaper/Flyer</option>
         <option value="Other">Other</option>
       </select>
-      <label>Address</label>
+      <label>Address *</label>
       <input
         type="text"
-        placeholder="Address"
+        placeholder="Address *"
         {...register("address", { required: true })}
       />
-      <input
-        type="number"
-        placeholder="Suite/Unit #"
-        {...register("suite", { required: true })}
-      />
+      <input type="number" placeholder="Suite/Unit #" {...register("suite")} />
       <input
         type="text"
-        placeholder="City"
+        placeholder="City *"
         {...register("city", { required: true })}
       />
       <select {...register("province")}>
         <option value="" disabled selected hidden>
-          Select Province
+          Select Province *
         </option>
         <option value="Alberta">Alberta</option>
         <option value="British Columbia">British Columbia</option>
@@ -303,7 +300,7 @@ const Forms: React.FC = () => {
       </select>
       <input
         type="text"
-        placeholder="Postal Code"
+        placeholder="Postal Code *"
         {...register("postalCode", { required: true, max: 7, min: 6 })}
       />
       <label>Primary Dental Benefit Plan</label>
@@ -341,10 +338,10 @@ const Forms: React.FC = () => {
         placeholder="Subscriber ID/Certificate #"
         {...register("subscriberId", {})}
       />
-      <label>Emergency Contact</label>
+      <label>Emergency Contact *</label>
       <input
         type="text"
-        placeholder="Emergency Contact"
+        placeholder="Name *"
         {...register("emerContact", { required: true })}
       />
       <input
@@ -354,7 +351,7 @@ const Forms: React.FC = () => {
       />
       <input
         type="tel"
-        placeholder="Emergency Phone Number"
+        placeholder="Phone Number"
         {...register("emerTel", {})}
       />
       <label>Medical History</label>
@@ -818,7 +815,7 @@ const Forms: React.FC = () => {
           value="terms"
           {...register("terms", { required: true })}
         />
-        I, understand, certify that to the best of my knowledge, the above
+        * I, understand, certify that to the best of my knowledge, the above
         information is correct. I understand that any information that I refuse
         to provide may affect my health and dental treatment.
       </label>{" "}
