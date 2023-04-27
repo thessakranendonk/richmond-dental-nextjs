@@ -638,6 +638,9 @@ const Forms: React.FC = () => {
         Non-Prescription
       </label>
       <select {...register("longTermMeds")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="no">No</option>
         <option value="Yes">Yes</option>
       </select>
@@ -645,6 +648,9 @@ const Forms: React.FC = () => {
         Have you ever had an adverse reaction to a dental injection?
       </label>
       <select {...register("dentalInjection")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="no">No</option>
         <option value="Yes">Yes</option>
         <option value="notsure-maybe">Not Sure/Maybe</option>
@@ -654,6 +660,9 @@ const Forms: React.FC = () => {
         leukemia, AIDS, HIV infection, radiotherapy, chemotherapy, etc.)
       </label>
       <select {...register("immuneSystem")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="no">No</option>
         <option value="Yes">Yes</option>
         <option value="notsure-maybe">Not Sure/Maybe</option>
@@ -662,6 +671,9 @@ const Forms: React.FC = () => {
         Have you ever been hospitalized for any illnesses or operations?
       </label>
       <select {...register("hospital")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="no">No</option>
         <option value="Yes">Yes</option>
         <option value="notsure-maybe">Not Sure/Maybe</option>
