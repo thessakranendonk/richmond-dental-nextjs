@@ -58,3 +58,15 @@ const initialFormState: FormState = {
   terms: "",
   date: "",
 };
+
+function Form() {
+  const [formState, setFormState] = useState<FormState>(initialFormState);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+}
