@@ -188,7 +188,7 @@ const Forms: React.FC = () => {
   // const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="flex flex-col items-center" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="First name"
