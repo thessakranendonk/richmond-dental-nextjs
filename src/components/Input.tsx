@@ -1,6 +1,14 @@
 import React from "react";
 
-function Input({ label, name, className, onChange }) {
+interface InputProps {
+  type: string;
+  label: string;
+  name: string;
+  className: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+function Input({ type, label, name, className, onChange }) {
   return (
     <div className="input-field">
       <label htmlFor={name} className="input-field__label">
