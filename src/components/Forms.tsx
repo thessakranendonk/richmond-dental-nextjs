@@ -1,9 +1,14 @@
 import React, { useState, FormEventHandler } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
+import DataForm from "form-data";
 // import { FormData } from "../types/forms-interface"
 
 interface FormData {
+  pdf: string;
+  recipient_email: string;
+  sender_email: string;
+  subject: string;
   firstName: string;
   lastName: string;
   preferredName: string;
@@ -63,6 +68,10 @@ const Forms: React.FC = () => {
     register,
     formState: { errors },
   } = useForm<FormData>();
+  const [pdfFile, setPdfFile] = useState<string>("");
+  const [recipientEmail, setRecipientEmail] = useState<string>("");
+  const [senderEmail, setSenderEmail] = useState<string>("");
+  const [subject, setSubject] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [preferredName, setPreferredName] = useState<string>("");
@@ -116,75 +125,153 @@ const Forms: React.FC = () => {
   const [terms, setTerms] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    try {
-      const response = await axios.post(`/api/contact`, {
-        firstName,
-        lastName,
-        preferredName,
-        dateOfBirth,
-        gender,
-        maritalStatus,
-        homePhone,
-        mobilePhone,
-        workPhone,
-        ext,
-        email,
-        referral,
-        address,
-        suite,
-        city,
-        province,
-        postalCode,
-        subscriber,
-        subscriberName,
-        insuranceCompany,
-        insuranceTel,
-        planNum,
-        subscriberId,
-        emerContact,
-        emerRelationship,
-        emerTel,
-        famDocName,
-        famDocAddress,
-        famDocTel,
-        medCheck,
-        smoke,
-        medConditions,
-        otherMedConditions,
-        allergies,
-        otherAllergies,
-        longTermMeds,
-        dentalInjection,
-        immuneSystem,
-        hospital,
-        illness,
-        otherIllness,
-        pregnant,
-        visitReason,
-        lastVisit,
-        nervous,
-        lastXray,
-        dentalSpecialist,
-        gumBleed,
-        antibiotics,
-        jawPain,
-        terms,
-        date,
-      });
+    const dataForm = new DataForm();
+    dataForm.append("pdf", pdfFile);
+    dataForm.append("recipient_email", recipientEmail);
+    dataForm.append("sender_email", senderEmail);
+    dataForm.append("subject", subject);
+    dataForm.append("firstName", firstName);
+    dataForm.append("lastName", lastName);
+    dataForm.append("preferredName", preferredName);
+    dataForm.append("dateOfBirth", dateOfBirth);
+    dataForm.append("gender", gender);
+    dataForm.append("maritalStatus", maritalStatus);
+    dataForm.append("homePhone", homePhone);
+    dataForm.append("mobilePhone", mobilePhone);
+    dataForm.append("workPhone", workPhone);
+    dataForm.append("ext", ext);
+    dataForm.append("email", email);
+    dataForm.append("referral", referral);
+    dataForm.append("address", address);
+    dataForm.append("suite", suite);
+    dataForm.append("city", city);
+    dataForm.append("province", province);
+    dataForm.append("postalCode", postalCode);
+    dataForm.append("subscriber", subscriber);
+    dataForm.append("subscriberName", subscriberName);
+    dataForm.append("insuranceCompany", insuranceCompany);
+    dataForm.append("insuranceTel", insuranceTel);
+    dataForm.append("planNum", planNum);
+    dataForm.append("subscriberId", subscriberId);
+    dataForm.append("emerContact", emerContact);
+    dataForm.append("emerRelationship", emerRelationship);
+    dataForm.append("emerTel", emerTel);
+    dataForm.append("famDocName", famDocName);
+    dataForm.append("famDocAddress", famDocAddress);
+    dataForm.append("famDocTel", famDocTel);
+    dataForm.append("medCheck", medCheck);
+    dataForm.append("smoke", smoke);
+    dataForm.append("medConditions", medConditions);
+    dataForm.append("otherMedConditions", otherMedConditions);
+    dataForm.append("allergies", allergies);
+    dataForm.append("otherAllergies", otherAllergies);
+    dataForm.append("longTermMeds", longTermMeds);
+    dataForm.append("dentalInjection", dentalInjection);
+    dataForm.append("immuneSystem", immuneSystem);
+    dataForm.append("hospital", hospital);
+    dataForm.append("illness", illness);
+    dataForm.append("otherIllness", otherIllness);
+    dataForm.append("pregnant", pregnant);
+    dataForm.append("visitReason", visitReason);
+    dataForm.append("lastVisit", lastVisit);
+    dataForm.append("nervous", nervous);
+    dataForm.append("lastXray", lastXray);
+    dataForm.append("dentalSpecialist", dentalSpecialist);
+    dataForm.append("gumBleed", gumBleed);
+    dataForm.append("antibiotics", antibiotics);
+    dataForm.append("jawPain", jawPain);
+    dataForm.append("terms", terms);
+    dataForm.append("date", date);
 
-      if (response.status === 200) {
-        alert("your message has been sent!");
-      } else {
-        alert("an error occurred. please try again later");
-      }
+    try {
+      const response = await axios.post<FormData>(
+        "https://api.emailservice.com/send-pdf",
+        dataForm,
+        {
+          headers: {
+            ...dataForm.getHeaders(),
+            Authorization: `Bearer ${process.env.API_KEY}`,
+          },
+        }
+      );
+      console.log(response.data);
     } catch (error) {
       console.error(error);
-      alert("an error occurred. please try again later!");
     }
   };
+
+  // const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await axios.post(`/api/contact`, {
+  //       firstName,
+  //       lastName,
+  //       preferredName,
+  //       dateOfBirth,
+  //       gender,
+  //       maritalStatus,
+  //       homePhone,
+  //       mobilePhone,
+  //       workPhone,
+  //       ext,
+  //       email,
+  //       referral,
+  //       address,
+  //       suite,
+  //       city,
+  //       province,
+  //       postalCode,
+  //       subscriber,
+  //       subscriberName,
+  //       insuranceCompany,
+  //       insuranceTel,
+  //       planNum,
+  //       subscriberId,
+  //       emerContact,
+  //       emerRelationship,
+  //       emerTel,
+  //       famDocName,
+  //       famDocAddress,
+  //       famDocTel,
+  //       medCheck,
+  //       smoke,
+  //       medConditions,
+  //       otherMedConditions,
+  //       allergies,
+  //       otherAllergies,
+  //       longTermMeds,
+  //       dentalInjection,
+  //       immuneSystem,
+  //       hospital,
+  //       illness,
+  //       otherIllness,
+  //       pregnant,
+  //       visitReason,
+  //       lastVisit,
+  //       nervous,
+  //       lastXray,
+  //       dentalSpecialist,
+  //       gumBleed,
+  //       antibiotics,
+  //       jawPain,
+  //       terms,
+  //       date,
+  //     });
+
+  //     if (response.status === 200) {
+  //       alert("your message has been sent!");
+  //     } else {
+  //       alert("an error occurred. please try again later");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("an error occurred. please try again later!");
+  //   }
+  // };
 
   // const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
