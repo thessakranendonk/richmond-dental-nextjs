@@ -189,19 +189,21 @@ const Forms: React.FC = () => {
   // const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
   return (
-    <div className="flex justify-start">
-      <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+    <div className="flex justify-start ml-4">
+      <form className="flex flex-col" onSubmit={handleSubmit}>
         <p>* marked are required fields.</p>
         <label>Personal Information *</label>
         <div className="flex flex-row">
           <input
             type="text"
             placeholder="First name *"
+            className="ml-4 rounded-xl"
             {...register("firstName", { required: true, maxLength: 80 })}
           />
           <input
             type="text"
             placeholder="Last name *"
+            className="ml-4 rounded-xl"
             {...register("lastName", { required: true, maxLength: 100 })}
           />
         </div>
@@ -209,16 +211,21 @@ const Forms: React.FC = () => {
           <input
             type="text"
             placeholder="Preferred Name"
+            className="ml-4 rounded-xl"
             {...register("preferredName", {})}
           />
           <input
             type="text"
             placeholder="Date of Birth *"
+            className="ml-4 mt-4 rounded-xl"
             {...register("dateOfBirth", { required: true })}
           />
         </div>
         <label>Gender</label>
-        <select {...register("gender")}>
+        <select
+          className="ml-4 w-40 h-8 py-1 rounded-xl"
+          {...register("gender")}
+        >
           <option value="" disabled selected hidden>
             Select Gender
           </option>
@@ -227,7 +234,10 @@ const Forms: React.FC = () => {
           <option value="Other">Other</option>
         </select>
         <label>Marital Status</label>
-        <select {...register("maritalStatus")}>
+        <select
+          className="ml-4 w-40 h-8 py-1 rounded-xl"
+          {...register("maritalStatus")}
+        >
           <option value="" disabled selected hidden>
             Select Marital Status
           </option>
@@ -241,11 +251,13 @@ const Forms: React.FC = () => {
           <input
             type="tel"
             placeholder="Home Phone"
+            className="ml-4 rounded-xl"
             {...register("homePhone", {})}
           />
           <input
             type="tel"
             placeholder="Mobile number"
+            className="ml-4 rounded-xl"
             {...register("mobilePhone", { required: true, maxLength: 12 })}
           />
         </div>
@@ -253,6 +265,7 @@ const Forms: React.FC = () => {
           <input
             type="tel"
             placeholder="Work Phone"
+            className="ml-4 rounded-xl"
             {...register("workPhone", {})}
           />
           <input type="text" placeholder="Ext" {...register("ext", {})} />
@@ -260,6 +273,7 @@ const Forms: React.FC = () => {
         <input
           type="email"
           placeholder="Email"
+          className="ml-4 rounded-xl"
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
         <label>How did you hear about us? *</label>
