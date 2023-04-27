@@ -1,14 +1,11 @@
-import React, { useState, FormEventHandler } from "react";
+import React, { useState, FormEvent, FormEventHandler } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import DataForm from "form-data";
+import { read } from "gray-matter";
 // import { FormData } from "../types/forms-interface"
 
 interface FormData {
-  pdf: string;
-  recipient_email: string;
-  sender_email: string;
-  subject: string;
   firstName: string;
   lastName: string;
   preferredName: string;
@@ -63,145 +60,210 @@ interface FormData {
   date: string;
 }
 
+const handleSubmit = (e: FormEvent<HTMLFormElement>, formData: FormData) => {
+  e.preventDefault();
+  console.log(formData);
+};
+
 const Forms: React.FC = () => {
   const {
     register,
     formState: { errors },
   } = useForm<FormData>();
-  const [pdfFile, setPdfFile] = useState<string>("");
-  const [recipientEmail, setRecipientEmail] = useState<string>("");
-  const [senderEmail, setSenderEmail] = useState<string>("");
-  const [subject, setSubject] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [preferredName, setPreferredName] = useState<string>("");
-  const [dateOfBirth, setDateOfBirth] = useState<string>("");
-  const [gender, setGender] = useState<string>("");
-  const [maritalStatus, setMaritalStatus] = useState<string>("");
-  const [homePhone, setHomePhone] = useState<string>("");
-  const [mobilePhone, setMobilePhone] = useState<string>("");
-  const [workPhone, setWorkPhone] = useState<string>("");
-  const [ext, setExt] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [referral, setReferral] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
-  const [suite, setSuite] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [province, setProvince] = useState<string>("");
-  const [postalCode, setPostalCode] = useState<string>("");
-  const [subscriber, setSubscriber] = useState<string>("");
-  const [subscriberName, setSubscriberName] = useState<string>("");
-  const [insuranceCompany, setInsuranceCompany] = useState<string>("");
-  const [insuranceTel, setInsuranceTel] = useState<string>("");
-  const [planNum, setPlanNum] = useState<string>("");
-  const [subscriberId, setSubscriberId] = useState<string>("");
-  const [emerContact, setEmerContact] = useState<string>("");
-  const [emerRelationship, setEmerRelationship] = useState<string>("");
-  const [emerTel, setEmerTel] = useState<string>("");
-  const [famDocName, setFamDocName] = useState<string>("");
-  const [famDocAddress, setFamDocAddress] = useState<string>("");
-  const [famDocTel, setFamDocTel] = useState<string>("");
-  const [medCheck, setMedCheck] = useState<string>("");
-  const [smoke, setSmoke] = useState<string>("");
-  const [medConditions, setMedConditions] = useState<string>("");
-  const [otherMedConditions, setOtherMedConditions] = useState<string>("");
-  const [allergies, setAllergies] = useState<string>("");
-  const [otherAllergies, setOtherAllergies] = useState<string>("");
-  const [longTermMeds, setLongTermMeds] = useState<string>("");
-  const [dentalInjection, setDentalInjection] = useState<string>("");
-  const [immuneSystem, setImmuneSystem] = useState<string>("");
-  const [hospital, setHospital] = useState<string>("");
-  const [illness, setIllness] = useState<string>("");
-  const [otherIllness, setOtherIllness] = useState<string>("");
-  const [pregnant, setPregnant] = useState<string>("");
-  const [visitReason, setVisitReason] = useState<string>("");
-  const [lastVisit, setLastVisit] = useState<string>("");
-  const [nervous, setNervous] = useState<string>("");
-  const [lastXray, setLastXray] = useState<string>("");
-  const [dentalSpecialist, setDentalSpecialist] = useState<string>("");
-  const [gumBleed, setGumBleed] = useState<string>("");
-  const [antibiotics, setAntibiotics] = useState<string>("");
-  const [jawPain, setJawPain] = useState<string>("");
-  const [terms, setTerms] = useState<string>("");
-  const [date, setDate] = useState<string>("");
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    preferredName: "",
+    dateOfBirth: "",
+    gender: "",
+    maritalStatus: "",
+    homePhone: "",
+    mobilePhone: "",
+    workPhone: "",
+    ext: "",
+    email: "",
+    referral: "",
+    address: "",
+    suite: "",
+    city: "",
+    province: "",
+    postalCode: "",
+    subscriber: "",
+    subscriberName: "",
+    insuranceCompany: "",
+    insuranceTel: "",
+    planNum: "",
+    subscriberId: "",
+    emerContact: "",
+    emerRelationship: "",
+    emerTel: "",
+    famDocName: "",
+    famDocAddress: "",
+    famDocTel: "",
+    medCheck: "",
+    smoke: "",
+    medConditions: "",
+    otherMedConditions: "",
+    allergies: "",
+    otherAllergies: "",
+    longTermMeds: "",
+    dentalInjection: "",
+    immuneSystem: "",
+    hospital: "",
+    illness: "",
+    otherIllness: "",
+    pregnant: "",
+    visitReason: "",
+    lastVisit: "",
+    nervous: "",
+    lastXray: "",
+    dentalSpecialist: "",
+    gumBleed: "",
+    antibiotics: "",
+    jawPain: "",
+    terms: "",
+    date: "",
+  });
+  // const [firstName, setFirstName] = useState<string>("");
+  // const [lastName, setLastName] = useState<string>("");
+  // const [preferredName, setPreferredName] = useState<string>("");
+  // const [dateOfBirth, setDateOfBirth] = useState<string>("");
+  // const [gender, setGender] = useState<string>("");
+  // const [maritalStatus, setMaritalStatus] = useState<string>("");
+  // const [homePhone, setHomePhone] = useState<string>("");
+  // const [mobilePhone, setMobilePhone] = useState<string>("");
+  // const [workPhone, setWorkPhone] = useState<string>("");
+  // const [ext, setExt] = useState<string>("");
+  // const [email, setEmail] = useState<string>("");
+  // const [referral, setReferral] = useState<string>("");
+  // const [address, setAddress] = useState<string>("");
+  // const [suite, setSuite] = useState<string>("");
+  // const [city, setCity] = useState<string>("");
+  // const [province, setProvince] = useState<string>("");
+  // const [postalCode, setPostalCode] = useState<string>("");
+  // const [subscriber, setSubscriber] = useState<string>("");
+  // const [subscriberName, setSubscriberName] = useState<string>("");
+  // const [insuranceCompany, setInsuranceCompany] = useState<string>("");
+  // const [insuranceTel, setInsuranceTel] = useState<string>("");
+  // const [planNum, setPlanNum] = useState<string>("");
+  // const [subscriberId, setSubscriberId] = useState<string>("");
+  // const [emerContact, setEmerContact] = useState<string>("");
+  // const [emerRelationship, setEmerRelationship] = useState<string>("");
+  // const [emerTel, setEmerTel] = useState<string>("");
+  // const [famDocName, setFamDocName] = useState<string>("");
+  // const [famDocAddress, setFamDocAddress] = useState<string>("");
+  // const [famDocTel, setFamDocTel] = useState<string>("");
+  // const [medCheck, setMedCheck] = useState<string>("");
+  // const [smoke, setSmoke] = useState<string>("");
+  // const [medConditions, setMedConditions] = useState<string>("");
+  // const [otherMedConditions, setOtherMedConditions] = useState<string>("");
+  // const [allergies, setAllergies] = useState<string>("");
+  // const [otherAllergies, setOtherAllergies] = useState<string>("");
+  // const [longTermMeds, setLongTermMeds] = useState<string>("");
+  // const [dentalInjection, setDentalInjection] = useState<string>("");
+  // const [immuneSystem, setImmuneSystem] = useState<string>("");
+  // const [hospital, setHospital] = useState<string>("");
+  // const [illness, setIllness] = useState<string>("");
+  // const [otherIllness, setOtherIllness] = useState<string>("");
+  // const [pregnant, setPregnant] = useState<string>("");
+  // const [visitReason, setVisitReason] = useState<string>("");
+  // const [lastVisit, setLastVisit] = useState<string>("");
+  // const [nervous, setNervous] = useState<string>("");
+  // const [lastXray, setLastXray] = useState<string>("");
+  // const [dentalSpecialist, setDentalSpecialist] = useState<string>("");
+  // const [gumBleed, setGumBleed] = useState<string>("");
+  // const [antibiotics, setAntibiotics] = useState<string>("");
+  // const [jawPain, setJawPain] = useState<string>("");
+  // const [terms, setTerms] = useState<string>("");
+  // const [date, setDate] = useState<string>("");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
 
-    const dataForm = new DataForm();
-    dataForm.append("pdf", pdfFile);
-    dataForm.append("recipient_email", recipientEmail);
-    dataForm.append("sender_email", senderEmail);
-    dataForm.append("subject", subject);
-    dataForm.append("firstName", firstName);
-    dataForm.append("lastName", lastName);
-    dataForm.append("preferredName", preferredName);
-    dataForm.append("dateOfBirth", dateOfBirth);
-    dataForm.append("gender", gender);
-    dataForm.append("maritalStatus", maritalStatus);
-    dataForm.append("homePhone", homePhone);
-    dataForm.append("mobilePhone", mobilePhone);
-    dataForm.append("workPhone", workPhone);
-    dataForm.append("ext", ext);
-    dataForm.append("email", email);
-    dataForm.append("referral", referral);
-    dataForm.append("address", address);
-    dataForm.append("suite", suite);
-    dataForm.append("city", city);
-    dataForm.append("province", province);
-    dataForm.append("postalCode", postalCode);
-    dataForm.append("subscriber", subscriber);
-    dataForm.append("subscriberName", subscriberName);
-    dataForm.append("insuranceCompany", insuranceCompany);
-    dataForm.append("insuranceTel", insuranceTel);
-    dataForm.append("planNum", planNum);
-    dataForm.append("subscriberId", subscriberId);
-    dataForm.append("emerContact", emerContact);
-    dataForm.append("emerRelationship", emerRelationship);
-    dataForm.append("emerTel", emerTel);
-    dataForm.append("famDocName", famDocName);
-    dataForm.append("famDocAddress", famDocAddress);
-    dataForm.append("famDocTel", famDocTel);
-    dataForm.append("medCheck", medCheck);
-    dataForm.append("smoke", smoke);
-    dataForm.append("medConditions", medConditions);
-    dataForm.append("otherMedConditions", otherMedConditions);
-    dataForm.append("allergies", allergies);
-    dataForm.append("otherAllergies", otherAllergies);
-    dataForm.append("longTermMeds", longTermMeds);
-    dataForm.append("dentalInjection", dentalInjection);
-    dataForm.append("immuneSystem", immuneSystem);
-    dataForm.append("hospital", hospital);
-    dataForm.append("illness", illness);
-    dataForm.append("otherIllness", otherIllness);
-    dataForm.append("pregnant", pregnant);
-    dataForm.append("visitReason", visitReason);
-    dataForm.append("lastVisit", lastVisit);
-    dataForm.append("nervous", nervous);
-    dataForm.append("lastXray", lastXray);
-    dataForm.append("dentalSpecialist", dentalSpecialist);
-    dataForm.append("gumBleed", gumBleed);
-    dataForm.append("antibiotics", antibiotics);
-    dataForm.append("jawPain", jawPain);
-    dataForm.append("terms", terms);
-    dataForm.append("date", date);
+  //   const dataForm = new DataForm();
+  //   dataForm.append("pdf", pdfFile);
+  //   dataForm.append("recipient_email", recipientEmail);
+  //   dataForm.append("sender_email", senderEmail);
+  //   dataForm.append("subject", subject);
+  //   dataForm.append("firstName", firstName);
+  //   dataForm.append("lastName", lastName);
+  //   dataForm.append("preferredName", preferredName);
+  //   dataForm.append("dateOfBirth", dateOfBirth);
+  //   dataForm.append("gender", gender);
+  //   dataForm.append("maritalStatus", maritalStatus);
+  //   dataForm.append("homePhone", homePhone);
+  //   dataForm.append("mobilePhone", mobilePhone);
+  //   dataForm.append("workPhone", workPhone);
+  //   dataForm.append("ext", ext);
+  //   dataForm.append("email", email);
+  //   dataForm.append("referral", referral);
+  //   dataForm.append("address", address);
+  //   dataForm.append("suite", suite);
+  //   dataForm.append("city", city);
+  //   dataForm.append("province", province);
+  //   dataForm.append("postalCode", postalCode);
+  //   dataForm.append("subscriber", subscriber);
+  //   dataForm.append("subscriberName", subscriberName);
+  //   dataForm.append("insuranceCompany", insuranceCompany);
+  //   dataForm.append("insuranceTel", insuranceTel);
+  //   dataForm.append("planNum", planNum);
+  //   dataForm.append("subscriberId", subscriberId);
+  //   dataForm.append("emerContact", emerContact);
+  //   dataForm.append("emerRelationship", emerRelationship);
+  //   dataForm.append("emerTel", emerTel);
+  //   dataForm.append("famDocName", famDocName);
+  //   dataForm.append("famDocAddress", famDocAddress);
+  //   dataForm.append("famDocTel", famDocTel);
+  //   dataForm.append("medCheck", medCheck);
+  //   dataForm.append("smoke", smoke);
+  //   dataForm.append("medConditions", medConditions);
+  //   dataForm.append("otherMedConditions", otherMedConditions);
+  //   dataForm.append("allergies", allergies);
+  //   dataForm.append("otherAllergies", otherAllergies);
+  //   dataForm.append("longTermMeds", longTermMeds);
+  //   dataForm.append("dentalInjection", dentalInjection);
+  //   dataForm.append("immuneSystem", immuneSystem);
+  //   dataForm.append("hospital", hospital);
+  //   dataForm.append("illness", illness);
+  //   dataForm.append("otherIllness", otherIllness);
+  //   dataForm.append("pregnant", pregnant);
+  //   dataForm.append("visitReason", visitReason);
+  //   dataForm.append("lastVisit", lastVisit);
+  //   dataForm.append("nervous", nervous);
+  //   dataForm.append("lastXray", lastXray);
+  //   dataForm.append("dentalSpecialist", dentalSpecialist);
+  //   dataForm.append("gumBleed", gumBleed);
+  //   dataForm.append("antibiotics", antibiotics);
+  //   dataForm.append("jawPain", jawPain);
+  //   dataForm.append("terms", terms);
+  //   dataForm.append("date", date);
 
-    try {
-      const response = await axios.post<FormData>(
-        "https://api.emailservice.com/send-pdf",
-        dataForm,
-        {
-          headers: {
-            ...dataForm.getHeaders(),
-            Authorization: `Bearer ${process.env.API_KEY}`,
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //   try {
+  //     const response = await axios.post<FormData>(
+  //       "https://api.emailservice.com/send-pdf",
+  //       dataForm,
+  //       {
+  //         headers: {
+  //           ...dataForm.getHeaders(),
+  //           Authorization: `Bearer ${process.env.API_KEY}`,
+  //         },
+  //       }
+  //     );
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const handlePdfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (!file) return;
+  //   const reader = new FileReader();
+  //   reader.onload = (e) => {
+  //     setPdfFile(e.target.result as string);
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
 
   // const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
   //   event.preventDefault();
@@ -275,14 +337,139 @@ const Forms: React.FC = () => {
 
   // const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, formData: FormData) => {
+  //   e.preventDefault();
+  //   await handleSubmit({
+  //     firstName,
+  //     lastName,
+  //     preferredName,
+  //     dateOfBirth,
+  //     gender,
+  //     maritalStatus,
+  //     homePhone,
+  //     mobilePhone,
+  //     workPhone,
+  //     ext,
+  //     email,
+  //     referral,
+  //     address,
+  //     suite,
+  //     city,
+  //     province,
+  //     postalCode,
+  //     subscriber,
+  //     subscriberName,
+  //     insuranceCompany,
+  //     insuranceTel,
+  //     planNum,
+  //     subscriberId,
+  //     emerContact,
+  //     emerRelationship,
+  //     emerTel,
+  //     famDocName,
+  //     famDocAddress,
+  //     famDocTel,
+  //     medCheck,
+  //     smoke,
+  //     medConditions,
+  //     otherMedConditions,
+  //     allergies,
+  //     otherAllergies,
+  //     longTermMeds,
+  //     dentalInjection,
+  //     immuneSystem,
+  //     hospital,
+  //     illness,
+  //     otherIllness,
+  //     pregnant,
+  //     visitReason,
+  //     lastVisit,
+  //     nervous,
+  //     lastXray,
+  //     dentalSpecialist,
+  //     gumBleed,
+  //     antibiotics,
+  //     jawPain,
+  //     terms,
+  //     date,
+  //   });
+  //   setFirstName("");
+  //   setLastName("");
+  //   setPreferredName("");
+  //   setDateOfBirth("");
+  //   setGender("");
+  //   setMaritalStatus("");
+  //   setHomePhone("");
+  //   setMobilePhone("");
+  //   setWorkPhone("");
+  //   setExt("");
+  //   setEmail("");
+  //   setReferral("");
+  //   setAddress("");
+  //   setSuite("");
+  //   setCity("");
+  //   setProvince("");
+  //   setPostalCode("");
+  //   setSubscriber("");
+  //   setSubscriberName("");
+  //   setInsuranceCompany("");
+  //   setInsuranceTel("");
+  //   setPlanNum("");
+  //   setSubscriberId("");
+  //   setEmerContact("");
+  //   setEmerRelationship("");
+  //   setEmerTel("");
+  //   setFamDocName("");
+  //   setFamDocAddress("");
+  //   setFamDocTel("");
+  //   setMedCheck("");
+  //   setSmoke("");
+  //   setMedConditions("");
+  //   setOtherMedConditions("");
+  //   setAllergies("");
+  //   setOtherAllergies("");
+  //   setLongTermMeds("");
+  //   setDentalInjection("");
+  //   setImmuneSystem("");
+  //   setHospital("");
+  //   setIllness("");
+  //   setOtherIllness("");
+  //   setPregnant("");
+  //   setVisitReason("");
+  //   setLastVisit("");
+  //   setNervous("");
+  //   setLastXray("");
+  //   setDentalSpecialist("");
+  //   setGumBleed("");
+  //   setAntibiotics("");
+  //   setJawPain("");
+  //   setTerms("");
+  //   setDate("");
+  // };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="flex justify-start ml-4">
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col"
+        onSubmit={(e) => handleSubmit(e, formData)}
+      >
         <p>* marked are required fields.</p>
         <label className="ml-4">Personal Information *</label>
         <div className="flex flex-row">
           <input
             type="text"
+            id="firstName"
+            value={formData.firstName}
             placeholder="First name *"
             className="ml-4 rounded-xl"
             {...register("firstName", { required: true, maxLength: 80 })}
