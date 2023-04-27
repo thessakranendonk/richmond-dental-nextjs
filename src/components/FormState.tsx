@@ -4,6 +4,14 @@ interface FormState {
   [key: string]: string;
 }
 
+interface InputProps {
+    type: string;
+    label: string;
+    name: string;
+    className: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;  
+}
+
 const initialFormState: FormState = {
   firstName: "",
   lastName: "",
@@ -69,4 +77,12 @@ function Form() {
       [name]: value,
     }));
   };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
+  return (
+
+  )
 }
