@@ -5,11 +5,11 @@ interface FormState {
 }
 
 interface InputProps {
-    type: string;
-    label: string;
-    name: string;
-    className: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;  
+  type: string;
+  label: string;
+  name: string;
+  className: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const initialFormState: FormState = {
@@ -67,7 +67,13 @@ const initialFormState: FormState = {
   date: "",
 };
 
-function NewPatientFormState() {
+function NewPatientFormState({
+  type,
+  label,
+  name,
+  className,
+  onChange,
+}: InputProps) {
   const [formState, setFormState] = useState<FormState>(initialFormState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,8 +89,20 @@ function NewPatientFormState() {
   };
 
   return (
-
-  )
+    <div className="input-field">
+      <label htmlFor={name} className="input-field__label">
+        {label}
+      </label>
+      <input
+        type={type}
+        placeholder={label}
+        id={name}
+        name={name}
+        className={className}
+        onChange={onChange}
+      />
+    </div>
+  );
 }
 
-export default NewPatientFormState
+export default NewPatientFormState;
