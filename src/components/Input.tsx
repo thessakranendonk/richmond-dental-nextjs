@@ -8,7 +8,7 @@ interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function Input({ type, label, name, className, onChange }) {
+function Input({ type, label, name, className, onChange }: InputProps) {
   return (
     <div className="input-field">
       <label htmlFor={name} className="input-field__label">
