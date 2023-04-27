@@ -190,7 +190,7 @@ const Forms: React.FC = () => {
 
   return (
     <form className="flex flex-col items-center" onSubmit={handleSubmit}>
-      <label>Personal Information</label>
+      <label>Personal Information *</label>
       <input
         type="text"
         placeholder="First name"
@@ -213,14 +213,18 @@ const Forms: React.FC = () => {
       />
       <label>Gender</label>
       <select {...register("gender")}>
-        <option value="disabled" disabled>
+        <option value="" disabled selected hidden>
           Select Gender
         </option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>
       </select>
+      <label>Marital Status</label>
       <select {...register("maritalStatus")}>
+        <option value="" disabled selected hidden>
+          Select Marital Status
+        </option>
         <option value="Single">Single</option>
         <option value="Married">Married</option>
         <option value="Divorced">Divorced</option>
@@ -248,7 +252,11 @@ const Forms: React.FC = () => {
         placeholder="Email"
         {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
       />
+      <label>How did you hear about us? *</label>
       <select {...register("referral")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="Search Engine/Social Media">
           Search Engine/Social Media
         </option>
@@ -274,6 +282,9 @@ const Forms: React.FC = () => {
         {...register("city", { required: true })}
       />
       <select {...register("province")}>
+        <option value="" disabled selected hidden>
+          Select Province
+        </option>
         <option value="Alberta">Alberta</option>
         <option value="British Columbia">British Columbia</option>
         <option value="Manitoba">Manitoba</option>
@@ -296,7 +307,11 @@ const Forms: React.FC = () => {
         {...register("postalCode", { required: true, max: 7, min: 6 })}
       />
       <label>Primary Dental Benefit Plan</label>
+      <label>Relationship to Subscriber</label>
       <select {...register("subscriber")}>
+        <option value="" disabled selected hidden>
+          Relationship
+        </option>
         <option value="Self">Self</option>
         <option value="Spouse">Spouse</option>
         <option value="Child">Child</option>
@@ -365,6 +380,9 @@ const Forms: React.FC = () => {
       />
       <label>Do you smoke?</label>
       <select {...register("smoke")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="No">No</option>
         <option value="Yes">Yes</option>
         <option value="Occasionally">Occasionally</option>
@@ -724,6 +742,9 @@ const Forms: React.FC = () => {
       />
       <label>For Women Only: Are you breastfeeding or pregnant?</label>
       <select {...register("pregnant")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="no">No</option>
         <option value="Yes">Yes</option>
         <option value="notsure-maybe">Not Sure/Maybe</option>
@@ -740,6 +761,9 @@ const Forms: React.FC = () => {
       />
       <label>Are you nervous during dental visits?</label>
       <select {...register("nervous")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="no">No</option>
         <option value="slightly">Slightly</option>
         <option value="somewhat">Somewhat</option>
@@ -752,12 +776,18 @@ const Forms: React.FC = () => {
       />
       <label>Have you ever been to a dental specialist?</label>
       <select {...register("dentalSpecialist")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="No">No</option>
         <option value=" Yes"> Yes</option>
         <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
       </select>
       <label>Do your gums bleed when you brush or floss?</label>
       <select {...register("gumBleed")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="No">No</option>
         <option value=" Yes"> Yes</option>
         <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
@@ -766,12 +796,18 @@ const Forms: React.FC = () => {
         Have you been told to take antibiotics before a dental visit?
       </label>
       <select {...register("antibiotics")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="No">No</option>
         <option value=" Yes"> Yes</option>
         <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
       </select>
       <label>Do you have pain in the jaw or jaw joint?</label>
       <select {...register("jawPain")}>
+        <option value="" disabled selected hidden>
+          Select
+        </option>
         <option value="No">No</option>
         <option value=" Yes"> Yes</option>
         <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
