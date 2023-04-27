@@ -190,6 +190,7 @@ const Forms: React.FC = () => {
 
   return (
     <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+      <label>Personal Information</label>
       <input
         type="text"
         placeholder="First name"
@@ -208,19 +209,22 @@ const Forms: React.FC = () => {
       />
       <input
         type="text"
-        placeholder="dateOfBirth"
+        placeholder="Date of Birth"
         {...register("dateOfBirth", { required: true })}
       />
+      <select {...register("gender")}>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
 
-      <input {...register("gender")} type="radio" value="Male" />
-      <input {...register("gender")} type="radio" value="Female" />
-      <input {...register("gender")} type="radio" value="Other" />
-
-      <input {...register("maritalStatus")} type="radio" value="Single" />
-      <input {...register("maritalStatus")} type="radio" value="Married" />
-      <input {...register("maritalStatus")} type="radio" value="Divorced" />
-      <input {...register("maritalStatus")} type="radio" value="Widow" />
-      <input {...register("maritalStatus")} type="radio" value="Child" />
+      <select {...register("maritalStatus")}>
+        <option value="Single">Single</option>
+        <option value="Married">Married</option>
+        <option value="Divorced">Divorced</option>
+        <option value="Widow">Widow</option>
+        <option value="Child">Child</option>
+      </select>
       <input
         type="tel"
         placeholder="Home Phone"
@@ -243,31 +247,17 @@ const Forms: React.FC = () => {
         {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
       />
 
-      <input
-        {...register("referral", { required: true })}
-        type="radio"
-        value="Search Engine/Social Media"
-      />
-      <input
-        {...register("referral", { required: true })}
-        type="radio"
-        value="Map"
-      />
-      <input
-        {...register("referral", { required: true })}
-        type="radio"
-        value="Our Existing Patient"
-      />
-      <input
-        {...register("referral", { required: true })}
-        type="radio"
-        value="Newspaper/Flyer"
-      />
-      <input
-        {...register("referral", { required: true })}
-        type="radio"
-        value="Other"
-      />
+      <select {...register("referral")}>
+        <option value="Search Engine/Social Media">
+          Search Engine/Social Media
+        </option>
+        <option value="Map">Map</option>
+        <option value="Our Existing Patient">Our Existing Patient</option>
+        <option value="Newspaper/Flyer">Newspaper/Flyer</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Address</label>
       <input
         type="text"
         placeholder="Address"
@@ -284,80 +274,36 @@ const Forms: React.FC = () => {
         {...register("city", { required: true })}
       />
 
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Alberta"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="British Columbia"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Manitoba"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="New Brunswick"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Newfoundland and Labrador"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Northwest Territories"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Nova Scotia"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Nunavut"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Ontario"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Prince Edward Island"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Quebec"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Saskatchewan"
-      />
-      <input
-        {...register("province", { required: true })}
-        type="radio"
-        value="Yukon"
-      />
+      <select {...register("province")}>
+        <option value="Alberta">Alberta</option>
+        <option value="British Columbia">British Columbia</option>
+        <option value="Manitoba">Manitoba</option>
+        <option value="New Brunswick">New Brunswick</option>
+        <option value="Newfoundland and Labrador">
+          Newfoundland and Labrador
+        </option>
+        <option value="Northwest Territories">Northwest Territories</option>
+        <option value="Nova Scotia">Nova Scotia</option>
+        <option value="Nunavut">Nunavut</option>
+        <option value="Ontario">Ontario</option>
+        <option value="Prince Edward Island">Prince Edward Island</option>
+        <option value="Quebec">Quebec</option>
+        <option value="Saskatchewan">Saskatchewan</option>
+        <option value="Yukon">Yukon</option>
+      </select>
+
       <input
         type="text"
         placeholder="Postal Code"
         {...register("postalCode", { required: true, max: 7, min: 6 })}
       />
+      <label>Primary Dental Benefit Plan</label>
+      <select {...register("subscriber")}>
+        <option value="Self">Self</option>
+        <option value="Spouse">Spouse</option>
+        <option value="Child">Child</option>
+      </select>
 
-      <input {...register("subscriber")} type="radio" value="Self" />
-      <input {...register("subscriber")} type="radio" value="Spouse" />
-      <input {...register("subscriber")} type="radio" value="Child" />
       <input
         type="text"
         placeholder="Subscriber Name"
@@ -383,6 +329,7 @@ const Forms: React.FC = () => {
         placeholder="Subscriber ID/Certificate #"
         {...register("subscriberId", {})}
       />
+      <label>Emergency Contact</label>
       <input
         type="text"
         placeholder="Emergency Contact"
@@ -393,11 +340,13 @@ const Forms: React.FC = () => {
         placeholder="Relationship"
         {...register("emerRelationship", {})}
       />
+
       <input
         type="tel"
         placeholder="Emergency Phone Number"
         {...register("emerTel", {})}
       />
+      <label>Medical History</label>
       <input
         type="text"
         placeholder="Family Doctor's Name"
@@ -418,10 +367,16 @@ const Forms: React.FC = () => {
         placeholder="When was your last medical check-up?"
         {...register("medCheck", {})}
       />
-
-      <input {...register("smoke")} type="radio" value="No" />
-      <input {...register("smoke")} type="radio" value="Yes" />
-      <input {...register("smoke")} type="radio" value="Occasionally" />
+      <label>Do you smoke?</label>
+      <select {...register("smoke")}>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="Occasionally">Occasionally</option>
+      </select>
+      <label>
+        Are you being treated for or have you had any of the following medical
+        conditions?
+      </label>
       <select {...register("medConditions")}>
         <option value="Arthritis">Arthritis</option>
         <option value=" AIDS/HIV"> AIDS/HIV</option>
@@ -452,6 +407,7 @@ const Forms: React.FC = () => {
         <option value=" Bleeding Problems "> Bleeding Problems </option>
       </select>
       <textarea {...register("otherMedConditions", {})} />
+      <label>Are you allergic to any of the following?</label>
       <select {...register("allergies")}>
         <option value="Anesthetic">Anesthetic</option>
         <option value=" Ibuprofen"> Ibuprofen</option>
