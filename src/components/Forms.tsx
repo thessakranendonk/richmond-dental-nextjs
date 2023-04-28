@@ -147,7 +147,7 @@ const Forms: React.FC = () => {
     e.preventDefault();
 
     const transporter = nodemailer.createTransport(
-      nodemailerSmtpTransport({
+      SMTPTransport({
         host: "smtp.example.com",
         port: 587,
         secure: false,
