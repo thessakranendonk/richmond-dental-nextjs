@@ -44,11 +44,31 @@ const TechnologyDiv = ({
           src={img}
           alt={name}
           className={clsx(
-            "mask mask-hexagon mask-center mx-auto -z-20 h-32 mb-10"
+            "xl:hidden mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-72 mb-10"
           )}
         />
+
+        {evenOrUneven && (
+          <img
+            key={name}
+            src={img}
+            alt={name}
+            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left mx-auto -z-20 h-32 md:h-72 xl:h-[42rem] mb-10"
+          />
+        )}
+
         <h2 className="font-semibold text-2xl mb-12">{technology}</h2>
         <p className="font-extralight text-md">{description}</p>
+        {!evenOrUneven && (
+          <img
+            key={name}
+            src={img}
+            alt={name}
+            className={clsx(
+              "hidden xl:flex mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-72 mb-10"
+            )}
+          />
+        )}
       </motion.div>
     </motion.div>
   );
@@ -58,7 +78,7 @@ const TechnologyLinks: React.FC = () => {
   return (
     <ul className="flex flex-wrap pb-12">
       {RICHMOND_TECHNOLOGY.map((link) => (
-        <li key={link.technology} className="flex w-1/2 mx-auto">
+        <li key={link.technology} className="flex w-1/2 md:w-1/5 mx-auto">
           <Link href={link.href}>
             <img
               src={link.img}

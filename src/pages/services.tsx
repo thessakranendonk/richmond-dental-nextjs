@@ -122,7 +122,7 @@ const ServiceLinks: React.FC = () => {
   return (
     <ul className="flex flex-wrap pb-12">
       {RICHMOND_SERVICES.map((link) => (
-        <li key={link.service} className="flex w-1/2 mx-auto">
+        <li key={link.service} className="flex w-1/2 md:w-1/5 mx-auto">
           <Link href={link.href}>
             <img
               src={link.img}
@@ -148,7 +148,7 @@ const Services: React.FC = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="w-[calc(10% - 10px)] mx-10">
+    <div className="w-[calc(10% - 10px)] mx-10 mb:bg-purple-900">
       <h1 className="text-center my-12 font-semibold text-2xl">Services</h1>
       <p className="font-extralight text-center mb-12">
         Technology has revolutionized dental care, and the services we offer are
