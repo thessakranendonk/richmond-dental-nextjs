@@ -2,10 +2,10 @@ import React, { useState, FormEvent, FormEventHandler } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import DataForm from "form-data";
-import { read } from "gray-matter";
-// import { FormData } from "../types/forms-interface"
+import nodemailer from "nodemailer";
+import smtpTransport from "nodemailer-smtp-transport";
 
-interface FormData {
+interface FormState {
   firstName: string;
   lastName: string;
   preferredName: string;
@@ -60,9 +60,59 @@ interface FormData {
   date: string;
 }
 
-const handleSubmit = (e: FormEvent<HTMLFormElement>, formData: FormData) => {
-  e.preventDefault();
-  console.log(formData);
+const initialFormState: FormState = {
+  firstName: "",
+  lastName: "",
+  preferredName: "",
+  dateOfBirth: "",
+  gender: "",
+  maritalStatus: "",
+  homePhone: "",
+  mobilePhone: "",
+  workPhone: "",
+  ext: "",
+  email: "",
+  referral: "",
+  address: "",
+  suite: "",
+  city: "",
+  province: "",
+  postalCode: "",
+  subscriber: "",
+  subscriberName: "",
+  insuranceCompany: "",
+  insuranceTel: "",
+  planNum: "",
+  subscriberId: "",
+  emerContact: "",
+  emerRelationship: "",
+  emerTel: "",
+  famDocName: "",
+  famDocAddress: "",
+  famDocTel: "",
+  medCheck: "",
+  smoke: "",
+  medConditions: "",
+  otherMedConditions: "",
+  allergies: "",
+  otherAllergies: "",
+  longTermMeds: "",
+  dentalInjection: "",
+  immuneSystem: "",
+  hospital: "",
+  illness: "",
+  otherIllness: "",
+  pregnant: "",
+  visitReason: "",
+  lastVisit: "",
+  nervous: "",
+  lastXray: "",
+  dentalSpecialist: "",
+  gumBleed: "",
+  antibiotics: "",
+  jawPain: "",
+  terms: "",
+  date: "",
 };
 
 const Forms: React.FC = () => {
@@ -70,60 +120,47 @@ const Forms: React.FC = () => {
     register,
     formState: { errors },
   } = useForm<FormData>();
-  const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    preferredName: "",
-    dateOfBirth: "",
-    gender: "",
-    maritalStatus: "",
-    homePhone: "",
-    mobilePhone: "",
-    workPhone: "",
-    ext: "",
-    email: "",
-    referral: "",
-    address: "",
-    suite: "",
-    city: "",
-    province: "",
-    postalCode: "",
-    subscriber: "",
-    subscriberName: "",
-    insuranceCompany: "",
-    insuranceTel: "",
-    planNum: "",
-    subscriberId: "",
-    emerContact: "",
-    emerRelationship: "",
-    emerTel: "",
-    famDocName: "",
-    famDocAddress: "",
-    famDocTel: "",
-    medCheck: "",
-    smoke: "",
-    medConditions: "",
-    otherMedConditions: "",
-    allergies: "",
-    otherAllergies: "",
-    longTermMeds: "",
-    dentalInjection: "",
-    immuneSystem: "",
-    hospital: "",
-    illness: "",
-    otherIllness: "",
-    pregnant: "",
-    visitReason: "",
-    lastVisit: "",
-    nervous: "",
-    lastXray: "",
-    dentalSpecialist: "",
-    gumBleed: "",
-    antibiotics: "",
-    jawPain: "",
-    terms: "",
-    date: "",
-  });
+  const [formState, setFormState] = useState<FormState>(initialFormState);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>, formData: FormData) => {
+    e.preventDefault();
+    console.log(formData);
+
+    const transporter = nodemailer.createTransport({
+      service: "Hotmail",
+      auth: {
+        user: "felix.lai@hotmail.com",
+        pass: "998157827Ruffles",
+      },
+    });
+
+    const mailOptions = {
+      from: formState.email,
+      to: "recipient_email@example.com",
+      subject: `Message from ${formState.firstName}`,
+    };
+    try {
+      await transporter.sendMail(mailOptions);
+      alert("Message sent successfully!");
+      setFormState(initialFormState);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message. Pleaase try again");
+    }
+  };
+
   // const [firstName, setFirstName] = useState<string>("");
   // const [lastName, setLastName] = useState<string>("");
   // const [preferredName, setPreferredName] = useState<string>("");
@@ -446,18 +483,6 @@ const Forms: React.FC = () => {
   //   setTerms("");
   //   setDate("");
   // };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
 
   return (
     <div className="flex justify-start ml-4">
