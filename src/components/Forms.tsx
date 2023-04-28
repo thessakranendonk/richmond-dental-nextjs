@@ -3,8 +3,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import DataForm from "form-data";
 import nodemailer from "nodemailer";
-import nodemailerSmtpTransport from "nodemailer-smtp-transport";
-import SMTPTransport from "nodemailer-smtp-transport";
 
 interface FormState {
   firstName: string;
@@ -146,17 +144,18 @@ const Forms: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const transporter = nodemailer.createTransport(
-      SMTPTransport({
-        host: "smtp.example.com",
-        port: 587,
-        secure: false,
-        auth: {
-          user: "felix.lai@hotmail.com",
-          pass: "998157827Ruffles",
-        },
-      })
-    );
+    const transporter = nodemailer.createTransport({
+      host: "smtp.example.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "felix.lai@hotmail.com",
+        pass: "998157827Ruffles",
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
 
     const mailOptions = {
       from: formData.email,
