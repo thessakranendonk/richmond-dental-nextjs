@@ -3,7 +3,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import DataForm from "form-data";
 import nodemailer from "nodemailer";
-import smtpTransport from "nodemailer-smtp-transport";
+import nodemailerSmtpTransport from "nodemailer-smtp-transport";
+import SMTPTransport from "nodemailer-smtp-transport";
 
 interface FormState {
   firstName: string;
@@ -120,7 +121,7 @@ const Forms: React.FC = () => {
     register,
     formState: { errors },
   } = useForm<FormState>();
-  const [formState, setFormState] = useState<FormState>(initialFormState);
+  const [formData, setFormData] = useState<FormState>(initialFormState);
 
   // const handleChange = (
   //   e: React.ChangeEvent<
@@ -139,28 +140,34 @@ const Forms: React.FC = () => {
       HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
     >
   ) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.example.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: "felix.lai@hotmail.com",
-        pass: "998157827Ruffles",
-      },
-    });
+    const transporter = nodemailer.createTransport(
+      nodemailerSmtpTransport({
+        host: "smtp.example.com",
+        port: 587,
+        secure: false,
+        auth: {
+          user: "felix.lai@hotmail.com",
+          pass: "998157827Ruffles",
+        },
+      })
+    );
 
     const mailOptions = {
-      from: formState.email,
+      from: formData.email,
       to: "felix.lai@hotmail.com",
-      subject: `Message from ${formState.firstName}`,
-      text: formState.firstName,
+      subject: `Message from ${formData.firstName} ${formData.lastName}`,
+      text: formData.firstName,
     };
+
+    await transporter.sendMail(mailOptions);
+
+    setFormData(initialFormState);
   };
 
   // const [firstName, setFirstName] = useState<string>("");
@@ -488,17 +495,14 @@ const Forms: React.FC = () => {
 
   return (
     <div className="flex justify-start ml-4">
-      <form
-        className="flex flex-col"
-        onSubmit={(e) => handleSubmit(e, formData)}
-      >
+      <form className="flex flex-col" onSubmit={handleSubmit}>
         <p>* marked are required fields.</p>
         <label className="ml-4">Personal Information *</label>
         <div className="flex flex-row">
           <input
             type="text"
             id="firstName"
-            value={formState.firstName}
+            value={formData.firstName}
             placeholder="First name *"
             className="ml-4 rounded-xl"
             {...register("firstName", { required: true, maxLength: 80 })}
@@ -507,7 +511,7 @@ const Forms: React.FC = () => {
           <input
             type="text"
             id="lastName"
-            value={formState.lastName}
+            value={formData.lastName}
             placeholder="Last name *"
             className="ml-4 rounded-xl"
             {...register("lastName", { required: true, maxLength: 100 })}
@@ -518,7 +522,7 @@ const Forms: React.FC = () => {
           <input
             type="text"
             id="preferredName"
-            value={formState.preferredName}
+            value={formData.preferredName}
             placeholder="Preferred Name"
             className="ml-4 rounded-xl"
             {...register("preferredName", {})}
@@ -527,7 +531,7 @@ const Forms: React.FC = () => {
           <input
             type="text"
             id="dateOfBirth"
-            value={formState.dateOfBirth}
+            value={formData.dateOfBirth}
             placeholder="Date of Birth *"
             className="ml-4 mt-4 rounded-xl"
             {...register("dateOfBirth", { required: true })}
@@ -537,7 +541,7 @@ const Forms: React.FC = () => {
         <label className="ml-4">Gender</label>
         <select
           id="gender"
-          value={formState.gender}
+          value={formData.gender}
           className="ml-4 w-40 h-8 py-1 rounded-xl"
           {...register("gender")}
           onChange={handleChange}
@@ -552,7 +556,7 @@ const Forms: React.FC = () => {
         <label className="ml-4">Marital Status</label>
         <select
           id="maritalStatus"
-          value={formState.maritalStatus}
+          value={formData.maritalStatus}
           className="ml-4 w-40 h-8 py-1 rounded-xl"
           {...register("maritalStatus")}
           onChange={handleChange}
@@ -571,7 +575,7 @@ const Forms: React.FC = () => {
             type="tel"
             placeholder="Home Phone"
             id="homePhone"
-            value={formState.homePhone}
+            value={formData.homePhone}
             className="ml-4 mt-4 rounded-xl"
             {...register("homePhone", {})}
             onChange={handleChange}
@@ -580,7 +584,7 @@ const Forms: React.FC = () => {
             type="tel"
             placeholder="Mobile number"
             id="mobilePhone"
-            value={formState.mobilePhone}
+            value={formData.mobilePhone}
             className="ml-4 mt-4 rounded-xl"
             {...register("mobilePhone", { required: true, maxLength: 12 })}
             onChange={handleChange}
@@ -591,7 +595,7 @@ const Forms: React.FC = () => {
             type="tel"
             placeholder="Work Phone"
             id="workPhone"
-            value={formState.workPhone}
+            value={formData.workPhone}
             className="ml-4 mt-4 rounded-xl"
             {...register("workPhone", {})}
             onChange={handleChange}
@@ -600,7 +604,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Ext"
             id="ext"
-            value={formState.ext}
+            value={formData.ext}
             className="ml-4 mt-4 rounded-xl"
             {...register("ext", {})}
             onChange={handleChange}
@@ -610,7 +614,7 @@ const Forms: React.FC = () => {
           type="email"
           placeholder="Email"
           id="email"
-          value={formState.email}
+          value={formData.email}
           className="w-32  ml-4 mt-4 rounded-xl"
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           onChange={handleChange}
@@ -618,7 +622,7 @@ const Forms: React.FC = () => {
         <label className="ml-4">How did you hear about us? *</label>
         <select
           id="referral"
-          value={formState.referral}
+          value={formData.referral}
           className="w-32 ml-4 rounded-xl"
           {...register("referral")}
           onChange={handleChange}
@@ -640,7 +644,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Address *"
             id="address"
-            value={formState.address}
+            value={formData.address}
             className="ml-4 mt-4 rounded-xl"
             {...register("address", { required: true })}
             onChange={handleChange}
@@ -649,7 +653,7 @@ const Forms: React.FC = () => {
             type="number"
             placeholder="Suite/Unit #"
             id="suite"
-            value={formState.suite}
+            value={formData.suite}
             className="ml-4 mt-4 rounded-xl"
             {...register("suite")}
             onChange={handleChange}
@@ -660,14 +664,14 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="City *"
             id="city"
-            value={formState.city}
+            value={formData.city}
             className="ml-4 mt-4 rounded-xl"
             {...register("city", { required: true })}
             onChange={handleChange}
           />
           <select
             id="province"
-            value={formState.province}
+            value={formData.province}
             className="ml-4 mt-4 rounded-xl"
             {...register("province")}
             onChange={handleChange}
@@ -696,7 +700,7 @@ const Forms: React.FC = () => {
           type="text"
           placeholder="Postal Code *"
           id="postalCode"
-          value={formState.postalCode}
+          value={formData.postalCode}
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("postalCode", { required: true, max: 7, min: 6 })}
           onChange={handleChange}
@@ -705,7 +709,7 @@ const Forms: React.FC = () => {
         <label className="ml-4">Relationship to Subscriber</label>
         <select
           id="subscriber"
-          value={formState.subscriber}
+          value={formData.subscriber}
           className="w-36 ml-4 mt-4 rounded-xl"
           {...register("subscriber")}
           onChange={handleChange}
@@ -722,7 +726,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Subscriber Name"
             id="subscriberName"
-            value={formState.subscriberName}
+            value={formData.subscriberName}
             className="ml-4 mt-4 rounded-xl"
             {...register("subscriberName", {})}
             onChange={handleChange}
@@ -731,7 +735,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Insurance Company"
             id="insuranceCompany"
-            value={formState.insuranceCompany}
+            value={formData.insuranceCompany}
             className="ml-4 mt-4 rounded-xl"
             {...register("insuranceCompany", {})}
             onChange={handleChange}
@@ -742,7 +746,7 @@ const Forms: React.FC = () => {
             type="tel"
             placeholder="Phone Number"
             id="insuranceTel"
-            value={formState.insuranceTel}
+            value={formData.insuranceTel}
             className="ml-4 mt-4 rounded-xl"
             {...register("insuranceTel", {})}
             onChange={handleChange}
@@ -751,7 +755,7 @@ const Forms: React.FC = () => {
             type="number"
             placeholder="Plan/Policy Number"
             id="planNum"
-            value={formState.planNum}
+            value={formData.planNum}
             className="ml-4 mt-4 rounded-xl"
             {...register("planNum", {})}
             onChange={handleChange}
@@ -761,7 +765,7 @@ const Forms: React.FC = () => {
           type="number"
           placeholder="Subscriber ID/Certificate #"
           id="subscriberId"
-          value={formState.subscriberId}
+          value={formData.subscriberId}
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("subscriberId", {})}
           onChange={handleChange}
@@ -772,7 +776,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Name *"
             id="emerContact"
-            value={formState.emerContact}
+            value={formData.emerContact}
             className="ml-4 mt-4 rounded-xl"
             {...register("emerContact", { required: true })}
             onChange={handleChange}
@@ -781,7 +785,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Relationship"
             id="emerRelationship"
-            value={formState.emerRelationship}
+            value={formData.emerRelationship}
             className="ml-4 mt-4 rounded-xl"
             {...register("emerRelationship", {})}
             onChange={handleChange}
@@ -791,7 +795,7 @@ const Forms: React.FC = () => {
           type="tel"
           placeholder="Phone Number"
           id="emerTel"
-          value={formState.emerTel}
+          value={formData.emerTel}
           className="w-36 ml-4 mt-4 rounded-xl"
           {...register("emerTel", {})}
           onChange={handleChange}
@@ -802,7 +806,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Family Doctor's Name"
             id="famDocName"
-            value={formState.famDocName}
+            value={formData.famDocName}
             className="ml-4 mt-4 rounded-xl"
             {...register("famDocName", {})}
             onChange={handleChange}
@@ -811,7 +815,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Family Doctor's Address"
             id="famDocAddress"
-            value={formState.famDocAddress}
+            value={formData.famDocAddress}
             className="ml-4 mt-4 rounded-xl"
             {...register("famDocAddress", {})}
             onChange={handleChange}
@@ -822,7 +826,7 @@ const Forms: React.FC = () => {
             type="tel"
             placeholder="Family Doctor's Phone"
             id="famDocTel"
-            value={formState.famDocTel}
+            value={formData.famDocTel}
             className="ml-4 mt-4 rounded-xl"
             {...register("famDocTel", {})}
             onChange={handleChange}
@@ -831,7 +835,7 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="When was your last medical check-up?"
             id="medCheck"
-            value={formState.medCheck}
+            value={formData.medCheck}
             className="ml-4 mt-4 rounded-xl"
             {...register("medCheck", {})}
             onChange={handleChange}
@@ -840,7 +844,7 @@ const Forms: React.FC = () => {
         <label className="ml-4">Do you smoke?</label>
         <select
           id="smoke"
-          value={formState.smoke}
+          value={formData.smoke}
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("smoke")}
           onChange={handleChange}
@@ -860,7 +864,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -870,7 +874,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -880,7 +884,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -890,7 +894,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -900,7 +904,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -910,7 +914,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -920,7 +924,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -930,7 +934,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -940,7 +944,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -952,7 +956,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -962,7 +966,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -972,7 +976,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -982,7 +986,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -992,7 +996,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1002,7 +1006,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1012,7 +1016,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1022,7 +1026,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1032,7 +1036,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1044,7 +1048,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1054,7 +1058,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1064,7 +1068,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1074,7 +1078,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1084,7 +1088,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1094,7 +1098,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1104,7 +1108,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1114,7 +1118,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1124,7 +1128,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.medConditions}
+              value={formData.medConditions}
               id="medConditions"
               {...register("medConditions")}
               onChange={handleChange}
@@ -1136,7 +1140,7 @@ const Forms: React.FC = () => {
           className="ml-4 mt-4 rounded-xl"
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           id="otherMedConditions"
-          value={formState.otherMedConditions}
+          value={formData.otherMedConditions}
           {...register("otherMedConditions", {})}
           onChange={handleChange}
         />
@@ -1147,7 +1151,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1157,7 +1161,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1167,7 +1171,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1177,7 +1181,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1189,7 +1193,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1199,7 +1203,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1209,7 +1213,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1219,7 +1223,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.allergies}
+              value={formData.allergies}
               id="allergies"
               {...register("allergies")}
               onChange={handleChange}
@@ -1231,7 +1235,7 @@ const Forms: React.FC = () => {
           className="ml-4 mt-4 rounded-xl"
           placeholder="If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have."
           id="otherAllergies"
-          value={formState.otherAllergies}
+          value={formData.otherAllergies}
           {...register("otherAllergies", {})}
           onChange={handleChange}
         />
@@ -1242,7 +1246,7 @@ const Forms: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="longTermMeds"
-          value={formState.longTermMeds}
+          value={formData.longTermMeds}
           {...register("longTermMeds")}
           onChange={handleChange}
         >
@@ -1258,7 +1262,7 @@ const Forms: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="dentalInjection"
-          value={formState.dentalInjection}
+          value={formData.dentalInjection}
           {...register("dentalInjection")}
           onChange={handleChange}
         >
@@ -1276,7 +1280,7 @@ const Forms: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="immuneSystem"
-          value={formState.immuneSystem}
+          value={formData.immuneSystem}
           {...register("immuneSystem")}
           onChange={handleChange}
         >
@@ -1293,7 +1297,7 @@ const Forms: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="hospital"
-          value={formState.hospital}
+          value={formData.hospital}
           {...register("hospital")}
           onChange={handleChange}
         >
@@ -1311,7 +1315,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1321,7 +1325,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1331,7 +1335,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1341,7 +1345,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1351,7 +1355,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1363,7 +1367,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1373,7 +1377,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1383,7 +1387,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1393,7 +1397,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1403,7 +1407,7 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              value={formState.illness}
+              value={formData.illness}
               id="illness"
               {...register("illness")}
               onChange={handleChange}
@@ -1415,7 +1419,7 @@ const Forms: React.FC = () => {
           className="ml-4 rounded-xl"
           placeholder="Have we missed anything that you would like to let us know about?"
           id="otherIllness"
-          value={formState.otherIllness}
+          value={formData.otherIllness}
           {...register("otherIllness", {})}
           onChange={handleChange}
         />
@@ -1424,7 +1428,7 @@ const Forms: React.FC = () => {
         </label>
         <select
           id="pregnant"
-          value={formState.pregnant}
+          value={formData.pregnant}
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("pregnant")}
           onChange={handleChange}
@@ -1441,7 +1445,7 @@ const Forms: React.FC = () => {
           className="w-72 h-40 ml-4 mt-4 rounded-xl"
           placeholder="What is your reason for visit today?"
           id="visitReason"
-          value={formState.visitReason}
+          value={formData.visitReason}
           {...register("visitReason", {})}
           onChange={handleChange}
         />
@@ -1449,7 +1453,7 @@ const Forms: React.FC = () => {
           type="text"
           placeholder="When was your last dental visit?"
           id="lastVisit"
-          value={formState.lastVisit}
+          value={formData.lastVisit}
           className="w-64 ml-4 mt-4 rounded-xl"
           {...register("lastVisit", {})}
           onChange={handleChange}
@@ -1457,7 +1461,7 @@ const Forms: React.FC = () => {
         <label className="ml-4">Are you nervous during dental visits?</label>
         <select
           id="nervous"
-          value={formState.nervous}
+          value={formData.nervous}
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("nervous")}
           onChange={handleChange}
@@ -1475,7 +1479,7 @@ const Forms: React.FC = () => {
           placeholder="When was your last dental x-ray?"
           className="w-72 ml-4 mt-4 rounded-xl"
           id="lastXray"
-          value={formState.lastXray}
+          value={formData.lastXray}
           {...register("lastXray", {})}
           onChange={handleChange}
         />
@@ -1485,7 +1489,7 @@ const Forms: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="dentalSpecialist"
-          value={formState.dentalSpecialist}
+          value={formData.dentalSpecialist}
           {...register("dentalSpecialist")}
           onChange={handleChange}
         >
@@ -1501,7 +1505,7 @@ const Forms: React.FC = () => {
         </label>
         <select
           id="gumBleed"
-          value={formState.gumBleed}
+          value={formData.gumBleed}
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("gumBleed")}
           onChange={handleChange}
@@ -1518,7 +1522,7 @@ const Forms: React.FC = () => {
         </label>
         <select
           id="antibiotics"
-          value={formState.antibiotics}
+          value={formData.antibiotics}
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("antibiotics")}
           onChange={handleChange}
@@ -1535,7 +1539,7 @@ const Forms: React.FC = () => {
         </label>
         <select
           id="jawPain"
-          value={formState.jawPain}
+          value={formData.jawPain}
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("jawPain")}
           onChange={handleChange}
@@ -1550,7 +1554,7 @@ const Forms: React.FC = () => {
         <label>
           <input
             type="checkbox"
-            value={formState.terms}
+            value={formData.terms}
             id="terms"
             className="ml-4"
             {...register("terms", { required: true })}
@@ -1565,7 +1569,7 @@ const Forms: React.FC = () => {
           placeholder="Today's Date"
           className="w-52 ml-4 mt-4 rounded-xl"
           id="date"
-          value={formState.date}
+          value={formData.date}
           {...register("date", { required: true })}
           onChange={handleChange}
         />
