@@ -125,7 +125,7 @@ const ServiceDiv = ({
 
 export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="flex flex-wrap pb-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12">
+    <ul className="flex flex-wrap pb-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative -z-20">
       {links.map((link) => (
         <li
           key={link.service}
@@ -178,7 +178,7 @@ const Services: React.FC = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative -z-20">
       <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
         Services
       </h1>

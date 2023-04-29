@@ -80,7 +80,7 @@ const TechnologyDiv = ({
 
 const Technology: React.FC = () => {
   return (
-    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative -z-20">
       <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
         Technology & Digital Dentistry
       </h1>
