@@ -128,7 +128,6 @@ const DesktopNavBar: React.FC<
   arrowColor,
   dropdownBgColor,
   linkClassName,
-  onLinkClick,
 }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isClick, setIsClick] = useState<boolean>(false);
@@ -279,7 +278,7 @@ const Header: React.FC<HeaderProps> = ({
   alt,
 }) => {
   return (
-    <header className="flex justify-between w-screen items-center">
+    <header className="fixed flex justify-between w-screen items-center bg-white">
       <div className="m-0">
         {logo ? (
           <LogoLink logo={logo} alt={alt} logoClassName={logoClassName} />
