@@ -13,10 +13,15 @@ export interface ServiceImageProps {
   description: string;
 }
 
-export interface serviceLinkProps {
-  name: string;
+export interface ServiceLinkProps {
+  service: string;
+  description: string;
   href: string;
-  imgSrc: string;
+  img: string;
+  id: string;
+}
+export interface ServiceLinkArr {
+  links: ServiceLinkProps[];
 }
 
 export const fadeInFromRight = {
@@ -78,13 +83,13 @@ const ServiceDiv = ({
       initial="hidden"
       variants={evenOrUneven ? fadeInFromRight : fadeInFromLeft}
     >
-      <motion.div className="xl:flex xl:flex-row">
+      <motion.div className="xl:flex xl:flex-row xl:w-screen xl:justify-between">
         <img
           key={name}
           src={img}
           alt={name}
           className={clsx(
-            "xl:hidden mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-72 mb-10"
+            "xl:hidden mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-96 mb-10"
           )}
         />
 
@@ -93,24 +98,24 @@ const ServiceDiv = ({
             key={name}
             src={img}
             alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left mx-auto -z-20 h-32 md:h-72 xl:h-[42rem] mb-10"
+            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left -z-20 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
           />
         )}
 
-        <div>
-          <h2 className="font-semibold text-2xl md:text-3xl mb-12">
+        <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left">
+          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800">
             {service}
           </h2>
-          <p className="font-extralight text-md">{description}</p>
+          <p className="font-extralight text-md xl:pb-24 xl:text-xl xl:w-[32rem] mx-auto text-zinc-600">
+            {description}
+          </p>
         </div>
         {!evenOrUneven && (
           <img
             key={name}
             src={img}
             alt={name}
-            className={clsx(
-              "hidden xl:flex mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-72 mb-10"
-            )}
+            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-right -z-20 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
           />
         )}
       </motion.div>
@@ -118,23 +123,48 @@ const ServiceDiv = ({
   );
 };
 
-const ServiceLinks: React.FC = () => {
+export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="flex flex-wrap pb-12">
-      {RICHMOND_SERVICES.map((link) => (
-        <li key={link.service} className="flex w-1/2 md:w-1/5 mx-auto">
+    <ul className="flex flex-wrap pb-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12">
+      {links.map((link) => (
+        <li
+          key={link.service}
+          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12"
+        >
           <Link href={link.href}>
             <img
               src={link.img}
               alt={link.service}
-              className="mask mask-hexagon mask-center -z-20 h-24"
+              className="mask mask-hexagon mask-center -z-20 h-24 mx-auto"
             />
-            <p className="font-extralight text-sm text-center py-4">
+            <p className="font-extralight text-sm text-center py-4 xl:text-lg">
               {link.service}
             </p>
           </Link>
         </li>
       ))}
+    </ul>
+  );
+};
+
+export const ServiceList: React.FC<ServiceLinkArr> = ({ links }) => {
+  return (
+    <ul className="">
+      {links.map((service, i) => {
+        return (
+          <li key={service.service} id={service.id} className="pb-12 xl:pb-0">
+            <AnimatePresence>
+              <ServiceDiv
+                img={service.img}
+                name={service.service}
+                evenOrUneven={i % 2 === 0}
+                service={service.service}
+                description={service.description}
+              />
+            </AnimatePresence>
+          </li>
+        );
+      })}
     </ul>
   );
 };
@@ -148,33 +178,17 @@ const Services: React.FC = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="w-[calc(10% - 10px)] mx-10 mb:bg-purple-900">
-      <h1 className="text-center my-12 font-semibold text-2xl">Services</h1>
-      <p className="font-extralight text-center mb-12">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0">
+      <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
+        Services
+      </h1>
+      <p className="font-extralight text-center mb-12 xl:max-w-xl xl:mx-auto xl:text-xl">
         Technology has revolutionized dental care, and the services we offer are
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-      <div>
-        <ServiceLinks />
-      </div>
-      <ul className="">
-        {RICHMOND_SERVICES.map((service, i) => {
-          return (
-            <li key={service.service} id={service.id} className="pb-12">
-              <AnimatePresence>
-                <ServiceDiv
-                  img={service.img}
-                  name={service.service}
-                  evenOrUneven={i % 2 === 0}
-                  service={service.service}
-                  description={service.description}
-                />
-              </AnimatePresence>
-            </li>
-          );
-        })}
-      </ul>
+      <ServiceLinks links={RICHMOND_SERVICES} />
+      <ServiceList links={RICHMOND_SERVICES} />
     </div>
   );
 };

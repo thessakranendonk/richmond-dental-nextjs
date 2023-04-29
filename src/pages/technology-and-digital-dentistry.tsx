@@ -1,10 +1,14 @@
 import clsx from "clsx";
-import Link from "next/link";
 import { useEffect } from "react";
 import { useAnimation, motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RICHMOND_TECHNOLOGY } from "../../data/technology-digital-dentistry";
-import { fadeInFromLeft, fadeInFromRight } from "./services";
+import {
+  fadeInFromLeft,
+  fadeInFromRight,
+  ServiceLinks,
+  ServiceList,
+} from "./services";
 
 export interface TechnologyImageProps {
   img: string;
@@ -74,56 +78,20 @@ const TechnologyDiv = ({
   );
 };
 
-const TechnologyLinks: React.FC = () => {
-  return (
-    <ul className="flex flex-wrap pb-12">
-      {RICHMOND_TECHNOLOGY.map((link) => (
-        <li key={link.technology} className="flex w-1/2 md:w-1/5 mx-auto">
-          <Link href={link.href}>
-            <img
-              src={link.img}
-              alt={link.technology}
-              className="mask mask-hexagon mask-center -z-20 h-24"
-            />
-            <p className="font-extralight text-sm text-center py-4">
-              {link.technology}
-            </p>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
 const Technology: React.FC = () => {
   return (
-    <div className="w-[calc(10% - 10px)] mx-10">
-      <h1 className="text-center my-12 font-semibold text-2xl">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0">
+      <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
         Technology & Digital Dentistry
       </h1>
-      <p className="font-extralight text-center mb-12">
+      <p className="font-extralight text-center mb-12 xl:max-w-xl xl:mx-auto xl:text-xl">
         Technology has revolutionized dental care, and the services we offer are
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-      <div>
-        <TechnologyLinks />
-      </div>
-      <ul>
-        {RICHMOND_TECHNOLOGY.map((tech, i) => (
-          <li key={tech.technology} id={tech.id} className="pb-12">
-            <AnimatePresence>
-              <TechnologyDiv
-                img={tech.img}
-                name={tech.technology}
-                evenOrUneven={i % 2 === 0}
-                technology={tech.technology}
-                description={tech.description}
-              />
-            </AnimatePresence>
-          </li>
-        ))}
-      </ul>
+
+      <ServiceLinks links={RICHMOND_TECHNOLOGY} />
+      <ServiceList links={RICHMOND_TECHNOLOGY} />
     </div>
   );
 };
