@@ -506,53 +506,46 @@ const Forms: React.FC = () => {
           <input
             type="text"
             id="firstName"
-            name="firstName"
-            // value={formData.firstName}
+            name="First Name"
             placeholder="First name *"
             className="ml-4 rounded-xl"
-            // {...register("firstName", { required: true, maxLength: 80 })}
             onSubmit={handleSubmit}
+            required
           />
           <input
             type="text"
             id="lastName"
-            name="lastName"
-            // value={formData.lastName}
+            name="Last Name"
             placeholder="Last name *"
             className="ml-4 rounded-xl"
-            // {...register("lastName", { required: true, maxLength: 100 })}
             onSubmit={handleSubmit}
+            required
           />
         </div>
         <div>
           <input
             type="text"
             id="name"
-            name="name"
-            // value={formData.preferredName}
+            name="Preferred Name"
             placeholder="Preferred Name"
             className="ml-4 rounded-xl"
-            // {...register("preferredName", {})}
             onSubmit={handleSubmit}
           />
           <input
             type="text"
             id="dateOfBirth"
-            name="dateOfBirth"
-            // value={formData.dateOfBirth}
+            name="Date Of Birth"
             placeholder="Date of Birth *"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("dateOfBirth", { required: true })}
             onSubmit={handleSubmit}
+            required
           />
         </div>
         <label className="ml-4">Gender</label>
         <select
           id="gender"
-          name="gender"
-          // value={formData.gender}
+          name="Gender"
           className="ml-4 w-40 h-8 py-1 rounded-xl"
-          // {...register("gender")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -565,10 +558,8 @@ const Forms: React.FC = () => {
         <label className="ml-4">Marital Status</label>
         <select
           id="maritalStatus"
-          name="maritalStatus"
-          // value={formData.maritalStatus}
+          name="Marital Status"
           className="ml-4 w-40 h-8 py-1 rounded-xl"
-          // {...register("maritalStatus")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -585,20 +576,16 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Home Phone"
             id="homePhone"
-            name="home phone"
-            // value={formData.homePhone}
+            name="Home Phone"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("homePhone", {})}
             onSubmit={handleSubmit}
           />
           <input
             type="text"
             placeholder="Mobile number"
             id="mobilePhone"
-            name="mobilePhone"
-            // value={formData.mobilePhone}
+            name="Mobile Phone"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("mobilePhone", { required: true, maxLength: 12 })}
             onSubmit={handleSubmit}
           />
         </div>
@@ -607,10 +594,8 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Work Phone"
             id="workPhone"
-            name="workPhone"
-            // value={formData.workPhone}
+            name="Work Phone"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("workPhone", {})}
             onSubmit={handleSubmit}
           />
           <input
@@ -618,9 +603,7 @@ const Forms: React.FC = () => {
             placeholder="Ext"
             id="ext"
             name="ext"
-            // value={formData.ext}
             className="ml-4 mt-4 rounded-xl"
-            // {...register("ext", {})}
             onSubmit={handleSubmit}
           />
         </div>
@@ -628,20 +611,17 @@ const Forms: React.FC = () => {
           type="text"
           placeholder="Email"
           id="email"
-          name="email"
-          // value={formData.email}
-          className="w-32  ml-4 mt-4 rounded-xl"
-          // {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+          name="Email"
+          className="w-52  ml-4 mt-4 rounded-xl"
           onSubmit={handleSubmit}
         />
         <label className="ml-4">How did you hear about us? *</label>
         <select
           id="referral"
           name="referral"
-          // value={formData.referral}
           className="w-32 ml-4 rounded-xl"
-          // {...register("referral")}
           onSubmit={handleSubmit}
+          required
         >
           <option value="" disabled selected hidden>
             Select
@@ -660,20 +640,17 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Address *"
             id="address"
-            name="address"
-            // value={formData.address}
+            name="Address"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("address", { required: true })}
             onSubmit={handleSubmit}
+            required
           />
           <input
             type="text"
             placeholder="Suite/Unit #"
             id="suite"
-            name="suite"
-            // value={formData.suite}
+            name="Suite #"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("suite")}
             onSubmit={handleSubmit}
           />
         </div>
@@ -682,19 +659,17 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="City *"
             id="city"
-            name="city"
-            // value={formData.city}
+            name="City"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("city", { required: true })}
             onSubmit={handleSubmit}
+            required
           />
           <select
             id="province"
-            name="province"
-            // value={formData.province}
+            name="Province"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("province")}
             onSubmit={handleSubmit}
+            required
           >
             <option value="" disabled selected hidden>
               Select Province *
@@ -720,20 +695,17 @@ const Forms: React.FC = () => {
           type="text"
           placeholder="Postal Code *"
           id="postalCode"
-          name="postal code"
-          // value={formData.postalCode}
+          name="Postal Code"
           className="w-32 ml-4 mt-4 rounded-xl"
-          // {...register("postalCode", { required: true, max: 7, min: 6 })}
           onSubmit={handleSubmit}
+          required
         />
         <label className="ml-4">Primary Dental Benefit Plan</label>
         <label className="ml-4">Relationship to Subscriber</label>
         <select
           id="subscriber"
-          name="subscriber"
-          // value={formData.subscriber}
+          name="Subscriber"
           className="w-36 ml-4 mt-4 rounded-xl"
-          // {...register("subscriber")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -748,20 +720,16 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Subscriber Name"
             id="subscriberName"
-            name="subscriber name"
-            // value={formData.subscriberName}
+            name="Subscriber Name"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("subscriberName", {})}
             onSubmit={handleSubmit}
           />
           <input
             type="text"
             placeholder="Insurance Company"
             id="insuranceCompany"
-            name="insurance company"
-            // value={formData.insuranceCompany}
+            name="Insurance Company"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("insuranceCompany", {})}
             onSubmit={handleSubmit}
           />
         </div>
@@ -770,20 +738,16 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Phone Number"
             id="insuranceTel"
-            name="insurance phone"
-            // value={formData.insuranceTel}
+            name="Insurance Phone"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("insuranceTel", {})}
             onSubmit={handleSubmit}
           />
           <input
             type="text"
             placeholder="Plan/Policy Number"
             id="planNum"
-            name="plan number"
-            // value={formData.planNum}
+            name="Plan Number"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("planNum", {})}
             onSubmit={handleSubmit}
           />
         </div>
@@ -791,10 +755,8 @@ const Forms: React.FC = () => {
           type="text"
           placeholder="Subscriber ID/Certificate #"
           id="subscriberId"
-          name="subscriber id"
-          // value={formData.subscriberId}
+          name="Subscriber ID"
           className="w-52 ml-4 mt-4 rounded-xl"
-          // {...register("subscriberId", {})}
           onSubmit={handleSubmit}
         />
         <label className="ml-4">Emergency Contact *</label>
@@ -803,20 +765,17 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Name *"
             id="emerContact"
-            name="emergency contact name"
-            // value={formData.emerContact}
+            name="Emergency Contact Name"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("emerContact", { required: true })}
             onSubmit={handleSubmit}
+            required
           />
           <input
             type="text"
             placeholder="Relationship"
             id="emerRelationship"
-            name="emergency relationship"
-            // value={formData.emerRelationship}
+            name="Emergency Relationship"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("emerRelationship", {})}
             onSubmit={handleSubmit}
           />
         </div>
@@ -824,10 +783,8 @@ const Forms: React.FC = () => {
           type="text"
           placeholder="Phone Number"
           id="emerTel"
-          name="emergency phone"
-          // value={formData.emerTel}
+          name="Emergency Phone"
           className="w-36 ml-4 mt-4 rounded-xl"
-          // {...register("emerTel", {})}
           onSubmit={handleSubmit}
         />
         <label className="ml-4">Medical History</label>
@@ -836,20 +793,16 @@ const Forms: React.FC = () => {
             type="text"
             placeholder="Family Doctor's Name"
             id="famDocName"
-            name="family doctor name"
-            // value={formData.famDocName}
+            name="Family Doctor Name"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("famDocName", {})}
             onSubmit={handleSubmit}
           />
           <input
             type="text"
             placeholder="Family Doctor's Address"
             id="famDocAddress"
-            name="family doctor address"
-            // value={formData.famDocAddress}
+            name="Family Doctor Address"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("famDocAddress", {})}
             onSubmit={handleSubmit}
           />
         </div>
@@ -858,30 +811,24 @@ const Forms: React.FC = () => {
             type="tel"
             placeholder="Family Doctor's Phone"
             id="famDocTel"
-            name="family doctor phone"
-            // value={formData.famDocTel}
+            name="Family Doctor Phone"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("famDocTel", {})}
             onSubmit={handleSubmit}
           />
           <input
             type="text"
             placeholder="When was your last medical check-up?"
             id="medCheck"
-            name="last medical check"
-            // value={formData.medCheck}
+            name="Last Medical Check"
             className="ml-4 mt-4 rounded-xl"
-            // {...register("medCheck", {})}
             onSubmit={handleSubmit}
           />
         </div>
         <label className="ml-4">Do you smoke?</label>
         <select
           id="smoke"
-          name="smoke"
-          // value={formData.smoke}
+          name="Do you smoke?"
           className="w-32 ml-4 mt-4 rounded-xl"
-          // {...register("smoke")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -899,10 +846,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              name="medical conditions"
-              // value={formData.medConditions}
+              name="Medical Conditions"
               id="medConditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Arthritis
@@ -910,10 +855,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
-              // {...register("medConditions")}
+              name="Medical Conditions"
               onSubmit={handleSubmit}
             />
             AIDS/HIV
@@ -921,10 +864,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
-              // {...register("medConditions")}
+              name="Medical Conditions"
               onSubmit={handleSubmit}
             />
             Asthma
@@ -934,7 +875,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -945,7 +886,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -956,7 +897,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -967,7 +908,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -978,7 +919,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -989,7 +930,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1002,7 +943,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1013,7 +954,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1024,7 +965,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1035,7 +976,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1046,7 +987,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1057,7 +998,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1068,7 +1009,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1079,7 +1020,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1090,7 +1031,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1103,7 +1044,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1114,7 +1055,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1125,7 +1066,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1136,7 +1077,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1147,7 +1088,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1158,7 +1099,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1169,7 +1110,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1180,7 +1121,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
+              name="Medical Conditions"
               // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
@@ -1191,8 +1132,7 @@ const Forms: React.FC = () => {
               type="checkbox"
               // value={formData.medConditions}
               id="medConditions"
-              name="medical conditions"
-              // {...register("medConditions")}
+              name="Medical Conditions"
               onSubmit={handleSubmit}
             />
             Bleeding Problems
@@ -1202,9 +1142,7 @@ const Forms: React.FC = () => {
           className="ml-4 mt-4 rounded-xl"
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           id="otherMedConditions"
-          name="other medical conditions"
-          // value={formData.otherMedConditions}
-          // {...register("otherMedConditions", {})}
+          name="Other Medical Conditions"
           onSubmit={handleSubmit}
         />
         <label className="ml-4">
@@ -1214,10 +1152,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Anesthetic
@@ -1225,10 +1161,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Ibuprofen
@@ -1236,10 +1170,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Penicilin
@@ -1247,10 +1179,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Aspirin
@@ -1260,10 +1190,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Iodine
@@ -1271,10 +1199,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Sulfa Drugs
@@ -1282,10 +1208,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Codeine
@@ -1293,10 +1217,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.allergies}
               id="allergies"
               name="allergies"
-              // {...register("allergies")}
               onSubmit={handleSubmit}
             />
             Latex
@@ -1656,6 +1578,7 @@ const Forms: React.FC = () => {
             className="ml-4"
             // {...register("terms", { required: true })}
             onSubmit={handleSubmit}
+            required
           />
           * I, understand, certify that to the best of my knowledge, the above
           information is correct. I understand that any information that I

@@ -1,4 +1,4 @@
-import Forms from "../components/Forms";
+import Forms from "@/components/Forms";
 
 const Home: React.FC = () => {
   return (
