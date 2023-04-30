@@ -58,6 +58,7 @@ interface FormState {
   jawPain: string;
   terms: string;
   date: string;
+  file: null;
 }
 
 const initialFormState: FormState = {
@@ -113,6 +114,7 @@ const initialFormState: FormState = {
   jawPain: "",
   terms: "",
   date: "",
+  file: null,
 };
 
 const Forms: React.FC = () => {
@@ -120,11 +122,65 @@ const Forms: React.FC = () => {
   //   register,
   //   formState: { errors },
   // } = useForm<FormState>();
-  // const [formState, setFormState] = useState<FormState>(initialFormState);
+  const [formState, setFormState] = useState<FormState>(initialFormState);
   const [state, handleSubmit] = useForm("xgebdegb");
   if (state.succeeded) {
     return <p>Thanks for submitting!</p>;
   }
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  const onHandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    try {
+      // Convert the form data to a PDF file
+      const pdfData = new FormData();
+      pdfData.append("firstName", formState.firstName);
+      pdfData.append("lastName", formState.lastName);
+      pdfData.append("email", formState.email);
+      // add other form fields here
+
+      const response = await axios.post(
+        "https://formspree.io/f/mayzvyrb",
+        pdfData,
+        {
+          headers: {
+            Accept: "application/pdf",
+            "Content-Type": "multipart/form-data",
+          },
+          responseType: "blob",
+        }
+      );
+
+      // Send the PDF file to your email
+      const formData = new FormData();
+      formData.append("email", formState.email);
+      formData.append("document", response.data, "form-data.pdf");
+
+      const emailResponse = await axios.post(
+        "https://formspree.io/f/mayzvyrb",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(emailResponse.data); // success message
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const handleChange = (
   //   e: React.ChangeEvent<
@@ -499,7 +555,7 @@ const Forms: React.FC = () => {
 
   return (
     <div className="flex justify-start ml-4">
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <form className="flex flex-col" onSubmit={onHandleSubmit}>
         <p>* marked are required fields.</p>
         <label className="ml-4">Personal Information *</label>
         <div className="flex flex-row">
@@ -507,22 +563,26 @@ const Forms: React.FC = () => {
             type="text"
             id="firstName"
             name="First Name"
+            value={formState.firstName}
             placeholder="First name *"
             className="ml-4 rounded-xl"
-            onSubmit={handleSubmit}
-            required
+            // onSubmit={handleSubmit}
+            onChange={handleChange}
+            // required
           />
           <input
             type="text"
             id="lastName"
             name="Last Name"
+            value={formState.lastName}
             placeholder="Last name *"
             className="ml-4 rounded-xl"
-            onSubmit={handleSubmit}
-            required
+            // onSubmit={handleSubmit}
+            onChange={handleChange}
+            // required
           />
         </div>
-        <div>
+        {/* <div>
           <input
             type="text"
             id="name"
@@ -606,16 +666,18 @@ const Forms: React.FC = () => {
             className="ml-4 mt-4 rounded-xl"
             onSubmit={handleSubmit}
           />
-        </div>
+        </div> */}
         <input
           type="text"
           placeholder="Email"
           id="email"
           name="Email"
+          value={formState.email}
           className="w-52  ml-4 mt-4 rounded-xl"
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
+          onChange={handleChange}
         />
-        <label className="ml-4">How did you hear about us? *</label>
+        {/* <label className="ml-4">How did you hear about us? *</label>
         <select
           id="referral"
           name="referral"
@@ -1491,7 +1553,7 @@ const Forms: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           id="date"
           onSubmit={handleSubmit}
-        />
+        /> */}
         <button type="submit" disabled={state.submitting}>
           Submit
         </button>
