@@ -1,4 +1,4 @@
-import Button from "@/components/ui/inputs/button";
+import Button from "@/components/ui/inputs/Button";
 import { snakeCaseToTitleCase } from "@/lib/functions";
 import { FooterProps } from "@/types/component-types";
 import clsx from "clsx";

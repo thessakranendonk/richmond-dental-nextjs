@@ -1,5 +1,5 @@
 import HamburgerIcon from "@/components/ui/icons/HamburgerIcon";
-import Button from "@/components/ui/inputs/button";
+import Button from "@/components/ui/inputs/Button";
 import { HeaderProps } from "@/types/component-types";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
