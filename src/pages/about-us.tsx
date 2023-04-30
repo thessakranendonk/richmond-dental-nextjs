@@ -1,11 +1,11 @@
 const AboutUs: React.FC = () => {
   return (
-    <div className="w-[calc(10% - 10px)] mx-8 mt-24 flex flex-col gap-y-10 xl:mx-0 relative -z-20">
-      <div className="xl:flex xl:flex-row xl:justify-between">
+    <div className="w-[calc(10% - 10px)] mx-8 mt-24 flex flex-col gap-y-10 xl:mx-0 xl:w-screen relative z-10">
+      <div className="xl:flex xl:flex-row xl:justify-between md:mt-12 xl:-mt-40">
         <img
           src="https://res.cloudinary.com/dybcfr6cd/image/upload/ar_1:1,c_fill,e_art:hokusai,g_auto,w_1000/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg"
           alt="About Us"
-          className="mask mask-hexagon mask-center mb-8 object-contain xl:mask-left -z-20 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mt-5 mx-auto"
+          className="mask mask-hexagon mask-center mb-8 object-fill object-center xl:mask-left z-10 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mt-5 mx-auto xl:mx-0"
         />
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left">
           <h1 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-center">
@@ -45,7 +45,7 @@ const AboutUs: React.FC = () => {
           <img
             src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1682865302/richmond-dental/dr-richmond_wfufcc.png"
             alt="Dr. Michael Le"
-            className="xl:hidden mask mask-hexagon mask-center object-contain xl:mask-right mx-auto -z-20 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-5 bg-clip-content text-transparent bg-gradient-to-r from-teal-400 to-teal-600
+            className="xl:hidden mask mask-hexagon mask-center object-contain xl:mask-right mx-auto z-10 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-5 bg-clip-content text-transparent bg-gradient-to-r from-teal-400 to-teal-600
         "
           />
           <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-center">
@@ -76,7 +76,7 @@ const AboutUs: React.FC = () => {
         <img
           src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1682865302/richmond-dental/dr-richmond_wfufcc.png"
           alt="Dr. Michael Le"
-          className="hidden xl:flex mask mask-hexagon mask-center object-contain xl:mask-right mx-auto -z-20 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mt-5 bg-clip-content text-transparent bg-gradient-to-r from-teal-400 to-teal-600
+          className="hidden xl:flex mask mask-hexagon mask-center object-contain xl:mask-right z-10 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mt-5 bg-clip-content text-transparent bg-gradient-to-r from-teal-400 to-teal-600
         "
         />
       </div>
