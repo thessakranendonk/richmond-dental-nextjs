@@ -873,10 +873,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             High Blood Pressure
@@ -884,10 +882,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Cancer
@@ -895,10 +891,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Diabetes
@@ -906,10 +900,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Heart Murmur
@@ -917,10 +909,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Joint Replacement
@@ -928,10 +918,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Psychiatric Treatment
@@ -941,10 +929,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Leukemia
@@ -952,10 +938,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Heart Problems
@@ -963,10 +947,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Stroke
@@ -974,10 +956,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Kidney Disease
@@ -985,10 +965,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Liver Problems
@@ -996,10 +974,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Sinus Problems
@@ -1007,10 +983,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Hepatitis / Jaundice
@@ -1018,10 +992,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Acid Reflux
@@ -1029,10 +1001,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Gum Disease
@@ -1042,10 +1012,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Lung Disease
@@ -1053,10 +1021,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Thyroid Problems
@@ -1064,10 +1030,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Tuberculosis
@@ -1075,10 +1039,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Venereal Disease
@@ -1086,10 +1048,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             PaceMaker
@@ -1097,10 +1057,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Rheumatic Fever
@@ -1108,10 +1066,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Bone Problems
@@ -1119,10 +1075,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
-              // {...register("medConditions")}
               onSubmit={handleSubmit}
             />
             Have Fainted
@@ -1130,7 +1084,6 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.medConditions}
               id="medConditions"
               name="Medical Conditions"
               onSubmit={handleSubmit}
@@ -1229,8 +1182,6 @@ const Forms: React.FC = () => {
           placeholder="If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have."
           id="otherAllergies"
           name="other allergies"
-          // value={formData.otherAllergies}
-          // {...register("otherAllergies", {})}
           onSubmit={handleSubmit}
         />
         <label className="ml-4">
@@ -1241,8 +1192,6 @@ const Forms: React.FC = () => {
           className="w-32 ml-4 mt-4 rounded-xl"
           id="longTermMeds"
           name="long term meds"
-          // value={formData.longTermMeds}
-          // {...register("longTermMeds")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1258,8 +1207,6 @@ const Forms: React.FC = () => {
           className="w-32 ml-4 mt-4 rounded-xl"
           id="dentalInjection"
           name="dental injection"
-          // value={formData.dentalInjection}
-          // {...register("dentalInjection")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1277,8 +1224,6 @@ const Forms: React.FC = () => {
           className="w-32 ml-4 mt-4 rounded-xl"
           id="immuneSystem"
           name="immune system"
-          // value={formData.immuneSystem}
-          // {...register("immuneSystem")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1295,8 +1240,6 @@ const Forms: React.FC = () => {
           className="w-32 ml-4 mt-4 rounded-xl"
           id="hospital"
           name="hospital"
-          // value={formData.hospital}
-          // {...register("hospital")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1313,10 +1256,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.illness}
               id="illness"
               name="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Chest Pain, Angina
@@ -1324,10 +1265,8 @@ const Forms: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              // value={formData.illness}
               id="illness"
               name="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Heart Attack
@@ -1336,9 +1275,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Mitral Valve Prolapse
@@ -1347,9 +1284,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Latex
@@ -1358,9 +1293,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Thyroid Disease
@@ -1371,9 +1304,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Seizures(Epilepsy)
@@ -1382,9 +1313,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Shortness of Breathe
@@ -1393,9 +1322,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Steroid Therapy
@@ -1404,9 +1331,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Osteoporosis
@@ -1415,9 +1340,7 @@ const Forms: React.FC = () => {
             <input
               type="checkbox"
               name="illness"
-              // value={formData.illness}
               id="illness"
-              // {...register("illness")}
               onSubmit={handleSubmit}
             />
             Bleeding Problems
@@ -1428,8 +1351,6 @@ const Forms: React.FC = () => {
           placeholder="Have we missed anything that you would like to let us know about?"
           id="otherIllness"
           name="other illness"
-          // value={formData.otherIllness}
-          // {...register("otherIllness", {})}
           onSubmit={handleSubmit}
         />
         <label className="ml-4">
@@ -1438,9 +1359,7 @@ const Forms: React.FC = () => {
         <select
           id="pregnant"
           name="pregnant"
-          // value={formData.pregnant}
           className="w-32 ml-4 mt-4 rounded-xl"
-          // {...register("pregnant")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1456,8 +1375,6 @@ const Forms: React.FC = () => {
           placeholder="What is your reason for visit today?"
           id="visitReason"
           name="visit reason"
-          // value={formData.visitReason}
-          // {...register("visitReason", {})}
           onSubmit={handleSubmit}
         />
         <input
@@ -1465,18 +1382,14 @@ const Forms: React.FC = () => {
           placeholder="When was your last dental visit?"
           id="lastVisit"
           name="last visit"
-          // value={formData.lastVisit}
           className="w-64 ml-4 mt-4 rounded-xl"
-          // {...register("lastVisit", {})}
           onSubmit={handleSubmit}
         />
         <label className="ml-4">Are you nervous during dental visits?</label>
         <select
           id="nervous"
           name="nervous"
-          // value={formData.nervous}
           className="w-32 ml-4 mt-4 rounded-xl"
-          // {...register("nervous")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1493,8 +1406,6 @@ const Forms: React.FC = () => {
           className="w-72 ml-4 mt-4 rounded-xl"
           id="lastXray"
           name="last xray"
-          // value={formData.lastXray}
-          // {...register("lastXray", {})}
           onSubmit={handleSubmit}
         />
         <label className="ml-4">
@@ -1504,8 +1415,6 @@ const Forms: React.FC = () => {
           className="w-32 ml-4 mt-4 rounded-xl"
           id="dentalSpecialist"
           name="dental specialist"
-          // value={formData.dentalSpecialist}
-          // {...register("dentalSpecialist")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1521,9 +1430,7 @@ const Forms: React.FC = () => {
         <select
           id="gumBleed"
           name="gum bleed"
-          // value={formData.gumBleed}
           className="w-32 ml-4 mt-4 rounded-xl"
-          // {...register("gumBleed")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1539,9 +1446,7 @@ const Forms: React.FC = () => {
         <select
           id="antibiotics"
           name="antibiotics"
-          // value={formData.antibiotics}
           className="w-32 ml-4 mt-4 rounded-xl"
-          // {...register("antibiotics")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1557,9 +1462,7 @@ const Forms: React.FC = () => {
         <select
           id="jawPain"
           name="jaw pain"
-          // value={formData.jawPain}
           className="w-32 ml-4 mt-4 rounded-xl"
-          // {...register("jawPain")}
           onSubmit={handleSubmit}
         >
           <option value="" disabled selected hidden>
@@ -1573,10 +1476,8 @@ const Forms: React.FC = () => {
           <input
             type="checkbox"
             name="terms"
-            // value={formData.terms}
             id="terms"
             className="ml-4"
-            // {...register("terms", { required: true })}
             onSubmit={handleSubmit}
             required
           />
@@ -1589,8 +1490,6 @@ const Forms: React.FC = () => {
           placeholder="Today's Date"
           className="w-52 ml-4 mt-4 rounded-xl"
           id="date"
-          // value={formData.date}
-          // {...register("date", { required: true })}
           onSubmit={handleSubmit}
         />
         <button type="submit" disabled={state.submitting}>
