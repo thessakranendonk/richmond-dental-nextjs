@@ -120,7 +120,7 @@ const Forms: React.FC = () => {
   //   register,
   //   formState: { errors },
   // } = useForm<FormState>();
-  // const [formData, setFormData] = useState<FormState>(initialFormState);
+  // const [formState, setFormState] = useState<FormState>(initialFormState);
   const [state, handleSubmit] = useForm("xgebdegb");
   if (state.succeeded) {
     return <p>Thanks for submitting!</p>;
