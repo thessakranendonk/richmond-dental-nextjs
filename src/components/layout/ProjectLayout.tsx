@@ -31,19 +31,15 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
       href: "/technology-and-digital-dentistry",
       dropdown: TECHNOLOGY_DROPDOWN,
     },
-    { name: "ABOUT US", href: "/about" },
+    { name: "ABOUT US", href: "/about-us" },
     { name: "FORMS", href: "/forms", dropdown: [] },
   ];
 
   return (
     <Wrapper>
       <Header
-        companyName="Daniel Medical Clinic"
-        companyNameClassName=""
         logo={logo.src}
         navigationLinks={navigationLinks}
-        dropdownBgColor="bg-white"
-        arrowColor="text-emerald-400"
         textClassName="group text-md transition-all duration-300 ease-in-out text-black font-light mx-10"
         linkClassName="flex bg-left-bottom pb-2 lg:text-lg lg:tracking-wider mb-3 pt-3"
         logoClassName="w-[calc(10% - 10px)] sm:w-52 ml-2 mt-1"
@@ -54,7 +50,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
         currentActiveLocation={location.pathname}
       />
       <Content>{children}</Content>
-      <Footer />
+      <Footer logo={logo.src} navigationLinks={navigationLinks} />
     </Wrapper>
   );
 };
