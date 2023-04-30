@@ -120,8 +120,8 @@ const Forms: React.FC = () => {
   //   register,
   //   formState: { errors },
   // } = useForm<FormState>();
-  const [formData, setFormData] = useState<FormState>(initialFormState);
-  const [state, handleSubmit] = useForm("mayzvyrb");
+  // const [formData, setFormData] = useState<FormState>(initialFormState);
+  const [state, handleSubmit] = useForm("xgebdegb");
   if (state.succeeded) {
     return <p>Thanks for submitting!</p>;
   }
@@ -499,7 +499,12 @@ const Forms: React.FC = () => {
 
   return (
     <div className="flex justify-start ml-4">
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col"
+        onSubmit={handleSubmit}
+        action="https://formspree.io/f/xgebdegb"
+        method="POST"
+      >
         <p>* marked are required fields.</p>
         <label className="ml-4">Personal Information *</label>
         <div className="flex flex-row">
