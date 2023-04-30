@@ -1,4 +1,9 @@
-import React, { useState, FormEvent, FormEventHandler } from "react";
+import React, {
+  useState,
+  FormEvent,
+  FormEventHandler,
+  ChangeEvent,
+} from "react";
 // import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import DataForm from "form-data";
@@ -58,7 +63,7 @@ interface FormState {
   jawPain: string;
   terms: string;
   date: string;
-  file: null;
+  // file: null;
 }
 
 const initialFormState: FormState = {
@@ -114,7 +119,7 @@ const initialFormState: FormState = {
   jawPain: "",
   terms: "",
   date: "",
-  file: null,
+  // file: null,
 };
 
 const Forms: React.FC = () => {
@@ -129,16 +134,14 @@ const Forms: React.FC = () => {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const onHandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const onHandleSubmit: FormEventHandler<HTMLFormElement> = async (
+    e: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
     try {
@@ -558,30 +561,30 @@ const Forms: React.FC = () => {
       <form className="flex flex-col" onSubmit={onHandleSubmit}>
         <p>* marked are required fields.</p>
         <label className="ml-4">Personal Information *</label>
-        <div className="flex flex-row">
-          <input
-            type="text"
-            id="firstName"
-            name="First Name"
-            value={formState.firstName}
-            placeholder="First name *"
-            className="ml-4 rounded-xl"
-            // onSubmit={handleSubmit}
-            onChange={handleChange}
-            // required
-          />
-          <input
-            type="text"
-            id="lastName"
-            name="Last Name"
-            value={formState.lastName}
-            placeholder="Last name *"
-            className="ml-4 rounded-xl"
-            // onSubmit={handleSubmit}
-            onChange={handleChange}
-            // required
-          />
-        </div>
+        {/* <div className="flex flex-row"> */}
+        <input
+          type="text"
+          id="firstName"
+          name="First Name"
+          value={formState.firstName}
+          placeholder="First name *"
+          className="ml-4 rounded-xl"
+          // onSubmit={handleSubmit}
+          onChange={handleChange}
+          // required
+        />
+        <input
+          type="text"
+          id="lastName"
+          name="Last Name"
+          value={formState.lastName}
+          placeholder="Last name *"
+          className="ml-4 rounded-xl"
+          // onSubmit={handleSubmit}
+          onChange={handleChange}
+          // required
+        />
+        {/* </div> */}
         {/* <div>
           <input
             type="text"
