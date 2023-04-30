@@ -1,17 +1,32 @@
+const { red } = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
+const round = (num) =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, "$1")
+    .replace(/\.0$/, "");
+const rem = (px) => `${round(px / 16)}rem`;
+const em = (px, base) => `${round(px / base)}em`;
+
 module.exports = {
+  variants: {
+    animation: ["motion-safe"],
+  },
   theme: {
     extend: {
-      // colors: {
-      //   current: "currentColor",
-      //   brand: {
-      //     dark: "var(--color-primary)",
-      //     darkHover: "#2f5c9a",
-      //     darkest: "#7f1D1D",
-      //   },
-      // },
+      colors: {
+        current: "currentColor",
+        brand: {
+          dark: "var(--color-primary)",
+          darkHover: "#2f5c9a",
+          darkest: "#7f1D1D",
+        },
+        ui: {
+          error: red[700],
+        },
+      },
     },
     zIndex: {
       0: "0",
@@ -26,8 +41,26 @@ module.exports = {
       90: "90",
       100: "100",
     },
+    keyframes: {
+      fadeIn: {
+        "0%": {
+          transform: "translateY(1000px) scaleY(2.5) scaleX(0.2)",
+          transformOrigin: "50% 100%",
+          filter: "blur(40px)",
+          opacity: 0,
+        },
+        "100%": {
+          transform: "translateY(0) scaleY(1) scaleX(1)",
+          transformOrigin: "50% 50%",
+          filter: "blur(0)",
+          opacity: 1,
+        },
+      },
+    },
+    animation: {
+      fadeIn: "fadeIn 2s ease-in-out 1",
+    },
   },
-
   plugins: [
     // popular tailwind plugins
     require("@tailwindcss/typography"),
@@ -56,13 +89,21 @@ module.exports = {
           "mask-repeat": "no-repeat",
         },
         ".mask-left": {
-          "-webkit-mask-position": "left",
-          "mask-position": "left",
+          "-webkit-mask-position": "-100px",
+          "mask-position": "-100px",
         },
         ".mask-right": {
-          "-webkit-mask-position": "right",
-          "mask-position": "right",
+          "-webkit-mask-position": "100px center",
+          "mask-position": "100px center",
         },
+        // ".mask-left": {
+        //   "-webkit-mask-position": "left",
+        //   "mask-position": "left",
+        // },
+        // ".mask-right": {
+        //   "-webkit-mask-position": "right",
+        //   "mask-position": "right",
+        // },
         ".mask-center": {
           "-webkit-mask-position": "center",
           "mask-position": "center",
