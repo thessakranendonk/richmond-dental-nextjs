@@ -48,7 +48,7 @@ const TechnologyDiv = ({
           src={img}
           alt={name}
           className={clsx(
-            "xl:hidden mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-72 mb-10"
+            "xl:hidden mask mask-hexagon mask-center mx-auto z-10 h-32 md:h-72 mb-10"
           )}
         />
 
@@ -57,7 +57,7 @@ const TechnologyDiv = ({
             key={name}
             src={img}
             alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left mx-auto -z-20 h-32 md:h-72 xl:h-[42rem] mb-10"
+            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left mx-auto z-10 h-32 md:h-72 xl:h-[42rem] mb-10"
           />
         )}
 
@@ -69,7 +69,7 @@ const TechnologyDiv = ({
             src={img}
             alt={name}
             className={clsx(
-              "hidden xl:flex mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-72 mb-10"
+              "hidden xl:flex mask mask-hexagon mask-center mx-auto z-10 h-32 md:h-72 mb-10"
             )}
           />
         )}
@@ -80,7 +80,7 @@ const TechnologyDiv = ({
 
 const Technology: React.FC = () => {
   return (
-    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative -z-20">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10">
       <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
         Technology & Digital Dentistry
       </h1>

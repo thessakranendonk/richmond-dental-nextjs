@@ -89,7 +89,7 @@ const ServiceDiv = ({
           src={img}
           alt={name}
           className={clsx(
-            "xl:hidden mask mask-hexagon mask-center mx-auto -z-20 h-32 md:h-96 mb-10"
+            "xl:hidden mask mask-hexagon mask-center mx-auto z-10 h-32 md:h-96 mb-10"
           )}
         />
 
@@ -98,7 +98,7 @@ const ServiceDiv = ({
             key={name}
             src={img}
             alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left -z-20 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
+            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
           />
         )}
 
@@ -115,7 +115,7 @@ const ServiceDiv = ({
             key={name}
             src={img}
             alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-right -z-20 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
+            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-right z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
           />
         )}
       </motion.div>
@@ -125,7 +125,7 @@ const ServiceDiv = ({
 
 export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="flex flex-wrap pb-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative -z-20">
+    <ul className="flex flex-wrap pb-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
       {links.map((link) => (
         <li
           key={link.service}
@@ -135,7 +135,7 @@ export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
             <img
               src={link.img}
               alt={link.service}
-              className="mask mask-hexagon mask-center -z-20 h-24 mx-auto"
+              className="mask mask-hexagon mask-center z-10 h-24 mx-auto"
             />
             <p className="font-extralight text-sm text-center py-4 xl:text-lg">
               {link.service}
@@ -178,7 +178,7 @@ const Services: React.FC = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative -z-20">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10">
       <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
         Services
       </h1>
