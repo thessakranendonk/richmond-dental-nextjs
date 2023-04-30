@@ -7,9 +7,6 @@ import Header from "./project-layout/Header";
 import { Wrapper } from "./project-layout/Wrapper";
 import logo from "../../../public/richmond2.png";
 import { useRouter } from "next/router";
-const generalJson = require("../../../data/dropdowns/general-dropdown.json");
-const cosmeticJson = require("../../../data/dropdowns/cosmetic-dropdown.json");
-// var servicesDropdown = require("../../../data/services/SERVICE_DROPDOWN");
 import { SERVICES_DROPDOWN } from "../../../data/services";
 import { TECHNOLOGY_DROPDOWN } from "../../../data/technology-digital-dentistry";
 
