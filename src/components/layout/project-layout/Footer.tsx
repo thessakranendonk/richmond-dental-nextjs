@@ -1,6 +1,7 @@
 import Button from "@/components/ui/inputs/button";
 import { snakeCaseToTitleCase } from "@/lib/functions";
 import { FooterProps } from "@/types/component-types";
+import clsx from "clsx";
 import Link from "next/link";
 
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
@@ -13,9 +14,11 @@ const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
           </li>
         ))}
       </ul>
-      <div className="mb-12 sm:hidden">
+      <div className="mb-12">
         <Button
-          extraClassName="mb-2 bg-clip-content text-white bg-gradient-to-r from-emerald-400 to-emerald-600 w-full h-12 text-lg rounded-full"
+          extraClassName={clsx(
+            "bg-emerald-800 px-12 py-4 text-2xl text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
+          )}
           type="button"
         >
           <Link href="/" className="font-semibold">
