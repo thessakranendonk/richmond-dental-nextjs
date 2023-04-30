@@ -1,4 +1,5 @@
 import HamburgerIcon from "@/components/ui/icons/HamburgerIcon";
+import Button from "@/components/ui/inputs/button";
 import { HeaderProps } from "@/types/component-types";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
@@ -44,7 +45,7 @@ const LogoLink: React.FC<
     <Link
       href="/"
       className={clsx(
-        "flex lg:inline-block w-fit relative",
+        "flex lg:inline-block w- relative",
         "focus:outline-none focus-visible:ring focus-visible:ring-black/20 focus-visible:border-transparent",
         logoClassName
       )}
@@ -128,7 +129,6 @@ const DesktopNavBar: React.FC<
   arrowColor,
   dropdownBgColor,
   linkClassName,
-  onLinkClick,
 }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isClick, setIsClick] = useState<boolean>(false);
@@ -141,7 +141,7 @@ const DesktopNavBar: React.FC<
 
   return (
     <ul className="flex">
-      {navigationLinks.map((link) => {
+      {navigationLinks.map((link, i) => {
         return (
           <li key={link.name}>
             {!link.dropdown ? (
@@ -155,7 +155,10 @@ const DesktopNavBar: React.FC<
                   "text-center lg:text-left",
                   "flex flex-col"
                 )}
-                onClick={onLinkClick}
+                onClick={() => setIsClick(true)}
+                onMouseLeave={() => {
+                  setIsHover(false);
+                }}
               >
                 <span className={clsx(hoverClassName)}>{link.name}</span>
               </Link>
@@ -188,7 +191,9 @@ const DesktopNavBar: React.FC<
                               className={clsx(
                                 "ml-2 -mr-1 h-5 w-5 mt-1",
                                 arrowColor,
-                                isHover ? "rotate-0" : "rotate-180"
+                                isHover && dropdownVariant === link.name
+                                  ? "rotate-0"
+                                  : "rotate-180"
                               )}
                               aria-hidden="true"
                             />
@@ -224,6 +229,7 @@ const DesktopNavBar: React.FC<
                         }}
                         onMouseLeave={() => {
                           setIsHover(false);
+                          setDropdownVariant("");
                         }}
                         onClick={() => setIsClick(true)}
                       >
@@ -277,7 +283,7 @@ const Header: React.FC<HeaderProps> = ({
   alt,
 }) => {
   return (
-    <header className="flex justify-between w-screen items-center">
+    <header className="fixed flex justify-between xl:justify-evenly w-screen items-center bg-white z-50">
       <div className="m-0">
         {logo ? (
           <LogoLink logo={logo} alt={alt} logoClassName={logoClassName} />
@@ -287,13 +293,25 @@ const Header: React.FC<HeaderProps> = ({
           </Link>
         )}
       </div>
-      <div className="lg:hidden">
-        <Popover>
+      <div className="flex">
+        <div className="hidden sm:flex lg:hidden mt-1">
+          <Button
+            extraClassName={clsx(
+              "bg-emerald-800 px-8 text-sm h-10 mt-1 text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
+            )}
+            type="button"
+          >
+            <Link href="/" className="font-medium">
+              BOOK NOW
+            </Link>
+          </Button>
+        </div>
+        <Popover className="lg:hidden">
           {({ open }) => (
             <>
               <Popover.Button
                 className={clsx(
-                  "flex px-6",
+                  "flex px-6 mt-2",
                   "focus:outline-none focus:ring-1 focus-ring-inset focus:ring-black-100"
                 )}
               >
@@ -310,7 +328,7 @@ const Header: React.FC<HeaderProps> = ({
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
+                <Popover.Panel className="absolute left-1/2 z-50 mt-3 w-screen -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl bg-white border-b-[1px]">
                   <div className="pt-[calc(3%)]">
                     <MenuLinks
                       navigationLinks={navigationLinks}
@@ -337,6 +355,18 @@ const Header: React.FC<HeaderProps> = ({
           activeLinkClassName={activeLinkClassName}
           currentActiveLocation={currentActiveLocation}
         />
+      </div>
+      <div className="hidden lg:flex">
+        <Button
+          extraClassName={clsx(
+            "bg-emerald-800 px-8 text-sm h-10 mt-1 text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
+          )}
+          type="button"
+        >
+          <Link href="/" className="font-medium">
+            BOOK NOW
+          </Link>
+        </Button>
       </div>
     </header>
   );

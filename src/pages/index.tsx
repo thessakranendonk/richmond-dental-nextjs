@@ -1,5 +1,5 @@
 const Home: React.FC = () => {
-  return <div></div>;
+  return <div className="flex"></div>;
 };
 
 export default Home;
