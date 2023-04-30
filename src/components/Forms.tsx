@@ -1577,7 +1577,7 @@ const Forms: React.FC = () => {
           // {...register("date", { required: true })}
           onSubmit={handleSubmit}
         />
-        <button type="submit" />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
