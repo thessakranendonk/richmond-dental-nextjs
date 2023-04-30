@@ -29,13 +29,4 @@ const nextConfig = {
   },
 };
 
-module.exports = {
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback.net = require.resolve("net");
-    }
-    return config;
-  },
-};
-
 module.exports = withMDX(nextConfig);
