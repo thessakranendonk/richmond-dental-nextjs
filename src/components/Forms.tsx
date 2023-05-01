@@ -257,64 +257,6 @@ const Forms: React.FC = () => {
   // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   //   event.preventDefault();
 
-  //   const dataForm = new DataForm();
-  //   dataForm.append("pdf", pdfFile);
-  //   dataForm.append("recipient_email", recipientEmail);
-  //   dataForm.append("sender_email", senderEmail);
-  //   dataForm.append("subject", subject);
-  //   dataForm.append("firstName", firstName);
-  //   dataForm.append("lastName", lastName);
-  //   dataForm.append("preferredName", preferredName);
-  //   dataForm.append("dateOfBirth", dateOfBirth);
-  //   dataForm.append("gender", gender);
-  //   dataForm.append("maritalStatus", maritalStatus);
-  //   dataForm.append("homePhone", homePhone);
-  //   dataForm.append("mobilePhone", mobilePhone);
-  //   dataForm.append("workPhone", workPhone);
-  //   dataForm.append("ext", ext);
-  //   dataForm.append("email", email);
-  //   dataForm.append("referral", referral);
-  //   dataForm.append("address", address);
-  //   dataForm.append("suite", suite);
-  //   dataForm.append("city", city);
-  //   dataForm.append("province", province);
-  //   dataForm.append("postalCode", postalCode);
-  //   dataForm.append("subscriber", subscriber);
-  //   dataForm.append("subscriberName", subscriberName);
-  //   dataForm.append("insuranceCompany", insuranceCompany);
-  //   dataForm.append("insuranceTel", insuranceTel);
-  //   dataForm.append("planNum", planNum);
-  //   dataForm.append("subscriberId", subscriberId);
-  //   dataForm.append("emerContact", emerContact);
-  //   dataForm.append("emerRelationship", emerRelationship);
-  //   dataForm.append("emerTel", emerTel);
-  //   dataForm.append("famDocName", famDocName);
-  //   dataForm.append("famDocAddress", famDocAddress);
-  //   dataForm.append("famDocTel", famDocTel);
-  //   dataForm.append("medCheck", medCheck);
-  //   dataForm.append("smoke", smoke);
-  //   dataForm.append("medConditions", medConditions);
-  //   dataForm.append("otherMedConditions", otherMedConditions);
-  //   dataForm.append("allergies", allergies);
-  //   dataForm.append("otherAllergies", otherAllergies);
-  //   dataForm.append("longTermMeds", longTermMeds);
-  //   dataForm.append("dentalInjection", dentalInjection);
-  //   dataForm.append("immuneSystem", immuneSystem);
-  //   dataForm.append("hospital", hospital);
-  //   dataForm.append("illness", illness);
-  //   dataForm.append("otherIllness", otherIllness);
-  //   dataForm.append("pregnant", pregnant);
-  //   dataForm.append("visitReason", visitReason);
-  //   dataForm.append("lastVisit", lastVisit);
-  //   dataForm.append("nervous", nervous);
-  //   dataForm.append("lastXray", lastXray);
-  //   dataForm.append("dentalSpecialist", dentalSpecialist);
-  //   dataForm.append("gumBleed", gumBleed);
-  //   dataForm.append("antibiotics", antibiotics);
-  //   dataForm.append("jawPain", jawPain);
-  //   dataForm.append("terms", terms);
-  //   dataForm.append("date", date);
-
   //   try {
   //     const response = await axios.post<FormData>(
   //       "https://api.emailservice.com/send-pdf",
