@@ -76,16 +76,16 @@ app.post("/api/new-patient-form", (req, res) => {
   doc.text(`Date: ${req.body.date}`);
 
   doc.end();
-});
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.live.com",
-  port: 587,
-  secure: true,
-  auth: {
-    user: "felix.lai@hotmail.com",
-    pass: "998157827Ruffles",
-  },
+  const transporter = nodemailer.createTransport({
+    host: "smtp.live.com",
+    port: 587,
+    secure: true,
+    auth: {
+      user: "felix.lai@hotmail.com",
+      pass: "998157827Ruffles",
+    },
+  });
 });
 
 const doc = new PDFDocument();
