@@ -2,11 +2,12 @@
   "name": "next-js",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "backend": "node server.ts",
+    "backend": "nodemon server.js",
     "cli:generate-dropdowns": "ts-node --project ./tsconfig.scripts.json scripts/generate-dropdowns.ts",
     "lint": "next lint"
   },
