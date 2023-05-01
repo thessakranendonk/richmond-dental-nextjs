@@ -7,11 +7,15 @@ const pdf = new jsPDF({
   format: "a4", // format can be string or array [x, y] in above units
 });
 
-const createPdf = async () => {
+const createPdf = async (obj: string) => {
   // Inserting text
   pdf.setTextColor(114, 213, 231);
   pdf.setFontSize(50);
-  pdf.text("Ticket", 1.5, 3.5);
+  pdf.text(
+    obj.replace(/{/, "").replace(/}/gm, "").replace(/"/gm, "").split(","),
+    1.5,
+    3.5
+  );
   // Adding informations
   pdf.setTextColor(0, 0, 0);
   pdf.setFontSize(25);
@@ -24,6 +28,6 @@ const createPdf = async () => {
   return pdfOutput;
 };
 
-createPdf();
+createPdf("");
 
 export default createPdf;

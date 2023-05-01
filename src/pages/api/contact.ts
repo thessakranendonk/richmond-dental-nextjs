@@ -30,7 +30,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   let htmlToSend = createHTMLToSend(emailPath, replacements);
-  let pdfOutput = await createPdf();
+  let pdfOutput = await createPdf(JSON.stringify(req.body));
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
