@@ -9,6 +9,7 @@ import logo from "../../../public/richmond2.png";
 import { useRouter } from "next/router";
 import { SERVICES_DROPDOWN } from "../../../data/services";
 import { TECHNOLOGY_DROPDOWN } from "../../../data/technology-digital-dentistry";
+import { FORMS_DROPDOWN } from "../../../data/form-dropdown";
 
 /**
  * Responsive web UI layout for RheumInfo.
@@ -28,7 +29,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
       dropdown: TECHNOLOGY_DROPDOWN,
     },
     { name: "ABOUT US", href: "/about-us" },
-    { name: "FORMS", href: "/forms", dropdown: [] },
+    { name: "FORMS", href: "/forms", dropdown: FORMS_DROPDOWN },
   ];
 
   return (
