@@ -16,7 +16,7 @@ export default async function sendEmail(
   } = req.body;
 
   const transporter = nodemailer.createTransport({
-    host: `smtp.live.com`,
+    host: `smtp.office365.com`,
     port: 587,
     auth: {
       user: "felix.lai@hotmail.com",
