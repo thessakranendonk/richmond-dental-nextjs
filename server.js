@@ -86,12 +86,12 @@ app.post("/api/new-patient-form", (req, res) => {
       pass: "998157827Ruffles",
     },
   });
-});
 
-const doc = new PDFDocument();
-doc.pipe(fs.createWriteStream("output.pdf"));
-doc.text("Form data goes here");
-doc.end;
+  const message = new PDFDocument();
+  doc.pipe(fs.createWriteStream("output.pdf"));
+  doc.text("Form data goes here");
+  doc.end;
+});
 
 const mailOptions = {
   from: "felix.lai@hotmail.com",
