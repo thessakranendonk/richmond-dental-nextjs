@@ -61,7 +61,6 @@ interface FormState {
   jawPain: string;
   terms: string;
   date: string;
-  // file: null;
 }
 
 const initialFormState: FormState = {
