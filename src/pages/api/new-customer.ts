@@ -76,7 +76,7 @@ export default async function sendEmail(
     html: `
     <p>Patient's First Name: ${firstName}</p>
     <p>Patient's Last Name: ${lastName}</p>
-    <p>Patient's Preferred Name: ${preferredName}</p>
+    <p>Preferred Name: ${preferredName}</p>
     <p>Patient's Date of Birth: ${dateOfBirth}</p>
     <p>Gender: ${gender}</p>
     <p>Marital Status: ${maritalStatus}</p>
