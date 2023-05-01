@@ -32,4 +32,15 @@ export default async function sendEmail(req, res) {
             <p>Release Statement: ${releaseStatement}</p>
             <p>Release Terms: ${releaseTerms}</p>`,
   };
+
+  try {
+    const info = await transporter.sendMail(message);
+    console.log("message sent: %s", info.messageId);
+    res.status(200).json({ message: "Email sent successfully." });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while sending the email." });
+  }
 }
