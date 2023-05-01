@@ -80,7 +80,6 @@ const DentalRecords: React.FC = () => {
           className="ml-4 rounded-xl"
           {...register("dentalOfficeDr", {
             required: true,
-            pattern: /^\S+@\S+$/i,
           })}
         />
         <input
