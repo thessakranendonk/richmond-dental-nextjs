@@ -142,7 +142,7 @@ const Forms: React.FC = () => {
   ): Promise<void> => {
     event.preventDefault();
     try {
-      const response = await axios.post("api/submit-form", formData);
+      const response = await axios.post("api/new-patient-form", formData);
       if (response.status === 200) {
         console.log("form submitted successfully");
       } else {

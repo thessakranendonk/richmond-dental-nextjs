@@ -8,7 +8,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.get("/api/hello", (req, res) => {
+app.get("/api/new-patient-form", (req, res) => {
   res.send("Hello from the server!");
 });
 
