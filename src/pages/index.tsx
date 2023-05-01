@@ -1,9 +1,9 @@
-import DentalRecords from "@/components/DentalRecords";
+import Forms from "@/components/Forms";
 
 const Home: React.FC = () => {
   return (
-    <div className="flex">
-      <DentalRecords />
+    <div>
+      <Forms />
     </div>
   );
 };
