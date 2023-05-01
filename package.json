@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "backend": "node server.ts",
     "cli:generate-dropdowns": "ts-node --project ./tsconfig.scripts.json scripts/generate-dropdowns.ts",
     "lint": "next lint"
   },
