@@ -1,11 +1,5 @@
-import Forms from "@/components/Forms";
-
 const Home: React.FC = () => {
-  return (
-    <div>
-      <Forms />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Home;
