@@ -19,4 +19,17 @@ export default async function sendEmail(req, res) {
       pass: "998157827Ruffles",
     },
   });
+
+  const message = {
+    from: "felix.lai@hotmail.com",
+    to: "felix.lai@hotmail.com",
+    subject: "Dental Records Form Submission",
+    html: `<p>Current Date: ${currentDate}</p>
+            <p>Dental Office/Dr: ${dentalOfficeDr}</p>
+            <p>Patient's First Name: ${patientsFirstName}</p>
+            <p>Patient's Last Name: ${patientsLastName}</p>
+            <p>Patient's Date of Birth: ${patientsDateOfBirth}</p>
+            <p>Release Statement: ${releaseStatement}</p>
+            <p>Release Terms: ${releaseTerms}</p>`,
+  };
 }
