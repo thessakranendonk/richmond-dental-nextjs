@@ -1,6 +1,10 @@
 import nodemailer from "nodemailer";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function sendEmail(req, res) {
+export default async function sendEmail(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const {
     currentDate,
     dentalOfficeDr,
@@ -25,12 +29,12 @@ export default async function sendEmail(req, res) {
     to: "felix.lai@hotmail.com",
     subject: "Dental Records Form Submission",
     html: `<p>Current Date: ${currentDate}</p>
-            <p>Dental Office/Dr: ${dentalOfficeDr}</p>
-            <p>Patient's First Name: ${patientsFirstName}</p>
-            <p>Patient's Last Name: ${patientsLastName}</p>
-            <p>Patient's Date of Birth: ${patientsDateOfBirth}</p>
-            <p>Release Statement: ${releaseStatement}</p>
-            <p>Release Terms: ${releaseTerms}</p>`,
+          <p>Dental Office/Dr: ${dentalOfficeDr}</p>
+          <p>Patient's First Name: ${patientsFirstName}</p>
+          <p>Patient's Last Name: ${patientsLastName}</p>
+          <p>Patient's Date of Birth: ${patientsDateOfBirth}</p>
+          <p>Release Statement: ${releaseStatement}</p>
+          <p>Release Terms: ${releaseTerms}</p>`,
   };
 
   try {

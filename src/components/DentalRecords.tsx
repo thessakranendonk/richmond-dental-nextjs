@@ -31,29 +31,16 @@ const DentalRecords: React.FC = () => {
   const [dentalState, setDentalState] =
     useState<DentalRecordsFormState>(initialDentalState);
   const onSubmit = async (data: DentalRecordsFormState) => {
-    const transporter = nodemailer.createTransport({
-      host: `smtp.live.com`,
-      port: 587,
-      auth: {
-        user: "felix.lai@hotmail.com",
-        pass: "998157827Ruffles",
-      },
-    });
-    const message = {
-      from: "felix.lai@hotmail.com",
-      to: "felix.lai@hotmail.com",
-      subject: "Dental Records Form Submission",
-      html: `<p>Current Date: ${data.currentDate}</p>
-            <p>Dental Office/Dr: ${data.dentalOfficeDr}</p>
-            <p>Patient's First Name: ${data.patientsFirstName}</p>
-            <p>Patient's Last Name: ${data.patientsLastName}</p>
-            <p>Patient's Date of Birth: ${data.patientsDateOfBirth}</p>
-            <p>Release Statement: ${data.releaseStatement}</p>
-            <p>Release Terms: ${data.releaseTerms}</p>`,
-    };
     try {
-      const info = await transporter.sendMail(message);
-      console.log("message sent: %s", info.messageId);
+      const response = await fetch("/api/dental-records", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log(result.message);
     } catch (error) {
       console.error(error);
     }
