@@ -74,6 +74,8 @@ app.post("/api/new-patient-form", (req, res) => {
   doc.text(`Jaw Pain: ${req.body.jawPain}`);
   doc.text(`Terms: ${req.body.terms}`);
   doc.text(`Date: ${req.body.date}`);
+
+  doc.end();
 });
 
 const transporter = nodemailer.createTransport({
