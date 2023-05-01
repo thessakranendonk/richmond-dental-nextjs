@@ -13,7 +13,7 @@ app.get("/api/new-patient-form", (req, res) => {
 });
 
 app.post("/api/new-patient-form", (req, res) => {
-  const formData = req.body;
+  // const formData = req.body;
 
   const doc = new PDFDocument();
 
@@ -87,32 +87,53 @@ app.post("/api/new-patient-form", (req, res) => {
     },
   });
 
-  const message = new PDFDocument();
-  doc.pipe(fs.createWriteStream("output.pdf"));
-  doc.text("Form data goes here");
-  doc.end;
+  const message = {
+    from: "user@example.com",
+    to: "recipient@example.com",
+    subject: "New Patient form submission",
+    text: "A new patient form submission has been received.",
+    attachments: [
+      {
+        filename: "new-patient-form.pdf",
+        content: doc,
+      },
+    ],
+  };
+
+  transporter.sendMail(message, (error, info) => {
+    if (error) {
+      console.log("Error sending email:", error);
+    } else {
+      console.log("Email sent:", info.response);
+    }
+  });
 });
 
-const mailOptions = {
-  from: "felix.lai@hotmail.com",
-  to: "felix.lai@hotmail.com",
-  subject: "new patient form",
-  text: "please see attached PDF",
-  attachments: [
-    {
-      filename: "document.pdf",
-      path: "/server.js",
-    },
-  ],
-};
+// const doc = new PDFDocument();
+// doc.pipe(fs.createWriteStream("output.pdf"));
+// doc.text("Form data goes here");
+// doc.end;
 
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("email send: " + info.response);
-  }
-});
+// const mailOptions = {
+//   from: "felix.lai@hotmail.com",
+//   to: "felix.lai@hotmail.com",
+//   subject: "new patient form",
+//   text: "please see attached PDF",
+//   attachments: [
+//     {
+//       filename: "document.pdf",
+//       path: "/server.js",
+//     },
+//   ],
+// };
+
+// transporter.sendMail(mailOptions, function (error, info) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("email send: " + info.response);
+//   }
+// });
 
 app.listen(3001, () => {
   console.log("Server listening on port 3001");
