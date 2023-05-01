@@ -2,10 +2,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import nodemailer from "nodemailer";
 import PDFDocument from "pdfkit";
+import router from "router";
 import fs from "fs";
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get("/api/new-patient-form", (req, res) => {
@@ -13,8 +15,7 @@ app.get("/api/new-patient-form", (req, res) => {
 });
 
 app.post("/api/new-patient-form", (req, res) => {
-  // const formData = req.body;
-
+  formData = req.body;
   const doc = new PDFDocument();
 
   res.setHeader("Content-Type", "application/pdf");
@@ -88,8 +89,8 @@ app.post("/api/new-patient-form", (req, res) => {
   });
 
   const message = {
-    from: "user@example.com",
-    to: "recipient@example.com",
+    from: "felix.lai@hotmail.com",
+    to: "felix.lai@hotmail.com",
     subject: "New Patient form submission",
     text: "A new patient form submission has been received.",
     attachments: [
