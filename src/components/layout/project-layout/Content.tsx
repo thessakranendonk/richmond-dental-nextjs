@@ -15,7 +15,10 @@ export const Content: React.FC<PropsWithChildren<ContentProps>> = ({
 }) => {
   return (
     <main
-      className={clsx("flex-1 w-screen pb-12 xl:py-0 mx-0 z-0", extraClassName)}
+      className={clsx(
+        "flex-1 w-screen pb-12 mx-0 mt-20 sm:mt-32",
+        extraClassName
+      )}
     >
       {children}
     </main>

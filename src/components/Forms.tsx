@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, {
+  useState,
+  FormEvent,
+  FormEventHandler,
+  ChangeEvent,
+} from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
+import DataForm from "form-data";
+
 
 interface FormState {
   firstName: string;
@@ -966,7 +974,6 @@ const Forms: React.FC = () => {
         />
         <button type="submit">Submit</button>
       </form>
-    </div>
   );
 };
 
