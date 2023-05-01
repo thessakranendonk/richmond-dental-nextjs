@@ -73,13 +73,59 @@ export default async function sendEmail(
     from: "felix.lai@hotmail.com",
     to: "felix.lai@hotmail.com",
     subject: "Dental Records Form Submission",
-    html: `<p>Current Date: ${currentDate}</p>
-          <p>Dental Office/Dr: ${dentalOfficeDr}</p>
-          <p>Patient's First Name: ${patientsFirstName}</p>
-          <p>Patient's Last Name: ${patientsLastName}</p>
-          <p>Patient's Date of Birth: ${patientsDateOfBirth}</p>
-          <p>Release Statement: ${releaseStatement}</p>
-          <p>Release Terms: ${releaseTerms}</p>`,
+    html: `
+    <p>Patient's First Name: ${firstName}</p>
+    <p>Patient's Last Name: ${lastName}</p>
+    <p>Patient's Preferred Name: ${preferredName}</p>
+    <p>Patient's Date of Birth: ${dateOfBirth}</p>
+    <p>Gender: ${gender}</p>
+    <p>Marital Status: ${maritalStatus}</p>
+    <p>Home Phone: ${homePhone}</p>
+    <p>Mobile Phone: ${mobilePhone}</p>
+    <p>Work Phone: ${workPhone}</p>
+    <p>Extension: ${ext}</p>
+    <p>Email: ${email}</p>
+    <p>Referral: ${referral}</p>
+    <p>Address: ${address}</p>
+    <p>Suite: ${suite}</p>
+    <p>City: ${city}</p>
+    <p>Province: ${province}</p>
+    <p>Postal Code: ${postalCode}</p>
+    <p>Subscriber: ${subscriber}</p>
+    <p>Subscriber Name: ${subscriberName}</p>
+    <p>Insurance Company: ${insuranceCompany}</p>
+    <p>Insurance Tel: ${insuranceTel}</p>
+    <p>Plan Number: ${planNum}</p>
+    <p>Subscriber ID: ${subscriberId}</p>
+    <p>Emergency Contact: ${emerContact}</p>
+    <p>Emergency Contact Relationship: ${emerRelationship}</p>
+    <p>Emergency Contact Tel: ${emerTel}</p>
+    <p>Family Doctor's Name: ${famDocName}</p>
+    <p>Family Doctor's Address: ${famDocAddress}</p>
+    <p>Family Doctor's Tel: ${famDocTel}</p>
+    <p>Medical Check-up: ${medCheck}</p>
+    <p>Smoke: ${smoke}</p>
+    <p>Medical Conditions: ${medConditions}</p>
+    <p>Other Medical Conditions: ${otherMedConditions}</p>
+    <p>Allergies: ${allergies}</p>
+    <p>Other Allergies: ${otherAllergies}</p>
+    <p>Long Term Medications: ${longTermMeds}</p>
+    <p>Dental Injection: ${dentalInjection}</p>
+    <p>Immune System: ${immuneSystem}</p>
+    <p>Hospital: ${hospital}</p>
+    <p>Illness: ${illness}</p>
+    <p>Other Illness: ${otherIllness}</p>
+    <p>Pregnant: ${pregnant}</p>
+    <p>Visit Reason: ${visitReason}</p>
+    <p>Last Visit: ${lastVisit}</p>
+    <p>Nervous: ${nervous}</p>
+    <p>Last X-ray: ${lastXray}</p>
+    <p>Dental Specialist: ${dentalSpecialist}</p>
+    <p>Gum Bleed: ${gumBleed}</p>
+    <p>Antibiotics: ${antibiotics}</p>
+    <p>Jaw Pain: ${jawPain}</p>
+    <p>Terms: ${terms}</p>
+    <p>Date: ${date}</p>,`,
   };
 
   try {
