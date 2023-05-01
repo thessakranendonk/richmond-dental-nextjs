@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import nodemailer from "nodemailer";
 import PDFDocument from "pdfkit";
+import fs from "fs";
 
 const app = express();
 
@@ -11,8 +12,8 @@ app.get("/api/hello", (req, res) => {
   res.send("Hello from the server!");
 });
 
-const transport = nodemailer.createTransport({
-  host: smtp.live.com,
+const transporter = nodemailer.createTransport({
+  host: "smtp.live.com",
   port: 587,
   secure: true,
   auth: {
@@ -38,6 +39,14 @@ const mailOptions = {
     },
   ],
 };
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("email send: " + info.response);
+  }
+});
 
 app.listen(3001, () => {
   console.log("Server listening on port 3001");
