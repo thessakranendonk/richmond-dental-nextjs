@@ -32,6 +32,8 @@
     "framer-motion": "^10.12.4",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.7",
+    "jspdf": "^2.5.1",
     "next": "13.3.1",
     "node": "^19.8.1",
     "nodemailer": "^6.9.1",

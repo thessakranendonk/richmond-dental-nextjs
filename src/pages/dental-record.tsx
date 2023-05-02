@@ -5,9 +5,10 @@ import { useForm } from "react-hook-form";
 const initialDentalState: DentalRecordFormProps = {
   currentDate: "",
   dentalOfficeDr: "",
-  patientsFirstName: "",
-  patientsLastName: "",
-  patientsDateOfBirth: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  dateOfBirth: "",
   releaseStatement: "",
   releaseTerms: "",
 };
@@ -22,7 +23,7 @@ const DentalRecordForm: React.FC = () => {
     useState<DentalRecordFormProps>(initialDentalState);
   const onSubmit = async (data: DentalRecordFormProps) => {
     try {
-      const response = await fetch("/api/dental-records-mailer", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +31,6 @@ const DentalRecordForm: React.FC = () => {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      console.log(result.message);
     } catch (error) {
       console.error(error);
     }
@@ -43,13 +43,13 @@ const DentalRecordForm: React.FC = () => {
           type="text"
           placeholder="First Name"
           className="ml-4 rounded-xl"
-          {...register("patientsFirstName", { required: true, maxLength: 80 })}
+          {...register("firstName", { required: true, maxLength: 80 })}
         />
         <input
           type="text"
           placeholder="Last name"
           className="ml-4 rounded-xl"
-          {...register("patientsLastName", { required: true, maxLength: 100 })}
+          {...register("lastName", { required: true, maxLength: 100 })}
         />
         <input
           type="text"
@@ -63,9 +63,18 @@ const DentalRecordForm: React.FC = () => {
           type="tel"
           placeholder="Date of Birth"
           className="ml-4 rounded-xl"
-          {...register("patientsDateOfBirth", {
+          {...register("dateOfBirth", {
             required: true,
             maxLength: 12,
+          })}
+        />
+        <input
+          type="text"
+          placeholder="Email"
+          id="email"
+          className="w-52  ml-4 mt-4 rounded-xl"
+          {...register("email", {
+            required: true,
           })}
         />
         <label>
@@ -83,7 +92,7 @@ const DentalRecordForm: React.FC = () => {
           convenience. The signature below represents the patient's
           authorization and release of their records along with any legal
           responsibility or liability that may arise from this authorization.
-        </label>{" "}
+        </label>
         <button type="submit">Submit</button>
       </form>
     </div>
