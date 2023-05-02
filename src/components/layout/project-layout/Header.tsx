@@ -301,7 +301,7 @@ const Header: React.FC<HeaderProps> = ({
             )}
             type="button"
           >
-            <Link href="/" className="font-medium">
+            <Link href="/book-appointment" className="font-medium">
               BOOK NOW
             </Link>
           </Button>
@@ -363,7 +363,7 @@ const Header: React.FC<HeaderProps> = ({
           )}
           type="button"
         >
-          <Link href="/" className="font-medium">
+          <Link href="/book-appointment" className="font-medium">
             BOOK NOW
           </Link>
         </Button>
