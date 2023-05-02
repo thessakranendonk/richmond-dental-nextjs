@@ -26,7 +26,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     : "New Appointment Request";
 
   const templatePath =
-    "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
+    "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates/emailTemplate.html";
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
 
   const name = `${firstName}${" "}${lastName}`;
@@ -40,7 +40,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   let pdfOutput = await createPdf(JSON.stringify(req.body), subject);
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp.office365.com",
     auth: {
       user: process.env.CONTACT_FORM_RECEIVE_EMAIL,
       pass: process.env.CONTACT_FORM_PASS,
@@ -51,7 +51,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     await transporter.sendMail({
       from: email,
       // to: "thessakranendonk@gmail.com",
-      to: "thessakranendonk@gmail.com;felix.lai@hotmail.com",
+      to: "felix.lai@hotmail.com",
       subject: `Contact form submission from ${name}`,
       // html: `<p>You have a contact form submission</p><br>
       //   <p><strong>Email: </strong> ${email}</p><br>

@@ -71,7 +71,7 @@ const NewPatientForm: React.FC = () => {
 
   const onSubmit = async (data: NewPatientFormState) => {
     try {
-      const response = await fetch("/api/new-customer-mailer", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
