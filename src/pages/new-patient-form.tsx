@@ -26,6 +26,8 @@ export const initialNewPatientFormState: NewPatientFormState = {
   insuranceTel: "",
   planNum: "",
   subscriberId: "",
+  frontFile: null,
+  backFile: null,
   emerContact: "",
   emerRelationship: "",
   emerTel: "",
