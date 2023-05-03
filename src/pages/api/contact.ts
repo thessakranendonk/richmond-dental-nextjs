@@ -6,7 +6,20 @@ import path from "path";
 import fs from "fs";
 import multer from "multer";
 
-const upload = multer({ dest: "uploads/" });
+interface MulterFile {
+  buffer: Buffer;
+  originalname: string;
+  mimetype: string;
+  size: number;
+  fieldname: string;
+}
+
+interface CustomNextApiRequest extends NextApiRequest {
+  files: {
+    frontImage: MulterFile[];
+    backImage: MulterFile[];
+  };
+}
 
 const createHTMLToSend = (path: any, replacements: any) => {
   let html = fs.readFileSync(path, {
@@ -19,15 +32,19 @@ const createHTMLToSend = (path: any, replacements: any) => {
   return htmlToSend;
 };
 
-const contact = async (req: NextApiRequest, res: NextApiResponse) => {
-  upload.single("file")(req, res, (err) => {
-    if (err) {
-      return res.status(400).json({ message: err.message });
-    }
-  });
+// const upload = multer({
+//   storage: multer.memoryStorage(),
+// });
+
+const contact = async (req: CustomNextApiRequest, res: NextApiResponse) => {
   const { email, firstName, lastName } = req.body;
-  const frontFile = (req.files as any).frontFile[0];
-  const backFile = (req.files as any).backFile[0];
+  const frontImage = req.files.frontImage && req.files.frontImage[0];
+  if (!frontImage) {
+    return res.status(400).json({ error: "front image not found!" });
+  }
+  const backImage = req.files.backImage[0];
+
+  console.log(req.files);
 
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
@@ -70,8 +87,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       html: htmlToSend,
       attachments: [
         { path: pdfOutput },
-        { filename: frontFile.originalName, content: frontFile.buffer },
-        { filename: backFile.originalName, content: backFile.buffer },
+        { filename: frontImage.originalname, content: frontImage.buffer },
+        { filename: backImage.originalname, content: backImage.buffer },
       ],
     });
   } catch (error: any) {
