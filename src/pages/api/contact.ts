@@ -26,7 +26,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     : "New Appointment Request";
 
   const templatePath =
-    "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates/emailTemplate.html";
+    "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates/emailTemplate.html";
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
 
   const name = `${firstName}${" "}${lastName}`;
