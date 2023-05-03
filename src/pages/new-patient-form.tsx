@@ -87,9 +87,10 @@ const NewPatientForm: React.FC = () => {
     }
   };
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
-  const labelClassName = "ml-4 text-xl";
+  const labelClassName = "ml-4 text-2xl";
   const inputClassName = "mb-2 ml-4 mt-4 rounded-xl border-zinc-400/60";
-  const selectClassName = "ml-4 w-1/2 mb-2 rounded-xl border-zinc-400/60";
+  const selectClassName = "ml-4 w-52 mb-2 rounded-xl border-zinc-400/60";
+  const subLabelClassName = "ml-6 mt-2 mb-2";
 
   return (
     <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-12 lg:max-w-lg lg:mx-auto">
@@ -148,7 +149,7 @@ const NewPatientForm: React.FC = () => {
             </div>
           )}
         </div>
-        <label className="ml-4">Gender</label>
+        <label className={subLabelClassName}>Gender</label>
         <select className={selectClassName} {...register("gender")}>
           <option value="" disabled selected hidden>
             Select Gender
@@ -157,7 +158,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </select>
-        <label className="ml-4">Marital Status</label>
+        <label className={subLabelClassName}>Marital Status</label>
         <select className={selectClassName} {...register("maritalStatus")}>
           <option value="" disabled selected hidden>
             Select Marital Status
@@ -199,7 +200,7 @@ const NewPatientForm: React.FC = () => {
         <input
           type="text"
           placeholder="Email"
-          className="w-52  ml-4 mt-4 rounded-xl"
+          className="w-52  ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
           {...register("email", { pattern: /^\S+@\S+$/i })}
           aria-invalid={errors.email ? "true" : "false"}
         />
@@ -208,7 +209,9 @@ const NewPatientForm: React.FC = () => {
             <MdOutlineError className="mt-1" /> Your email is incorrect
           </div>
         )}
-        <label className="ml-4">How did you hear about us? *</label>
+        <label className={subLabelClassName}>
+          How did you hear about us? *
+        </label>
         <select
           className={selectClassName}
           {...register("referral", { required: true })}
@@ -266,7 +269,7 @@ const NewPatientForm: React.FC = () => {
             </div>
           )}
           <select
-            className={inputClassName}
+            className="w-52 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
             {...register("province", { required: true })}
             aria-invalid={errors.province ? "true" : "false"}
           >
@@ -298,7 +301,7 @@ const NewPatientForm: React.FC = () => {
         <input
           type="text"
           placeholder="Postal Code *"
-          className="w-32 ml-4 mt-4 rounded-xl"
+          className="w-52 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
           {...register("postalCode", { required: true })}
           aria-invalid={errors.postalCode ? "true" : "false"}
         />
@@ -308,7 +311,7 @@ const NewPatientForm: React.FC = () => {
           </div>
         )}
         <label className={labelClassName}>Primary Dental Benefit Plan</label>
-        <label className="ml-4">Relationship to Subscriber</label>
+        <label className={subLabelClassName}>Relationship to Subscriber</label>
         <select
           id="subscriber"
           className={selectClassName}
@@ -352,7 +355,7 @@ const NewPatientForm: React.FC = () => {
         <input
           type="text"
           placeholder="Subscriber ID/Certificate #"
-          className="w-52 ml-4 mt-4 rounded-xl"
+          className="w-52 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
           {...register("subscriberId")}
         />
         <input type="file" {...register("frontImage")} accept="image/" />
@@ -381,7 +384,7 @@ const NewPatientForm: React.FC = () => {
         <input
           type="text"
           placeholder="Phone Number"
-          className="w-36 ml-4 mt-4 rounded-xl"
+          className="w-52 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
           {...register("emerTel", { minLength: 6, maxLength: 12 })}
         />
         <label className={labelClassName}>Medical History</label>
@@ -413,7 +416,7 @@ const NewPatientForm: React.FC = () => {
             {...register("medCheck")}
           />
         </div>
-        <label className="ml-4">Do you smoke?</label>
+        <label className={subLabelClassName}>Do you smoke?</label>
         <select className={selectClassName} {...register("smoke")}>
           <option value="" disabled selected hidden>
             Select
@@ -422,7 +425,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="Occasionally">Occasionally</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Are you being treated for or have you had any of the following medical
           conditions?
         </label>
@@ -545,7 +548,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           {...register("otherMedConditions")}
         />
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Are you allergic to any of the following?
         </label>
         <div className="flex flex-row ml-4">
@@ -589,7 +592,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have."
           {...register("otherAllergies")}
         />
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Have you taken any long term medicaions in the past? Prescription or
           Non-Prescription
         </label>
@@ -600,7 +603,7 @@ const NewPatientForm: React.FC = () => {
           <option value="no">No</option>
           <option value="Yes">Yes</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Have you ever had an adverse reaction to a dental injection?
         </label>
         <select className={selectClassName} {...register("dentalInjection")}>
@@ -611,7 +614,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Do you have any conditions that affect your immune system? (e.g.
           leukemia, AIDS, HIV infection, radiotherapy, chemotherapy, etc.)
         </label>
@@ -623,7 +626,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Have you ever been hospitalized for any illnesses or operations?
         </label>
         <select className={selectClassName} {...register("hospital")}>
@@ -634,7 +637,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Do you have or have you ever had any of the following? Please check.
         </label>
         <div className="flex flex-row ml-4">
@@ -686,7 +689,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="Have we missed anything that you would like to let us know about?"
           {...register("otherIllness")}
         />
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           For Women Only: Are you breastfeeding or pregnant?
         </label>
         <select className={selectClassName} {...register("pregnant")}>
@@ -709,7 +712,9 @@ const NewPatientForm: React.FC = () => {
           className="w-64 ml-4 mt-4 rounded-xl"
           {...register("lastVisit")}
         />
-        <label className="ml-4">Are you nervous during dental visits?</label>
+        <label className={subLabelClassName}>
+          Are you nervous during dental visits?
+        </label>
         <select className={selectClassName} {...register("nervous")}>
           <option value="" disabled selected hidden>
             Select
@@ -725,7 +730,7 @@ const NewPatientForm: React.FC = () => {
           className="w-72 ml-4 mt-4 rounded-xl"
           {...register("lastXray")}
         />
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Have you ever been to a dental specialist?
         </label>
         <select className={selectClassName} {...register("dentalSpecialist")}>
@@ -736,7 +741,7 @@ const NewPatientForm: React.FC = () => {
           <option value=" Yes"> Yes</option>
           <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Do your gums bleed when you brush or floss?
         </label>
         <select className={selectClassName} {...register("gumBleed")}>
@@ -747,7 +752,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes"> Yes</option>
           <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Have you been told to take antibiotics before a dental visit?
         </label>
         <select className={selectClassName} {...register("antibiotics")}>
@@ -758,7 +763,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes"> Yes</option>
           <option value="Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
-        <label className="ml-4">
+        <label className={subLabelClassName}>
           Do you have pain in the jaw or jaw joint?
         </label>
         <select className={selectClassName} {...register("jawPain")}>
@@ -772,7 +777,7 @@ const NewPatientForm: React.FC = () => {
         <label>
           <input
             type="checkbox"
-            className="ml-4"
+            className={subLabelClassName}
             {...register("terms", { required: true })}
             aria-invalid={errors.terms ? "true" : "false"}
           />
