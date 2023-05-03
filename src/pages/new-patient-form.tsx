@@ -849,7 +849,20 @@ const NewPatientForm: React.FC = () => {
         /> */}
         <SignatureCanvas
           ref={signatureRef}
-          canvasProps={{ className: "signature-canvas" }}
+          canvasProps={{
+            width: 500,
+            height: 200,
+            className: "border border-gray-300",
+          }}
+        />
+
+        <SignatureCanvas
+          ref={signatureRef}
+          canvasProps={{
+            width: 500,
+            height: 200,
+            className: "border border-gray-300",
+          }}
         />
         {/* <button onClick={clearCanvas}>Clear</button> */}
         <button

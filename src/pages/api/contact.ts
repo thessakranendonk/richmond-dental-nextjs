@@ -49,8 +49,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   const image = signature.replace(/^data:image\/\w+;base64,/, "");
-  const imageBuffer = new Buffer(image, "base64");
-  const imageSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
+  const imageBuffer = Buffer.from(image, "base64");
+  // const imageSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
 
   try {
     await transporter.sendMail({
@@ -65,7 +65,11 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       html: htmlToSend,
       attachments: [
         { path: pdfOutput },
-        { filename: "signature.png", content: imageBuffer, encoding: "base64" },
+        {
+          filename: "signature.png",
+          content: imageBuffer,
+          encoding: "base64",
+        },
       ],
     });
   } catch (error: any) {
