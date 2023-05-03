@@ -26,8 +26,8 @@ export const initialNewPatientFormState: NewPatientFormState = {
   insuranceTel: "",
   planNum: "",
   subscriberId: "",
-  // frontFile: null,
-  // backFile: null,
+  frontFile: null,
+  backFile: null,
   emerContact: "",
   emerRelationship: "",
   emerTel: "",
@@ -106,7 +106,7 @@ const NewPatientForm: React.FC = () => {
             {...register("lastName")}
           />
         </div>
-        {/* <div>
+        <div>
           <input
             type="text"
             // id="name"
@@ -322,7 +322,8 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("subscriberId")}
         />
-        <label className="ml-4">Emergency Contact *</label>
+        <input type="file" {...register("frontFile")} />
+        {/* <label className="ml-4">Emergency Contact *</label>
         <div className="flex flex-row">
           <input
             type="text"
@@ -881,7 +882,9 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
         /> */}
-        <button type="submit">Submit</button>
+        <button className="w-52 ml-4 mt-4 rounded-xl" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
