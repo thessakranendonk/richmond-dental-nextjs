@@ -77,18 +77,11 @@ const NewPatientForm: React.FC = () => {
     signature: "" as string,
   });
 
-  let signature: any;
-
-  const handleSignature = () => {
-    signature = signature.Ref.current?.toDataURL("image/png");
-    setNewPatientState({
-      ...newPatientState,
-      patientSig: signature || "",
-    });
-  };
+  const signatureRef = useRef<SignatureCanvas>(null);
 
   const onSubmit = async (data: NewPatientFormState) => {
     try {
+      data.patientSig = signatureRef.current?.toDataURL() || "";
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -845,8 +838,10 @@ const NewPatientForm: React.FC = () => {
           {...register("date")}
         />
         <SignatureCanvas
-          // {...canvasProps}
-          {...register("patientSig", { required: true })}
+          ref={signatureRef}
+          canvasProps={{ width: 400, height: 200, className: "sigCanvas" }}
+          onBegin={() => console.log("onBegin")}
+          onEnd={() => console.log("onEnd")}
         />
         {/* <button onClick={clearCanvas}>Clear</button> */}
         <button
