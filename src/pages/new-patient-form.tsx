@@ -1,5 +1,5 @@
 import { NewPatientFormState } from "@/types/forms-interfaces";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 import clsx from "clsx";
@@ -87,6 +87,16 @@ const NewPatientForm: React.FC = () => {
       console.error(error);
     }
   };
+
+  const signatureRef = useRef<SignatureCanvas>(null);
+  const canvasProps = {
+    width: 400,
+    height: 200,
+    className: "border-2 border-gray-300",
+  };
+
+  const clearCanvas = () => signatureRef.current?.clear();
+
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   const labelClassName = "ml-4 text-2xl";
   const inputClassName =
@@ -827,6 +837,8 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
         />
+        <SignatureCanvas ref={signatureRef} {...canvasProps} />
+        <button onClick={clearCanvas}>Clear</button>
         <input
           className={clsx(
             "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
