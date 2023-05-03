@@ -1,6 +1,8 @@
 import { NewPatientFormState } from "@/types/forms-interfaces";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { MdOutlineError } from "react-icons/md";
+import clsx from "clsx";
 
 export const initialNewPatientFormState: NewPatientFormState = {
   firstName: "",
@@ -79,11 +81,11 @@ const NewPatientForm: React.FC = () => {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      // console.log(result.message);
     } catch (error) {
       console.error(error);
     }
   };
+  const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
 
   return (
     <div className="flex justify-start ml-4">
@@ -93,38 +95,51 @@ const NewPatientForm: React.FC = () => {
         <div className="flex flex-row">
           <input
             type="text"
-            // id="firstName"
             placeholder="First name *"
             className="ml-4 rounded-xl"
-            {...register("firstName", { required: true })}
+            {...register("firstName", { required: true, maxLength: 80 })}
+            aria-invalid={errors.firstName ? "true" : "false"}
           />
+          {errors.firstName?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> First name is required
+            </div>
+          )}
           <input
             type="text"
-            // id="lastName"
             placeholder="Last name *"
             className="ml-4 rounded-xl"
-            {...register("lastName", { required: true })}
+            {...register("lastName", { required: true, maxLength: 80 })}
+            aria-invalid={errors.lastName ? "true" : "false"}
           />
+          {errors.lastName?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Last name is required
+            </div>
+          )}
         </div>
         <div>
           <input
             type="text"
-            // id="name"
             placeholder="Preferred Name"
             className="ml-4 rounded-xl"
             {...register("preferredName")}
           />
           <input
             type="text"
-            // id="dateOfBirth"
             placeholder="Date of Birth *"
             className="ml-4 mt-4 rounded-xl"
-            {...register("dateOfBirth", { required: true })}
+            {...register("dateOfBirth", { required: true, maxLength: 10 })}
+            aria-invalid={errors.dateOfBirth ? "true" : "false"}
           />
+          {errors.lastName?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Date Of Birth is required
+            </div>
+          )}
         </div>
         <label className="ml-4">Gender</label>
         <select
-          // id="gender"
           className="ml-4 w-40 h-8 py-1 rounded-xl"
           {...register("gender")}
         >
@@ -137,7 +152,6 @@ const NewPatientForm: React.FC = () => {
         </select>
         <label className="ml-4">Marital Status</label>
         <select
-          // id="maritalStatus"
           className="ml-4 w-40 h-8 py-1 rounded-xl"
           {...register("maritalStatus")}
         >
@@ -154,14 +168,12 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Home Phone"
-            // id="homePhone"
             className="ml-4 mt-4 rounded-xl"
             {...register("homePhone")}
           />
           <input
             type="text"
             placeholder="Mobile number"
-            // id="mobilePhone"
             className="ml-4 mt-4 rounded-xl"
             {...register("mobilePhone")}
           />
@@ -170,32 +182,40 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Work Phone"
-            // id="workPhone"
             className="ml-4 mt-4 rounded-xl"
             {...register("workPhone")}
           />
           <input
             type="text"
             placeholder="Ext"
-            // id="ext"
             className="ml-4 mt-4 rounded-xl"
-            {...register("lastName")}
+            {...register("ext")}
           />
         </div>
         <input
           type="text"
           placeholder="Email"
-          // id="email"
           className="w-52  ml-4 mt-4 rounded-xl"
           {...register("email", { pattern: /^\S+@\S+$/i })}
+          aria-invalid={errors.email ? "true" : "false"}
         />
+        {errors.lastName?.type === "pattern" && (
+          <div className={errorClassName} role="alert">
+            <MdOutlineError className="mt-1" /> Your email is incorrect
+          </div>
+        )}
         <label className="ml-4">How did you hear about us? *</label>
         <select
-          // id="referral"
           className="w-32 ml-4 rounded-xl"
           {...register("referral", { required: true })}
-          required
+          aria-invalid={errors.referral ? "true" : "false"}
         >
+          {errors.referral?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Please select one of the
+              following
+            </div>
+          )}
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -212,14 +232,18 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Address *"
-            // id="address"
             className="ml-4 mt-4 rounded-xl"
             {...register("address", { required: true })}
+            aria-invalid={errors.address ? "true" : "false"}
           />
+          {errors.address?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Address is required
+            </div>
+          )}
           <input
             type="text"
             placeholder="Suite/Unit #"
-            // id="suite"
             className="ml-4 mt-4 rounded-xl"
             {...register("suite")}
           />
@@ -228,15 +252,25 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="City *"
-            // id="city"
             className="ml-4 mt-4 rounded-xl"
             {...register("city", { required: true })}
+            aria-invalid={errors.city ? "true" : "false"}
           />
+          {errors.city?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> City is required
+            </div>
+          )}
           <select
-            // id="province"
             className="ml-4 mt-4 rounded-xl"
             {...register("province", { required: true })}
+            aria-invalid={errors.province ? "true" : "false"}
           >
+            {errors.province?.type === "required" && (
+              <div className={errorClassName} role="alert">
+                <MdOutlineError className="mt-1" /> Province is required
+              </div>
+            )}
             <option value="" disabled selected hidden>
               Select Province *
             </option>
@@ -262,7 +296,13 @@ const NewPatientForm: React.FC = () => {
           placeholder="Postal Code *"
           className="w-32 ml-4 mt-4 rounded-xl"
           {...register("postalCode", { required: true })}
+          aria-invalid={errors.postalCode ? "true" : "false"}
         />
+        {errors.postalCode?.type === "required" && (
+          <div className={errorClassName} role="alert">
+            <MdOutlineError className="mt-1" /> Postal Code is required
+          </div>
+        )}
         <label className="ml-4">Primary Dental Benefit Plan</label>
         <label className="ml-4">Relationship to Subscriber</label>
         <select
@@ -319,7 +359,14 @@ const NewPatientForm: React.FC = () => {
             placeholder="Name *"
             className="ml-4 mt-4 rounded-xl"
             {...register("emerContact", { required: true })}
+            aria-invalid={errors.emerContact ? "true" : "false"}
           />
+          {errors.emerContact?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Emergency Contact Name is
+              required
+            </div>
+          )}
           <input
             type="text"
             placeholder="Relationship"
@@ -738,7 +785,13 @@ const NewPatientForm: React.FC = () => {
             type="checkbox"
             className="ml-4"
             {...register("terms", { required: true })}
+            aria-invalid={errors.terms ? "true" : "false"}
           />
+          {errors.terms?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Must agree to terms
+            </div>
+          )}
           * I, understand, certify that to the best of my knowledge, the above
           information is correct. I understand that any information that I
           refuse to provide may affect my health and dental treatment.
