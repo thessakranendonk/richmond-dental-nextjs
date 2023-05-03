@@ -94,40 +94,40 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             id="firstName"
-            name="First Name"
             placeholder="First name *"
             className="ml-4 rounded-xl"
+            {...register("firstName")}
           />
           <input
             type="text"
             id="lastName"
-            name="Last Name"
             placeholder="Last name *"
             className="ml-4 rounded-xl"
+            {...register("lastName")}
           />
         </div>
         <div>
           <input
             type="text"
             id="name"
-            name="Preferred Name"
             placeholder="Preferred Name"
             className="ml-4 rounded-xl"
+            {...register("preferredName")}
           />
           <input
             type="text"
             id="dateOfBirth"
-            name="Date Of Birth"
             placeholder="Date of Birth *"
             className="ml-4 mt-4 rounded-xl"
+            {...register("dateOfBirth")}
             required
           />
         </div>
         <label className="ml-4">Gender</label>
         <select
           id="gender"
-          name="Gender"
           className="ml-4 w-40 h-8 py-1 rounded-xl"
+          {...register("gender")}
         >
           <option value="" disabled selected hidden>
             Select Gender
@@ -139,8 +139,8 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">Marital Status</label>
         <select
           id="maritalStatus"
-          name="Marital Status"
           className="ml-4 w-40 h-8 py-1 rounded-xl"
+          {...register("maritalStatus")}
         >
           <option value="" disabled selected hidden>
             Select Marital Status
@@ -156,15 +156,15 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Home Phone"
             id="homePhone"
-            name="Home Phone"
             className="ml-4 mt-4 rounded-xl"
+            {...register("homePhone")}
           />
           <input
             type="text"
             placeholder="Mobile number"
             id="mobilePhone"
-            name="Mobile Phone"
             className="ml-4 mt-4 rounded-xl"
+            {...register("mobilePhone")}
           />
         </div>
         <div>
@@ -172,30 +172,29 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Work Phone"
             id="workPhone"
-            name="Work Phone"
             className="ml-4 mt-4 rounded-xl"
+            {...register("workPhone")}
           />
           <input
             type="text"
             placeholder="Ext"
             id="ext"
-            name="ext"
             className="ml-4 mt-4 rounded-xl"
+            {...register("lastName")}
           />
         </div>
         <input
           type="text"
           placeholder="Email"
           id="email"
-          name="Email"
           className="w-52  ml-4 mt-4 rounded-xl"
-          //
+          {...register("email")}
         />
         <label className="ml-4">How did you hear about us? *</label>
         <select
           id="referral"
-          name="referral"
           className="w-32 ml-4 rounded-xl"
+          {...register("referral")}
           required
         >
           <option value="" disabled selected hidden>
@@ -215,16 +214,16 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Address *"
             id="address"
-            name="Address"
             className="ml-4 mt-4 rounded-xl"
+            {...register("address")}
             required
           />
           <input
             type="text"
             placeholder="Suite/Unit #"
             id="suite"
-            name="Suite #"
             className="ml-4 mt-4 rounded-xl"
+            {...register("suite")}
           />
         </div>
         <div>
@@ -232,14 +231,14 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="City *"
             id="city"
-            name="City"
             className="ml-4 mt-4 rounded-xl"
+            {...register("city")}
             required
           />
           <select
             id="province"
-            name="Province"
             className="ml-4 mt-4 rounded-xl"
+            {...register("province")}
             required
           >
             <option value="" disabled selected hidden>
@@ -266,16 +265,16 @@ const NewPatientForm: React.FC = () => {
           type="text"
           placeholder="Postal Code *"
           id="postalCode"
-          name="Postal Code"
           className="w-32 ml-4 mt-4 rounded-xl"
+          {...register("postalCode")}
           required
         />
         <label className="ml-4">Primary Dental Benefit Plan</label>
         <label className="ml-4">Relationship to Subscriber</label>
         <select
           id="subscriber"
-          name="Subscriber"
           className="w-36 ml-4 mt-4 rounded-xl"
+          {...register("subscriber")}
         >
           <option value="" disabled selected hidden>
             Relationship
@@ -289,15 +288,15 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Subscriber Name"
             id="subscriberName"
-            name="Subscriber Name"
             className="ml-4 mt-4 rounded-xl"
+            {...register("subscriberName")}
           />
           <input
             type="text"
             placeholder="Insurance Company"
             id="insuranceCompany"
-            name="Insurance Company"
             className="ml-4 mt-4 rounded-xl"
+            {...register("insuranceCompany")}
           />
         </div>
         <div>
@@ -305,23 +304,23 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Phone Number"
             id="insuranceTel"
-            name="Insurance Phone"
             className="ml-4 mt-4 rounded-xl"
+            {...register("insuranceTel")}
           />
           <input
             type="text"
             placeholder="Plan/Policy Number"
             id="planNum"
-            name="Plan Number"
             className="ml-4 mt-4 rounded-xl"
+            {...register("planNum")}
           />
         </div>
         <input
           type="text"
           placeholder="Subscriber ID/Certificate #"
           id="subscriberId"
-          name="Subscriber ID"
           className="w-52 ml-4 mt-4 rounded-xl"
+          {...register("subscriberId")}
         />
         <label className="ml-4">Emergency Contact *</label>
         <div className="flex flex-row">
@@ -329,24 +328,24 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Name *"
             id="emerContact"
-            name="Emergency Contact Name"
             className="ml-4 mt-4 rounded-xl"
+            {...register("emerContact")}
             required
           />
           <input
             type="text"
             placeholder="Relationship"
             id="emerRelationship"
-            name="Emergency Relationship"
             className="ml-4 mt-4 rounded-xl"
+            {...register("emerRelationship")}
           />
         </div>
         <input
           type="text"
           placeholder="Phone Number"
           id="emerTel"
-          name="Emergency Phone"
           className="w-36 ml-4 mt-4 rounded-xl"
+          {...register("emerTel")}
         />
         <label className="ml-4">Medical History</label>
         <div className="flex flex-row">
@@ -354,15 +353,15 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Family Doctor's Name"
             id="famDocName"
-            name="Family Doctor Name"
             className="ml-4 mt-4 rounded-xl"
+            {...register("famDocName")}
           />
           <input
             type="text"
             placeholder="Family Doctor's Address"
             id="famDocAddress"
-            name="Family Doctor Address"
             className="ml-4 mt-4 rounded-xl"
+            {...register("famDocAddress")}
           />
         </div>
         <div>
@@ -370,22 +369,22 @@ const NewPatientForm: React.FC = () => {
             type="tel"
             placeholder="Family Doctor's Phone"
             id="famDocTel"
-            name="Family Doctor Phone"
             className="ml-4 mt-4 rounded-xl"
+            {...register("famDocTel")}
           />
           <input
             type="text"
             placeholder="When was your last medical check-up?"
             id="medCheck"
-            name="Last Medical Check"
             className="ml-4 mt-4 rounded-xl"
+            {...register("medCheck")}
           />
         </div>
         <label className="ml-4">Do you smoke?</label>
         <select
           id="smoke"
-          name="Do you smoke?"
           className="w-32 ml-4 mt-4 rounded-xl"
+          {...register("smoke")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -402,8 +401,8 @@ const NewPatientForm: React.FC = () => {
           <label>
             <input
               type="checkbox"
-              name="Medical Conditions"
               id="medConditions"
+              {...register("medConditions")}
             />
             Arthritis
           </label>
@@ -411,7 +410,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             AIDS/HIV
           </label>
@@ -419,7 +418,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Asthma
           </label>{" "}
@@ -427,7 +426,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             High Blood Pressure
           </label>{" "}
@@ -435,7 +434,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Cancer
           </label>{" "}
@@ -443,7 +442,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Diabetes
           </label>{" "}
@@ -451,7 +450,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Heart Murmur
           </label>{" "}
@@ -459,7 +458,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Joint Replacement
           </label>{" "}
@@ -467,7 +466,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Psychiatric Treatment
           </label>{" "}
@@ -477,7 +476,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Leukemia
           </label>{" "}
@@ -485,7 +484,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Heart Problems
           </label>{" "}
@@ -493,7 +492,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Stroke
           </label>{" "}
@@ -501,7 +500,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Kidney Disease
           </label>{" "}
@@ -509,7 +508,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Liver Problems
           </label>{" "}
@@ -517,7 +516,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Sinus Problems
           </label>{" "}
@@ -525,7 +524,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Hepatitis / Jaundice
           </label>
@@ -533,7 +532,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Acid Reflux
           </label>{" "}
@@ -541,7 +540,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Gum Disease
           </label>{" "}
@@ -551,7 +550,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Lung Disease
           </label>{" "}
@@ -559,7 +558,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Thyroid Problems
           </label>{" "}
@@ -567,7 +566,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Tuberculosis
           </label>{" "}
@@ -575,7 +574,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Venereal Disease
           </label>{" "}
@@ -583,7 +582,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             PaceMaker
           </label>
@@ -591,7 +590,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Rheumatic Fever
           </label>{" "}
@@ -599,7 +598,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Bone Problems
           </label>{" "}
@@ -607,7 +606,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Have Fainted
           </label>{" "}
@@ -615,7 +614,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="checkbox"
               id="medConditions"
-              name="Medical Conditions"
+              {...register("medConditions")}
             />
             Bleeding Problems
           </label>
@@ -624,44 +623,44 @@ const NewPatientForm: React.FC = () => {
           className="ml-4 mt-4 rounded-xl"
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           id="otherMedConditions"
-          name="Other Medical Conditions"
+          {...register("otherMedConditions")}
         />
         <label className="ml-4">
           Are you allergic to any of the following?
         </label>
         <div className="flex flex-row ml-4">
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Anesthetic
           </label>{" "}
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Ibuprofen
           </label>{" "}
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Penicilin
           </label>{" "}
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Aspirin
           </label>{" "}
         </div>
         <div className="ml-4">
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Iodine
           </label>{" "}
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Sulfa Drugs
           </label>{" "}
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Codeine
           </label>{" "}
           <label>
-            <input type="checkbox" id="allergies" name="allergies" />
+            <input type="checkbox" id="allergies" {...register("allergies")} />
             Latex
           </label>
         </div>
@@ -669,7 +668,7 @@ const NewPatientForm: React.FC = () => {
           className="ml-4 mt-4 rounded-xl"
           placeholder="If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have."
           id="otherAllergies"
-          name="other allergies"
+          {...register("otherAllergies")}
         />
         <label className="ml-4">
           Have you taken any long term medicaions in the past? Prescription or
@@ -678,7 +677,7 @@ const NewPatientForm: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="longTermMeds"
-          name="long term meds"
+          {...register("longTermMeds")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -692,7 +691,7 @@ const NewPatientForm: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="dentalInjection"
-          name="dental injection"
+          {...register("dentalInjection")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -708,7 +707,7 @@ const NewPatientForm: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="immuneSystem"
-          name="immune system"
+          {...register("immuneSystem")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -723,7 +722,7 @@ const NewPatientForm: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="hospital"
-          name="hospital"
+          {...register("hospital")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -737,11 +736,11 @@ const NewPatientForm: React.FC = () => {
         </label>
         <div className="flex flex-row ml-4">
           <label>
-            <input type="checkbox" id="illness" name="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Chest Pain, Angina
           </label>
           <label>
-            <input type="checkbox" id="illness" name="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Heart Attack
           </label>
           <label>
@@ -749,33 +748,33 @@ const NewPatientForm: React.FC = () => {
             Mitral Valve Prolapse
           </label>
           <label>
-            <input type="checkbox" name="illness" id="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Latex
           </label>
           <label>
-            <input type="checkbox" name="illness" id="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Thyroid Disease
           </label>
         </div>
         <div className="ml-4">
           <label>
-            <input type="checkbox" name="illness" id="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Seizures(Epilepsy)
           </label>
           <label>
-            <input type="checkbox" name="illness" id="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Shortness of Breathe
           </label>
           <label>
-            <input type="checkbox" name="illness" id="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Steroid Therapy
           </label>
           <label>
-            <input type="checkbox" name="illness" id="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Osteoporosis
           </label>
           <label>
-            <input type="checkbox" name="illness" id="illness" />
+            <input type="checkbox" id="illness" {...register("illness")} />
             Bleeding Problems
           </label>
         </div>
@@ -783,15 +782,15 @@ const NewPatientForm: React.FC = () => {
           className="ml-4 rounded-xl"
           placeholder="Have we missed anything that you would like to let us know about?"
           id="otherIllness"
-          name="other illness"
+          {...register("otherIllness")}
         />
         <label className="ml-4">
           For Women Only: Are you breastfeeding or pregnant?
         </label>
         <select
           id="pregnant"
-          name="pregnant"
           className="w-32 ml-4 mt-4 rounded-xl"
+          {...register("pregnant")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -805,20 +804,20 @@ const NewPatientForm: React.FC = () => {
           className="w-72 h-40 ml-4 mt-4 rounded-xl"
           placeholder="What is your reason for visit today?"
           id="visitReason"
-          name="visit reason"
+          {...register("visitReason")}
         />
         <input
           type="text"
           placeholder="When was your last dental visit?"
           id="lastVisit"
-          name="last visit"
           className="w-64 ml-4 mt-4 rounded-xl"
+          {...register("lastVisit")}
         />
         <label className="ml-4">Are you nervous during dental visits?</label>
         <select
           id="nervous"
-          name="nervous"
           className="w-32 ml-4 mt-4 rounded-xl"
+          {...register("nervous")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -833,7 +832,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="When was your last dental x-ray?"
           className="w-72 ml-4 mt-4 rounded-xl"
           id="lastXray"
-          name="last xray"
+          {...register("lastXray")}
         />
         <label className="ml-4">
           Have you ever been to a dental specialist?
@@ -841,7 +840,7 @@ const NewPatientForm: React.FC = () => {
         <select
           className="w-32 ml-4 mt-4 rounded-xl"
           id="dentalSpecialist"
-          name="dental specialist"
+          {...register("dentalSpecialist")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -855,8 +854,8 @@ const NewPatientForm: React.FC = () => {
         </label>
         <select
           id="gumBleed"
-          name="gum bleed"
           className="w-32 ml-4 mt-4 rounded-xl"
+          {...register("gumBleed")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -870,8 +869,8 @@ const NewPatientForm: React.FC = () => {
         </label>
         <select
           id="antibiotics"
-          name="antibiotics"
           className="w-32 ml-4 mt-4 rounded-xl"
+          {...register("antibiotics")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -885,8 +884,8 @@ const NewPatientForm: React.FC = () => {
         </label>
         <select
           id="jawPain"
-          name="jaw pain"
           className="w-32 ml-4 mt-4 rounded-xl"
+          {...register("jawPain")}
         >
           <option value="" disabled selected hidden>
             Select
@@ -898,9 +897,9 @@ const NewPatientForm: React.FC = () => {
         <label>
           <input
             type="checkbox"
-            name="terms"
             id="terms"
             className="ml-4"
+            {...register("terms")}
             required
           />
           * I, understand, certify that to the best of my knowledge, the above
@@ -912,6 +911,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="Today's Date"
           className="w-52 ml-4 mt-4 rounded-xl"
           id="date"
+          {...register("date")}
         />
         <button type="submit">Submit</button>
       </form>
