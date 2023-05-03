@@ -34,6 +34,7 @@ const DentalRecordForm: React.FC = () => {
     } catch (error) {
       console.error(error);
     }
+    console.log(data, data);
   };
 
   return (

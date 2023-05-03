@@ -106,7 +106,7 @@ const NewPatientForm: React.FC = () => {
             {...register("lastName")}
           />
         </div>
-        <div>
+        {/* <div>
           <input
             type="text"
             // id="name"
@@ -880,7 +880,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="Today's Date"
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
-        />
+        /> */}
         <button type="submit">Submit</button>
       </form>
     </div>
