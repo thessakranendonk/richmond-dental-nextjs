@@ -88,9 +88,12 @@ const NewPatientForm: React.FC = () => {
   };
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   const labelClassName = "ml-4 text-2xl";
-  const inputClassName = "mb-2 ml-4 mt-4 rounded-xl border-zinc-400/60";
+  const inputClassName =
+    "mb-2 ml-4 mt-4 rounded-xl border-zinc-400/60 placeholder-sm";
   const selectClassName = "ml-4 w-52 mb-2 rounded-xl border-zinc-400/60";
   const subLabelClassName = "ml-6 mt-2 mb-2";
+  const textAreaClassName =
+    "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60";
 
   return (
     <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-12 lg:max-w-lg lg:mx-auto">
@@ -429,122 +432,148 @@ const NewPatientForm: React.FC = () => {
           Are you being treated for or have you had any of the following medical
           conditions?
         </label>
-        <div className="flex flex-row ml-4">
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Arthritis
-          </label>
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            AIDS/HIV
-          </label>
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Asthma
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            High Blood Pressure
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Cancer
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Diabetes
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Heart Murmur
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Joint Replacement
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Psychiatric Treatment
-          </label>{" "}
-        </div>
-        <div className="ml-4">
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Leukemia
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Heart Problems
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Stroke
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Kidney Disease
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Liver Problems
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Sinus Problems
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Hepatitis / Jaundice
-          </label>
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Acid Reflux
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Gum Disease
-          </label>{" "}
-        </div>
-        <div className="ml-4">
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Lung Disease
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Thyroid Problems
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Tuberculosis
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Venereal Disease
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            PaceMaker
-          </label>
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Rheumatic Fever
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Bone Problems
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Have Fainted
-          </label>{" "}
-          <label>
-            <input type="checkbox" {...register("medConditions")} />
-            Bleeding Problems
-          </label>
+        <div className="flex flex-col">
+          <div>
+            <label className="mr-2 ml-6">
+              <input type="checkbox" {...register("medConditions")} />
+              Arthritis
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              AIDS/HIV
+            </label>
+            <label>
+              <input
+                // className="ml-2"
+                type="checkbox"
+                {...register("medConditions")}
+              />
+              Asthma
+            </label>
+            <label>
+              <input
+                // className="ml-1"
+                type="checkbox"
+                {...register("medConditions")}
+              />
+              High Blood Pressure
+            </label>{" "}
+            <label>
+              <input
+                // className="ml-1"
+                type="checkbox"
+                {...register("medConditions")}
+              />
+              Cancer
+            </label>
+            <label>
+              <input
+                // className="ml-1"
+                type="checkbox"
+                {...register("medConditions")}
+              />
+              Diabetes
+            </label>{" "}
+            <label>
+              <input
+                // className="ml-1"
+                type="checkbox"
+                {...register("medConditions")}
+              />
+              Heart Murmur
+            </label>{" "}
+            <label>
+              <input
+                // className="ml-1"
+                type="checkbox"
+                {...register("medConditions")}
+              />
+              Joint Replacement
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Psychiatric Treatment
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Leukemia
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Heart Problems
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Stroke
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Kidney Disease
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Liver Problems
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Sinus Problems
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Hepatitis / Jaundice
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Acid Reflux
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Gum Disease
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Lung Disease
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Thyroid Problems
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Tuberculosis
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Venereal Disease
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              PaceMaker
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Rheumatic Fever
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Bone Problems
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Have Fainted
+            </label>
+            <label>
+              <input type="checkbox" {...register("medConditions")} />
+              Bleeding Problems
+            </label>
+          </div>
         </div>
         <textarea
-          className={inputClassName}
+          className={textAreaClassName}
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           {...register("otherMedConditions")}
         />
@@ -588,7 +617,7 @@ const NewPatientForm: React.FC = () => {
           </label>
         </div>
         <textarea
-          className={inputClassName}
+          className={textAreaClassName}
           placeholder="If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have."
           {...register("otherAllergies")}
         />
@@ -685,7 +714,7 @@ const NewPatientForm: React.FC = () => {
           </label>
         </div>
         <textarea
-          className={inputClassName}
+          className={textAreaClassName}
           placeholder="Have we missed anything that you would like to let us know about?"
           {...register("otherIllness")}
         />
