@@ -81,7 +81,11 @@ const NewPatientForm: React.FC = () => {
 
   const onSubmit = async (data: NewPatientFormState) => {
     try {
-      data.patientSig = signatureRef.current?.toDataURL() || "";
+      const signature = signatureRef.current?.toDataURL("image/png");
+      if (signature) {
+        data.signature = signature;
+      }
+      // data.patientSig = signatureRef.current?.toDataURL() || "";
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -837,11 +841,15 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
         />
-        <SignatureCanvas
+        {/* <SignatureCanvas
           ref={signatureRef}
           canvasProps={{ width: 400, height: 200, className: "sigCanvas" }}
           onBegin={() => console.log("onBegin")}
           onEnd={() => console.log("onEnd")}
+        /> */}
+        <SignatureCanvas
+          ref={signatureRef}
+          canvasProps={{ className: "signature-canvas" }}
         />
         {/* <button onClick={clearCanvas}>Clear</button> */}
         <button

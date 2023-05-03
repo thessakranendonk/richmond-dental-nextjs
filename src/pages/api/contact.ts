@@ -18,7 +18,7 @@ const createHTMLToSend = (path: any, replacements: any) => {
 };
 
 const contact = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, firstName, lastName } = req.body;
+  const { email, firstName, lastName, signature } = req.body;
 
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
@@ -48,6 +48,10 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
 
+  const image = signature.replace(/^data:image\/\w+;base64,/, "");
+  const imageBuffer = new Buffer(image, "base64");
+  const imageSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
+
   try {
     await transporter.sendMail({
       from: email,
@@ -59,7 +63,10 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       //   <p><strong>Message: </strong> ${message}</p><br>
       // `,
       html: htmlToSend,
-      attachments: [{ path: pdfOutput }],
+      attachments: [
+        { path: pdfOutput },
+        { filename: "signature.png", content: imageBuffer, encoding: "base64" },
+      ],
     });
   } catch (error: any) {
     return res.status(500).json({ error: error.message || error.toString() });
