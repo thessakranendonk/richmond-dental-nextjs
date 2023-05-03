@@ -65,6 +65,7 @@ const NewPatientForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    formState,
     formState: { errors },
   } = useForm<NewPatientFormState>();
   const [newPatientState, setNewPatientState] = useState<NewPatientFormState>(
@@ -86,12 +87,13 @@ const NewPatientForm: React.FC = () => {
     }
   };
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
+  const labelClassName = "ml-4 text-xl";
 
   return (
     <div className="flex justify-start ml-4">
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <p>* marked are required fields.</p>
-        <label className="ml-4">Personal Information *</label>
+        <label className={labelClassName}>Personal Information *</label>
         <div className="flex flex-row">
           <input
             type="text"
@@ -227,7 +229,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Newspaper/Flyer">Newspaper/Flyer</option>
           <option value="Other">Other</option>
         </select>
-        <label className="ml-4">Address *</label>
+        <label className={labelClassName}>Address *</label>
         <div className="flex flex-row">
           <input
             type="text"
@@ -303,7 +305,7 @@ const NewPatientForm: React.FC = () => {
             <MdOutlineError className="mt-1" /> Postal Code is required
           </div>
         )}
-        <label className="ml-4">Primary Dental Benefit Plan</label>
+        <label className={labelClassName}>Primary Dental Benefit Plan</label>
         <label className="ml-4">Relationship to Subscriber</label>
         <select
           id="subscriber"
@@ -352,7 +354,7 @@ const NewPatientForm: React.FC = () => {
           {...register("subscriberId")}
         />
         <input type="file" {...register("frontImage")} accept="image/" />
-        <label className="ml-4">Emergency Contact *</label>
+        <label className={labelClassName}>Emergency Contact *</label>
         <div className="flex flex-row">
           <input
             type="text"
@@ -380,7 +382,7 @@ const NewPatientForm: React.FC = () => {
           className="w-36 ml-4 mt-4 rounded-xl"
           {...register("emerTel", { minLength: 6, maxLength: 12 })}
         />
-        <label className="ml-4">Medical History</label>
+        <label className={labelClassName}>Medical History</label>
         <div className="flex flex-row">
           <input
             type="text"
@@ -702,7 +704,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes">Yes</option>
           <option value="notsure-maybe">Not Sure/Maybe</option>
         </select>
-        <label className="ml-4">Dental History</label>
+        <label className={labelClassName}>Dental History</label>
         <textarea
           className="w-72 h-40 ml-4 mt-4 rounded-xl"
           placeholder="What is your reason for visit today?"
@@ -803,9 +805,17 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
         />
-        <button className="w-52 ml-4 mt-4 rounded-xl" type="submit">
-          Submit
-        </button>
+        <input
+          className={clsx(
+            "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
+            formState.isValid &&
+              "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
+            !formState.isValid && "opacity-30"
+          )}
+          type="submit"
+          disabled={!formState.isValid}
+          value="Submit Application"
+        />
       </form>
     </div>
   );
