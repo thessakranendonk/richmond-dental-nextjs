@@ -4,6 +4,9 @@ import createPdf from "../../lib/createPdf";
 import handlebars from "handlebars";
 import path from "path";
 import fs from "fs";
+import multer from "multer";
+
+const upload = multer({ dest: "uploads/" });
 
 const createHTMLToSend = (path: any, replacements: any) => {
   let html = fs.readFileSync(path, {
@@ -17,7 +20,14 @@ const createHTMLToSend = (path: any, replacements: any) => {
 };
 
 const contact = async (req: NextApiRequest, res: NextApiResponse) => {
+  upload.single("file")(req, res, (err) => {
+    if (err) {
+      return res.status(400).json({ message: err.message });
+    }
+  });
   const { email, firstName, lastName } = req.body;
+  const frontFile = (req.files as any).frontFile[0];
+  const backFile = (req.files as any).backFile[0];
 
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
@@ -58,7 +68,11 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       //   <p><strong>Message: </strong> ${message}</p><br>
       // `,
       html: htmlToSend,
-      attachments: [{ path: pdfOutput }],
+      attachments: [
+        { path: pdfOutput },
+        { filename: frontFile.originalName, content: frontFile.buffer },
+        { filename: backFile.originalName, content: backFile.buffer },
+      ],
     });
   } catch (error: any) {
     return res.status(500).json({ error: error.message || error.toString() });

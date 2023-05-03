@@ -26,8 +26,8 @@ export const initialNewPatientFormState: NewPatientFormState = {
   insuranceTel: "",
   planNum: "",
   subscriberId: "",
-  frontFile: null,
-  backFile: null,
+  frontImage: null,
+  backImage: null,
   emerContact: "",
   emerRelationship: "",
   emerTel: "",
@@ -322,7 +322,7 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("subscriberId")}
         />
-        <input type="file" {...register("frontFile")} />
+        <input type="file" {...register("frontImage")} />
         {/* <label className="ml-4">Emergency Contact *</label>
         <div className="flex flex-row">
           <input
