@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 import clsx from "clsx";
+import SignatureCanvas from "react-signature-canvas";
 
 export const initialNewPatientFormState: NewPatientFormState = {
   firstName: "",
