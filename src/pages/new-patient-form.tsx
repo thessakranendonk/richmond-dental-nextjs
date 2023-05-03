@@ -61,7 +61,7 @@ export const initialNewPatientFormState: NewPatientFormState = {
   terms: "",
   patientSig: "",
   parentSig: "",
-  signature: "",
+  signature: "" as string,
   date: "",
 };
 
@@ -72,25 +72,23 @@ const NewPatientForm: React.FC = () => {
     formState,
     formState: { errors },
   } = useForm<NewPatientFormState>();
-  const [newPatientState, setNewPatientState] = useState<NewPatientFormState>(
-    initialNewPatientFormState
-  );
+  const [newPatientState, setNewPatientState] = useState<NewPatientFormState>({
+    ...initialNewPatientFormState,
+    signature: "" as string,
+  });
 
-  const signatureRef = useRef<SignatureCanvas>(null);
+  let signature: any;
 
-  const canvasProps = {
-    width: 400,
-    height: 200,
-    className: "border-2 border-gray-300",
+  const handleSignature = () => {
+    signature = signature.Ref.current?.toDataURL("image/png");
+    setNewPatientState({
+      ...newPatientState,
+      patientSig: signature || "",
+    });
   };
-
-  const clearCanvas = () => signatureRef.current?.clear();
 
   const onSubmit = async (data: NewPatientFormState) => {
     try {
-      const signatureData = signatureRef.current?.toDataURL();
-
-      data.signature = signatureData || "";
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -98,7 +96,6 @@ const NewPatientForm: React.FC = () => {
         },
         body: JSON.stringify({
           ...data,
-          patientSig: signatureRef.current?.toDataURL(),
         }),
       });
       const result = await response.json();
@@ -848,10 +845,10 @@ const NewPatientForm: React.FC = () => {
           {...register("date")}
         />
         <SignatureCanvas
-          {...canvasProps}
+          // {...canvasProps}
           {...register("patientSig", { required: true })}
         />
-        <button onClick={clearCanvas}>Clear</button>
+        {/* <button onClick={clearCanvas}>Clear</button> */}
         <button
           // className={clsx(
           //   "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
