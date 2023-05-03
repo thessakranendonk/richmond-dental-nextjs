@@ -21,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
           )}
           type="button"
         >
-          <Link href="/" className="font-semibold">
+          <Link href="/book-appointment" className="font-semibold">
             BOOK NOW
           </Link>
         </Button>
