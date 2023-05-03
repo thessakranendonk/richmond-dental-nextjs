@@ -88,17 +88,25 @@ const NewPatientForm: React.FC = () => {
   };
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   const labelClassName = "ml-4 text-xl";
+  const inputClassName = "mb-2 ml-4 mt-4 rounded-xl border-zinc-400/60";
+  const selectClassName = "ml-4 w-1/2 mb-2 rounded-xl border-zinc-400/60";
 
   return (
-    <div className="flex justify-start ml-4">
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <p>* marked are required fields.</p>
+    <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-12 lg:max-w-lg lg:mx-auto">
+      <h1 className="text-center text-2xl xl:text-3xl mb-4 xl:mb-8 font-medium mt-8 sm:mt-0">
+        Patient Intake Form
+      </h1>
+      <form
+        className="flex flex-col mt-8 xl:mt-12 text-sm"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <p className="ml-4">* marked are required fields.</p>
         <label className={labelClassName}>Personal Information *</label>
         <div className="flex flex-row">
           <input
             type="text"
             placeholder="First name *"
-            className="ml-4 rounded-xl"
+            className={inputClassName}
             {...register("firstName", { required: true, maxLength: 80 })}
             aria-invalid={errors.firstName ? "true" : "false"}
           />
@@ -110,7 +118,7 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Last name *"
-            className="ml-4 rounded-xl"
+            className={inputClassName}
             {...register("lastName", { required: true, maxLength: 80 })}
             aria-invalid={errors.lastName ? "true" : "false"}
           />
@@ -124,13 +132,13 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Preferred Name"
-            className="ml-4 rounded-xl"
+            className={inputClassName}
             {...register("preferredName")}
           />
           <input
             type="text"
             placeholder="Date of Birth *"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("dateOfBirth", { required: true, maxLength: 10 })}
             aria-invalid={errors.dateOfBirth ? "true" : "false"}
           />
@@ -141,10 +149,7 @@ const NewPatientForm: React.FC = () => {
           )}
         </div>
         <label className="ml-4">Gender</label>
-        <select
-          className="ml-4 w-40 h-8 py-1 rounded-xl"
-          {...register("gender")}
-        >
+        <select className={selectClassName} {...register("gender")}>
           <option value="" disabled selected hidden>
             Select Gender
           </option>
@@ -153,10 +158,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Other">Other</option>
         </select>
         <label className="ml-4">Marital Status</label>
-        <select
-          className="ml-4 w-40 h-8 py-1 rounded-xl"
-          {...register("maritalStatus")}
-        >
+        <select className={selectClassName} {...register("maritalStatus")}>
           <option value="" disabled selected hidden>
             Select Marital Status
           </option>
@@ -170,13 +172,13 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Home Phone"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("homePhone", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
             placeholder="Mobile number"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("mobilePhone", { minLength: 6, maxLength: 12 })}
           />
         </div>
@@ -184,13 +186,13 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Work Phone"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("workPhone", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
             placeholder="Ext"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("ext", { minLength: 1, maxLength: 12 })}
           />
         </div>
@@ -208,7 +210,7 @@ const NewPatientForm: React.FC = () => {
         )}
         <label className="ml-4">How did you hear about us? *</label>
         <select
-          className="w-32 ml-4 rounded-xl"
+          className={selectClassName}
           {...register("referral", { required: true })}
           aria-invalid={errors.referral ? "true" : "false"}
         >
@@ -234,7 +236,7 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Address *"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("address", { required: true })}
             aria-invalid={errors.address ? "true" : "false"}
           />
@@ -246,7 +248,7 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Suite/Unit #"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("suite")}
           />
         </div>
@@ -254,7 +256,7 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="City *"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("city", { required: true })}
             aria-invalid={errors.city ? "true" : "false"}
           />
@@ -264,7 +266,7 @@ const NewPatientForm: React.FC = () => {
             </div>
           )}
           <select
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("province", { required: true })}
             aria-invalid={errors.province ? "true" : "false"}
           >
@@ -309,7 +311,7 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">Relationship to Subscriber</label>
         <select
           id="subscriber"
-          className="w-36 ml-4 mt-4 rounded-xl"
+          className={selectClassName}
           {...register("subscriber")}
         >
           <option value="" disabled selected hidden>
@@ -323,13 +325,13 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Subscriber Name"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("subscriberName")}
           />
           <input
             type="text"
             placeholder="Insurance Company"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("insuranceCompany")}
           />
         </div>
@@ -337,13 +339,13 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Phone Number"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("insuranceTel", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
             placeholder="Plan/Policy Number"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("planNum")}
           />
         </div>
@@ -359,7 +361,7 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Name *"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("emerContact", { required: true })}
             aria-invalid={errors.emerContact ? "true" : "false"}
           />
@@ -372,7 +374,7 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Relationship"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("emerRelationship")}
           />
         </div>
@@ -387,13 +389,13 @@ const NewPatientForm: React.FC = () => {
           <input
             type="text"
             placeholder="Family Doctor's Name"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("famDocName")}
           />
           <input
             type="text"
             placeholder="Family Doctor's Address"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("famDocAddress")}
           />
         </div>
@@ -401,18 +403,18 @@ const NewPatientForm: React.FC = () => {
           <input
             type="tel"
             placeholder="Family Doctor's Phone"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("famDocTel", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
             placeholder="When was your last medical check-up?"
-            className="ml-4 mt-4 rounded-xl"
+            className={inputClassName}
             {...register("medCheck")}
           />
         </div>
         <label className="ml-4">Do you smoke?</label>
-        <select className="w-32 ml-4 mt-4 rounded-xl" {...register("smoke")}>
+        <select className={selectClassName} {...register("smoke")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -539,7 +541,7 @@ const NewPatientForm: React.FC = () => {
           </label>
         </div>
         <textarea
-          className="ml-4 mt-4 rounded-xl"
+          className={inputClassName}
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           {...register("otherMedConditions")}
         />
@@ -583,7 +585,7 @@ const NewPatientForm: React.FC = () => {
           </label>
         </div>
         <textarea
-          className="ml-4 mt-4 rounded-xl"
+          className={inputClassName}
           placeholder="If you are not sure but suspect of having an allergic reaction to something, please specify. List any other allergic reactions you have."
           {...register("otherAllergies")}
         />
@@ -591,10 +593,7 @@ const NewPatientForm: React.FC = () => {
           Have you taken any long term medicaions in the past? Prescription or
           Non-Prescription
         </label>
-        <select
-          className="w-32 ml-4 mt-4 rounded-xl"
-          {...register("longTermMeds")}
-        >
+        <select className={selectClassName} {...register("longTermMeds")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -604,10 +603,7 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">
           Have you ever had an adverse reaction to a dental injection?
         </label>
-        <select
-          className="w-32 ml-4 mt-4 rounded-xl"
-          {...register("dentalInjection")}
-        >
+        <select className={selectClassName} {...register("dentalInjection")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -619,10 +615,7 @@ const NewPatientForm: React.FC = () => {
           Do you have any conditions that affect your immune system? (e.g.
           leukemia, AIDS, HIV infection, radiotherapy, chemotherapy, etc.)
         </label>
-        <select
-          className="w-32 ml-4 mt-4 rounded-xl"
-          {...register("immuneSystem")}
-        >
+        <select className={selectClassName} {...register("immuneSystem")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -633,7 +626,7 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">
           Have you ever been hospitalized for any illnesses or operations?
         </label>
-        <select className="w-32 ml-4 mt-4 rounded-xl" {...register("hospital")}>
+        <select className={selectClassName} {...register("hospital")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -689,14 +682,14 @@ const NewPatientForm: React.FC = () => {
           </label>
         </div>
         <textarea
-          className="ml-4 rounded-xl"
+          className={inputClassName}
           placeholder="Have we missed anything that you would like to let us know about?"
           {...register("otherIllness")}
         />
         <label className="ml-4">
           For Women Only: Are you breastfeeding or pregnant?
         </label>
-        <select className="w-32 ml-4 mt-4 rounded-xl" {...register("pregnant")}>
+        <select className={selectClassName} {...register("pregnant")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -717,7 +710,7 @@ const NewPatientForm: React.FC = () => {
           {...register("lastVisit")}
         />
         <label className="ml-4">Are you nervous during dental visits?</label>
-        <select className="w-32 ml-4 mt-4 rounded-xl" {...register("nervous")}>
+        <select className={selectClassName} {...register("nervous")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -735,10 +728,7 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">
           Have you ever been to a dental specialist?
         </label>
-        <select
-          className="w-32 ml-4 mt-4 rounded-xl"
-          {...register("dentalSpecialist")}
-        >
+        <select className={selectClassName} {...register("dentalSpecialist")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -749,7 +739,7 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">
           Do your gums bleed when you brush or floss?
         </label>
-        <select className="w-32 ml-4 mt-4 rounded-xl" {...register("gumBleed")}>
+        <select className={selectClassName} {...register("gumBleed")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -760,10 +750,7 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">
           Have you been told to take antibiotics before a dental visit?
         </label>
-        <select
-          className="w-32 ml-4 mt-4 rounded-xl"
-          {...register("antibiotics")}
-        >
+        <select className={selectClassName} {...register("antibiotics")}>
           <option value="" disabled selected hidden>
             Select
           </option>
@@ -774,7 +761,7 @@ const NewPatientForm: React.FC = () => {
         <label className="ml-4">
           Do you have pain in the jaw or jaw joint?
         </label>
-        <select className="w-32 ml-4 mt-4 rounded-xl" {...register("jawPain")}>
+        <select className={selectClassName} {...register("jawPain")}>
           <option value="" disabled selected hidden>
             Select
           </option>
