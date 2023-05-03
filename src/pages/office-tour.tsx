@@ -3,13 +3,23 @@ import clsx from "clsx";
 import { createRef, useState } from "react";
 
 export const images = [
-  "https://www.runnymedewalkinmedical.com/s/cc_images/teaserbox_937720354.jpg?t=1583413808",
-  "https://www.runnymedewalkinmedical.com/s/cc_images/cache_957645592.jpg",
-  "https://www.runnymedewalkinmedical.com/s/cc_images/cache_957645591.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5532-1024x683_a7esph.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5531-1024x406_lcywiq.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5528-1024x683_lvobjn.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719835/richmond-dental/DSC5539-1024x683_wu3sec.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719835/richmond-dental/DSC5549-1024x683_nrr2jj.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719835/richmond-dental/DSC5562-1024x683_zosyut.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5529_zja6ud.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719835/richmond-dental/DSC5580-1024x833_pnj8qn.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719835/richmond-dental/DSC5581-1024x683_bp6v5w.jpg",
+  "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719835/richmond-dental/DSC5599-1024x683_sxjuqy.jpg",
 ];
 
-const photoClassName = "md:h-96 xl:h-[29rem] max-w-4xl rounded-lg shadow-lg";
-const PhotoGallery: React.FC = () => {
+const photoClassName =
+  "h-64 md:h-96 xl:h-[29rem] max-w-3xl rounded-lg shadow-lg";
+
+const OfficeTour: React.FC = () => {
   const [currentImage, setCurrentImage] = useState<number>(0);
 
   const refs = images.reduce((acc: any, val, i) => {
@@ -70,10 +80,12 @@ const PhotoGallery: React.FC = () => {
   return (
     <div
       className={clsx(
-        "flex flex-col justify-center items-center w-[calc(10% - 10px)] mx-5 lg:mx-auto"
+        "flex flex-col justify-center items-center w-[calc(10% - 10px)] mx-5 lg:mx-auto pb-8"
       )}
     >
-      <h1>Our Practice</h1>
+      <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
+        Our Practice
+      </h1>
       <div className={clsx("relative mt-12", photoClassName)}>
         <div
           className={clsx(
@@ -91,7 +103,7 @@ const PhotoGallery: React.FC = () => {
             >
               <img
                 src={img}
-                className={clsx("object-cover w-full", photoClassName)}
+                className={clsx("object-cover w-full h-full", photoClassName)}
                 alt="Our Practice"
               />
             </div>
@@ -99,11 +111,11 @@ const PhotoGallery: React.FC = () => {
           {sliderControl()}
         </div>
       </div>
-      <div className="mt-4">
+      <div className="mt-8 max-w-3xl">
         <ImageGrid />
       </div>
     </div>
   );
 };
 
-export default PhotoGallery;
+export default OfficeTour;
