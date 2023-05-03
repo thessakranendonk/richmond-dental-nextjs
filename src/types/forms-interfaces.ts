@@ -13,7 +13,7 @@ export interface InputProps {
 export interface Patient {
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
+  dateOfBirth?: string;
   email: string;
 }
 
@@ -74,4 +74,9 @@ export interface DentalRecordFormProps extends Patient {
   dentalOfficeDr: string;
   releaseStatement: string;
   releaseTerms: string;
+}
+
+export interface BookingFormProps extends Patient {
+  phoneNumber: number;
+  timeFrame: string;
 }
