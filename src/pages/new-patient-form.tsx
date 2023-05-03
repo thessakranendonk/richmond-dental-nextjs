@@ -169,13 +169,13 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Home Phone"
             className="ml-4 mt-4 rounded-xl"
-            {...register("homePhone")}
+            {...register("homePhone", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
             placeholder="Mobile number"
             className="ml-4 mt-4 rounded-xl"
-            {...register("mobilePhone")}
+            {...register("mobilePhone", { minLength: 6, maxLength: 12 })}
           />
         </div>
         <div>
@@ -183,13 +183,13 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Work Phone"
             className="ml-4 mt-4 rounded-xl"
-            {...register("workPhone")}
+            {...register("workPhone", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
             placeholder="Ext"
             className="ml-4 mt-4 rounded-xl"
-            {...register("ext")}
+            {...register("ext", { minLength: 1, maxLength: 12 })}
           />
         </div>
         <input
@@ -336,7 +336,7 @@ const NewPatientForm: React.FC = () => {
             type="text"
             placeholder="Phone Number"
             className="ml-4 mt-4 rounded-xl"
-            {...register("insuranceTel")}
+            {...register("insuranceTel", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
@@ -378,7 +378,7 @@ const NewPatientForm: React.FC = () => {
           type="text"
           placeholder="Phone Number"
           className="w-36 ml-4 mt-4 rounded-xl"
-          {...register("emerTel")}
+          {...register("emerTel", { minLength: 6, maxLength: 12 })}
         />
         <label className="ml-4">Medical History</label>
         <div className="flex flex-row">
@@ -400,7 +400,7 @@ const NewPatientForm: React.FC = () => {
             type="tel"
             placeholder="Family Doctor's Phone"
             className="ml-4 mt-4 rounded-xl"
-            {...register("famDocTel")}
+            {...register("famDocTel", { minLength: 6, maxLength: 12 })}
           />
           <input
             type="text"
@@ -752,7 +752,7 @@ const NewPatientForm: React.FC = () => {
             Select
           </option>
           <option value="No">No</option>
-          <option value=" Yes"> Yes</option>
+          <option value="Yes"> Yes</option>
           <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
         <label className="ml-4">
@@ -766,8 +766,8 @@ const NewPatientForm: React.FC = () => {
             Select
           </option>
           <option value="No">No</option>
-          <option value=" Yes"> Yes</option>
-          <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
+          <option value="Yes"> Yes</option>
+          <option value="Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
         <label className="ml-4">
           Do you have pain in the jaw or jaw joint?
@@ -777,8 +777,8 @@ const NewPatientForm: React.FC = () => {
             Select
           </option>
           <option value="No">No</option>
-          <option value=" Yes"> Yes</option>
-          <option value=" Not Sure/Maybe"> Not Sure/Maybe</option>
+          <option value="Yes"> Yes</option>
+          <option value="Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
         <label>
           <input
@@ -789,7 +789,8 @@ const NewPatientForm: React.FC = () => {
           />
           {errors.terms?.type === "required" && (
             <div className={errorClassName} role="alert">
-              <MdOutlineError className="mt-1" /> Must agree to terms
+              <MdOutlineError className="mt-1" />
+              Must agree to terms
             </div>
           )}
           * I, understand, certify that to the best of my knowledge, the above
