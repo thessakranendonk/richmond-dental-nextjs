@@ -59,6 +59,9 @@ export const initialNewPatientFormState: NewPatientFormState = {
   antibiotics: "",
   jawPain: "",
   terms: "",
+  patientSig: "",
+  parentSig: "",
+  signature: "",
   date: "",
 };
 
@@ -73,22 +76,8 @@ const NewPatientForm: React.FC = () => {
     initialNewPatientFormState
   );
 
-  const onSubmit = async (data: NewPatientFormState) => {
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const signatureRef = useRef<SignatureCanvas>(null);
+
   const canvasProps = {
     width: 400,
     height: 200,
@@ -96,6 +85,27 @@ const NewPatientForm: React.FC = () => {
   };
 
   const clearCanvas = () => signatureRef.current?.clear();
+
+  const onSubmit = async (data: NewPatientFormState) => {
+    try {
+      const signatureData = signatureRef.current?.toDataURL();
+
+      data.signature = signatureData || "";
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          patientSig: signatureRef.current?.toDataURL(),
+        }),
+      });
+      const result = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   const labelClassName = "ml-4 text-2xl";
@@ -130,7 +140,7 @@ const NewPatientForm: React.FC = () => {
               <MdOutlineError className="mt-1" /> First name is required
             </div>
           )}
-          <input
+          {/* <input
             type="text"
             placeholder="Last name *"
             className={inputClassName}
@@ -141,9 +151,9 @@ const NewPatientForm: React.FC = () => {
             <div className={errorClassName} role="alert">
               <MdOutlineError className="mt-1" /> Last name is required
             </div>
-          )}
+          )} */}
         </div>
-        <div>
+        {/* <div>
           <input
             type="text"
             placeholder="Preferred Name"
@@ -162,8 +172,8 @@ const NewPatientForm: React.FC = () => {
               <MdOutlineError className="mt-1" /> Date Of Birth is required
             </div>
           )}
-        </div>
-        <label className={subLabelClassName}>Gender</label>
+        </div> */}
+        {/* <label className={subLabelClassName}>Gender</label>
         <select className={selectClassName} {...register("gender")}>
           <option value="" disabled selected hidden>
             Select Gender
@@ -196,8 +206,8 @@ const NewPatientForm: React.FC = () => {
             className={inputClassName}
             {...register("mobilePhone", { minLength: 6, maxLength: 12 })}
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <input
             type="text"
             placeholder="Work Phone"
@@ -248,8 +258,8 @@ const NewPatientForm: React.FC = () => {
           <option value="Newspaper/Flyer">Newspaper/Flyer</option>
           <option value="Other">Other</option>
         </select>
-        <label className={labelClassName}>Address *</label>
-        <div className="flex flex-row">
+        <label className={labelClassName}>Address *</label> */}
+        {/* <div className="flex flex-row">
           <input
             type="text"
             placeholder="Address *"
@@ -351,8 +361,8 @@ const NewPatientForm: React.FC = () => {
             className={inputClassName}
             {...register("insuranceCompany")}
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <input
             type="text"
             placeholder="Phone Number"
@@ -415,8 +425,8 @@ const NewPatientForm: React.FC = () => {
             className={inputClassName}
             {...register("famDocAddress")}
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <input
             type="tel"
             placeholder="Family Doctor's Phone"
@@ -442,8 +452,8 @@ const NewPatientForm: React.FC = () => {
         <label className={subLabelClassName}>
           Are you being treated for or have you had any of the following medical
           conditions?
-        </label>
-        <div className="flex flex-col">
+        </label> */}
+        {/* <div className="flex flex-col">
           <div>
             <label className="mr-2 ml-6">
               <input type="checkbox" {...register("medConditions")} />
@@ -582,8 +592,8 @@ const NewPatientForm: React.FC = () => {
               Bleeding Problems
             </label>
           </div>
-        </div>
-        <textarea
+        </div> */}
+        {/* <textarea
           className={textAreaClassName}
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           {...register("otherMedConditions")}
@@ -679,8 +689,8 @@ const NewPatientForm: React.FC = () => {
         </select>
         <label className={subLabelClassName}>
           Do you have or have you ever had any of the following? Please check.
-        </label>
-        <div className="flex flex-row ml-4">
+        </label> */}
+        {/* <div className="flex flex-row ml-4">
           <label>
             <input type="checkbox" {...register("illness")} />
             Chest Pain, Angina
@@ -723,8 +733,8 @@ const NewPatientForm: React.FC = () => {
             <input type="checkbox" {...register("illness")} />
             Bleeding Problems
           </label>
-        </div>
-        <textarea
+        </div> */}
+        {/* <textarea
           className={textAreaClassName}
           placeholder="Have we missed anything that you would like to let us know about?"
           {...register("otherIllness")}
@@ -830,26 +840,31 @@ const NewPatientForm: React.FC = () => {
           * I, understand, certify that to the best of my knowledge, the above
           information is correct. I understand that any information that I
           refuse to provide may affect my health and dental treatment.
-        </label>{" "}
+        </label>{" "} */}
         <input
           type="datetime-local"
           placeholder="Today's Date"
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
         />
-        <SignatureCanvas ref={signatureRef} {...canvasProps} />
-        <button onClick={clearCanvas}>Clear</button>
-        <input
-          className={clsx(
-            "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
-            formState.isValid &&
-              "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
-            !formState.isValid && "opacity-30"
-          )}
-          type="submit"
-          disabled={!formState.isValid}
-          value="Submit Application"
+        <SignatureCanvas
+          {...canvasProps}
+          {...register("patientSig", { required: true })}
         />
+        <button onClick={clearCanvas}>Clear</button>
+        <button
+          // className={clsx(
+          //   "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
+          //   formState.isValid &&
+          //     "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
+          //   !formState.isValid && "opacity-30"
+          // )}
+          type="submit"
+          // disabled={!formState.isValid}
+          value="Submit Application"
+        >
+          submit{" "}
+        </button>
       </form>
     </div>
   );
