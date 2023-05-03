@@ -61,7 +61,7 @@ export const initialNewPatientFormState: NewPatientFormState = {
   terms: "",
   patientSig: "",
   parentSig: "",
-  signature: "" as string,
+  signature: "",
   date: "",
 };
 
@@ -74,16 +74,22 @@ const NewPatientForm: React.FC = () => {
   } = useForm<NewPatientFormState>();
   const [newPatientState, setNewPatientState] = useState<NewPatientFormState>({
     ...initialNewPatientFormState,
-    signature: "" as string,
+    patientSig: "",
+    parentSig: "",
   });
 
   const signatureRef = useRef<SignatureCanvas>(null);
 
   const onSubmit = async (data: NewPatientFormState) => {
     try {
-      const signature = signatureRef.current?.toDataURL("image/png");
-      if (signature) {
-        data.signature = signature;
+      const patientSig = signatureRef.current?.toDataURL("image/png");
+      if (patientSig) {
+        data.patientSig = patientSig;
+      }
+
+      const parentSig = signatureRef.current?.toDataURL("image/png");
+      if (parentSig) {
+        data.parentSig = parentSig;
       }
       // data.patientSig = signatureRef.current?.toDataURL() || "";
       const response = await fetch("/api/contact", {
@@ -847,6 +853,7 @@ const NewPatientForm: React.FC = () => {
           onBegin={() => console.log("onBegin")}
           onEnd={() => console.log("onEnd")}
         /> */}
+        <label>Patient Signature</label>
         <SignatureCanvas
           ref={signatureRef}
           canvasProps={{
@@ -855,7 +862,7 @@ const NewPatientForm: React.FC = () => {
             className: "border border-gray-300",
           }}
         />
-
+        <label>Parent Signature</label>
         <SignatureCanvas
           ref={signatureRef}
           canvasProps={{
