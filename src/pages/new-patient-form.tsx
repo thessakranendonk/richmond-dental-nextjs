@@ -125,6 +125,8 @@ const NewPatientForm: React.FC = () => {
   const subLabelClassName = "ml-6 mt-2 mb-2";
   const textAreaClassName =
     "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60";
+  const clearButtonClassName =
+    "bg-emerald-800 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-emerald-800";
 
   return (
     <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-12 lg:max-w-lg lg:mx-auto">
@@ -879,8 +881,10 @@ const NewPatientForm: React.FC = () => {
             className: "border border-gray-300",
           }}
         />
-        <button onClick={clearPatientCanvas}>Clear</button>
-        <label>Parent Signature</label>
+        <button className={clearButtonClassName} onClick={clearPatientCanvas}>
+          Clear
+        </button>
+        <label>Parent/Guardian Signature</label>
         <SignatureCanvas
           ref={parentSignatureRef}
           canvasProps={{
@@ -889,7 +893,9 @@ const NewPatientForm: React.FC = () => {
             className: "border border-gray-300",
           }}
         />
-        <button onClick={clearParentCanvas}>Clear</button>
+        <button className={clearButtonClassName} onClick={clearParentCanvas}>
+          Clear
+        </button>
         <button
           className={clsx(
             "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
