@@ -64,40 +64,47 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
 
-  const image = patientSig || parentSig.replace(/^data:image\/\w+;base64,/, "");
-  const imageBuffer = Buffer.from(image, "base64");
+  // const image = patientSig || parentSig.replace(/^data:image\/\w+;base64,/, "");
+  // const imageBuffer = Buffer.from(image, "base64");
   // const imageSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
 
+  const attachments: { filename: string; content: Buffer }[] = [];
 
+  if (patientSig) {
+    const patientSigBuffer = Buffer.from(
+      patientSig.replace(/^data:image\/\w+;base64,/, ""),
+      "base64"
+    );
+    attachments.push({
+      filename: "patientSignature.png",
+      content: patientSigBuffer,
+    });
+  }
+
+  if (parentSig) {
+    const parentSigBuffer = Buffer.from(
+      parentSig.replace(/^data:image\/\w+;base64,/, ""),
+      "base64"
+    );
+    attachments.push({
+      filename: "parentSignature.png",
+      content: parentSigBuffer,
+    });
+  }
 
   try {
     await transporter.sendMail({
       from: email,
-      // to: "thessakranendonk@gmail.com",
       to: "felix.lai@hotmail.com",
       subject: `Contact form submission from ${name}`,
-      // html: `<p>You have a contact form submission</p><br>
-      //   <p><strong>Email: </strong> ${email}</p><br>
-      //   <p><strong>Message: </strong> ${message}</p><br>
-      // `,
       html: htmlToSend,
-      attachments: [
-        { path: pdfOutput },
-        if (patientSig) {
-          const patientSigBuffer = Buffer.from(patientSig.replace(/^data:image\/\w+;base64,/, ""), "base64");
-          attachments.push({ filename: "patientSignature.png", content: patientSigBuffer });
-        }
-    
-        if (parentSig) {
-          const parentSigBuffer = Buffer.from(parentSig.replace(/^data:image\/\w+;base64,/, ""), "base64");
-          attachments.push({ filename: "parentSignature.png", content: parentSigBuffer });
-        }
-      ],
+      attachments: [{ path: pdfOutput }, ...attachments],
     });
   } catch (error: any) {
     return res.status(500).json({ error: error.message || error.toString() });
   }
+
   return res.status(200).json({ error: "" });
 };
 
-export default upload.single("signature")(contact);
+export default contact;

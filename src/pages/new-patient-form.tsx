@@ -344,7 +344,7 @@ const NewPatientForm: React.FC = () => {
             <MdOutlineError className="mt-1" /> Postal Code is required
           </div>
         )}
-        <label className={labelClassName}>Primary Dental Benefit Plan</label>
+        {/* <label className={labelClassName}>Primary Dental Benefit Plan</label>
         <label className={subLabelClassName}>Relationship to Subscriber</label>
         <select
           id="subscriber"
@@ -857,8 +857,8 @@ const NewPatientForm: React.FC = () => {
           placeholder="Today's Date"
           className="w-40 ml-4 mt-4 rounded-xl"
           {...register("date")}
-        />
-        <label className="mt-3 mb-1">Patient Signature *</label>
+        /> */}
+        {/* <label className="mt-3 mb-1">Patient Signature *</label>
         <SignatureCanvas
           ref={patientSignatureRef}
           canvasProps={{
@@ -866,19 +866,44 @@ const NewPatientForm: React.FC = () => {
             height: 200,
             className: "border border-gray-300",
           }}
-        />
+        /> */}
+        <label className="mt-3 mb-1">
+          Patient Signature *
+          <input type="hidden" {...register("patientSig")} />
+          <SignatureCanvas
+            ref={patientSignatureRef}
+            canvasProps={{
+              width: 500,
+              height: 200,
+              className: "border border-gray-300",
+            }}
+            // onEnd={(sigData) => {
+            //   const sigDataUrl = sigData.trim()
+            //     .replace(/^data:image\/png;base64,/, "");
+            //   data.patientSig = sigDataUrl;
+            // }}
+          />
+        </label>
         <button className={clearButtonClassName} onClick={clearPatientCanvas}>
           Clear
         </button>
-        <label className="mt-3 mb-1">Parent/Guardian Signature</label>
-        <SignatureCanvas
-          ref={parentSignatureRef}
-          canvasProps={{
-            width: 500,
-            height: 200,
-            className: "border border-gray-300",
-          }}
-        />
+        <label className="mt-3 mb-1">
+          Parent/Guardian Signature
+          <input type="hidden" {...register("parentSig")} />
+          <SignatureCanvas
+            ref={parentSignatureRef}
+            canvasProps={{
+              width: 500,
+              height: 200,
+              className: "border border-gray-300",
+            }}
+            // onEnd={(sigData) => {
+            //   const sigDataUrl = sigData.trim()
+            //     .replace(/^data:image\/png;base64,/, "");
+            //   data.patientSig = sigDataUrl;
+            // }}
+          />
+        </label>
         <button className={clearButtonClassName} onClick={clearParentCanvas}>
           Clear
         </button>
