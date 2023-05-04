@@ -78,16 +78,17 @@ const NewPatientForm: React.FC = () => {
     parentSig: "",
   });
 
-  const signatureRef = useRef<SignatureCanvas>(null);
+  const patientSignatureRef = useRef<SignatureCanvas>(null);
+  const parentSignatureRef = useRef<SignatureCanvas>(null);
 
   const onSubmit = async (data: NewPatientFormState) => {
     try {
-      const patientSig = signatureRef.current?.toDataURL("image/png");
+      const patientSig = patientSignatureRef.current?.toDataURL("image/png");
       if (patientSig) {
         data.patientSig = patientSig;
       }
 
-      const parentSig = signatureRef.current?.toDataURL("image/png");
+      const parentSig = parentSignatureRef.current?.toDataURL("image/png");
       if (parentSig) {
         data.parentSig = parentSig;
       }
@@ -855,7 +856,7 @@ const NewPatientForm: React.FC = () => {
         /> */}
         <label>Patient Signature</label>
         <SignatureCanvas
-          ref={signatureRef}
+          ref={patientSignatureRef}
           canvasProps={{
             width: 500,
             height: 200,
@@ -864,7 +865,7 @@ const NewPatientForm: React.FC = () => {
         />
         <label>Parent Signature</label>
         <SignatureCanvas
-          ref={signatureRef}
+          ref={parentSignatureRef}
           canvasProps={{
             width: 500,
             height: 200,

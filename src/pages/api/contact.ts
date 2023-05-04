@@ -5,6 +5,7 @@ import handlebars from "handlebars";
 import path from "path";
 import fs from "fs";
 import multer from "multer";
+import { Buffer } from "buffer";
 
 const createHTMLToSend = (path: any, replacements: any) => {
   let html = fs.readFileSync(path, {
@@ -65,16 +66,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       html: htmlToSend,
       attachments: [
         { path: pdfOutput },
-        {
-          filename: "signature.png",
-          content: imageBuffer,
-          encoding: "base64",
-        },
-        {
-          filename: "signature.png",
-          content: imageBuffer,
-          encoding: "base64",
-        },
+        { filename: "signature.png", content: imageBuffer, encoding: "base64" },
       ],
     });
   } catch (error: any) {
