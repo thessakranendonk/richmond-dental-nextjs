@@ -49,7 +49,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
 
-  const image = patientSig && parentSig.replace(/^data:image\/\w+;base64,/, "");
+  const image = patientSig || parentSig.replace(/^data:image\/\w+;base64,/, "");
   const imageBuffer = Buffer.from(image, "base64");
   // const imageSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
 
@@ -66,7 +66,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       html: htmlToSend,
       attachments: [
         { path: pdfOutput },
-        { filename: "signature.png", content: imageBuffer, encoding: "base64" },
+        { filename: "patientSignature.png", content: imageBuffer },
+        { filename: "parentSignature.png", content: imageBuffer },
       ],
     });
   } catch (error: any) {

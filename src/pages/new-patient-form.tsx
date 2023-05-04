@@ -81,6 +81,15 @@ const NewPatientForm: React.FC = () => {
   const patientSignatureRef = useRef<SignatureCanvas>(null);
   const parentSignatureRef = useRef<SignatureCanvas>(null);
 
+  const clearPatientCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    patientSignatureRef.current?.clear();
+  };
+  const clearParentCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    parentSignatureRef.current?.clear();
+  };
+
   const onSubmit = async (data: NewPatientFormState) => {
     try {
       const patientSig = patientSignatureRef.current?.toDataURL("image/png");
@@ -92,7 +101,7 @@ const NewPatientForm: React.FC = () => {
       if (parentSig) {
         data.parentSig = parentSig;
       }
-      // data.patientSig = signatureRef.current?.toDataURL() || "";
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -141,7 +150,7 @@ const NewPatientForm: React.FC = () => {
               <MdOutlineError className="mt-1" /> First name is required
             </div>
           )}
-          {/* <input
+          <input
             type="text"
             placeholder="Last name *"
             className={inputClassName}
@@ -152,9 +161,9 @@ const NewPatientForm: React.FC = () => {
             <div className={errorClassName} role="alert">
               <MdOutlineError className="mt-1" /> Last name is required
             </div>
-          )} */}
+          )}
         </div>
-        {/* <div>
+        <div>
           <input
             type="text"
             placeholder="Preferred Name"
@@ -173,8 +182,8 @@ const NewPatientForm: React.FC = () => {
               <MdOutlineError className="mt-1" /> Date Of Birth is required
             </div>
           )}
-        </div> */}
-        {/* <label className={subLabelClassName}>Gender</label>
+        </div>
+        <label className={subLabelClassName}>Gender</label>
         <select className={selectClassName} {...register("gender")}>
           <option value="" disabled selected hidden>
             Select Gender
@@ -207,8 +216,8 @@ const NewPatientForm: React.FC = () => {
             className={inputClassName}
             {...register("mobilePhone", { minLength: 6, maxLength: 12 })}
           />
-        </div> */}
-        {/* <div>
+        </div>
+        <div>
           <input
             type="text"
             placeholder="Work Phone"
@@ -259,11 +268,11 @@ const NewPatientForm: React.FC = () => {
           <option value="Newspaper/Flyer">Newspaper/Flyer</option>
           <option value="Other">Other</option>
         </select>
-        <label className={labelClassName}>Address *</label> */}
-        {/* <div className="flex flex-row">
+        <label className={labelClassName}>Address *</label>
+        <div className="flex flex-row">
           <input
             type="text"
-            placeholder="Address *"
+            placeholder="Street *"
             className={inputClassName}
             {...register("address", { required: true })}
             aria-invalid={errors.address ? "true" : "false"}
@@ -362,8 +371,8 @@ const NewPatientForm: React.FC = () => {
             className={inputClassName}
             {...register("insuranceCompany")}
           />
-        </div> */}
-        {/* <div>
+        </div>
+        <div>
           <input
             type="text"
             placeholder="Phone Number"
@@ -383,7 +392,20 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
           {...register("subscriberId")}
         />
-        <input type="file" {...register("frontImage")} accept="image/" />
+        <label className="ml-4">Front of Insurance Card</label>
+        <input
+          className="ml-4"
+          type="file"
+          {...register("frontImage")}
+          accept="image/"
+        />
+        <label className="ml-4 mt-3">Back of Insurance Card</label>
+        <input
+          className="ml-4 mb-3"
+          type="file"
+          {...register("backImage")}
+          accept="image/"
+        />
         <label className={labelClassName}>Emergency Contact *</label>
         <div className="flex flex-row">
           <input
@@ -426,8 +448,8 @@ const NewPatientForm: React.FC = () => {
             className={inputClassName}
             {...register("famDocAddress")}
           />
-        </div> */}
-        {/* <div>
+        </div>
+        <div>
           <input
             type="tel"
             placeholder="Family Doctor's Phone"
@@ -453,8 +475,8 @@ const NewPatientForm: React.FC = () => {
         <label className={subLabelClassName}>
           Are you being treated for or have you had any of the following medical
           conditions?
-        </label> */}
-        {/* <div className="flex flex-col">
+        </label>
+        <div className="flex flex-col">
           <div>
             <label className="mr-2 ml-6">
               <input type="checkbox" {...register("medConditions")} />
@@ -593,8 +615,8 @@ const NewPatientForm: React.FC = () => {
               Bleeding Problems
             </label>
           </div>
-        </div> */}
-        {/* <textarea
+        </div>
+        <textarea
           className={textAreaClassName}
           placeholder="If you weren't diagnosed but suspect of having a medical condition, please list it here. List any other medical conditions you have."
           {...register("otherMedConditions")}
@@ -690,8 +712,8 @@ const NewPatientForm: React.FC = () => {
         </select>
         <label className={subLabelClassName}>
           Do you have or have you ever had any of the following? Please check.
-        </label> */}
-        {/* <div className="flex flex-row ml-4">
+        </label>
+        <div className="flex flex-row ml-4">
           <label>
             <input type="checkbox" {...register("illness")} />
             Chest Pain, Angina
@@ -734,8 +756,8 @@ const NewPatientForm: React.FC = () => {
             <input type="checkbox" {...register("illness")} />
             Bleeding Problems
           </label>
-        </div> */}
-        {/* <textarea
+        </div>
+        <textarea
           className={textAreaClassName}
           placeholder="Have we missed anything that you would like to let us know about?"
           {...register("otherIllness")}
@@ -841,19 +863,13 @@ const NewPatientForm: React.FC = () => {
           * I, understand, certify that to the best of my knowledge, the above
           information is correct. I understand that any information that I
           refuse to provide may affect my health and dental treatment.
-        </label>{" "} */}
+        </label>{" "}
         <input
           type="datetime-local"
           placeholder="Today's Date"
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
         />
-        {/* <SignatureCanvas
-          ref={signatureRef}
-          canvasProps={{ width: 400, height: 200, className: "sigCanvas" }}
-          onBegin={() => console.log("onBegin")}
-          onEnd={() => console.log("onEnd")}
-        /> */}
         <label>Patient Signature</label>
         <SignatureCanvas
           ref={patientSignatureRef}
@@ -863,6 +879,7 @@ const NewPatientForm: React.FC = () => {
             className: "border border-gray-300",
           }}
         />
+        <button onClick={clearPatientCanvas}>Clear</button>
         <label>Parent Signature</label>
         <SignatureCanvas
           ref={parentSignatureRef}
@@ -872,16 +889,16 @@ const NewPatientForm: React.FC = () => {
             className: "border border-gray-300",
           }}
         />
-        {/* <button onClick={clearCanvas}>Clear</button> */}
+        <button onClick={clearParentCanvas}>Clear</button>
         <button
-          // className={clsx(
-          //   "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
-          //   formState.isValid &&
-          //     "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
-          //   !formState.isValid && "opacity-30"
-          // )}
+          className={clsx(
+            "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
+            formState.isValid &&
+              "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
+            !formState.isValid && "opacity-30"
+          )}
           type="submit"
-          // disabled={!formState.isValid}
+          disabled={!formState.isValid}
           value="Submit Application"
         >
           submit{" "}
