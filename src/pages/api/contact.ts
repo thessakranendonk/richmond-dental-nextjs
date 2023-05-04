@@ -17,8 +17,8 @@ const createHTMLToSend = (path: any, replacements: any) => {
 };
 
 const contact = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, firstName, lastName } = req.body;
-
+  const { email, firstName, lastName, file } = req.body;
+  console.log(req.body);
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
     : req.headers.referer?.includes("new-patient-form")
@@ -36,8 +36,9 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     email: email,
   };
 
+  const image = req.body;
   let htmlToSend = createHTMLToSend(emailPath, replacements);
-  let pdfOutput = await createPdf(JSON.stringify(req.body), subject);
+  let pdfOutput = await createPdf("hello", subject, image);
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",

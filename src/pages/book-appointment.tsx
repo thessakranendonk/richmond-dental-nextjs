@@ -5,6 +5,20 @@ import { SubmitHandler, useForm, useFormState } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 
 const BookingForm: React.FC = () => {
+  const [file, setFile] = useState<File | null>(null);
+
+  // State to store the base64
+  const [base64, setBase64] = useState<string | null>(null);
+
+  // When the file is selected, set the file state
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+
+    setFile(e.target.files[0]);
+  };
+
   const {
     register,
     handleSubmit,
@@ -14,23 +28,48 @@ const BookingForm: React.FC = () => {
     mode: "onSubmit",
   });
 
+  const toBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      // fileReader.onerror = (error) => {
+      //   reject(error);
+      // };
+    });
+  };
+
   const onSubmit: SubmitHandler<BookingFormProps> = async (
     data: BookingFormProps
   ) => {
-    // try {
-    //   const response = await fetch("/api/new-customer-mailer", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-    //   const result = await response.json();
-    //   console.log(result.message);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    console.log(data, data);
+    const base64 = await toBase64(file as File);
+
+    setBase64(base64 as string);
+
+    const a = {
+      data,
+      base64,
+    };
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify(data),
+        body: JSON.stringify(a),
+      });
+      const result = await response.json();
+      console.log(result.message);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(data.file[0], data);
   };
 
   const inputClassName = "mb-2 rounded-xl border-zinc-400/60";
@@ -116,6 +155,12 @@ const BookingForm: React.FC = () => {
           <option value="4:00 PM - 7:00PM">4:00 PM - 7:00PM</option>
           <option value="10:00 AM - 7:00 PM">10:00 AM - 7:00 PM</option>
         </select>
+        <input
+          type="file"
+          {...register("file")}
+          accept="image/*"
+          onChange={onFileChange}
+        />
         <input
           className={clsx(
             "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
