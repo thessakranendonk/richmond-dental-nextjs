@@ -67,10 +67,8 @@ export interface NewPatientFormState extends Patient {
   gumBleed: string;
   antibiotics: string;
   jawPain: string;
-  terms: string;
   patientSig: string;
   parentSig: string;
-  signature: string;
   date: string;
 }
 

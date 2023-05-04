@@ -58,10 +58,8 @@ export const initialNewPatientFormState: NewPatientFormState = {
   gumBleed: "",
   antibiotics: "",
   jawPain: "",
-  terms: "",
   patientSig: "",
   parentSig: "",
-  signature: "",
   date: "",
 };
 
@@ -777,7 +775,7 @@ const NewPatientForm: React.FC = () => {
         </select>
         <label className={labelClassName}>Dental History</label>
         <textarea
-          className="w-72 h-40 ml-4 mt-4 rounded-xl"
+          className={textAreaClassName}
           placeholder="What is your reason for visit today?"
           {...register("visitReason")}
         />
@@ -855,12 +853,12 @@ const NewPatientForm: React.FC = () => {
           refuse to provide may affect my health and dental treatment.
         </label>{" "}
         <input
-          type="datetime-local"
+          type="date"
           placeholder="Today's Date"
-          className="w-52 ml-4 mt-4 rounded-xl"
+          className="w-40 ml-4 mt-4 rounded-xl"
           {...register("date")}
         />
-        <label>* Patient Signature</label>
+        <label className="mt-3 mb-1">Patient Signature *</label>
         <SignatureCanvas
           ref={patientSignatureRef}
           canvasProps={{
@@ -872,7 +870,7 @@ const NewPatientForm: React.FC = () => {
         <button className={clearButtonClassName} onClick={clearPatientCanvas}>
           Clear
         </button>
-        <label>Parent/Guardian Signature</label>
+        <label className="mt-3 mb-1">Parent/Guardian Signature</label>
         <SignatureCanvas
           ref={parentSignatureRef}
           canvasProps={{
