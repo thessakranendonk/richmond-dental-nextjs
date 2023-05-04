@@ -68,6 +68,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const imageBuffer = Buffer.from(image, "base64");
   // const imageSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
 
+
+
   try {
     await transporter.sendMail({
       from: email,
@@ -81,8 +83,15 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       html: htmlToSend,
       attachments: [
         { path: pdfOutput },
-        { filename: "patientSignature.png", content: imageBuffer },
-        { filename: "parentSignature.png", content: imageBuffer },
+        if (patientSig) {
+          const patientSigBuffer = Buffer.from(patientSig.replace(/^data:image\/\w+;base64,/, ""), "base64");
+          attachments.push({ filename: "patientSignature.png", content: patientSigBuffer });
+        }
+    
+        if (parentSig) {
+          const parentSigBuffer = Buffer.from(parentSig.replace(/^data:image\/\w+;base64,/, ""), "base64");
+          attachments.push({ filename: "parentSignature.png", content: parentSigBuffer });
+        }
       ],
     });
   } catch (error: any) {
@@ -91,4 +100,4 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(200).json({ error: "" });
 };
 
-export default contact;
+export default upload.single("signature")(contact);
