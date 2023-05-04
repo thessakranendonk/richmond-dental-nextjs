@@ -7,6 +7,21 @@ import fs from "fs";
 import multer from "multer";
 import { Buffer } from "buffer";
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/uploads");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(
+      null,
+      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+
 const createHTMLToSend = (path: any, replacements: any) => {
   let html = fs.readFileSync(path, {
     encoding: "utf-8",
