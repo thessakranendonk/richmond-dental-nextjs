@@ -849,20 +849,8 @@ const NewPatientForm: React.FC = () => {
           <option value="Yes"> Yes</option>
           <option value="Not Sure/Maybe"> Not Sure/Maybe</option>
         </select>
-        <label>
-          <input
-            type="checkbox"
-            className={subLabelClassName}
-            {...register("terms", { required: true })}
-            aria-invalid={errors.terms ? "true" : "false"}
-          />
-          {errors.terms?.type === "required" && (
-            <div className={errorClassName} role="alert">
-              <MdOutlineError className="mt-1" />
-              Must agree to terms
-            </div>
-          )}
-          * I, understand, certify that to the best of my knowledge, the above
+        <label className={inputClassName}>
+          I, understand, certify that to the best of my knowledge, the above
           information is correct. I understand that any information that I
           refuse to provide may affect my health and dental treatment.
         </label>{" "}
@@ -872,7 +860,7 @@ const NewPatientForm: React.FC = () => {
           className="w-52 ml-4 mt-4 rounded-xl"
           {...register("date")}
         />
-        <label>Patient Signature</label>
+        <label>* Patient Signature</label>
         <SignatureCanvas
           ref={patientSignatureRef}
           canvasProps={{
