@@ -206,7 +206,9 @@ const DentalRecordForm: React.FC = () => {
           />
         </form>
       ) : (
-        <p className="text-center text-xl">Thanks for submitting!</p>
+        <p className="text-center text-xl">
+          Your Dental Records Release Form has been successfully submitted!
+        </p>
       )}
     </div>
   );
