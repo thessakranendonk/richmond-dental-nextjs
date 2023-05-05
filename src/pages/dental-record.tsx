@@ -2,6 +2,7 @@ import { DentalRecordFormProps } from "@/types/forms-interfaces";
 import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import SignatureCanvas from "react-signature-canvas";
+import clsx from "clsx";
 
 const initialDentalState: DentalRecordFormProps = {
   currentDate: "",
@@ -19,6 +20,7 @@ const DentalRecordForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    formState,
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
   const [dentalState, setDentalState] = useState<DentalRecordFormProps>({
@@ -112,14 +114,18 @@ const DentalRecordForm: React.FC = () => {
             type="hidden"
             {...register("releaseTerms", { required: true })}
           />
-          To whom this may concern, We at Richmond West Dental and the below
-          patient, would like to thank you and your staff for the care you have
-          provided. For us to maintain continued and quality care for the
-          patient, we kindly ask if you could forward the most recent
-          radiographs and dental records to our office at your earliest
-          convenience. The signature below represents the patient's
-          authorization and release of their records along with any legal
-          responsibility or liability that may arise from this authorization.
+          To whom this may concern,
+          <br /> <br />
+          We at Richmond West Dental and the below patient, would like to thank
+          you and your staff for the care you have provided.
+          <br /> <br />
+          For us to maintain continued and quality care for the patient, we
+          kindly ask if you could forward the most recent radiographs and dental
+          records to our office at your earliest convenience.
+          <br /> <br />
+          The signature below represents the patient's authorization and release
+          of their records along with any legal responsibility or liability that
+          may arise from this authorization.
         </label>
         <label className="mt-3 mb-1">
           Patient Signature *
@@ -145,11 +151,29 @@ const DentalRecordForm: React.FC = () => {
             type="hidden"
             {...register("releaseTerms", { required: true })}
           />
-          Regards, Richmond West Dental Team 500 Richmond St W Suite 128
-          Toronto, ON. M5V 3N4 P: 416 366 0777 F: 416 366 1117
+          Regards, <br /> Richmond West Dental Team <br /> <br /> 500 Richmond
+          St W <br />
+          Suite 128
+          <br />
+          Toronto, ON. M5V 3N4 <br />
+          <br />
+          P: 416 366 0777 <br />
+          F: 416 366 1117
+          <br />
+          <br />
           www.richmondwestdental.com
         </label>
-        <button type="submit">Submit</button>
+        <input
+          className={clsx(
+            "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
+            formState.isValid &&
+              "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
+            !formState.isValid && "opacity-30"
+          )}
+          type="submit"
+          disabled={!formState.isValid}
+          value="Submit Dental Records Release Form"
+        />
       </form>
     </div>
   );
