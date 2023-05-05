@@ -203,7 +203,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Widow">Widow</option>
           <option value="Child">Child</option>
         </select>
-        <div className="flex flex-row">
+        {/* <div className="flex flex-row">
           <input
             type="text"
             placeholder="Home Phone"
@@ -344,7 +344,7 @@ const NewPatientForm: React.FC = () => {
             <MdOutlineError className="mt-1" /> Postal Code is required
           </div>
         )}
-        {/* <label className={labelClassName}>Primary Dental Benefit Plan</label>
+        <label className={labelClassName}>Primary Dental Benefit Plan</label>
         <label className={subLabelClassName}>Relationship to Subscriber</label>
         <select
           id="subscriber"
@@ -391,7 +391,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="Subscriber ID/Certificate #"
           className="w-52 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
           {...register("subscriberId")}
-        />
+        /> */}
         <label className="ml-4">Front of Insurance Card</label>
         <input
           className="ml-4"
@@ -406,7 +406,7 @@ const NewPatientForm: React.FC = () => {
           {...register("backImage")}
           accept="image/"
         />
-        <label className={labelClassName}>Emergency Contact *</label>
+        {/* <label className={labelClassName}>Emergency Contact *</label>
         <div className="flex flex-row">
           <input
             type="text"
