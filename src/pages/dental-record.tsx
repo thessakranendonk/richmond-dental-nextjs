@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import SignatureCanvas from "react-signature-canvas";
 import clsx from "clsx";
+import { MdOutlineError } from "react-icons/md";
 
 const initialDentalState: DentalRecordFormProps = {
   currentDate: "",
@@ -12,7 +13,7 @@ const initialDentalState: DentalRecordFormProps = {
   email: "",
   dateOfBirth: "",
   releaseStatement: "",
-  releaseSig: "",
+  patientSig: "",
   releaseTerms: "",
 };
 
@@ -25,18 +26,18 @@ const DentalRecordForm: React.FC = () => {
   } = useForm<DentalRecordFormProps>();
   const [dentalState, setDentalState] = useState<DentalRecordFormProps>({
     ...initialDentalState,
-    releaseSig: "",
+    patientSig: "",
   });
-  const releaseSignatureRef = useRef<SignatureCanvas>(null);
+  const patientSignatureRef = useRef<SignatureCanvas>(null);
   const clearPatientCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    releaseSignatureRef.current?.clear();
+    patientSignatureRef.current?.clear();
   };
   const onSubmit = async (data: DentalRecordFormProps) => {
     try {
-      const releaseSig = releaseSignatureRef.current?.toDataURL("image/png");
-      if (releaseSig) {
-        data.releaseSig = releaseSig;
+      const patientSig = patientSignatureRef.current?.toDataURL("image/png");
+      if (patientSig) {
+        data.patientSig = patientSig;
       }
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -60,7 +61,7 @@ const DentalRecordForm: React.FC = () => {
   const textAreaClassName =
     "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60";
   const clearButtonClassName =
-    "bg-blue-900 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-blue-900";
+    "bg-emerald-800 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-emerald-800";
 
   return (
     <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-12 lg:max-w-lg lg:mx-auto">
@@ -76,13 +77,25 @@ const DentalRecordForm: React.FC = () => {
           placeholder="First Name"
           className={inputClassName}
           {...register("firstName", { required: true, maxLength: 80 })}
+          aria-invalid={errors.firstName ? "true" : "false"}
         />
+        {errors.firstName?.type === "required" && (
+          <div className={errorClassName} role="alert">
+            <MdOutlineError className="mt-1" /> First name is required
+          </div>
+        )}
         <input
           type="text"
           placeholder="Last name"
           className={inputClassName}
           {...register("lastName", { required: true, maxLength: 100 })}
+          aria-invalid={errors.lastName ? "true" : "false"}
         />
+        {errors.lastName?.type === "required" && (
+          <div className={errorClassName} role="alert">
+            <MdOutlineError className="mt-1" /> Last name is required
+          </div>
+        )}
         <input
           type="text"
           placeholder="To Dental Office"
@@ -90,7 +103,13 @@ const DentalRecordForm: React.FC = () => {
           {...register("dentalOfficeDr", {
             required: true,
           })}
+          aria-invalid={errors.dentalOfficeDr ? "true" : "false"}
         />
+        {errors.dentalOfficeDr?.type === "required" && (
+          <div className={errorClassName} role="alert">
+            <MdOutlineError className="mt-1" /> Dental Office is required
+          </div>
+        )}
         <input
           type="tel"
           placeholder="Date of Birth"
@@ -99,7 +118,13 @@ const DentalRecordForm: React.FC = () => {
             required: true,
             maxLength: 12,
           })}
+          aria-invalid={errors.dateOfBirth ? "true" : "false"}
         />
+        {errors.dateOfBirth?.type === "required" && (
+          <div className={errorClassName} role="alert">
+            <MdOutlineError className="mt-1" /> Date of Birth is required
+          </div>
+        )}
         <input
           type="text"
           placeholder="Email"
@@ -108,12 +133,15 @@ const DentalRecordForm: React.FC = () => {
           {...register("email", {
             required: true,
           })}
+          aria-invalid={errors.email ? "true" : "false"}
         />
+        {errors.email?.type === "required" && (
+          <div className={errorClassName} role="alert">
+            <MdOutlineError className="mt-1" /> Email is required
+          </div>
+        )}
         <label className={inputClassName}>
-          <input
-            type="hidden"
-            {...register("releaseTerms", { required: true })}
-          />
+          <input type="hidden" {...register("releaseTerms")} />
           To whom this may concern,
           <br /> <br />
           We at Richmond West Dental and the below patient, would like to thank
@@ -132,10 +160,16 @@ const DentalRecordForm: React.FC = () => {
           <input
             className={inputClassName}
             type="hidden"
-            {...register("releaseSig")}
+            {...register("patientSig")}
+            aria-invalid={errors.patientSig ? "true" : "false"}
           />
+          {errors.patientSig?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Signature is required
+            </div>
+          )}
           <SignatureCanvas
-            ref={releaseSignatureRef}
+            ref={patientSignatureRef}
             canvasProps={{
               width: 500,
               height: 200,
@@ -147,10 +181,7 @@ const DentalRecordForm: React.FC = () => {
           Clear
         </button>
         <label>
-          <input
-            type="hidden"
-            {...register("releaseTerms", { required: true })}
-          />
+          <input type="hidden" {...register("releaseTerms")} />
           Regards, <br /> Richmond West Dental Team <br /> <br /> 500 Richmond
           St W <br />
           Suite 128
