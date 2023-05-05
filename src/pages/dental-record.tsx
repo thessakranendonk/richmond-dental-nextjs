@@ -1,7 +1,7 @@
 import { DentalRecordFormProps } from "@/types/forms-interfaces";
 import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
-import SignatureCanvas from "signature-canvas";
+import SignatureCanvas from "react-signature-canvas";
 
 const initialDentalState: DentalRecordFormProps = {
   currentDate: "",
@@ -49,6 +49,14 @@ const DentalRecordForm: React.FC = () => {
     }
   };
 
+  const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
+  const labelClassName = "ml-4 text-2xl";
+  const inputClassName =
+    "mb-2 ml-4 mt-4 rounded-xl border-zinc-400/60 placeholder-sm";
+  const selectClassName = "ml-4 w-52 mb-2 rounded-xl border-zinc-400/60";
+  const subLabelClassName = "ml-6 mt-2 mb-2";
+  const textAreaClassName =
+    "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60";
   const clearButtonClassName =
     "bg-emerald-800 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-emerald-800";
 
@@ -94,12 +102,7 @@ const DentalRecordForm: React.FC = () => {
           })}
         />
         <label>
-          <input
-            type="checkbox"
-            id="terms"
-            className="ml-4"
-            {...register("releaseTerms", { required: true })}
-          />
+          <input {...register("releaseTerms", { required: true })} />
           To whom this may concern, We at Richmond West Dental and the below
           patient, would like to thank you and your staff for the care you have
           provided. For us to maintain continued and quality care for the
@@ -119,11 +122,6 @@ const DentalRecordForm: React.FC = () => {
               height: 200,
               className: "border border-gray-300",
             }}
-            // onEnd={(sigData) => {
-            //   const sigDataUrl = sigData.trim()
-            //     .replace(/^data:image\/png;base64,/, "");
-            //   data.patientSig = sigDataUrl;
-            // }}
           />
         </label>
         <button className={clearButtonClassName} onClick={clearPatientCanvas}>
