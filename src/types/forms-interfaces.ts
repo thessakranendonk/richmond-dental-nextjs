@@ -72,7 +72,11 @@ export interface NewPatientFormState extends Patient {
 export interface DentalRecordFormProps extends Patient {
   currentDate: string;
   dentalOfficeDr: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
   releaseStatement: string;
+  releaseSig: string;
   releaseTerms: string;
 }
 

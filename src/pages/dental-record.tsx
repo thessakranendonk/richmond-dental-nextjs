@@ -1,6 +1,7 @@
 import { DentalRecordFormProps } from "@/types/forms-interfaces";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
+import SignatureCanvas from "signature-canvas";
 
 const initialDentalState: DentalRecordFormProps = {
   currentDate: "",
@@ -10,6 +11,7 @@ const initialDentalState: DentalRecordFormProps = {
   email: "",
   dateOfBirth: "",
   releaseStatement: "",
+  releaseSig: "",
   releaseTerms: "",
 };
 
@@ -19,10 +21,21 @@ const DentalRecordForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
-  const [dentalState, setDentalState] =
-    useState<DentalRecordFormProps>(initialDentalState);
+  const [dentalState, setDentalState] = useState<DentalRecordFormProps>({
+    ...initialDentalState,
+    releaseSig: "",
+  });
+  const releaseSignatureRef = useRef<SignatureCanvas>(null);
+  const clearPatientCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    releaseSignatureRef.current?.clear();
+  };
   const onSubmit = async (data: DentalRecordFormProps) => {
     try {
+      const releaseSig = releaseSignatureRef.current?.toDataURL("image/png");
+      if (releaseSig) {
+        data.releaseSig = releaseSig;
+      }
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -35,6 +48,9 @@ const DentalRecordForm: React.FC = () => {
       console.error(error);
     }
   };
+
+  const clearButtonClassName =
+    "bg-emerald-800 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-emerald-800";
 
   return (
     <div className="flex justify-start ml-4">
@@ -93,6 +109,26 @@ const DentalRecordForm: React.FC = () => {
           authorization and release of their records along with any legal
           responsibility or liability that may arise from this authorization.
         </label>
+        <label className="mt-3 mb-1">
+          Patient Signature *
+          <input type="hidden" {...register("releaseSig")} />
+          <SignatureCanvas
+            ref={releaseSignatureRef}
+            canvasProps={{
+              width: 500,
+              height: 200,
+              className: "border border-gray-300",
+            }}
+            // onEnd={(sigData) => {
+            //   const sigDataUrl = sigData.trim()
+            //     .replace(/^data:image\/png;base64,/, "");
+            //   data.patientSig = sigDataUrl;
+            // }}
+          />
+        </label>
+        <button className={clearButtonClassName} onClick={clearPatientCanvas}>
+          Clear
+        </button>
         <button type="submit">Submit</button>
       </form>
     </div>
