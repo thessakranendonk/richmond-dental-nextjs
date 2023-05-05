@@ -1,26 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { Request, Response } from "express";
 import nodemailer from "nodemailer";
 import createPdf from "../../lib/createPdf";
 import handlebars from "handlebars";
 import path from "path";
 import fs from "fs";
-import multer from "multer";
+import multer, { FileFilterCallback } from "multer";
 import { Buffer } from "buffer";
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/uploads");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(
-      null,
-      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
-    );
-  },
-});
-
-const upload = multer({ storage: storage });
 
 const createHTMLToSend = (path: any, replacements: any) => {
   let html = fs.readFileSync(path, {
