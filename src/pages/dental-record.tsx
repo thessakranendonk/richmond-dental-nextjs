@@ -53,13 +53,9 @@ const DentalRecordForm: React.FC = () => {
   };
 
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
-  const labelClassName = "ml-4 text-2xl";
   const inputClassName =
     "mb-2 ml-4 mt-4 rounded-xl border-zinc-400/60 placeholder-sm";
-  const selectClassName = "ml-4 w-52 mb-2 rounded-xl border-zinc-400/60";
-  const subLabelClassName = "ml-6 mt-2 mb-2";
-  const textAreaClassName =
-    "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60";
+  ("mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60");
   const clearButtonClassName =
     "bg-emerald-800 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-emerald-800";
 
@@ -172,7 +168,7 @@ const DentalRecordForm: React.FC = () => {
             ref={patientSignatureRef}
             canvasProps={{
               width: 500,
-              height: 200,
+              height: 100,
               className: "border border-gray-300",
             }}
           />
@@ -180,7 +176,7 @@ const DentalRecordForm: React.FC = () => {
         <button className={clearButtonClassName} onClick={clearPatientCanvas}>
           Clear
         </button>
-        <label>
+        <label className="mt-2">
           <input type="hidden" {...register("releaseTerms")} />
           Regards, <br /> Richmond West Dental Team <br /> <br /> 500 Richmond
           St W <br />
