@@ -58,27 +58,33 @@ const DentalRecordForm: React.FC = () => {
   const textAreaClassName =
     "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60";
   const clearButtonClassName =
-    "bg-emerald-800 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-emerald-800";
+    "bg-blue-900 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-blue-900";
 
   return (
-    <div className="flex justify-start ml-4">
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-12 lg:max-w-lg lg:mx-auto">
+      <h1 className="text-center text-2xl xl:text-3xl mb-4 xl:mb-8 font-medium mt-8 sm:mt-0">
+        Dental Records Release Form
+      </h1>
+      <form
+        className="flex flex-col mt-8 xl:mt-12 text-sm"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input
           type="text"
           placeholder="First Name"
-          className="ml-4 rounded-xl"
+          className={inputClassName}
           {...register("firstName", { required: true, maxLength: 80 })}
         />
         <input
           type="text"
           placeholder="Last name"
-          className="ml-4 rounded-xl"
+          className={inputClassName}
           {...register("lastName", { required: true, maxLength: 100 })}
         />
         <input
           type="text"
           placeholder="To Dental Office"
-          className="ml-4 rounded-xl"
+          className={inputClassName}
           {...register("dentalOfficeDr", {
             required: true,
           })}
@@ -86,7 +92,7 @@ const DentalRecordForm: React.FC = () => {
         <input
           type="tel"
           placeholder="Date of Birth"
-          className="ml-4 rounded-xl"
+          className={inputClassName}
           {...register("dateOfBirth", {
             required: true,
             maxLength: 12,
@@ -96,13 +102,16 @@ const DentalRecordForm: React.FC = () => {
           type="text"
           placeholder="Email"
           id="email"
-          className="w-52  ml-4 mt-4 rounded-xl"
+          className={inputClassName}
           {...register("email", {
             required: true,
           })}
         />
-        <label>
-          <input {...register("releaseTerms", { required: true })} />
+        <label className={inputClassName}>
+          <input
+            type="hidden"
+            {...register("releaseTerms", { required: true })}
+          />
           To whom this may concern, We at Richmond West Dental and the below
           patient, would like to thank you and your staff for the care you have
           provided. For us to maintain continued and quality care for the
@@ -114,7 +123,11 @@ const DentalRecordForm: React.FC = () => {
         </label>
         <label className="mt-3 mb-1">
           Patient Signature *
-          <input type="hidden" {...register("releaseSig")} />
+          <input
+            className={inputClassName}
+            type="hidden"
+            {...register("releaseSig")}
+          />
           <SignatureCanvas
             ref={releaseSignatureRef}
             canvasProps={{
@@ -127,6 +140,15 @@ const DentalRecordForm: React.FC = () => {
         <button className={clearButtonClassName} onClick={clearPatientCanvas}>
           Clear
         </button>
+        <label>
+          <input
+            type="hidden"
+            {...register("releaseTerms", { required: true })}
+          />
+          Regards, Richmond West Dental Team 500 Richmond St W Suite 128
+          Toronto, ON. M5V 3N4 P: 416 366 0777 F: 416 366 1117
+          www.richmondwestdental.com
+        </label>
         <button type="submit">Submit</button>
       </form>
     </div>
