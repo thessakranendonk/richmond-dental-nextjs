@@ -1,11 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Request, Response } from "express";
 import nodemailer from "nodemailer";
 import createPdf from "../../lib/createPdf";
 import handlebars from "handlebars";
 import path from "path";
 import fs from "fs";
-import multer, { FileFilterCallback } from "multer";
 import { Buffer } from "buffer";
 
 const createHTMLToSend = (path: any, replacements: any) => {
@@ -49,10 +47,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       pass: process.env.CONTACT_FORM_PASS,
     },
   });
-
-  // const image = patientSig || parentSig.replace(/^data:image\/\w+;base64,/, "");
-  // const imageBuffer = Buffer.from(image, "base64");
-  // const imageSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
 
   const attachments: { filename: string; content: Buffer }[] = [];
 
