@@ -203,7 +203,7 @@ const NewPatientForm: React.FC = () => {
           <option value="Widow">Widow</option>
           <option value="Child">Child</option>
         </select>
-        {/* <div className="flex flex-row">
+        <div className="flex flex-row">
           <input
             type="text"
             placeholder="Home Phone"
@@ -391,7 +391,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="Subscriber ID/Certificate #"
           className="w-52 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
           {...register("subscriberId")}
-        /> */}
+        />
         <label className="ml-4">Front of Insurance Card</label>
         <input
           className="ml-4"
@@ -406,7 +406,7 @@ const NewPatientForm: React.FC = () => {
           {...register("backImage")}
           accept="image/"
         />
-        {/* <label className={labelClassName}>Emergency Contact *</label>
+        <label className={labelClassName}>Emergency Contact *</label>
         <div className="flex flex-row">
           <input
             type="text"
@@ -857,16 +857,7 @@ const NewPatientForm: React.FC = () => {
           placeholder="Today's Date"
           className="w-40 ml-4 mt-4 rounded-xl"
           {...register("date")}
-        /> */}
-        {/* <label className="mt-3 mb-1">Patient Signature *</label>
-        <SignatureCanvas
-          ref={patientSignatureRef}
-          canvasProps={{
-            width: 500,
-            height: 200,
-            className: "border border-gray-300",
-          }}
-        /> */}
+        />
         <label className="mt-3 mb-1">
           Patient Signature *
           <input type="hidden" {...register("patientSig")} />
