@@ -17,20 +17,19 @@ const BookingForm: React.FC = () => {
   const onSubmit: SubmitHandler<BookingFormProps> = async (
     data: BookingFormProps
   ) => {
-    // try {
-    //   const response = await fetch("/api/new-customer-mailer", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-    //   const result = await response.json();
-    //   console.log(result.message);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    console.log(data, data);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log(result.message);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const inputClassName = "mb-2 rounded-xl border-zinc-400/60";

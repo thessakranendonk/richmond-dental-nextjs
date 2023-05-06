@@ -96,14 +96,6 @@ module.exports = {
           "-webkit-mask-position": "100px center",
           "mask-position": "100px center",
         },
-        // ".mask-left": {
-        //   "-webkit-mask-position": "left",
-        //   "mask-position": "left",
-        // },
-        // ".mask-right": {
-        //   "-webkit-mask-position": "right",
-        //   "mask-position": "right",
-        // },
         ".mask-center": {
           "-webkit-mask-position": "center",
           "mask-position": "center",
