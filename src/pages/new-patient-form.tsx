@@ -512,51 +512,27 @@ const NewPatientForm: React.FC = () => {
                   AIDS/HIV
                 </label>
                 <label>
-                  <input
-                    // className="ml-2"
-                    type="checkbox"
-                    {...register("medConditions")}
-                  />
+                  <input type="checkbox" {...register("medConditions")} />
                   Asthma
                 </label>
                 <label>
-                  <input
-                    // className="ml-1"
-                    type="checkbox"
-                    {...register("medConditions")}
-                  />
+                  <input type="checkbox" {...register("medConditions")} />
                   High Blood Pressure
                 </label>{" "}
                 <label>
-                  <input
-                    // className="ml-1"
-                    type="checkbox"
-                    {...register("medConditions")}
-                  />
+                  <input type="checkbox" {...register("medConditions")} />
                   Cancer
                 </label>
                 <label>
-                  <input
-                    // className="ml-1"
-                    type="checkbox"
-                    {...register("medConditions")}
-                  />
+                  <input type="checkbox" {...register("medConditions")} />
                   Diabetes
                 </label>{" "}
                 <label>
-                  <input
-                    // className="ml-1"
-                    type="checkbox"
-                    {...register("medConditions")}
-                  />
+                  <input type="checkbox" {...register("medConditions")} />
                   Heart Murmur
                 </label>{" "}
                 <label>
-                  <input
-                    // className="ml-1"
-                    type="checkbox"
-                    {...register("medConditions")}
-                  />
+                  <input type="checkbox" {...register("medConditions")} />
                   Joint Replacement
                 </label>
                 <label>
