@@ -42,6 +42,11 @@ module.exports = {
       100: "100",
     },
     keyframes: {
+      draw: {
+        "50%": {
+          "stroke-dashoffset": 0,
+        },
+      },
       fadeIn: {
         "0%": {
           transform: "translateY(1000px) scaleY(2.5) scaleX(0.2)",
@@ -59,6 +64,7 @@ module.exports = {
     },
     animation: {
       fadeIn: "fadeIn 2s ease-in-out 1",
+      path: "draw 3.5s infinite",
     },
   },
   plugins: [
