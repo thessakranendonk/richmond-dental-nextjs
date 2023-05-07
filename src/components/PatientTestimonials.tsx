@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { google } from "googleapis";
 
 export const initialTestimonialState: PatientTestimonials = {
   authorName: "",
   rating: 0,
-  text: "",
+  review: "",
 };
 
 const PatientTestimonials = () => {
