@@ -60,16 +60,14 @@ const PatientTestimonials: React.FC = () => {
     <div>
       <h2>Patient Testimonials</h2>
       <div>
+        {sliderControl(true)}
         {PATIENT_TESTIMONIALS.map((testimonial, i) => (
           <div key={i} ref={refs[i]}>
             <p>{testimonial.authorName}</p>
             <p>{testimonial.review}</p>
           </div>
         ))}
-      </div>
-      <div>
-        <button onClick={previousReview}>Previous</button>
-        <button onClick={nextReview}>Next</button>
+        {sliderControl()}
       </div>
     </div>
   );

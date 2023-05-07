@@ -1,5 +1,11 @@
+import PatientTestimonials from "@/components/PatientTestimonials";
+
 const Home: React.FC = () => {
-  return <div></div>;
+  return (
+    <div>
+      <PatientTestimonials />
+    </div>
+  );
 };
 
 export default Home;
