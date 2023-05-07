@@ -35,3 +35,11 @@ export interface ButtonProps {
   extraClassName?: string;
   onSubmit?: (event: React.FormEvent<HTMLButtonElement>) => void;
 }
+
+export interface LinkCardProps {
+  href: string;
+  icon: JSX.Element;
+  hoverIcon: JSX.Element;
+  name: string;
+  information: string;
+}

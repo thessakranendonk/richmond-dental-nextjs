@@ -9,7 +9,8 @@ export const RICHMOND_SERVICES: {
     service: "Teeth Cleaning",
     href: "/services#teeth-cleaning",
     id: "teeth-cleaning",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/ar_1:1,c_fill,e_art:hokusai,g_auto,w_1000/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
+    // img: "https://res.cloudinary.com/dybcfr6cd/image/upload/ar_1:1,c_fill,e_art:hokusai,g_auto,w_1000/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
+    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1683482596/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
     description:
       "It starts here. A nice clean and healthy mouth will and can prevent tooth decay, gum disease and bad breath. Plus, afterwards your smile will be bright and beautiful! Call us if you haven’t had a cleaning and assessment in a while!",
   },
@@ -25,7 +26,7 @@ export const RICHMOND_SERVICES: {
     service: "Dental Implants",
     href: "/services#teeth-cleaning",
     id: "teeth-cleaning",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5542-1-1024x683_qlrvgu.jpg",
+    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg",
     description:
       "Missing a tooth or teeth? Titanium Dental Implants are the solution! They integrate with your natural jaw and gums and can be used to replace all manner of missing teeth. Ask us about this as a treatment option!",
   },
@@ -41,7 +42,7 @@ export const RICHMOND_SERVICES: {
     service: "Teeth Whitening",
     href: "/services#teeth-whitening",
     id: "teeth-whitening",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
+    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489765/richmond-dental/richmond3_vnds9e.jpg",
     description:
       "Whiten your teeth to achieve your perfect smile! You know what the best part about teeth whitening is? Once your teeth are white, you will be MORE inclined to keep them as clean as possible, it’s a win-win situation! Not everything however can be whitened so please call us if you need clarification!",
   },
