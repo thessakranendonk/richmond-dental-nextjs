@@ -84,22 +84,24 @@ const ServiceDiv = ({
       variants={evenOrUneven ? fadeInFromRight : fadeInFromLeft}
     >
       <motion.div className="xl:flex xl:flex-row xl:w-screen xl:justify-between">
-        {/* <img
-          key={name}
-          src={img}
-          alt={name}
-          className={clsx(
-            "xl:hidden mask mask-hexagon mask-center mx-auto z-10 h-32 md:h-96 mb-10"
-          )}
-        /> */}
+        <div className="xl:hidden">
+          <img
+            className="img-sm img-settings br-left mx-auto mb-12"
+            src={img}
+          />
+          {/* <div className="img-wrap-sm img-wrap br-left top-[10px] left-[10px]"> */}
+          {/* <div className="back-img br-left"></div>
+            <img className="back-img object-none br-left" src={img} /> */}
+          {/* </div> */}
+        </div>
 
         {evenOrUneven && (
           <>
-            <div className="">
-              <img className="img img-4object-none br-left" src={img} />
-              <div className="wrap-4 br-left top-[20px] left-[20px]">
-                <div className="info-4 br-left"></div>
-                <img className="info-4 object-none br-left" src={img} />
+            <div className="hidden xl:inline-flex">
+              <img className="img img-settings object-none br-left" src={img} />
+              <div className="img-wrap img-wrap-xl br-left top-[20px] left-[20px]">
+                <div className="back-img br-left"></div>
+                <img className="back-img object-none br-left" src={img} />
               </div>
             </div>
           </>
@@ -114,11 +116,11 @@ const ServiceDiv = ({
           </p>
         </div>
         {!evenOrUneven && (
-          <div className="mask-right">
-            <img className="img img-4 object-none br-right" src={img} />
-            <div className="wrap-4 br-right top-[20px] right-[20px]">
-              <div className="info-4 br-right"></div>
-              <img className="info-4 object-none br-right" src={img} />
+          <div className="hidden xl:inline-flex">
+            <img className="img img-settings object-none br-right" src={img} />
+            <div className="img-wrap img-wrap-xl br-right top-[20px] right-[20px]">
+              <div className="back-img br-right"></div>
+              <img className="back-img object-none br-right" src={img} />
             </div>
           </div>
         )}
@@ -129,11 +131,11 @@ const ServiceDiv = ({
 
 export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="flex flex-wrap p-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
+    <ul className="flex flex-wrap md:p-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
       {links.map((link) => (
         <li
           key={link.service}
-          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12"
+          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 mx-auto md:mx-0"
         >
           <Link href={link.href}>
             <img

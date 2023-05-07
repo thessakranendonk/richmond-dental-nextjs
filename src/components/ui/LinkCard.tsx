@@ -13,7 +13,7 @@ const LinkCard: React.FC<LinkCardProps> = ({
   return (
     <Link
       href={href}
-      className="flex flex-col w-80 px-8 h-full rounded-lg justify-start text-center mx-auto gap-y-4 hover:shadow-xl hover:scale-105 hover:transition hover:duration-300"
+      className="flex flex-col md:max-w-52 lg:w-80 md:px-3 lg:px-8 pt-4 md:pt-0 h-full rounded-lg md:justify-evenly lg:justify-start text-center lg:mx-auto md:gap-y-4 hover:shadow-xl hover:scale-105 hover:transition hover:duration-300"
       onMouseEnter={() => setIconType("hoverIcon")}
       onMouseLeave={() => setIconType("icon")}
     >
@@ -21,9 +21,11 @@ const LinkCard: React.FC<LinkCardProps> = ({
         {iconType === "icon" ? icon : hoverIcon}
       </div>
 
-      <h2 className="text-2xl font-normal">{name}</h2>
+      <h2 className="text-xl lg:text-2xl font-normal">{name}</h2>
 
-      <p className="text-xl text-zinc-400 font-extralight">{information}</p>
+      <p className="text-lg lg:text-xl text-zinc-400 font-extralight">
+        {information}
+      </p>
     </Link>
   );
 };

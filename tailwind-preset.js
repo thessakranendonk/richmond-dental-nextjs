@@ -88,6 +88,10 @@ module.exports = {
           left: "50%",
           "@apply -translate-x-1/2": {},
         },
+        ".img-sm": {
+          width: "280px",
+          height: "280px",
+        },
         ".img": {
           width: "680px",
           height: "680px",
@@ -101,22 +105,28 @@ module.exports = {
         ".br-center": {
           "border-radius": "50%",
         },
-        ".img-4": {
+        ".img-settings": {
           position: "relative",
           "box-shadow": "0 1px 2px rgba(0, 0, 0, 0.0)",
           "transform-style": "preserve-3d",
         },
 
-        ".wrap-4": {
+        ".img-wrap": {
           background: "#9d9d9d",
           "box-shadow": "0 0 0 40px rgba(255, 255, 255, 0.4)",
           perspective: "1000px",
           position: "absolute",
-          width: "640px",
-          height: "640px",
           transition: "all 0.4s ease-in-out",
         },
-        ".info-4": {
+        ".img-wrap-xl": {
+          width: "640px",
+          height: "640px",
+        },
+        ".img-wrap-sm": {
+          width: "260px",
+          height: "260px",
+        },
+        ".back-img": {
           display: "block",
           position: "absolute",
           width: "100%",

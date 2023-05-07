@@ -2,7 +2,6 @@ import LinkCard from "@/components/ui/LinkCard";
 import { RiServiceFill, RiServiceLine } from "react-icons/ri";
 import { HiOfficeBuilding, HiOutlineOfficeBuilding } from "react-icons/hi";
 import { MdCamera, MdOutlineCamera } from "react-icons/md";
-import logo from "../../public/richmond-logo.svg";
 
 const iconClassName = "w-24 h-24 text-emerald-700";
 const HomePageLinks = [
@@ -33,10 +32,12 @@ const HomePageLinks = [
 ];
 const Home: React.FC = () => {
   return (
-    <ul className="flex gap-20 justify-center">
-      <img src={logo.src} />
+    <ul className="flex flex-col md:flex-row md:justify-evenly lg:justify-center">
       {HomePageLinks.map((link) => (
-        <div className="h-96 max-w-full">
+        <div
+          key={link.href}
+          className="h-96 border-b-[1px] border-zinc-300 last:border-none md:border-none mx-10"
+        >
           <LinkCard
             href={link.href}
             name={link.name}
