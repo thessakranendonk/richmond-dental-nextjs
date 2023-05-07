@@ -84,22 +84,32 @@ const ServiceDiv = ({
       variants={evenOrUneven ? fadeInFromRight : fadeInFromLeft}
     >
       <motion.div className="xl:flex xl:flex-row xl:w-screen xl:justify-between">
-        <img
+        {/* <img
           key={name}
           src={img}
           alt={name}
           className={clsx(
             "xl:hidden mask mask-hexagon mask-center mx-auto z-10 h-32 md:h-96 mb-10"
           )}
-        />
+        /> */}
 
         {evenOrUneven && (
-          <img
-            key={name}
-            src={img}
-            alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
-          />
+          <>
+            {/* <img
+              key={name}
+              src={img}
+              alt={name}
+              className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
+            /> */}
+
+            <div className="">
+              <img className="img img-4 object-none br-left" src={img} />
+              <div className="wrap-4 br-left top-[20px] left-[20px]">
+                <div className="info-4 br-left"></div>
+                <img className="info-4 object-none br-left" src={img} />
+              </div>
+            </div>
+          </>
         )}
 
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left">
@@ -111,12 +121,19 @@ const ServiceDiv = ({
           </p>
         </div>
         {!evenOrUneven && (
-          <img
-            key={name}
-            src={img}
-            alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-right z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
-          />
+          // <img
+          //   key={name}
+          //   src={img}
+          //   alt={name}
+          //   className="hidden xl:flex mask mask-hexagon mask-center xl:mask-right z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
+          // />
+          <div className="mask-right">
+            <img className="img img-4 object-none br-right" src={img} />
+            <div className="wrap-4 br-right top-[20px] right-[20px]">
+              <div className="info-4 br-right"></div>
+              <img className="info-4 object-none br-right" src={img} />
+            </div>
+          </div>
         )}
       </motion.div>
     </motion.div>
@@ -125,7 +142,7 @@ const ServiceDiv = ({
 
 export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="flex flex-wrap pb-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
+    <ul className="flex flex-wrap p-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
       {links.map((link) => (
         <li
           key={link.service}
@@ -135,7 +152,7 @@ export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
             <img
               src={link.img}
               alt={link.service}
-              className="mask mask-hexagon mask-center z-10 h-24 mx-auto"
+              className="rounded-full z-10 h-24 w-24 mx-auto object-cover"
             />
             <p className="font-extralight text-sm text-center py-4 xl:text-lg">
               {link.service}
@@ -187,8 +204,12 @@ const Services: React.FC = () => {
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-      <ServiceLinks links={RICHMOND_SERVICES} />
-      <ServiceList links={RICHMOND_SERVICES} />
+      <div className="mb-12">
+        <ServiceLinks links={RICHMOND_SERVICES} />
+      </div>
+      <div className="mt-24">
+        <ServiceList links={RICHMOND_SERVICES} />
+      </div>
     </div>
   );
 };

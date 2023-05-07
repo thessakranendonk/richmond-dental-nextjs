@@ -2,7 +2,7 @@ import LinkCard from "@/components/ui/LinkCard";
 import { RiServiceFill, RiServiceLine } from "react-icons/ri";
 import { HiOfficeBuilding, HiOutlineOfficeBuilding } from "react-icons/hi";
 import { MdCamera, MdOutlineCamera } from "react-icons/md";
-import logo from "../components/ui/richmond-logo.svg";
+import logo from "../../public/richmond-logo.svg";
 
 const iconClassName = "w-24 h-24 text-emerald-700";
 const HomePageLinks = [
