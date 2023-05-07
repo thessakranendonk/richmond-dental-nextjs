@@ -12,4 +12,12 @@ export default async function handler(
     query: query as string,
     type: "establishment",
   });
+
+  const results = response.data.results.map((result)
+  return {
+      name: result.name,
+      rating: result.rating,
+  }
+});
+res
 }
