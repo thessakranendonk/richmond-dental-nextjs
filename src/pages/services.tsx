@@ -95,15 +95,8 @@ const ServiceDiv = ({
 
         {evenOrUneven && (
           <>
-            {/* <img
-              key={name}
-              src={img}
-              alt={name}
-              className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
-            /> */}
-
             <div className="">
-              <img className="img img-4 object-none br-left" src={img} />
+              <img className="img img-4object-none br-left" src={img} />
               <div className="wrap-4 br-left top-[20px] left-[20px]">
                 <div className="info-4 br-left"></div>
                 <img className="info-4 object-none br-left" src={img} />
@@ -121,12 +114,6 @@ const ServiceDiv = ({
           </p>
         </div>
         {!evenOrUneven && (
-          // <img
-          //   key={name}
-          //   src={img}
-          //   alt={name}
-          //   className="hidden xl:flex mask mask-hexagon mask-center xl:mask-right z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
-          // />
           <div className="mask-right">
             <img className="img img-4 object-none br-right" src={img} />
             <div className="wrap-4 br-right top-[20px] right-[20px]">
@@ -152,7 +139,7 @@ export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
             <img
               src={link.img}
               alt={link.service}
-              className="rounded-full z-10 h-24 w-24 mx-auto object-cover"
+              className="rounded-full z-10 h-24 w-24 mx-auto object-cover hover:img-hover"
             />
             <p className="font-extralight text-sm text-center py-4 xl:text-lg">
               {link.service}
