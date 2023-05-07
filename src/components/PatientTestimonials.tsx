@@ -56,7 +56,19 @@ const PatientTestimonials: React.FC = () => {
     </button>
   );
 
-  return <div></div>;
+  return (
+    <div>
+      <h2>Patient Testimonials</h2>
+      <div>
+        {PATIENT_TESTIMONIALS.map((testimonial, i) => (
+          <div key={i} ref={refs[i]}>
+            <p>{testimonial.authorName}</p>
+            <p>{testimonial.review}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default PatientTestimonials;
