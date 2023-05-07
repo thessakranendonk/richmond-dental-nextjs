@@ -23,6 +23,24 @@ const PatientTestimonials: React.FC = () => {
   };
 
   const totalReviews = PATIENT_TESTIMONIALS.length;
+
+  const nextReview = () => {
+    if (currentReview >= totalReviews - 1) {
+      scrollToReview(0);
+    } else {
+      scrollToReview(currentReview + 1);
+    }
+  };
+
+  const previousReview = () => {
+    if (currentReview === 0) {
+      scrollToReview(totalReviews - 1);
+    } else {
+      scrollToReview(currentReview - 1);
+    }
+  };
+
+  return <div></div>;
 };
 
 export default PatientTestimonials;
