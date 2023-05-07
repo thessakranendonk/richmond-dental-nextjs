@@ -10,4 +10,13 @@ const PatientTestimonials = () => {
   const [reviews, setReviews] = useState<PatientTestimonials>(
     initialTestimonialState
   );
+
+  useEffect(() => {
+      const getPlaceDetails = async () => {
+          const client = google.maps.createClient({
+              key: process.env
+              Promise,
+          });
+      }
+  })
 };
