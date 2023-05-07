@@ -67,6 +67,10 @@ const PatientTestimonials: React.FC = () => {
           </div>
         ))}
       </div>
+      <div>
+        <button onClick={previousReview}>Previous</button>
+        <button onClick={nextReview}>Next</button>
+      </div>
     </div>
   );
 };
