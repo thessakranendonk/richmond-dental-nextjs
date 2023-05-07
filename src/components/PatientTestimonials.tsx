@@ -2,7 +2,7 @@ import { createRef, useState } from "react";
 import { PATIENT_TESTIMONIALS } from "../../data/patient-testimonials";
 
 const PatientTestimonials: React.FC = () => {
-  const [currentReview, setCurrentReview] = useState<Number>(0);
+  const [currentReview, setCurrentReview] = useState<number>(0);
 
   const refs = PATIENT_TESTIMONIALS.reduce((acc: any, val, i) => {
     acc[i] = createRef();
