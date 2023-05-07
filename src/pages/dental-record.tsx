@@ -54,6 +54,7 @@ const DentalRecordForm: React.FC = () => {
     } catch (error) {
       console.error(error);
     }
+    console.log(data, data);
   };
 
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";

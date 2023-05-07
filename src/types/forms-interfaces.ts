@@ -38,6 +38,8 @@ export interface NewPatientFormState extends Patient {
   insuranceTel: string;
   planNum: string;
   subscriberId: string;
+  frontImage: File | null;
+  backImage: File | null;
   emerContact: string;
   emerRelationship: string;
   emerTel: string;
@@ -65,7 +67,8 @@ export interface NewPatientFormState extends Patient {
   gumBleed: string;
   antibiotics: string;
   jawPain: string;
-  terms: string;
+  patientSig: string;
+  parentSig: string;
   date: string;
 }
 
