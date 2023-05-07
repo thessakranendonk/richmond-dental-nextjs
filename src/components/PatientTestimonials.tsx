@@ -40,6 +40,9 @@ const PatientTestimonials: React.FC = () => {
     }
   };
 
+  const arrowStyle =
+    "absolute text-white text-2xl z-10 bg-black h-10 w-10 rounded-full opacity-75 flex items-center justify-center";
+
   return <div></div>;
 };
 
