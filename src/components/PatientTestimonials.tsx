@@ -57,16 +57,42 @@ const PatientTestimonials: React.FC = () => {
   );
 
   return (
-    <div>
-      <h2>Patient Testimonials</h2>
-      <div>
+    // <div>
+    //   <h2>Patient Testimonials</h2>
+    //   <div>
+    //     {sliderControl(true)}
+    //     {PATIENT_TESTIMONIALS.map((testimonial, i) => (
+    //       <div key={i} ref={refs[i]}>
+    //         <p>{testimonial.authorName}</p>
+    //         <p>{testimonial.review}</p>
+    //       </div>
+    //     ))}
+    //     {sliderControl()}
+    //   </div>
+    // </div>
+
+    <div className="relative">
+      <h2 className="mb-4 text-3xl font-bold">Patient Testimonials</h2>
+      <div className="relative h-96 overflow-hidden">
         {sliderControl(true)}
-        {PATIENT_TESTIMONIALS.map((testimonial, i) => (
-          <div key={i} ref={refs[i]}>
-            <p>{testimonial.authorName}</p>
-            <p>{testimonial.review}</p>
-          </div>
-        ))}
+        <div
+          className="absolute h-full w-full flex"
+          style={{ left: `-${currentReview * 100}%` }}
+        >
+          {PATIENT_TESTIMONIALS.map((testimonial, i) => (
+            <div
+              key={i}
+              ref={refs[i]}
+              className="h-full w-full flex-shrink-0 px-4 py-2"
+            >
+              <p className="mb-2 text-lg font-medium">
+                {testimonial.authorName}
+              </p>
+              <p className="text-gray-600">{testimonial.review}</p>
+            </div>
+          ))}
+        </div>
+
         {sliderControl()}
       </div>
     </div>
