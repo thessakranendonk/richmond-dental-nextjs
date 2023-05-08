@@ -42,18 +42,20 @@ const LogoLink: React.FC<
   }
 > = ({ onLinkClick, logo, alt, logoClassName }) => {
   return (
-    <Link
-      href="/"
-      className={clsx(
-        "flex lg:inline-block w- relative",
-        "focus:outline-none focus-visible:ring focus-visible:ring-black/20 focus-visible:border-transparent",
-        "animate-spin",
-        logoClassName
-      )}
-      onClick={onLinkClick}
-    >
-      <img className={logoClassName} src={logo} alt={alt} />
-    </Link>
+    <div className="hover:animate-spin">
+      <Link
+        href="/"
+        className={clsx(
+          "flex lg:inline-block w- relative",
+          "focus:outline-none focus-visible:ring focus-visible:ring-black/20 focus-visible:border-transparent",
+
+          logoClassName
+        )}
+        onClick={onLinkClick}
+      >
+        <img className={logoClassName} src={logo} alt={alt} />
+      </Link>
+    </div>
   );
 };
 

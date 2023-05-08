@@ -7,11 +7,7 @@ module.exports = {
     "./node_modules/techtessy/**/*.{html,js,ts}",
   ],
   presets: [require("./tailwind-preset")],
-  plugins: [require("tailwindcss-animated")],
   theme: {
     extend: {},
-    animation: {
-      spin: "spin 2s linear infinite",
-    },
   },
 };
