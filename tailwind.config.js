@@ -10,5 +10,8 @@ module.exports = {
   plugins: [require("tailwindcss-animated")],
   theme: {
     extend: {},
+    animation: {
+      spin: "spin 2s linear infinite",
+    },
   },
 };
