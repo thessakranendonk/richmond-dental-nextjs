@@ -1,5 +1,9 @@
 import { createRef, useState } from "react";
 import { PATIENT_TESTIMONIALS } from "../../data/patient-testimonials";
+import clsx from "clsx";
+
+const photoClassName =
+  "h-64 md:h-96 xl:h-[29rem] max-w-3xl rounded-lg shadow-lg";
 
 const PatientTestimonials: React.FC = () => {
   const [currentReview, setCurrentReview] = useState<number>(0);
@@ -43,12 +47,11 @@ const PatientTestimonials: React.FC = () => {
   const arrowStyle =
     "absolute text-white text-2xl z-10 bg-black h-10 w-10 rounded-full opacity-75 flex items-center justify-center";
 
-  const sliderControl = (isActive: boolean, isLeftButton?: boolean) => (
+  const sliderControl = (isLeftButton?: boolean) => (
     <button
       type="button"
       onClick={isLeftButton ? previousReview : nextReview}
-      className={`${arrowStyle} ${isLeftButton ? "left-2" : "right-2"} ${
-        isActive ? "opacity-100" : "opacity-25"
+      className={`${arrowStyle} ${isLeftButton ? "left-2" : "right-2"} 
       }`}
       style={{ top: "45%" }}
     >
@@ -59,42 +62,29 @@ const PatientTestimonials: React.FC = () => {
   );
 
   return (
-    // <div>
-    //   <h2>Patient Testimonials</h2>
-    //   <div>
-    //     {sliderControl(true)}
-    //     {PATIENT_TESTIMONIALS.map((testimonial, i) => (
-    //       <div key={i} ref={refs[i]}>
-    //         <p>{testimonial.authorName}</p>
-    //         <p>{testimonial.review}</p>
-    //       </div>
-    //     ))}
-    //     {sliderControl()}
-    //   </div>
-    // </div>
-
-    <div className="relative">
-      <h2 className="mb-4 text-3xl font-bold">Patient Testimonials</h2>
-      <div className="relative h-96 overflow-hidden">
-        {sliderControl(true)}
+    <div
+      className={clsx(
+        "flex flex-col justify-center items-center w-[calc(10% - 10px)] mx-5 lg:mx-auto pb-8"
+      )}
+    >
+      <h2 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
+        Patient Testimonials
+      </h2>
+      <div className={clsx("relative mt-12", photoClassName)}>
         <div
-          className="absolute h-full w-full flex"
-          //   style={{ left: `-${currentReview * 100}%` }}
+          className={clsx(
+            "flex overflow-x-hidden snap-mandatory snap-x",
+            photoClassName
+          )}
         >
           {sliderControl(true)}
           {PATIENT_TESTIMONIALS.map((testimonial, i) => (
-            <div
-              key={i}
-              ref={refs[i]}
-              className="h-full w-full flex-shrink-0 px-4 py-2"
-            >
-              <p className="mb-2 text-lg font-medium">
-                {testimonial.authorName}
-              </p>
-              <p className="text-gray-600">{testimonial.review}</p>
-              {sliderControl(i === currentReview)}
+            <div key={i} ref={refs[i]} id={i.toString()}>
+              <p>{testimonial.review}</p>
+              <p>{testimonial.authorName}</p>
             </div>
           ))}
+          {sliderControl()}
         </div>
       </div>
     </div>
