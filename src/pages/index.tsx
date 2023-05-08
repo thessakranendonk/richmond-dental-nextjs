@@ -32,6 +32,11 @@ const HomePageLinks = [
   },
 ];
 const Home: React.FC = () => {
+  const svgProps = {
+    width: "50",
+    height: "50",
+    fill: "blue",
+  };
   return (
     <ul className="flex flex-col md:flex-row md:justify-evenly lg:justify-center">
       {HomePageLinks.map((link) => (
@@ -48,7 +53,7 @@ const Home: React.FC = () => {
           />
         </div>
       ))}
-      <LogoAnimation />
+      <LogoAnimation {...svgProps} />
     </ul>
   );
 };

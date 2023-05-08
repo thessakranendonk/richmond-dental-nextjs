@@ -1,6 +1,7 @@
 import logo from "../../public/images/logo.svg";
 import Image from "next/image";
 import React from "react";
+import styles from "../styles/logoAnimations.module.css";
 
 interface SvgProps {
   width: string;
@@ -10,15 +11,14 @@ interface SvgProps {
 
 const LogoAnimation: React.FC<SvgProps> = ({ width, height, fill }) => {
   return (
-    <div>
-      <Image src={logo} alt="logo" width={100} height={100} />
-
+    <div className={styles.container}>
+      <Image src="/images/logo.svg" alt="logo" width={100} height={100} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={width}
         height={height}
-        className="stroke-current text-transparent stroke-2 fill-none animate-draw"
+        className={`${styles.logo} ${styles.outline}`}
       >
         <path
           fill={fill}
