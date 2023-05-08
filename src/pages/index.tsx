@@ -2,6 +2,7 @@ import LinkCard from "@/components/ui/LinkCard";
 import { RiServiceFill, RiServiceLine } from "react-icons/ri";
 import { HiOfficeBuilding, HiOutlineOfficeBuilding } from "react-icons/hi";
 import { MdCamera, MdOutlineCamera } from "react-icons/md";
+import LogoAnimation from "@/components/LogoAnimation";
 
 const iconClassName = "w-24 h-24 text-emerald-700";
 const HomePageLinks = [
@@ -47,6 +48,7 @@ const Home: React.FC = () => {
           />
         </div>
       ))}
+      <LogoAnimation />
     </ul>
   );
 };
