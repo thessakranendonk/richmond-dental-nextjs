@@ -3,7 +3,7 @@ import { PATIENT_TESTIMONIALS } from "../../data/patient-testimonials";
 import clsx from "clsx";
 
 const photoClassName =
-  "h-64 md:h-96 xl:h-[29rem] max-w-3xl rounded-lg shadow-lg";
+  "h-96 w-full max-w-3xl rounded-lg shadow-lg overflow-hidden";
 
 const PatientTestimonials: React.FC = () => {
   const [currentReview, setCurrentReview] = useState<number>(0);
