@@ -1,9 +1,10 @@
 import PatientTestimonials from "@/components/PatientTestimonials";
+import { PATIENT_TESTIMONIALS } from "../../data/patient-testimonials";
 
 const Home: React.FC = () => {
   return (
     <div>
-      <PatientTestimonials />
+      <PatientTestimonials testimonials={PATIENT_TESTIMONIALS} />
     </div>
   );
 };

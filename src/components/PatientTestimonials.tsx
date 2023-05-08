@@ -21,5 +21,16 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
     slidesToScroll: 1,
   };
 
-  return <div></div>;
+  return (
+    <Slider {...settings}>
+      {testimonials.map((testimonial, index) => (
+        <div key={index}>
+          <h3>{testimonial.authorName}</h3>
+          <p>{testimonial.review}</p>
+        </div>
+      ))}
+    </Slider>
+  );
 };
+
+export default PatientTestimonials;
