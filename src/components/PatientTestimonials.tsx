@@ -29,25 +29,36 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
   return (
     <div
       className={clsx(
-        "flex flex-col justify-center items-center w-[calc(10% - 10px)] mx-5 lg:mx-auto pb-8"
+        "flex flex-col justify-center items-center w-full max-w-4xl mx-auto pb-8"
       )}
     >
       <h2 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
-        Testimonials
+        Patient Testimonials
       </h2>
-      <div>
-        {testimonials.map((testimonial: any, index: any) => (
-          <div
-            key={index}
-            style={{ display: index === current ? "block" : "none" }}
-          >
-            <p>{testimonial.review}</p>
-            <p>
-              <strong>{testimonial.authorName}</strong>
-            </p>
-            <p className="text-yellow">{testimonial.rating}</p>
-          </div>
-        ))}
+      <div className={clsx("relative mt-12", photoClassName)}>
+        <div
+          className={clsx(
+            "flex overflow-x-hidden snap-mandatory snap-x",
+            photoClassName,
+            "justify-center"
+          )}
+        >
+          {testimonials.map((testimonial: any, index: any) => (
+            <div
+              key={index}
+              style={{ display: index === current ? "block" : "none" }}
+              className={clsx("flex flex-col items-center", photoClassName)}
+            >
+              <p className="text-center">{testimonial.review}</p>
+              <div className="text-center">
+                <p className="text-base font-semibold">
+                  {testimonial.authorName}
+                </p>
+                <p className="text-yellow text-lg">{testimonial.rating}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
