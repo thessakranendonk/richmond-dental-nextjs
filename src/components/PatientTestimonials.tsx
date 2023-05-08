@@ -43,11 +43,13 @@ const PatientTestimonials: React.FC = () => {
   const arrowStyle =
     "absolute text-white text-2xl z-10 bg-black h-10 w-10 rounded-full opacity-75 flex items-center justify-center";
 
-  const sliderControl = (isLeftButton?: boolean) => (
+  const sliderControl = (isActive: boolean, isLeftButton?: boolean) => (
     <button
       type="button"
       onClick={isLeftButton ? previousReview : nextReview}
-      className={`${arrowStyle} ${isLeftButton ? "left-2" : "right-2"}`}
+      className={`${arrowStyle} ${isLeftButton ? "left-2" : "right-2"} ${
+        isActive ? "opacity-100" : "opacity-25"
+      }`}
       style={{ top: "45%" }}
     >
       <span role="img" aria-label={`Arrow ${isLeftButton ? "left" : "right"}`}>
@@ -77,8 +79,9 @@ const PatientTestimonials: React.FC = () => {
         {sliderControl(true)}
         <div
           className="absolute h-full w-full flex"
-          style={{ left: `-${currentReview * 100}%` }}
+          //   style={{ left: `-${currentReview * 100}%` }}
         >
+          {sliderControl(true)}
           {PATIENT_TESTIMONIALS.map((testimonial, i) => (
             <div
               key={i}
@@ -89,11 +92,10 @@ const PatientTestimonials: React.FC = () => {
                 {testimonial.authorName}
               </p>
               <p className="text-gray-600">{testimonial.review}</p>
+              {sliderControl(i === currentReview)}
             </div>
           ))}
         </div>
-
-        {sliderControl()}
       </div>
     </div>
   );
