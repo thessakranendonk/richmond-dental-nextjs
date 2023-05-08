@@ -49,13 +49,12 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
               style={{ display: index === current ? "block" : "none" }}
               className={clsx("flex flex-col items-center", photoClassName)}
             >
-              <p className="mt-5 ml-6 mr-6 text-center">{testimonial.review}</p>
+              <p className="mt-6 ml-6 mr-6 text-center">{testimonial.review}</p>
               <div className="text-center">
                 <p className="mt-5 text-base font-semibold">
                   {testimonial.authorName}
                 </p>
                 <p className="text-gray-400 text-xs font-light">Patient</p>
-                <p className="text-yellow text-lg">{testimonial.rating}</p>
               </div>
             </div>
           ))}
