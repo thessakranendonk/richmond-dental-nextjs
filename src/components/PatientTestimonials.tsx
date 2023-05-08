@@ -72,14 +72,19 @@ const PatientTestimonials: React.FC = () => {
       </h2>
       <div className={clsx("relative mt-12", photoClassName)}>
         <div
-          className={clsx(
-            "flex overflow-x-hidden snap-mandatory snap-x",
-            photoClassName
-          )}
+        //   className={clsx(
+        //     "flex overflow-x-hidden snap-mandatory snap-x",
+        //     photoClassName
+        //   )}
         >
           {sliderControl(true)}
           {PATIENT_TESTIMONIALS.map((testimonial, i) => (
-            <div key={i} ref={refs[i]} id={i.toString()}>
+            <div
+              key={i}
+              ref={refs[i]}
+              id={i.toString()}
+              className="flex-1 flex flex-col justify-center items-center px-6"
+            >
               <p>{testimonial.review}</p>
               <p>{testimonial.authorName}</p>
             </div>
