@@ -41,7 +41,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
         textClassName="group text-md transition-all duration-300 ease-in-out text-black font-light mx-8 text-zinc-600"
         linkClassName="flex bg-left-bottom pb-2 lg:text-md mb-3 pt-3"
         // logoClassName="w-[calc(10% - 10px)] h-24 w-52 ml-2 mt-1 transition-transform duration-500 ease-in-out transform-gpu group-hover:animate-spin"
-        logoClassName="w-[calc(10% - 10px)] h-24 w-52 ml-2 mt-1"
+        logoClassName="hover: animate-spin w-[calc(10% - 10px)] h-24 w-52 ml-2 mt-1"
         hoverClassName={clsx(
           "flex bg-left-bottom pb-0.5 bg-gradient-to-r from-emerald-400 to-emerald-600 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
         )}
