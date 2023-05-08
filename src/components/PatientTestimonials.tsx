@@ -12,7 +12,7 @@ interface TestimonialsCarouselProps {
 }
 
 const photoClassName =
-  "h-64 md:h-96 xl:h-[29rem] max-w-3xl rounded-lg shadow-lg";
+  "h-64 md:h-96 xl:h-[20rem] max-w-3xl rounded-lg shadow-lg";
 
 const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
   testimonials,
@@ -49,11 +49,12 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
               style={{ display: index === current ? "block" : "none" }}
               className={clsx("flex flex-col items-center", photoClassName)}
             >
-              <p className="text-center">{testimonial.review}</p>
+              <p className="mt-5 ml-6 mr-6 text-center">{testimonial.review}</p>
               <div className="text-center">
-                <p className="text-base font-semibold">
+                <p className="mt-5 text-base font-semibold">
                   {testimonial.authorName}
                 </p>
+                <p className="text-gray-400 text-xs font-light">Patient</p>
                 <p className="text-yellow text-lg">{testimonial.rating}</p>
               </div>
             </div>
