@@ -27,8 +27,14 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
   }, [current, testimonials.length]);
 
   return (
-    <div>
-      <h2>Testimonials</h2>
+    <div
+      className={clsx(
+        "flex flex-col justify-center items-center w-[calc(10% - 10px)] mx-5 lg:mx-auto pb-8"
+      )}
+    >
+      <h2 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
+        Testimonials
+      </h2>
       <div>
         {testimonials.map((testimonial: any, index: any) => (
           <div
