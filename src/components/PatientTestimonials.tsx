@@ -1,4 +1,5 @@
 import Slider from "react-slick";
+import { useState, useEffect } from "react";
 
 interface Testimonial {
   authorName: string;
@@ -10,16 +11,8 @@ interface TestimonialsCarouselProps {
   testimonials: Testimonial[];
 }
 
-const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
-  testimonials,
-}) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+const PatientTestimonials: React.FC<Props> = ({ testimonials }) => {
+  const [current, setCurrent] = useState(0);
 
   return (
     <Slider {...settings}>
