@@ -1,17 +1,22 @@
-import Slider from "react-slick";
 import { useState, useEffect } from "react";
+import clsx from "clsx";
 
 interface Testimonial {
   authorName: string;
-  rating: string;
   review: string;
+  rating: string;
 }
 
 interface TestimonialsCarouselProps {
   testimonials: Testimonial[];
 }
 
-const PatientTestimonials: React.FC<Props> = ({ testimonials }) => {
+const photoClassName =
+  "h-64 md:h-96 xl:h-[29rem] max-w-3xl rounded-lg shadow-lg";
+
+const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
+  testimonials,
+}) => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -20,15 +25,25 @@ const PatientTestimonials: React.FC<Props> = ({ testimonials }) => {
     }, 5000); //change every 5 seconds
     return () => clearInterval(interval);
   }, [current, testimonials.length]);
+
   return (
-    <Slider {...settings}>
-      {testimonials.map((testimonial, index) => (
-        <div key={index}>
-          <h3>{testimonial.authorName}</h3>
-          <p>{testimonial.review}</p>
-        </div>
-      ))}
-    </Slider>
+    <div>
+      <h2>Testimonials</h2>
+      <div>
+        {testimonials.map((testimonial: any, index: any) => (
+          <div
+            key={index}
+            style={{ display: index === current ? "block" : "none" }}
+          >
+            <p>{testimonial.review}</p>
+            <p>
+              <strong>{testimonial.authorName}</strong>
+            </p>
+            <p className="text-yellow">{testimonial.rating}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
