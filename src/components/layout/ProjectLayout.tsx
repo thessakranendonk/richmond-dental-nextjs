@@ -5,7 +5,7 @@ import { Content } from "./project-layout/Content";
 import Footer from "./project-layout/Footer";
 import Header from "./project-layout/Header";
 import { Wrapper } from "./project-layout/Wrapper";
-import logo from "../../../public/images/logo.jpeg";
+import logo from "../../../public/images/logo.svg";
 import { useRouter } from "next/router";
 import { SERVICES_DROPDOWN } from "../../../data/services";
 import { TECHNOLOGY_DROPDOWN } from "../../../data/technology-digital-dentistry";
