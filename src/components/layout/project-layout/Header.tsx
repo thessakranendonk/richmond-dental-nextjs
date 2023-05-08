@@ -47,6 +47,7 @@ const LogoLink: React.FC<
       className={clsx(
         "flex lg:inline-block w- relative",
         "focus:outline-none focus-visible:ring focus-visible:ring-black/20 focus-visible:border-transparent",
+        "hover:animate-spin",
         logoClassName
       )}
       onClick={onLinkClick}

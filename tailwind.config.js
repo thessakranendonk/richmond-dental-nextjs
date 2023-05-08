@@ -7,6 +7,7 @@ module.exports = {
     "./node_modules/techtessy/**/*.{html,js,ts}",
   ],
   presets: [require("./tailwind-preset")],
+  plugins: [require("@tailwindcss/animation")],
   theme: {
     extend: {},
   },
