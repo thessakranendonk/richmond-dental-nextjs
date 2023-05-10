@@ -19,7 +19,7 @@ const LogoAnimation: React.FC<SvgProps> = ({ width, height, fill }) => {
         viewBox="0 0 24 24"
         width={width}
         height={height}
-        className={`${styles.logoSpin} ${styles.outline} fade-in-out`}
+        className={`${styles.logoSpin} ${styles.outline} fadeInOut`}
       >
         <path
           fill={fill}
@@ -28,9 +28,9 @@ const LogoAnimation: React.FC<SvgProps> = ({ width, height, fill }) => {
         />
       </svg>
 
-      <div className={`${styles.logoContainer}`}>
+      <div className="logo-container">
         <div
-          className={styles.logoImage}
+          className="logo-image"
           style={{ backgroundImage: `url(${logo.src})` }}
         />
       </div>
