@@ -11,7 +11,7 @@ interface SvgProps {
 const LogoAnimation: React.FC<SvgProps> = ({ width, height, fill }) => {
   return (
     <div className="container">
-      <img src="/images/logo.svg" alt="logo" />
+      {/* <img src="/images/logo.svg" alt="logo" /> */}
     </div>
   );
 };
