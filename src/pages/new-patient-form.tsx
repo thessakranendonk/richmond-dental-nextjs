@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
+// import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 
 export const initialNewPatientFormState: NewPatientFormState = {
   firstName: "",
