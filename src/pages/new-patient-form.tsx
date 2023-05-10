@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 
 export const initialNewPatientFormState: NewPatientFormState = {
   firstName: "",
@@ -81,6 +82,7 @@ const NewPatientForm: React.FC = () => {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
+
   const patientSignatureRef = useRef<SignatureCanvas>(null);
   const parentSignatureRef = useRef<SignatureCanvas>(null);
 
@@ -286,6 +288,7 @@ const NewPatientForm: React.FC = () => {
                 following
               </div>
             )}
+            {/* // Address */}
             <label className={labelClassName}>Address *</label>
             <div className="flex flex-row">
               <div>
@@ -368,6 +371,7 @@ const NewPatientForm: React.FC = () => {
                 <MdOutlineError className="mt-1" /> Postal Code is required
               </div>
             )}
+            {/* Primary Dental Benefit Plan */}
             <label className={labelClassName}>
               Primary Dental Benefit Plan
             </label>
