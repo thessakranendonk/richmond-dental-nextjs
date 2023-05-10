@@ -1,11 +1,5 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #06181f;
-}
-
-.container path {
+/* .container path {
   fill: transparent;
-  stroke: 10;
-}
+  stroke-width: 10;
+  stroke: #31e8ff;
+} */
