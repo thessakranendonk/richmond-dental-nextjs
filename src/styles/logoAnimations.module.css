@@ -1,23 +1,31 @@
-.fadeInOut {
-  @keyframes fadeInOut {
-    from {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
+.logoSpin {
+  animation: spin 2s linear infinite;
+}
 
+.logoSpin.fadeInOut {
   animation-name: fadeInOut;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
-/* Hide original SVG path */
-.logo path {
-  opacity: 0;
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInOut {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
