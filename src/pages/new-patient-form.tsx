@@ -71,12 +71,16 @@ const NewPatientForm: React.FC = () => {
     formState: { errors },
   } = useForm<NewPatientFormState>();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [newPatientState, setNewPatientState] = useState<NewPatientFormState>({
     ...initialNewPatientFormState,
     patientSig: "",
     parentSig: "",
   });
 
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
   const patientSignatureRef = useRef<SignatureCanvas>(null);
   const parentSignatureRef = useRef<SignatureCanvas>(null);
 
