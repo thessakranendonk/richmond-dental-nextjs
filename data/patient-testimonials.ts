@@ -17,11 +17,11 @@ export const PATIENT_TESTIMONIALS: {
       "I love this place! I’ve never had such a pleasant experience at a dentist before. Dr Mike is so knowledgeable and talked me through every step to ensure I felt comfortable. I love that they bring you in for an initial session to get an assessment of your teeth before the cleaning. I was not pressured into any procedures which I appreciated. The clinic is spotless, and Arden is so lovely! Can’t wait to come back.",
   },
   {
-    authorName: "Claudia",
+    authorName: "Isabel",
     rating: "★★★★★",
 
     review:
-      "I am delighted with the services I received from Dr. Michael Li and his staff. I had a very complicated procedure done to perfection by Dr. Michael, who kept me well informed throughout the process. The clinic has new technology and techniques to help patients receive the latest treatments, making the experience very informative and relaxing. The office is very clean, super friendly and welcoming; you can relax by watching videos on a ceiling screen. Dr. Li also offers services to patients with various disabilities from ODSP, and I have worked helping this population. Because of that, he is also incorporating a positive social inclusion approach that benefits, and this is even more favourable for me. I highly recommend the Richmond West Dental Clinic; you will love Dr. Li's innovation and skill, the new technology, and the positive and friendly environment!",
+      "Dr Le and his team are so incredibly professional, kind, and helpful. They make sure that I’m comfortable and are very invested in making sure I have my dental needs met. I actually look forward to going to the dentist now!",
   },
   {
     authorName: "Kevin",
@@ -38,11 +38,11 @@ export const PATIENT_TESTIMONIALS: {
       "Easily the best dental care I've received (20+ years in the GTA). Michael and Arden are incredibly thorough and professional. The facilities are clean, comfortable, and equipped with modern equipment. The experience is informative, fun, and painless! Would highly recommend, particularly for Invisilign services too.",
   },
   {
-    authorName: "Susy",
+    authorName: "Jeff",
     rating: "★★★★★",
 
     review:
-      "Dr. Le is the best dentist I’ve ever had in my life - seriously. He is patient, conservative (doesn’t recommend treatment unless you actually need it) and is very detailed in his work. I appreciate that he is also younger because it’s evident he is up to date with the latest research/best practices/equipment, etc. His dental office is has a bright, clean, welcoming feel and all the equipment is new and up to date, which is so important in this day and age. No more spitting and splashing all over with these old school bowls beside you, ew! Dr. Le will take his time and explain all procedures and risks and overall, just does such an amazing job. I am so happy with my teeth and smile after Invisalign and whitening and of course routine cleanings. I will definitely be one of his forever patients and highly recommend.",
+      "Everyone is super nice and friendly. I really feel they care about my oral health and they involve me in the process which makes me want to follow their recommendations.",
   },
   {
     authorName: "Adrian",
