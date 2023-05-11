@@ -15,14 +15,23 @@ const alterTextForForm = (text: string) => {
     .replace(/{/, "")
     .replace(/}/gm, "")
     .replace(/"|'/gm, "")
-    .replace(/:/gm, ": ");
+    .replace(/:/gm, ": ")
+    .replace(/patientSig:(.*)[^}]/gm, "");
   return removedCharacters
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .split(",")
     .map((i) => snakeCaseToTitleCase(i));
 };
 const date = new Date().toDateString();
-const createPdf = async (obj: string, subject: string) => {
+
+const createPdf = async (
+  obj: string,
+  subject: string,
+  patientSig?: string,
+  parentSig?: string
+) => {
+  let requiredPages = 1;
+
   pdf.addImage(logoTest, "JPEG", 1, 1, 6, 3);
 
   // Inserting text
@@ -35,13 +44,21 @@ const createPdf = async (obj: string, subject: string) => {
   pdf.text("Date:", 1, 7);
   pdf.setFontSize(14);
   pdf.text(date, 3, 7);
-  pdf.text(alterTextForForm(obj), 1, 9.5);
+  pdf.text(alterTextForForm(obj).slice(0, 30), 1, 9.5);
 
-  const pdfOutput = pdf.output("datauristring");
+  if (alterTextForForm(obj).length >= 30) {
+    for (let i = 0; i < requiredPages; i++) {
+      pdf.addPage();
+    }
+    pdf.text(alterTextForForm(obj).slice(30), 1, 2);
+  }
+  if (patientSig !== "") pdf.text("Patient Signature: ", 1, 18);
+  patientSig && pdf.addImage(patientSig, "JPEG", 1, 19, 6, 3);
+  if (patientSig !== "") pdf.text("Parent Signature: ", 1, 22);
+  parentSig && pdf.addImage(parentSig, "JPEG", 1, 23, 6, 3);
 
+  const pdfOutput = pdf.output("dataurlstring");
   return pdfOutput;
 };
-
-// createPdf("", "");
 
 export default createPdf;

@@ -9,7 +9,7 @@ export interface Patient {
   email: string;
 }
 
-export interface NewPatientFormState extends Patient {
+export interface NewPatientFormProps extends Patient {
   preferredName: string;
   dateOfBirth: string;
   gender: string;
@@ -71,9 +71,8 @@ export interface DentalRecordFormProps extends Patient {
   lastName: string;
   dateOfBirth: string;
   releaseStatement: string;
-  // patientSig: string;
   releaseTerms: string;
-  patientSignature: string;
+  patientSig: string;
 }
 
 export interface BookingFormProps extends Patient {

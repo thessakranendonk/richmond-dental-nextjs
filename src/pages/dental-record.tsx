@@ -1,6 +1,6 @@
 import { DentalRecordFormProps } from "@/types/forms-interfaces";
 import React, { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import SignatureCanvas from "react-signature-canvas";
 import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
@@ -13,22 +13,29 @@ const initialDentalState: DentalRecordFormProps = {
   email: "",
   dateOfBirth: "",
   releaseStatement: "",
-  patientSig: "",
   releaseTerms: "",
+  patientSig: "",
 };
 
 const DentalRecordForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState,
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [dentalState, setDentalState] = useState<DentalRecordFormProps>({
     ...initialDentalState,
-    patientSig: "",
   });
+
+  const formatIntoPng = () => {
+    if (patientSignatureRef.current) {
+      const dataURL = patientSignatureRef.current.toDataURL();
+      return dataURL;
+    }
+  };
 
   const patientSignatureRef = useRef<SignatureCanvas>(null);
   const clearPatientCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,6 +43,9 @@ const DentalRecordForm: React.FC = () => {
     patientSignatureRef.current?.clear();
   };
   const onSubmit = async (data: DentalRecordFormProps) => {
+    if (!data.patientSig) {
+      errors.patientSig?.message;
+    }
     try {
       const patientSig = patientSignatureRef.current?.toDataURL("image/png");
       if (patientSig) {
@@ -54,7 +64,6 @@ const DentalRecordForm: React.FC = () => {
     } catch (error) {
       console.error(error);
     }
-    console.log(data, data);
   };
 
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
@@ -72,9 +81,6 @@ const DentalRecordForm: React.FC = () => {
         </h1>
       </div>
       <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
-        {/* <div className="h-screen bg-emerald-800 w-"> */}
-
-        {/* </div> */}
         {!isSubmitted ? (
           <form
             className="flex flex-col mt-8 xl:mt-12 text-sm"
@@ -163,25 +169,27 @@ const DentalRecordForm: React.FC = () => {
             </label>
             <label className="mt-3 mb-1">
               Patient Signature *
-              <input
-                className={inputClassName}
-                type="hidden"
-                {...register("patientSig")}
-                aria-invalid={errors.patientSig ? "true" : "false"}
+              <Controller
+                name="patientSig"
+                control={control}
+                render={({ field }) => (
+                  <SignatureCanvas
+                    {...field}
+                    ref={patientSignatureRef}
+                    onEnd={() => field.onChange(formatIntoPng())}
+                    canvasProps={{
+                      width: 500,
+                      height: 100,
+                      className: "border border-gray-300",
+                    }}
+                  />
+                )}
               />
-              {errors.patientSig?.type === "required" && (
+              {initialDentalState.patientSig === undefined && (
                 <div className={errorClassName} role="alert">
                   <MdOutlineError className="mt-1" /> Signature is required
                 </div>
               )}
-              <SignatureCanvas
-                ref={patientSignatureRef}
-                canvasProps={{
-                  width: 500,
-                  height: 100,
-                  className: "border border-gray-300",
-                }}
-              />
             </label>
             <button
               className={clearButtonClassName}
@@ -190,7 +198,7 @@ const DentalRecordForm: React.FC = () => {
               Clear
             </button>
             <label className="mt-2">
-              <input type="hidden" {...register("releaseTerms")} />
+              <input type="hidden" />
               Regards, <br /> Richmond West Dental Team <br /> <br /> 500
               Richmond St W <br />
               Suite 128
@@ -211,12 +219,12 @@ const DentalRecordForm: React.FC = () => {
                 !formState.isValid && "opacity-30"
               )}
               type="submit"
-              disabled={!formState.isValid}
+              disabled={!formState.isValid && !!errors.patientSig}
               value="Submit Dental Records Release Form"
             />
           </form>
         ) : (
-          <p className="text-center text-xl">
+          <p className="text-center text-xl font-extralight pt-20">
             Your Dental Records Release Form has been successfully submitted!
           </p>
         )}
