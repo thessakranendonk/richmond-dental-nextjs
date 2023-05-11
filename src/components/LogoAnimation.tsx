@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import "../styles/logoAnimations.module.css";
 
 interface SvgProps {
@@ -9,6 +9,7 @@ interface SvgProps {
 }
 
 const LogoAnimation: React.FC<SvgProps> = () => {
+  const [fadeIn, setFadeIn] = React.useState(true);
   return (
     <div className="container">
       <svg
