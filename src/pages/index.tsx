@@ -2,7 +2,6 @@ import LinkCard from "@/components/ui/LinkCard";
 import { RiServiceFill, RiServiceLine } from "react-icons/ri";
 import { HiOfficeBuilding, HiOutlineOfficeBuilding } from "react-icons/hi";
 import { MdCamera, MdOutlineCamera } from "react-icons/md";
-import LogoAnimation from "@/components/LogoAnimation";
 
 const iconClassName = "w-24 h-24 text-emerald-700";
 const HomePageLinks = [
@@ -32,11 +31,6 @@ const HomePageLinks = [
   },
 ];
 const Home: React.FC = () => {
-  const svgProps = {
-    width: "50",
-    height: "50",
-    fill: "blue",
-  };
   return (
     <ul className="flex flex-col md:flex-row md:justify-evenly lg:justify-center">
       {HomePageLinks.map((link) => (
@@ -53,7 +47,6 @@ const Home: React.FC = () => {
           />
         </div>
       ))}
-      <LogoAnimation {...svgProps} />
     </ul>
   );
 };

@@ -6,6 +6,7 @@ import { ChevronUpIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
+import LogoAnimation from "@/components/LogoAnimation";
 
 export function useOnClickOutside<T extends HTMLDivElement>(
   ref: React.RefObject<T>,
@@ -53,7 +54,7 @@ const LogoLink: React.FC<
         )}
         onClick={onLinkClick}
       >
-        <img className={logoClassName} src={logo} alt={alt} />
+        <LogoAnimation />
       </Link>
     </div>
   );
