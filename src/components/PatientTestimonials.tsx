@@ -12,7 +12,7 @@ interface TestimonialsCarouselProps {
 }
 
 const photoClassName =
-  "h-64 md:h-96 xl:h-[20rem] max-w-3xl rounded-lg shadow-lg";
+  "h-32 md:h-96 xl:h-[20rem] max-w-3xl rounded-lg shadow-lg";
 
 const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
   testimonials,
