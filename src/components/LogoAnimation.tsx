@@ -9,7 +9,7 @@ interface SvgProps {
 }
 
 const LogoAnimation: React.FC<SvgProps> = () => {
-  const [fadeIn, setFadeIn] = React.useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="container">
       <svg

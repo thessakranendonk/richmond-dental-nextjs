@@ -1,24 +1,15 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.container:hover svg {
+  animation: fade-in-out 0.5s ease-in-out forwards;
 }
 
-.fade-in {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.fade-in.active {
-  opacity: 1;
-}
-
-.fade-out {
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.fade-out.active {
-  opacity: 0;
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
