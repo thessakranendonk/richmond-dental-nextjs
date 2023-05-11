@@ -35,10 +35,11 @@ const FadeOutSvg = styled.svg`
 `;
 
 const LogoAnimation: React.FC = () => {
-  const [isFadeIn, setIsFadeIn] = useState(true);
+  const [isFadeIn, setIsFadeIn] = useState(false);
+  const [hasPlayedAnimation, setHasPlayedAnimation] = useState(false);
 
   const handleAnimation = () => {
-    setIsFadeIn((prevState) => !prevState);
+    setIsFadeIn(!isFadeIn);
   };
 
   return (
