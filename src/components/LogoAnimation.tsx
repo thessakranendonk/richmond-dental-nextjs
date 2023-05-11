@@ -14,7 +14,7 @@ const LogoAnimation: React.FC<SvgProps> = () => {
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
-        width="740.000000pt"
+        width="500.000000pt"
         height="113.000000pt"
         viewBox="0 0 740.000000 113.000000"
         preserveAspectRatio="xMidYMid meet"
