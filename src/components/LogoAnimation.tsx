@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/logoAnimations.module.css";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -37,6 +37,13 @@ const FadeOutSvg = styled.svg`
 const LogoAnimation: React.FC = () => {
   const [isFadeIn, setIsFadeIn] = useState(false);
   const [hasPlayedAnimation, setHasPlayedAnimation] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsFadeIn(true);
+    }, 100);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const handleAnimation = () => {
     setIsFadeIn(!isFadeIn);
