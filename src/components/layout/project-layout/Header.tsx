@@ -41,7 +41,7 @@ const LogoLink: React.FC<
     logoClassName?: string;
     showSidePanel?: boolean;
   }
-> = ({ onLinkClick, logo, alt, logoClassName }) => {
+> = ({ onLinkClick, logoClassName }) => {
   return (
     <div className="hover:animate-spin">
       <Link
