@@ -28,8 +28,14 @@ const createHTMLToSend = (path: any, replacements: any) => {
 const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, firstName, lastName, parentSig, patientSig } = req.body;
 
-  const { frontImage } = req.files;
-  const fileData = fs.readFileSync(frontImage.path);
+  upload.single("frontImage")(req, res, (err: any) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err.message || err);
+    }
+    const frontImage = req.file;
+    return res.status(200).send("File uploaded successfully!");
+  });
 
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
@@ -80,8 +86,12 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
             content: pdfData,
           },
           {
-            filename: frontImage.name,
-            content: fileData,
+            filename: `${filename}_front_card_image.jpg`,
+            content: fs.createReadStream(req.files.frontImage.path),
+          },
+          {
+            filename: `${filename}_back_card_image.jpg`,
+            content: fs.createReadStream(req.files.backImage.path),
           },
         ],
       });
