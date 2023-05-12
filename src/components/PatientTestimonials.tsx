@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import clsx from "clsx";
-
+import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 interface Testimonial {
   authorName: string;
   review: string;
@@ -12,7 +12,7 @@ interface TestimonialsCarouselProps {
 }
 
 const photoClassName =
-  "h-45 md:h-80 xl:h-[20rem] max-w-5xl border hover:border-emerald-800 scrollbar-none";
+  "h-45 md:h-80 xl:h-[20rem] max-w-5xl border hover:border-blue-400 relative";
 
 const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
   testimonials,
@@ -36,6 +36,12 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
         Patient Testimonials
       </h2>
       <div className={clsx("relative mt-5", photoClassName)}>
+        <div className="absolute left-1/2 top-2 transform -translate-x-1 -translate-y-1">
+          <FaQuoteLeft size={20} />
+        </div>
+        <div className="absolute bottom-1 left-1/2 transform translate-x-1 translate-y-1">
+          <FaQuoteRight size={20} />
+        </div>
         <div
           className={clsx(
             "flex overflow-x-hidden snap-mandatory snap-x",
