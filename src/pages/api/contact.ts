@@ -117,4 +117,12 @@ const contact = async (
   pdf.end();
   return res.status(200).json({ error: "" });
 };
-export default upload.single("file")(contact);
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+// Use the middleware in your route handler
+export default upload.single("file");
+contact;
