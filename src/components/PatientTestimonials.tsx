@@ -32,7 +32,7 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
         "flex flex-col justify-center items-center w-full max-w-4xl mx-auto pb-8"
       )}
     >
-      <h2 className="text-center tracking-widest my-2 font-medium text-2xl xl:text-4xl">
+      <h2 className="text-center tracking-widest my-2 font-medium text-2xl xl:text-5xl">
         Patient Testimonials
       </h2>
       <div className={clsx("relative mt-5", photoClassName)}>
