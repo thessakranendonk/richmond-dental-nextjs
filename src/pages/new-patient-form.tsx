@@ -189,9 +189,15 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="Date of Birth *"
+                placeholder="Date of Birth (YYYY-MM-DD)*"
                 className={clsx(inputClassName, "w-1/2")}
-                {...register("dateOfBirth", { required: true })}
+                {...register("dateOfBirth", {
+                  required: true,
+                  pattern: {
+                    value: /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
+                    message: "Invalid date format (YYYY-MM-DD)",
+                  },
+                })}
                 aria-invalid={errors.dateOfBirth ? "true" : "false"}
               />
               {errors.dateOfBirth?.type === "required" && (
