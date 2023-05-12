@@ -32,6 +32,9 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
         "flex flex-col justify-center items-center w-full max-w-4xl mx-auto pb-8"
       )}
     >
+      <p className="text-center font-extrabold pb-5 text-emerald-800">
+        ________________
+      </p>
       <h2 className="text-center tracking-widest my-2 font-medium text-2xl xl:text-5xl">
         Patient Testimonials
       </h2>
