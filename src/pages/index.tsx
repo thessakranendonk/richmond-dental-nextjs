@@ -1,3 +1,5 @@
+import PatientTestimonials from "@/components/PatientTestimonials";
+import { PATIENT_TESTIMONIALS } from "../../data/patient-testimonials";
 import LinkCard from "@/components/ui/LinkCard";
 import { RiServiceFill, RiServiceLine } from "react-icons/ri";
 import { HiOfficeBuilding, HiOutlineOfficeBuilding } from "react-icons/hi";
@@ -32,6 +34,7 @@ const HomePageLinks = [
 ];
 const Home: React.FC = () => {
   return (
+    <div>
     <ul className="flex flex-col md:flex-row md:justify-evenly lg:justify-center">
       {HomePageLinks.map((link) => (
         <div
@@ -47,7 +50,11 @@ const Home: React.FC = () => {
           />
         </div>
       ))}
-    </ul>
+      </ul>
+    <div>
+      <PatientTestimonials testimonials={PATIENT_TESTIMONIALS} />
+    </div>
+      </div>
   );
 };
 
