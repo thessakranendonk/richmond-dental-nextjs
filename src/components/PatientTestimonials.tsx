@@ -12,7 +12,7 @@ interface TestimonialsCarouselProps {
 }
 
 const photoClassName =
-  "h-32 md:h-80 xl:h-[20rem] max-w-3xl rounded-lg shadow-lg";
+  "h-45 md:h-80 xl:h-[20rem] max-w-5xl border hover:border-emerald-800 scrollbar-none";
 
 const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
   testimonials,
@@ -32,10 +32,10 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
         "flex flex-col justify-center items-center w-full max-w-4xl mx-auto pb-8"
       )}
     >
-      <h2 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
+      <h2 className="text-center tracking-widest my-2 font-medium text-2xl xl:text-4xl">
         Patient Testimonials
       </h2>
-      <div className={clsx("relative mt-12", photoClassName)}>
+      <div className={clsx("relative mt-5", photoClassName)}>
         <div
           className={clsx(
             "flex overflow-x-hidden snap-mandatory snap-x",
@@ -49,11 +49,11 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
               style={{ display: index === current ? "block" : "none" }}
               className={clsx("flex flex-col items-center", photoClassName)}
             >
-              <p className="mt-16 ml-6 mr-6 text-center">
+              <p className="pt-16 ml-6 mr-6 text-center ">
                 {testimonial.review}
               </p>
               <div className="text-center">
-                <p className="mt-5 text-base font-semibold">
+                <p className="pt-5 text-base font-semibold">
                   {testimonial.authorName}
                 </p>
                 <p className="text-gray-400 text-xs font-light">Patient</p>
