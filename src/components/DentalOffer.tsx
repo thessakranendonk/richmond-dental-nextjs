@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useEffect } from "react";
-import { useAnimation, motion, AnimatePresence } from "framer-motion";
+import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RICHMOND_SERVICES } from "../../data/services";
 
