@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
         <div className="flex flex-col items-center">
           <p className="text-xl text-white">welcome to</p>
-          <h1 className="text-4xl tracking-widest font-bold text-white">
+          <h1 className="text-5xl tracking-widest font-bold text-white">
             Richmond West Dental
           </h1>
           <p className="text-xl text-white">
