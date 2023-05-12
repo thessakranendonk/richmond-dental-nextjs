@@ -6,11 +6,18 @@ const Hero: React.FC = () => {
         className="w-full h-auto z-0"
         alt="Hero Image"
       />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-        <p className="text-xl text-white">
-          Welcome to Richmond West Dental, a modern, sophisticated and
-          transparent Dental Office | Downtown Toronto | Queen West
-        </p>
+      <div className="absolute inset-0 bg-emerald-800 opacity-75 z-10"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+        <div className="flex flex-col items-center">
+          <p className="text-xl text-white">welcome to</p>
+          <h1 className="text-4xl tracking-widest font-bold text-white">
+            Richmond West Dental
+          </h1>
+          <p className="text-xl text-white">
+            modern, sophisticated and transparent dental office
+          </p>
+          <p className="text-xl text-white">Downtown Toronto | Queen West</p>
+        </div>
       </div>
     </div>
   );
