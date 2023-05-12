@@ -5,64 +5,6 @@ import { MdOutlineError } from "react-icons/md";
 import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
 
-// export const initialNewPatientFormState: NewPatientFormProps = {
-//   firstName: "",
-//   lastName: "",
-//   preferredName: "",
-//   dateOfBirth: "",
-//   gender: "",
-//   maritalStatus: "",
-//   homePhone: "",
-//   mobilePhone: "",
-//   workPhone: "",
-//   ext: "",
-//   email: "",
-//   referral: "",
-//   address: "",
-//   suite: "",
-//   city: "",
-//   province: "",
-//   postalCode: "",
-//   subscriber: "",
-//   subscriberName: "",
-//   insuranceCompany: "",
-//   insuranceTel: "",
-//   planNum: "",
-//   subscriberId: "",
-//   frontImage: null,
-//   backImage: null,
-//   emerContact: "",
-//   emerRelationship: "",
-//   emerTel: "",
-//   famDocName: "",
-//   famDocAddress: "",
-//   famDocTel: "",
-//   medCheck: "",
-//   smoke: "",
-//   medConditions: "",
-//   otherMedConditions: "",
-//   allergies: "",
-//   otherAllergies: "",
-//   longTermMeds: "",
-//   dentalInjection: "",
-//   immuneSystem: "",
-//   hospital: "",
-//   illness: "",
-//   otherIllness: "",
-//   pregnant: "",
-//   visitReason: "",
-//   lastVisit: "",
-//   nervous: "",
-//   lastXray: "",
-//   dentalSpecialist: "",
-//   gumBleed: "",
-//   antibiotics: "",
-//   jawPain: "",
-//   patientSig: "",
-//   parentSig: "",
-//   date: "",
-// };
-
 const NewPatientForm: React.FC = () => {
   const {
     register,
@@ -71,11 +13,6 @@ const NewPatientForm: React.FC = () => {
     formState: { errors },
   } = useForm<NewPatientFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  // const [newPatientState, setNewPatientState] = useState<NewPatientFormProps>({
-  //   ...initialNewPatientFormState,
-  //   patientSig: "",
-  //   parentSig: "",
-  // });
 
   const patientSignatureRef = useRef<SignatureCanvas>(null);
   const parentSignatureRef = useRef<SignatureCanvas>(null);

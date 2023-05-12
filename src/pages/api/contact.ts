@@ -7,7 +7,6 @@ import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
-import formidable from "formidable";
 
 var pdf = new PDFDocument();
 const date = new Date().toDateString();
@@ -24,14 +23,6 @@ const createHTMLToSend = (path: any, replacements: any) => {
 };
 
 const contact = async (req: NextApiRequest, res: NextApiResponse) => {
-  const form = new formidable.IncomingForm();
-  form.parse(req, async (err, fields, files) => {
-    if (err) {
-      console.log(err);
-      res.status(500).json({ error: "error parsing" });
-      return;
-    }
-  });
   const { email, firstName, lastName, parentSig, patientSig } = req.body;
 
   const subject = req.headers.referer?.includes("dental-record")
