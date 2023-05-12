@@ -57,7 +57,10 @@ const DentalOffer: React.FC = () => {
   }, [controls, inView]);
   return (
     <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10">
-      <h1 className="text-center tracking-widest my-12 font-medium text-2xl xl:text-3xl">
+      <p className="text-center font-extrabold text-emerald-800">
+        ________________
+      </p>
+      <h1 className="text-center tracking-widest my-12 font-medium text-2xl xl:text-5xl">
         What We Offer
       </h1>
       <p className="font-extralight text-center pb-0 xl:max-w-3xl xl:mx-auto xl:text-xl">
