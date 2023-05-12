@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 import handlebars from "handlebars";
 import path from "path";
@@ -7,6 +7,9 @@ import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
+import multer from "multer";
+
+const upload = multer();
 
 var pdf = new PDFDocument();
 const date = new Date().toDateString();
@@ -72,6 +75,14 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
           {
             filename: `${filename}.pdf`,
             content: pdfData,
+          },
+          {
+            filename: req.files.frontImage[0].originalname,
+            content: req.files.frontImage[0].buffer,
+          },
+          {
+            filename: req.files.backImage[0].originalname,
+            content: req.files.backImage[0].buffer,
           },
         ],
       });
