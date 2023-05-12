@@ -5,7 +5,7 @@ import { Content } from "./project-layout/Content";
 import Footer from "./project-layout/Footer";
 import Header from "./project-layout/Header";
 import { Wrapper } from "./project-layout/Wrapper";
-import logo from "../../../public/richmond2.png";
+import logo from "../../../public/images/logo.svg";
 import { useRouter } from "next/router";
 import { SERVICES_DROPDOWN } from "../../../data/services";
 import { TECHNOLOGY_DROPDOWN } from "../../../data/technology-digital-dentistry";
@@ -40,7 +40,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
         navigationLinks={navigationLinks}
         textClassName="group text-md transition-all duration-300 ease-in-out text-black font-light mx-8 text-zinc-600"
         linkClassName="flex bg-left-bottom pb-2 lg:text-md mb-3 pt-3"
-        logoClassName="w-[calc(10% - 10px)] w-52 ml-2 mt-1"
+        logoClassName="ml-2 mt-2 mr-1"
         hoverClassName={clsx(
           "flex bg-left-bottom pb-0.5 bg-gradient-to-r from-emerald-400 to-emerald-600 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
         )}
