@@ -437,14 +437,14 @@ const NewPatientForm: React.FC = () => {
               className="ml-4"
               type="file"
               {...register("frontImage")}
-              accept="image/"
+              multiple
             />
             <label className="ml-4 mt-3">Back of Insurance Card</label>
             <input
               className="ml-4 mb-3"
               type="file"
               {...register("backImage")}
-              accept="image/"
+              multiple
             />
             <label className={labelClassName}>Emergency Contact *</label>
             <div className="flex flex-row">
