@@ -30,8 +30,8 @@ export interface NewPatientFormProps extends Patient {
   insuranceTel: string;
   planNum: string;
   subscriberId: string;
-  frontImage: [];
-  backImage: [];
+  frontImage: File | null;
+  backImage: File | null;
   emerContact: string;
   emerRelationship: string;
   emerTel: string;

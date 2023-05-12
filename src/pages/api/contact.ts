@@ -10,7 +10,7 @@ import { pdfLogo } from "@/lib/pdfLogo";
 import multer from "multer";
 
 const upload = multer({
-  dest: "uploads/", // specify where to store uploaded files
+  dest: "uploads/",
 });
 
 var pdf = new PDFDocument();
@@ -117,4 +117,4 @@ const contact = async (
   pdf.end();
   return res.status(200).json({ error: "" });
 };
-export default contact;
+export default upload.single("file")(contact);
