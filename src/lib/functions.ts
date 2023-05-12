@@ -3,3 +3,16 @@ export const snakeCaseToTitleCase = (str: string): string => {
     return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
   });
 };
+
+export const alterTextForForm = (text: string) => {
+  const removedCharacters = text
+    .replace(/{/, "")
+    .replace(/}/gm, "")
+    .replace(/"|'/gm, "")
+    .replace(/:/gm, ": ")
+    .replace(/patientSig:(.*)[^}]/gm, "");
+  return removedCharacters
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .split(",")
+    .map((i) => snakeCaseToTitleCase(i));
+};

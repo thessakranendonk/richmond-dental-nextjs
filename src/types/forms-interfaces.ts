@@ -2,14 +2,6 @@ export interface FormState {
   [key: string]: string;
 }
 
-export interface InputProps {
-  type: string;
-  label: string;
-  name: string;
-  className: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
 export interface Patient {
   firstName: string;
   lastName: string;
@@ -17,7 +9,7 @@ export interface Patient {
   email: string;
 }
 
-export interface NewPatientFormState extends Patient {
+export interface NewPatientFormProps extends Patient {
   preferredName: string;
   dateOfBirth: string;
   gender: string;
@@ -79,8 +71,8 @@ export interface DentalRecordFormProps extends Patient {
   lastName: string;
   dateOfBirth: string;
   releaseStatement: string;
-  patientSig: string;
   releaseTerms: string;
+  patientSig: string;
 }
 
 export interface BookingFormProps extends Patient {
