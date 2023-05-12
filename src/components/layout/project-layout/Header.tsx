@@ -6,6 +6,7 @@ import { ChevronUpIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
+import LogoAnimation from "@/components/LogoAnimation";
 
 export function useOnClickOutside<T extends HTMLDivElement>(
   ref: React.RefObject<T>,
@@ -40,19 +41,22 @@ const LogoLink: React.FC<
     logoClassName?: string;
     showSidePanel?: boolean;
   }
-> = ({ onLinkClick, logo, alt, logoClassName }) => {
+> = ({ onLinkClick, logoClassName }) => {
   return (
-    <Link
-      href="/"
-      className={clsx(
-        "flex lg:inline-block w- relative",
-        "focus:outline-none focus-visible:ring focus-visible:ring-black/20 focus-visible:border-transparent",
-        logoClassName
-      )}
-      onClick={onLinkClick}
-    >
-      <img className={logoClassName} src={logo} alt={alt} />
-    </Link>
+    <div className="hover:animate-spin">
+      <Link
+        href="/"
+        className={clsx(
+          "flex lg:inline-block w- relative",
+          "focus:outline-none focus-visible:ring focus-visible:ring-black/20 focus-visible:border-transparent",
+
+          logoClassName
+        )}
+        onClick={onLinkClick}
+      >
+        <LogoAnimation />
+      </Link>
+    </div>
   );
 };
 
