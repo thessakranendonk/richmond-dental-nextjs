@@ -90,9 +90,6 @@ const NewPatientForm: React.FC = () => {
           <form
             className="flex flex-col mt-8 xl:mt-12 text-sm"
             onSubmit={handleSubmit(onSubmit)}
-            method="post"
-            action="/api/contact"
-            encType="multipart/form-data"
           >
             <p className="ml-4">
               <span className="text-red-500">*</span> marked are required

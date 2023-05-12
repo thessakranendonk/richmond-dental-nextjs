@@ -7,6 +7,11 @@ import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
+import multer from "multer";
+
+const upload = multer({
+  dest: "uploads/", // specify where to store uploaded files
+});
 
 var pdf = new PDFDocument();
 const date = new Date().toDateString();
@@ -22,8 +27,13 @@ const createHTMLToSend = (path: any, replacements: any) => {
   return htmlToSend;
 };
 
-const contact = async (req: NextApiRequest, res: NextApiResponse) => {
+const contact = async (
+  req: NextApiRequest & { files: any },
+  res: NextApiResponse
+) => {
   const { email, firstName, lastName, parentSig, patientSig } = req.body;
+
+  const files = req.files;
 
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
@@ -73,6 +83,10 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
             filename: `${filename}.pdf`,
             content: pdfData,
           },
+          ...(req.files || []).map((file: any) => ({
+            filename: file.originalname,
+            content: file.buffer,
+          })),
         ],
       });
     } catch (error: any) {
