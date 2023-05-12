@@ -53,25 +53,27 @@ const TechnologyDiv = ({
         />
 
         {evenOrUneven && (
-          <img
-            key={name}
-            src={img}
-            alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left mx-auto z-10 h-32 md:h-72 xl:h-[42rem] mb-10"
-          />
+          <>
+            <div className="">
+              <img className="img img-4object-none br-left" src={img} />
+              <div className="wrap-4 br-left top-[20px] left-[20px]">
+                <div className="info-4 br-left"></div>
+                <img className="info-4 object-none br-left" src={img} />
+              </div>
+            </div>
+          </>
         )}
 
         <h2 className="font-semibold text-2xl mb-12">{technology}</h2>
         <p className="font-extralight text-md">{description}</p>
         {!evenOrUneven && (
-          <img
-            key={name}
-            src={img}
-            alt={name}
-            className={clsx(
-              "hidden xl:flex mask mask-hexagon mask-center mx-auto z-10 h-32 md:h-72 mb-10"
-            )}
-          />
+          <div className="mask-right">
+            <img className="img img-4 object-none br-right" src={img} />
+            <div className="wrap-4 br-right top-[20px] right-[20px]">
+              <div className="info-4 br-right"></div>
+              <img className="info-4 object-none br-right" src={img} />
+            </div>
+          </div>
         )}
       </motion.div>
     </motion.div>

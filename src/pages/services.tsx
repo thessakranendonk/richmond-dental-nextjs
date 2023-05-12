@@ -84,22 +84,27 @@ const ServiceDiv = ({
       variants={evenOrUneven ? fadeInFromRight : fadeInFromLeft}
     >
       <motion.div className="xl:flex xl:flex-row xl:w-screen xl:justify-between">
-        <img
-          key={name}
-          src={img}
-          alt={name}
-          className={clsx(
-            "xl:hidden mask mask-hexagon mask-center mx-auto z-10 h-32 md:h-96 mb-10"
-          )}
-        />
+        <div className="xl:hidden">
+          <img
+            className="img-sm img-settings br-left mx-auto mb-12"
+            src={img}
+          />
+          {/* <div className="img-wrap-sm img-wrap br-left top-[10px] left-[10px]"> */}
+          {/* <div className="back-img br-left"></div>
+            <img className="back-img object-none br-left" src={img} /> */}
+          {/* </div> */}
+        </div>
 
         {evenOrUneven && (
-          <img
-            key={name}
-            src={img}
-            alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-left z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
-          />
+          <>
+            <div className="hidden xl:inline-flex">
+              <img className="img img-settings object-none br-left" src={img} />
+              <div className="img-wrap img-wrap-xl br-left top-[20px] left-[20px]">
+                <div className="back-img br-left"></div>
+                <img className="back-img object-none br-left" src={img} />
+              </div>
+            </div>
+          </>
         )}
 
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left">
@@ -111,12 +116,13 @@ const ServiceDiv = ({
           </p>
         </div>
         {!evenOrUneven && (
-          <img
-            key={name}
-            src={img}
-            alt={name}
-            className="hidden xl:flex mask mask-hexagon mask-center xl:mask-right z-10 h-32 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-10"
-          />
+          <div className="hidden xl:inline-flex">
+            <img className="img img-settings object-none br-right" src={img} />
+            <div className="img-wrap img-wrap-xl br-right top-[20px] right-[20px]">
+              <div className="back-img br-right"></div>
+              <img className="back-img object-none br-right" src={img} />
+            </div>
+          </div>
         )}
       </motion.div>
     </motion.div>
@@ -125,17 +131,17 @@ const ServiceDiv = ({
 
 export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="flex flex-wrap pb-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
+    <ul className="flex flex-wrap md:p-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
       {links.map((link) => (
         <li
           key={link.service}
-          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12"
+          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 mx-auto md:mx-0"
         >
           <Link href={link.href}>
             <img
               src={link.img}
               alt={link.service}
-              className="mask mask-hexagon mask-center z-10 h-24 mx-auto"
+              className="rounded-full z-10 h-24 w-24 mx-auto object-cover hover:img-hover"
             />
             <p className="font-extralight text-sm text-center py-4 xl:text-lg">
               {link.service}
@@ -187,8 +193,12 @@ const Services: React.FC = () => {
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-      <ServiceLinks links={RICHMOND_SERVICES} />
-      <ServiceList links={RICHMOND_SERVICES} />
+      <div className="mb-12">
+        <ServiceLinks links={RICHMOND_SERVICES} />
+      </div>
+      <div className="mt-24">
+        <ServiceList links={RICHMOND_SERVICES} />
+      </div>
     </div>
   );
 };
