@@ -37,10 +37,10 @@ const PatientTestimonials: React.FC<TestimonialsCarouselProps> = ({
       </h2>
       <div className={clsx("relative mt-5", photoClassName)}>
         <div className="absolute left-1/2 top-2 transform -translate-x-1 -translate-y-1">
-          <FaQuoteLeft size={20} />
+          <FaQuoteLeft size={20} className="text-orange-400" />
         </div>
         <div className="absolute bottom-1 left-1/2 transform translate-x-1 translate-y-1">
-          <FaQuoteRight size={20} />
+          <FaQuoteRight size={20} className="text-orange-400" />
         </div>
         <div
           className={clsx(
