@@ -41,6 +41,7 @@
     "googleapis": "^118.0.0",
     "gray-matter": "^4.0.3",
     "handlebars": "^4.7.7",
+    "mapbox-gl": "^2.14.1",
     "multer": "^1.4.5-lts.1",
     "next": "13.3.1",
     "node": "^19.8.1",

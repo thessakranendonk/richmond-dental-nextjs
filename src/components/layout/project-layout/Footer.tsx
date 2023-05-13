@@ -3,10 +3,12 @@ import { snakeCaseToTitleCase } from "@/lib/functions";
 import { FooterProps } from "@/types/component-types";
 import clsx from "clsx";
 import Link from "next/link";
+import GoogleMaps from "@/components/GoogleMaps";
 
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
     <div className="text-center border-t-2 border-zinc-700 w-[calc(10% - 10px)] mx-5">
+      <GoogleMaps />
       <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-zinc-500 mt-5">
         {navigationLinks.map((link) => (
           <li key={link.name}>
