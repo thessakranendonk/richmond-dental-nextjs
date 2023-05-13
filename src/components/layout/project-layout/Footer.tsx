@@ -8,6 +8,9 @@ import DentalInfo from "@/components/DentalInfo";
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
     <div className="text-center border-t-2 border-zinc-700 w-[calc(10% - 10px)] mx-5">
+      <h1 className="text-left text-4xl mt-4 font-extrabold tracking-widest hover:text-emerald-800 ml-5">
+        Richmond West Dental
+      </h1>
       <div className="flex justify-around mb-5">
         <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-zinc-500 mt-5">
           {navigationLinks.map((link) => (
