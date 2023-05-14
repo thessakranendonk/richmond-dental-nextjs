@@ -10,7 +10,9 @@ export const alterTextForForm = (text: string) => {
     .replace(/}/gm, "")
     .replace(/"|'/gm, "")
     .replace(/:/gm, ": ")
-    .replace(/patientSig:(.*)[^}]/gm, "");
+    .replace(/patientSig:(.*)[^}]/gm, "")
+    .replace(/File:.*/gm, "");
+  // .match(/(File:)(?s)(.*$)/gm);
   return removedCharacters
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .split(",")
