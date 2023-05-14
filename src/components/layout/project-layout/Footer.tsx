@@ -4,22 +4,27 @@ import { FooterProps } from "@/types/component-types";
 import clsx from "clsx";
 import Link from "next/link";
 import DentalInfo from "@/components/DentalInfo";
+// import RichmondLogo from "./images/logo.svg";
 
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
-    <div className="text-center border-t-2 border-zinc-700 w-[calc(10% - 10px)] mx-5">
-      <h1 className="text-left text-4xl mt-4 font-extrabold tracking-widest hover:text-emerald-800 ml-5">
-        Richmond West Dental
-      </h1>
-      <div className="flex justify-around mb-5">
-        <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-zinc-500 mt-5">
-          {navigationLinks.map((link) => (
-            <li key={link.name}>
-              <Link href={link.href}>{snakeCaseToTitleCase(link.name)}</Link>
-            </li>
-          ))}
-        </ul>
-        <DentalInfo />
+    <div className=" text-center border-t-2 border-zinc-700 mx-5">
+      <div className="flex justify-between flex-col justify-between items-center w-[calc(90% - 90px)] md:flex-row md:justify-center md:items-center">
+        <img
+          className="w-48 h-48 ml-5"
+          src="/images/logo.svg"
+          alt="richmond logo"
+        />
+        <div className="flex  mb-5">
+          <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-zinc-500 mt-5">
+            {navigationLinks.map((link) => (
+              <li key={link.name}>
+                <Link href={link.href}>{snakeCaseToTitleCase(link.name)}</Link>
+              </li>
+            ))}
+          </ul>
+          <DentalInfo />
+        </div>
       </div>
       <div className="mb-12">
         <Button
