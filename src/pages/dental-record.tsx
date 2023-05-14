@@ -75,8 +75,8 @@ const DentalRecordForm: React.FC = () => {
 
   return (
     <div>
-      <div className="w-screen pt-24 pb-24 bg-emerald-800 ">
-        <h1 className="text-center text-2xl xl:text-3xl mb-4 xl:mb-8 font-medium mt-8 sm:mt-0 text-white">
+      <div className="w-screen pt-24 pb-24 bg-emerald-800/90">
+        <h1 className="text-center text-3xl xl:text-5xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest font-light">
           Dental Records Release Form
         </h1>
       </div>

@@ -23,8 +23,15 @@ const createHTMLToSend = (path: any, replacements: any) => {
 };
 
 const contact = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, firstName, lastName, parentSig, patientSig } = req.body;
-
+  const {
+    email,
+    firstName,
+    lastName,
+    parentSig,
+    patientSig,
+    frontInsuranceCardImage,
+    backInsuranceCardImage,
+  } = req.body;
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
     : req.headers.referer?.includes("new-patient-form")
@@ -36,8 +43,12 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
 
-  const name = `${firstName}${" "}${lastName}`;
-  const filename = `${firstName}-${lastName}`;
+  const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
+    lastName ? lastName : req.body.data.lastName
+  }`;
+  const filename = `${firstName ? firstName : req.body.data.firstName}-${
+    lastName ? lastName : req.body.data.lastName
+  }`;
   const replacements = {
     subject: subject,
     name: name,
@@ -89,17 +100,42 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   pdf.fontSize(14);
   pdf.text(date, 100, 170);
 
-  pdf.list(alterTextForForm(JSON.stringify(req.body)), 50, 200, {
-    align: "left",
-    listType: "bullet",
-    bulletRadius: 0.01,
-  });
+  pdf.list(
+    alterTextForForm(JSON.stringify(req.body.data ? req.body.data : req.body)),
+    50,
+    200,
+    {
+      align: "left",
+      listType: "bullet",
+      bulletRadius: 0.01,
+    }
+  );
 
-  if (patientSig) pdf.text("Patient Signature: ", 50, 470);
-  if (patientSig) pdf.image(patientSig, 50, 500, { width: 200, height: 100 });
-  if (parentSig) pdf.text("Parent Signature: ", 50, 600);
-  if (parentSig) pdf.image(parentSig, 50, 620, { width: 200, height: 100 });
+  if (patientSig || req.body.data.patientSig) {
+    pdf.addPage();
+    pdf.text("Patient Signature: ", 50, 50);
+    pdf.image(patientSig ? patientSig : req.body.data.patientSig, 50, 100, {
+      width: 200,
+      height: 100,
+    });
+  }
 
+  if (parentSig || req.body.data.parentSig) {
+    pdf.text("Parent Signature: ", 50, 250);
+    pdf.image(parentSig ? parentSig : req.body.data.parentSig, 50, 300, {
+      width: 200,
+      height: 100,
+    });
+  }
+  if (frontInsuranceCardImage || backInsuranceCardImage) pdf.addPage();
+  if (frontInsuranceCardImage) {
+    pdf.text("Front of Insurance Card", 50, 50);
+    pdf.image(frontInsuranceCardImage, 50, 100, { width: 300 });
+  }
+  if (backInsuranceCardImage) {
+    pdf.text("Back of Insurance Card", 50, 400);
+    pdf.image(backInsuranceCardImage, 50, 450, { width: 300 });
+  }
   pdf.end();
   return res.status(200).json({ error: "" });
 };

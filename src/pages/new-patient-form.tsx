@@ -1,67 +1,9 @@
-import { FormState, NewPatientFormProps } from "@/types/forms-interfaces";
+import { NewPatientFormProps } from "@/types/forms-interfaces";
 import React, { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
-
-// export const initialNewPatientFormState: NewPatientFormProps = {
-//   firstName: "",
-//   lastName: "",
-//   preferredName: "",
-//   dateOfBirth: "",
-//   gender: "",
-//   maritalStatus: "",
-//   homePhone: "",
-//   mobilePhone: "",
-//   workPhone: "",
-//   ext: "",
-//   email: "",
-//   referral: "",
-//   address: "",
-//   suite: "",
-//   city: "",
-//   province: "",
-//   postalCode: "",
-//   subscriber: "",
-//   subscriberName: "",
-//   insuranceCompany: "",
-//   insuranceTel: "",
-//   planNum: "",
-//   subscriberId: "",
-//   frontImage: null,
-//   backImage: null,
-//   emerContact: "",
-//   emerRelationship: "",
-//   emerTel: "",
-//   famDocName: "",
-//   famDocAddress: "",
-//   famDocTel: "",
-//   medCheck: "",
-//   smoke: "",
-//   medConditions: "",
-//   otherMedConditions: "",
-//   allergies: "",
-//   otherAllergies: "",
-//   longTermMeds: "",
-//   dentalInjection: "",
-//   immuneSystem: "",
-//   hospital: "",
-//   illness: "",
-//   otherIllness: "",
-//   pregnant: "",
-//   visitReason: "",
-//   lastVisit: "",
-//   nervous: "",
-//   lastXray: "",
-//   dentalSpecialist: "",
-//   gumBleed: "",
-//   antibiotics: "",
-//   jawPain: "",
-//   patientSig: "",
-//   parentSig: "",
-//   date: "",
-// };
 
 const NewPatientForm: React.FC = () => {
   const {
@@ -71,11 +13,41 @@ const NewPatientForm: React.FC = () => {
     formState: { errors },
   } = useForm<NewPatientFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  // const [newPatientState, setNewPatientState] = useState<NewPatientFormProps>({
-  //   ...initialNewPatientFormState,
-  //   patientSig: "",
-  //   parentSig: "",
-  // });
+  const [frontImage, setFrontImage] = useState<File | null>(null);
+  const [backImage, setBackImage] = useState<File | null>(null);
+  const [base64Front, setBase64Front] = useState<string | null>(null);
+  const [base64Back, setBase64Back] = useState<string | null>(null);
+
+  const toBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  // When the file is selected, set the file state
+  const onFileChangeFront = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    setFrontImage(e.target.files[0]);
+  };
+  // When the file is selected, set the file state
+  const onFileChangeBack = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    setBackImage(e.target.files[0]);
+  };
 
   const patientSignatureRef = useRef<SignatureCanvas>(null);
   const parentSignatureRef = useRef<SignatureCanvas>(null);
@@ -100,7 +72,32 @@ const NewPatientForm: React.FC = () => {
     }
   };
 
-  const onSubmit = async (data: NewPatientFormProps) => {
+  const onSubmit: SubmitHandler<NewPatientFormProps> = async (
+    data: NewPatientFormProps
+  ) => {
+    const frontInsuranceCardImage =
+      frontImage && (await toBase64(frontImage as File));
+    const backInsuranceCardImage =
+      backImage && (await toBase64(backImage as File));
+
+    setBase64Front(base64Front as string);
+    setBase64Back(base64Back as string);
+    data.frontInsuranceCard = "";
+    data.backInsuranceCard = "";
+
+    const allData =
+      frontImage && backImage
+        ? {
+            data,
+            frontInsuranceCardImage,
+            backInsuranceCardImage,
+          }
+        : frontImage
+        ? { data, frontInsuranceCardImage }
+        : backImage
+        ? { data, backInsuranceCardImage }
+        : data;
+
     try {
       const patientSig = patientSignatureRef.current?.toDataURL("image/png");
       if (patientSig) {
@@ -112,13 +109,14 @@ const NewPatientForm: React.FC = () => {
         data.parentSig = parentSig;
       }
       removeEmptyValuesFromData(data);
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...data,
+          ...allData,
         }),
       });
       const result = await response.json();
@@ -142,8 +140,8 @@ const NewPatientForm: React.FC = () => {
   const checkboxClassName = "rounded-md mr-2";
   return (
     <div>
-      <div className="w-screen pt-24 pb-24 bg-emerald-800">
-        <h1 className="text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest">
+      <div className="w-screen pt-24 pb-24 bg-emerald-800/90">
+        <h1 className="text-center text-3xl xl:text-5xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest font-light">
           Patient Intake Form
         </h1>
       </div>
@@ -427,15 +425,17 @@ const NewPatientForm: React.FC = () => {
             <input
               className="ml-4"
               type="file"
-              {...register("frontImage")}
+              {...register("frontInsuranceCard")}
               accept="image/"
+              onChange={onFileChangeFront}
             />
             <label className="ml-4 mt-3">Back of Insurance Card</label>
             <input
               className="ml-4 mb-3"
               type="file"
-              {...register("backImage")}
+              {...register("backInsuranceCard")}
               accept="image/"
+              onChange={onFileChangeBack}
             />
             <label className={labelClassName}>Emergency Contact *</label>
             <div className="flex flex-row">
@@ -512,6 +512,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Arthritis"
                   {...register("medConditions")}
                 />
                 Arthritis
@@ -520,6 +521,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="AIDS/HIV"
                   {...register("medConditions")}
                 />
                 AIDS/HIV
@@ -528,6 +530,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Asthma"
                   {...register("medConditions")}
                 />
                 Asthma
@@ -536,14 +539,16 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="High Blood Pressure"
                   {...register("medConditions")}
                 />
                 High Blood Pressure
-              </label>{" "}
+              </label>
               <label>
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Cancer"
                   {...register("medConditions")}
                 />
                 Cancer
@@ -552,22 +557,25 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Diabetes"
                   {...register("medConditions")}
                 />
                 Diabetes
-              </label>{" "}
+              </label>
               <label>
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Heart Murmur"
                   {...register("medConditions")}
                 />
                 Heart Murmur
-              </label>{" "}
+              </label>
               <label>
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Joint Replacement"
                   {...register("medConditions")}
                 />
                 Joint Replacement
@@ -576,6 +584,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Psychiatric Treatment"
                   {...register("medConditions")}
                 />
                 Psychiatric Treatment
@@ -584,6 +593,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Leukemia"
                   {...register("medConditions")}
                 />
                 Leukemia
@@ -592,6 +602,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Heart Problems"
                   {...register("medConditions")}
                 />
                 Heart Problems
@@ -600,6 +611,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Stroke"
                   {...register("medConditions")}
                 />
                 Stroke
@@ -608,6 +620,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Kidney Disease"
                   {...register("medConditions")}
                 />
                 Kidney Disease
@@ -616,6 +629,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Liver Disease"
                   {...register("medConditions")}
                 />
                 Liver Problems
@@ -624,6 +638,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Sinus Problems"
                   {...register("medConditions")}
                 />
                 Sinus Problems
@@ -632,6 +647,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Hepatitis / Jaundice"
                   {...register("medConditions")}
                 />
                 Hepatitis / Jaundice
@@ -640,6 +656,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Acid Reflux"
                   {...register("medConditions")}
                 />
                 Acid Reflux
@@ -648,6 +665,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Gum Disease"
                   {...register("medConditions")}
                 />
                 Gum Disease
@@ -656,6 +674,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Lung Disease"
                   {...register("medConditions")}
                 />
                 Lung Disease
@@ -664,6 +683,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Thyroid Problems"
                   {...register("medConditions")}
                 />
                 Thyroid Problems
@@ -672,6 +692,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Tuberculosis"
                   {...register("medConditions")}
                 />
                 Tuberculosis
@@ -680,6 +701,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Venereal Disease"
                   {...register("medConditions")}
                 />
                 Venereal Disease
@@ -688,6 +710,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="PaceMaker"
                   {...register("medConditions")}
                 />
                 PaceMaker
@@ -696,6 +719,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Rheumatic Fever"
                   {...register("medConditions")}
                 />
                 Rheumatic Fever
@@ -704,6 +728,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Bone Problems"
                   {...register("medConditions")}
                 />
                 Bone Problems
@@ -712,6 +737,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Have Fainted"
                   {...register("medConditions")}
                 />
                 Have Fainted
@@ -720,6 +746,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Bleeding Problems"
                   {...register("medConditions")}
                 />
                 Bleeding Problems
@@ -738,30 +765,34 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Anesthetic"
                   {...register("allergies")}
                 />
                 Anesthetic
-              </label>{" "}
+              </label>
               <label>
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Ibuprofen"
                   {...register("allergies")}
                 />
                 Ibuprofen
-              </label>{" "}
+              </label>
               <label>
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Penicilin"
                   {...register("allergies")}
                 />
                 Penicilin
-              </label>{" "}
+              </label>
               <label>
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Aspirin"
                   {...register("allergies")}
                 />
                 Aspirin
@@ -770,6 +801,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Iodine"
                   {...register("allergies")}
                 />
                 Iodine
@@ -778,6 +810,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Sulfa Drugs"
                   {...register("allergies")}
                 />
                 Sulfa Drugs
@@ -786,6 +819,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Codeine"
                   {...register("allergies")}
                 />
                 Codeine
@@ -794,6 +828,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="latex"
                   {...register("allergies")}
                 />
                 Latex
@@ -868,6 +903,7 @@ const NewPatientForm: React.FC = () => {
               <label>
                 <input
                   type="checkbox"
+                  value="Heart Attack"
                   className={checkboxClassName}
                   {...register("illness")}
                 />
@@ -877,6 +913,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Mitral Valve Prolapse"
                   {...register("illness")}
                 />
                 Mitral Valve Prolapse
@@ -885,6 +922,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Latex"
                   {...register("illness")}
                 />
                 Latex
@@ -893,6 +931,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Thyroid Disease"
                   {...register("illness")}
                 />
                 Thyroid Disease
@@ -901,6 +940,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Seizures(Epilepsy)"
                   {...register("illness")}
                 />
                 Seizures(Epilepsy)
@@ -909,6 +949,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Shortness of Breathe"
                   {...register("illness")}
                 />
                 Shortness of Breathe
@@ -917,6 +958,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Steroid Therapy"
                   {...register("illness")}
                 />
                 Steroid Therapy
@@ -925,6 +967,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Osteoporosis"
                   {...register("illness")}
                 />
                 Osteoporosis
@@ -933,6 +976,7 @@ const NewPatientForm: React.FC = () => {
                 <input
                   type="checkbox"
                   className={checkboxClassName}
+                  value="Bleeding Problems"
                   {...register("illness")}
                 />
                 Bleeding Problems
