@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
+import { toast } from "react-toastify";
 
 const NewPatientForm: React.FC = () => {
   const {
@@ -75,6 +76,20 @@ const NewPatientForm: React.FC = () => {
   const onSubmit: SubmitHandler<NewPatientFormProps> = async (
     data: NewPatientFormProps
   ) => {
+    if (patientSignatureRef.current?.isEmpty()) {
+      toast.error("Patient signature is required", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+
     const frontInsuranceCardImage =
       frontImage && (await toBase64(frontImage as File));
     const backInsuranceCardImage =
@@ -1091,12 +1106,12 @@ const NewPatientForm: React.FC = () => {
                 canvasProps={{
                   className: "border border-gray-300 rounded-lg w-full h-48",
                 }}
-                // onEnd={(sigData) => {
-                //   const sigDataUrl = sigData.trim()
-                //     .replace(/^data:image\/png;base64,/, "");
-                //   data.patientSig = sigDataUrl;
-                // }}
               />
+              {patientSignatureRef.current?.isEmpty() && (
+                <div className={errorClassName} role="alert">
+                  <MdOutlineError className="mt-1" /> Signature is required
+                </div>
+              )}
             </label>
             <button
               className={clearButtonClassName}
@@ -1112,11 +1127,6 @@ const NewPatientForm: React.FC = () => {
                 canvasProps={{
                   className: "border border-gray-300 rounded-lg w-full h-48",
                 }}
-                // onEnd={(sigData) => {
-                //   const sigDataUrl = sigData.trim()
-                //     .replace(/^data:image\/png;base64,/, "");
-                //   data.patientSig = sigDataUrl;
-                // }}
               />
             </label>
             <button
@@ -1150,7 +1160,7 @@ const NewPatientForm: React.FC = () => {
               disabled={!formState.isValid}
               value="Submit Application"
             >
-              submit
+              Submit
             </button>
           </form>
         ) : (

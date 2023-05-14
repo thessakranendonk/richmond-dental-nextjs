@@ -37,7 +37,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     : req.headers.referer?.includes("new-patient-form")
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
-
+  console.log(req.body);
   const templatePath =
     // "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates";
     "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
@@ -111,7 +111,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  if (patientSig || req.body.data.patientSig) {
+  if (patientSig) {
     pdf.addPage();
     pdf.text("Patient Signature: ", 50, 50);
     pdf.image(patientSig ? patientSig : req.body.data.patientSig, 50, 100, {
@@ -120,7 +120,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
-  if (parentSig || req.body.data.parentSig) {
+  if (parentSig) {
     pdf.text("Parent Signature: ", 50, 250);
     pdf.image(parentSig ? parentSig : req.body.data.parentSig, 50, 300, {
       width: 200,
