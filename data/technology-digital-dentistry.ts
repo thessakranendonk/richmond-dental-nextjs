@@ -37,10 +37,6 @@ export const TECHNOLOGY_DROPDOWN = [
     href: "/technology-and-digital-dentistry#high-resolution-cameras",
   },
   {
-    name: "White Fillings & Cosmetic Procedures",
-    href: "/technology-and-digital-dentistry#intra-oral-3d-scanning",
-  },
-  {
     name: "Intra-Oral 3D Scanning with Trios®",
     href: "/technology-and-digital-dentistry#intra-oral-3d-scanning",
   },
