@@ -24,8 +24,8 @@ export const RICHMOND_SERVICES: {
   },
   {
     service: "Dental Implants",
-    href: "/services#teeth-cleaning",
-    id: "teeth-cleaning",
+    href: "/services#dental-implants",
+    id: "dental-implants",
     img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg",
     description:
       "Missing a tooth or teeth? Titanium Dental Implants are the solution! They integrate with your natural jaw and gums and can be used to replace all manner of missing teeth. Ask us about this as a treatment option!",
