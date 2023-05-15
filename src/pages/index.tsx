@@ -7,8 +7,7 @@ import DentalOffer from "@/components/DentalOffer";
 import Hero from "@/components/Hero";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
-import LogoAnimation from "@/components/LogoAnimation";
+import { useEffect, useState } from "react";
 
 const iconClassName = "w-24 h-24 text-emerald-700";
 const HomePageLinks = [
@@ -41,7 +40,7 @@ const HomePageLinks = [
 export const fadeIn = {
   visible: {
     opacity: 1,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, delay: 1.25 },
     filter: "blur(0)",
   },
   hidden: {
@@ -53,6 +52,7 @@ export const fadeIn = {
 const Home: React.FC = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
+  const [isInView, setIsInView] = useState(false);
   useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -86,12 +86,39 @@ const Home: React.FC = () => {
       >
         <DentalOffer />
       </motion.div>
-      <div className="bg-zinc-200 relative mx-auto mt-14 md:mt-48">
+      <p className="text-center font-extrabold text-emerald-800">
+        ________________
+      </p>
+      <h1 className="text-center font-medium text-4xl xl:text-3xl mt-14 md:mt-24 tracking-widest text-zinc-700">
+        Patient Testimonials
+      </h1>
+      <div className="bg-zinc-200 relative mx-auto mt-24">
         <div className="relative max-w-md flex justify-center mx-auto">
           <div className="absolute max-w-md mx-auto text-[4rem] z-20 pt-4">
-            <RiDoubleQuotesL className="text-emerald-500 border-[1px] border-emerald-600 rounded-full bg-white" />
+            <motion.div
+              viewport={{ once: true }}
+              onViewportEnter={() => setIsInView(true)}
+              animate={
+                isInView && {
+                  scale: [1, 2, 2, 1, 1],
+                  rotate: [0, 0, 180, 180, 0],
+                  borderRadius: ["0%", "0%", "50%", "50%", "0%"],
+                }
+              }
+              transition={{
+                duration: 2,
+                delay: 1,
+                ease: "easeInOut",
+                times: [0, 0.2, 0.5, 0.8, 1],
+                repeat: 0,
+                repeatDelay: 1,
+              }}
+            >
+              <RiDoubleQuotesL className="text-emerald-500 border-[1px] border-emerald-600 rounded-full bg-white" />
+            </motion.div>
           </div>
         </div>
+
         <div className="max-w-4xl transform skew-y-[12deg] lg:rounded-xl mx-auto bg-emerald-600/20 bg-clip-content bg-gradient-to-tr from-emerald-600 via-emerald-800 to-emerald-600">
           <div className="transform -skew-y-[12deg] mb-24">
             <PatientTestimonials />

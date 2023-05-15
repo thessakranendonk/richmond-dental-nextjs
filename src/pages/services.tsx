@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useAnimation, motion, AnimatePresence } from "framer-motion";
@@ -89,10 +88,6 @@ const ServiceDiv = ({
             className="img-sm img-settings br-left mx-auto mb-12"
             src={img}
           />
-          {/* <div className="img-wrap-sm img-wrap br-left top-[10px] left-[10px]"> */}
-          {/* <div className="back-img br-left"></div>
-            <img className="back-img object-none br-left" src={img} /> */}
-          {/* </div> */}
         </div>
 
         {evenOrUneven && (
@@ -108,7 +103,7 @@ const ServiceDiv = ({
         )}
 
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left">
-          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800">
+          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
             {service}
           </h2>
           <p className="font-extralight text-md xl:pb-24 xl:text-xl xl:w-[32rem] mx-auto text-zinc-600">
@@ -155,7 +150,7 @@ export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
 
 export const ServiceList: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="">
+    <ul>
       {links.map((service, i) => {
         return (
           <li key={service.service} id={service.id} className="pb-12 xl:pb-0">
@@ -184,8 +179,8 @@ const Services: React.FC = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10">
-      <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10 animate-fadeInFast transition">
+      <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl text-shadow-lg shadow-zinc-300">
         Services
       </h1>
       <p className="font-extralight text-center mb-12 xl:max-w-xl xl:mx-auto xl:text-xl">

@@ -287,7 +287,7 @@ const Header: React.FC<HeaderProps> = ({
   alt,
 }) => {
   return (
-    <header className="fixed flex justify-between xl:justify-evenly w-screen items-center bg-white z-50">
+    <header className="fixed flex justify-between xl:justify-evenly w-screen items-center bg-white z-40 pb-2 md:pb-2 md:pl-4">
       <div className="m-0">
         {logo ? (
           <LogoLink logo={logo} alt={alt} logoClassName={logoClassName} />
@@ -363,7 +363,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="hidden lg:flex">
         <Button
           extraClassName={clsx(
-            "bg-emerald-800 px-8 text-sm h-10 mt-1 text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
+            "bg-emerald-800 px-8 text-sm h-12 mt-1 mr-2 text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
           )}
           type="button"
         >
