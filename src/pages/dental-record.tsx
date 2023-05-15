@@ -62,7 +62,7 @@ const DentalRecordForm: React.FC = () => {
     "mb-2 ml-4 mt-4 rounded-xl border-zinc-400/60 placeholder-sm";
   ("mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60");
   const clearButtonClassName =
-    "bg-emerald-800 w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-full border-2 border-emerald-800";
+    "bg-brand-base w-1/4 font-medium px-8 text-xs h-6 mt-3 text-white rounded-lg border-2 border-brand-base";
 
   return (
     <div>
@@ -71,7 +71,7 @@ const DentalRecordForm: React.FC = () => {
           Dental Records Release Form
         </h1>
       </div>
-      <div className="absolute h-[26rem] inset-0 bg-emerald-700/90 to-black mix-blend-multiply" />
+      <div className="absolute h-[26rem] inset-0 bg-brand-lighter/90 to-black mix-blend-multiply" />
       <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
         {!isSubmitted ? (
           <form
@@ -196,9 +196,9 @@ const DentalRecordForm: React.FC = () => {
             </label>
             <input
               className={clsx(
-                "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
+                "bg-brand-base font-medium px-8 text-sm h-10 mt-5 text-white rounded-lg border-2 border-brand-base",
                 formState.isValid &&
-                  "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
+                  "hover:text-brand-base hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
                 !formState.isValid && "opacity-30"
               )}
               type="submit"
