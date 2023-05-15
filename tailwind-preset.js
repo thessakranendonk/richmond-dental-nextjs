@@ -125,7 +125,7 @@ module.exports = {
           "border-radius": "50%",
         },
         ".br-right-footer": {
-          "border-radius": "25% 55% 30% 70% /15% 25% 54% 67%",
+          "border-radius": "25% 58% 30% 70% /15% 25% 54% 67%",
         },
         ".img-settings": {
           position: "relative",
@@ -156,7 +156,7 @@ module.exports = {
           height: "260px",
         },
         ".img-wrap-md": {
-          width: "500px",
+          width: "480px",
           height: "300px",
         },
         ".back-img": {
