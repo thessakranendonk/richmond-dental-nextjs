@@ -38,21 +38,22 @@ const BookingForm: React.FC = () => {
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   return (
     <div>
-      <div className="w-screen pt-24 pb-24 bg-emerald-800/90">
-        <h1 className="text-center text-3xl xl:text-5xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest font-light">
+      <div className="w-screen pt-24 pb-24 bg-[url('https://res.cloudinary.com/dybcfr6cd/image/upload/v1670110454/nordwood-themes-KcsKWw77Ovw-unsplash_wil93u.jpg')]">
+        <h1 className="relative z-10 text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest text-shadow-lg shadow-zinc-700">
           Request Appointment
         </h1>
       </div>
-      <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-12 lg:max-w-lg lg:mx-auto">
-        <p className="text-center font-extralight">
-          We are always glad to address any questions that you might come up
-          with. Please get in touch with us to inquire about anything! We review
-          and accept patient’s requests on within a 24 hour basis.
-        </p>
+      <div className="absolute h-[26rem] inset-0 bg-emerald-700/90 to-black mix-blend-multiply" />
+      <p className="text-center text-lg font-extralight lg:max-w-lg mx-auto pt-20">
+        We are always glad to address any questions that you might come up with.
+        Please get in touch with us to inquire about anything! We review and
+        accept patient’s requests on within a 24 hour basis.
+      </p>
+      <div>
         {!isSubmitted ? (
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col mt-8 xl:mt-12 text-sm"
+            className="flex flex-col mt-8 xl:mt-12 text-sm mx-auto lg:max-w-lg"
           >
             <input
               className={inputClassName}

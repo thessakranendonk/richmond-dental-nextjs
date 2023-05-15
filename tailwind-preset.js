@@ -28,6 +28,11 @@ module.exports = {
         },
       },
     },
+    textShadow: {
+      sm: "0 1px 10px var(--tw-shadow-color)",
+      DEFAULT: "0 2px 10px var(--tw-shadow-color)",
+      lg: "0 8px 16px var(--tw-shadow-color)",
+    },
     zIndex: {
       0: "0",
       10: "10",
@@ -49,21 +54,33 @@ module.exports = {
       },
       fadeIn: {
         "0%": {
-          transform: "translateY(1000px) scaleY(2.5) scaleX(0.2)",
-          transformOrigin: "50% 100%",
           filter: "blur(40px)",
           opacity: 0,
         },
         "100%": {
-          transform: "translateY(0) scaleY(1) scaleX(1)",
-          transformOrigin: "50% 50%",
           filter: "blur(0)",
           opacity: 1,
+        },
+      },
+      fadeInOut: {
+        "0%": {
+          filter: "blur(40px)",
+          opacity: 0,
+        },
+        "50%": {
+          filter: "blur(0)",
+          opacity: 1,
+        },
+        "100%": {
+          filter: "blur(40px)",
+          opacity: 0,
         },
       },
     },
     animation: {
       fadeIn: "fadeIn 2s ease-in-out 1",
+      fadeInFast: "fadeIn 1s ease-in-out 1",
+      fadeInOutSlow: "fadeInOut 3s ease-in-out 1",
       path: "draw 3.5s infinite",
     },
   },
@@ -165,6 +182,16 @@ module.exports = {
           "-moz-appearance": "textfield",
         },
       });
+    }),
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          "text-shadow": (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme("textShadow") }
+      );
     }),
   ],
 };

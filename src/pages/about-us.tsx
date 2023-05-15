@@ -2,13 +2,22 @@ const AboutUs: React.FC = () => {
   return (
     <div className="w-[calc(10% - 10px)] mx-8 mt-24 flex flex-col gap-y-10 xl:mx-0 xl:w-screen relative z-10">
       <div className="xl:flex xl:flex-row xl:justify-between md:mt-12 xl:-mt-40">
-        <img
-          src="https://res.cloudinary.com/dybcfr6cd/image/upload/ar_1:1,c_fill,e_art:hokusai,g_auto,w_1000/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg"
-          alt="About Us"
-          className="mask mask-hexagon mask-center mb-8 object-fill object-center xl:mask-left z-10 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mt-5 mx-auto xl:mx-0"
-        />
-        <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left">
-          <h1 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-center">
+        <div className="xl:flex xl:flex-row xl:w-screen xl:justify-between">
+          <img
+            className="img img-settings object-none br-left mt-40"
+            src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg"
+          />
+          <div className="img-wrap img-wrap-xl br-left top-[20px] left-[20px]">
+            <div className="back-img br-left"></div>
+            <img
+              className="back-img object-none br-left"
+              src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg"
+            />
+          </div>
+        </div>
+
+        <div className="p-0 my-auto md:max-w-2xl text-center md:mx-auto xl:text-left px-20">
+          <h1 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-center text-shadow-lg shadow-zinc-300">
             About Us
           </h1>
           <p className="text-zinc-500 text-center text-sm xl:text-lg">
@@ -18,12 +27,12 @@ const AboutUs: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="w-screen -ml-8 xl:ml-0 xl:flex xl:flex-row xl:justify-between bg-clip-content text-transparent bg-gradient-to-r from-teal-400 to-teal-700">
+      <div className="w-screen -ml-8 xl:ml-0 xl:flex xl:flex-row xl:justify-between bg-clip-content text-transparent bg-emerald-600/20 bg-gradient-to-tl from-emerald-600 via-emerald-800 to-emerald-600">
         <div className="w-[calc(10% - 10px)] mx-5 p-0 my-auto md:max-w-5xl text-center md:mx-auto xl:text-left py-12 text-zinc-200">
-          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-center">
+          <h2 className="font-normal text-shadow-lg shadow-zinc-700 text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-center">
             Why Choose Us?
           </h2>
-          <p className="text-center text-sm xl:text-lg">
+          <p className="text-center text-sm xl:text-lg font-extralight pb-6 text-shadow-lg shadow-zinc-700">
             Our downtown dental office provides a wide range of general,
             cosmetic and emergency dentistry services using modern equipments.
             Our dental implant procedure and veneers are well known in Toronto.
@@ -32,7 +41,7 @@ const AboutUs: React.FC = () => {
             of that, we disinfect and sterilize every equipments and surfaces
             after each procedure.
           </p>
-          <p className="text-center text-sm xl:text-lg">
+          <p className="text-center text-sm xl:text-lg font-extralight text-shadow-lg shadow-zinc-700">
             Our patients always leave the office with a happy smile. That’s why
             we have a perfect 5-star rating on Google! Our dental team is
             professional, capable and honest. Our goal is to make your visit as
@@ -40,15 +49,9 @@ const AboutUs: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="xl:flex xl:flex-row xl:justify-between">
+      <div className="xl:flex xl:flex-row xl:justify-between mt-20">
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left">
-          <img
-            src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1682865302/richmond-dental/dr-richmond_wfufcc.png"
-            alt="Dr. Michael Le"
-            className="xl:hidden mask mask-hexagon mask-center object-contain xl:mask-right mx-auto z-10 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mb-5 bg-clip-content text-transparent bg-gradient-to-r from-teal-400 to-teal-600
-        "
-          />
-          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-center">
+          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-center text-shadow-lg shadow-zinc-300">
             Dr. Michael Le
           </h2>
           <p className="text-zinc-500 text-center text-sm xl:text-lg pb-10">
@@ -74,10 +77,8 @@ const AboutUs: React.FC = () => {
           </p>
         </div>
         <img
+          className="br-right bg-clip-content text-transparent bg-gradient-to-r from-emerald-600 to-emerald-800"
           src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1682865302/richmond-dental/dr-richmond_wfufcc.png"
-          alt="Dr. Michael Le"
-          className="hidden xl:flex mask mask-hexagon mask-center object-contain xl:mask-right z-10 h-48 md:h-72 xl:h-[55rem] xl:w-[42rem] mt-5 bg-clip-content text-transparent bg-gradient-to-r from-teal-400 to-teal-600
-        "
         />
       </div>
     </div>

@@ -45,13 +45,6 @@ export const PATIENT_TESTIMONIALS: {
       "Everyone is super nice and friendly. I really feel they care about my oral health and they involve me in the process which makes me want to follow their recommendations.",
   },
   {
-    authorName: "Adrian",
-    rating: "★★★★★",
-
-    review:
-      "honestly: by far the best dental experience i've had in my 39 years walking this earth. arden and dr. le are both just the right balance of friendly and professional, they're very transparent with what treatments will cost, have cool tech i've never seen in a dental office and clearly work hard to make each appointment as pleasant as possible. from the full size-range of black crocs for patients to the extra tv on the ceiling for entertainment while being worked on - even if i moved away from the neighbourhood i would stay on as a patient here. i'm a picky guy but honestly, no complaints here whatsoever - and they aren't even paying me for this review! it's hard to say i look forward to going to my dental appointments now but it's as close to that as possible.",
-  },
-  {
     authorName: "Jessica",
     rating: "★★★★★",
 

@@ -25,7 +25,7 @@ export interface ServiceLinkArr {
 
 export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
-    <ul className="flex flex-wrap md:p-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
+    <ul className="flex flex-wrap md:p-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10 text-shadow-lg shadow-zinc-300">
       {links.map((link) => (
         <li
           key={link.service}
@@ -56,14 +56,14 @@ const DentalOffer: React.FC = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10">
+    <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10 text-shadow-lg shadow-zinc-300">
       <p className="text-center font-extrabold text-emerald-800">
         ________________
       </p>
-      <h1 className="text-center tracking-widest my-12 font-medium text-2xl xl:text-5xl">
+      <h1 className="text-center tracking-widest my-12 font-medium text-2xl xl:text-5xl text-zinc-700">
         What We Offer
       </h1>
-      <p className="font-extralight text-center pb-0 xl:max-w-3xl xl:mx-auto xl:text-xl">
+      <p className="font-extralight text-center xl:max-w-3xl xl:mx-auto xl:text-xl pb-10 text-zinc-500 text-lg">
         Our office is focused on providing you with the most up-to-date and
         technologically driven dental treatment options. We emphasize patient
         understanding and education, and as such, are driven by using digital

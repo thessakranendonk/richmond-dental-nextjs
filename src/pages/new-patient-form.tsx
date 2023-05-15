@@ -155,11 +155,14 @@ const NewPatientForm: React.FC = () => {
   const checkboxClassName = "rounded-md mr-2";
   return (
     <div>
-      <div className="w-screen pt-24 pb-24 bg-emerald-800/90">
-        <h1 className="text-center text-3xl xl:text-5xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest font-light">
+      <div className="w-screen pt-24 pb-24 bg-[url('https://res.cloudinary.com/dybcfr6cd/image/upload/v1670110454/nordwood-themes-KcsKWw77Ovw-unsplash_wil93u.jpg')]">
+        <h1 className="relative z-10 text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest text-shadow-lg shadow-zinc-700">
           Patient Intake Form
         </h1>
       </div>
+      <div className="absolute h-[26rem] inset-0 bg-emerald-700/90 to-black mix-blend-multiply" />
+
+      {/* <div className="absolute bg-emerald-800/20"></div> */}
 
       <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-5xl lg:mx-auto">
         {!isSubmitted ? (
