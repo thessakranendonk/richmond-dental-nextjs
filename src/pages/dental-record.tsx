@@ -4,18 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import SignatureCanvas from "react-signature-canvas";
 import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
-
-const initialDentalState: DentalRecordFormProps = {
-  currentDate: "",
-  dentalOfficeDr: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  dateOfBirth: "",
-  releaseStatement: "",
-  releaseTerms: "",
-  patientSig: "",
-};
+import { toast } from "react-toastify";
 
 const DentalRecordForm: React.FC = () => {
   const {
@@ -26,31 +15,33 @@ const DentalRecordForm: React.FC = () => {
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [dentalState, setDentalState] = useState<DentalRecordFormProps>({
-    ...initialDentalState,
-  });
-
-  const formatIntoPng = () => {
-    if (patientSignatureRef.current) {
-      const dataURL = patientSignatureRef.current.toDataURL();
-      return dataURL;
-    }
-  };
 
   const patientSignatureRef = useRef<SignatureCanvas>(null);
+
   const clearPatientCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     patientSignatureRef.current?.clear();
   };
   const onSubmit = async (data: DentalRecordFormProps) => {
-    if (!data.patientSig) {
-      errors.patientSig?.message;
+    if (patientSignatureRef.current?.isEmpty()) {
+      toast.error("Patient signature is required", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
     }
     try {
       const patientSig = patientSignatureRef.current?.toDataURL("image/png");
       if (patientSig) {
         data.patientSig = patientSig;
       }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -75,11 +66,12 @@ const DentalRecordForm: React.FC = () => {
 
   return (
     <div>
-      <div className="w-screen pt-24 pb-24 bg-emerald-800 ">
-        <h1 className="text-center text-2xl xl:text-3xl mb-4 xl:mb-8 font-medium mt-8 sm:mt-0 text-white">
+      <div className="w-screen pt-24 pb-24 bg-[url('https://res.cloudinary.com/dybcfr6cd/image/upload/v1670110454/nordwood-themes-KcsKWw77Ovw-unsplash_wil93u.jpg')]">
+        <h1 className="relative z-10 text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest text-shadow-lg shadow-zinc-700">
           Dental Records Release Form
         </h1>
       </div>
+      <div className="absolute h-[26rem] inset-0 bg-emerald-700/90 to-black mix-blend-multiply" />
       <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
         {!isSubmitted ? (
           <form
@@ -167,30 +159,21 @@ const DentalRecordForm: React.FC = () => {
               release of their records along with any legal responsibility or
               liability that may arise from this authorization.
             </label>
-            <label className="mt-3 mb-1">
-              Patient Signature *
-              <Controller
-                name="patientSig"
-                control={control}
-                render={({ field }) => (
-                  <SignatureCanvas
-                    {...field}
-                    ref={patientSignatureRef}
-                    onEnd={() => field.onChange(formatIntoPng())}
-                    canvasProps={{
-                      width: 500,
-                      height: 100,
-                      className: "border border-gray-300",
-                    }}
-                  />
-                )}
-              />
-              {initialDentalState.patientSig === undefined && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Signature is required
-                </div>
-              )}
-            </label>
+            <label className="mt-3 mb-1">Patient Signature * </label>
+
+            <SignatureCanvas
+              ref={patientSignatureRef}
+              canvasProps={{
+                width: 500,
+                height: 100,
+                className: "border border-gray-300",
+              }}
+            />
+            {patientSignatureRef.current?.isEmpty() && (
+              <div className={errorClassName} role="alert">
+                <MdOutlineError className="mt-1" /> Signature is required
+              </div>
+            )}
             <button
               className={clearButtonClassName}
               onClick={clearPatientCanvas}
@@ -219,7 +202,7 @@ const DentalRecordForm: React.FC = () => {
                 !formState.isValid && "opacity-30"
               )}
               type="submit"
-              disabled={!formState.isValid && !!errors.patientSig}
+              disabled={!formState.isValid}
               value="Submit Dental Records Release Form"
             />
           </form>

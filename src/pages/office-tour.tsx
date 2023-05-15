@@ -83,9 +83,11 @@ const OfficeTour: React.FC = () => {
         "flex flex-col justify-center items-center w-[calc(10% - 10px)] mx-5 lg:mx-auto pb-8"
       )}
     >
-      <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl">
-        Our Practice
-      </h1>
+      <div className="w-screen pt-24 pb-24 bg-emerald-800">
+        <h1 className="text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest">
+          Our Practice
+        </h1>
+      </div>
       <div className={clsx("relative mt-12", photoClassName)}>
         <div
           className={clsx(

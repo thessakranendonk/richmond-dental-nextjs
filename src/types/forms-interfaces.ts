@@ -30,8 +30,8 @@ export interface NewPatientFormProps extends Patient {
   insuranceTel: string;
   planNum: string;
   subscriberId: string;
-  frontImage: File | null;
-  backImage: File | null;
+  frontInsuranceCard: File | string | null;
+  backInsuranceCard: File | string | null;
   emerContact: string;
   emerRelationship: string;
   emerTel: string;
@@ -76,6 +76,7 @@ export interface DentalRecordFormProps extends Patient {
 }
 
 export interface BookingFormProps extends Patient {
+  file: any;
   phoneNumber: number;
   timeFrame: string;
 }
