@@ -4,18 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import SignatureCanvas from "react-signature-canvas";
 import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
-
-const initialDentalState: DentalRecordFormProps = {
-  currentDate: "",
-  dentalOfficeDr: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  dateOfBirth: "",
-  releaseStatement: "",
-  releaseTerms: "",
-  patientSig: "",
-};
+import { toast } from "react-toastify";
 
 const DentalRecordForm: React.FC = () => {
   const {
@@ -26,31 +15,33 @@ const DentalRecordForm: React.FC = () => {
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [dentalState, setDentalState] = useState<DentalRecordFormProps>({
-    ...initialDentalState,
-  });
-
-  const formatIntoPng = () => {
-    if (patientSignatureRef.current) {
-      const dataURL = patientSignatureRef.current.toDataURL();
-      return dataURL;
-    }
-  };
 
   const patientSignatureRef = useRef<SignatureCanvas>(null);
+
   const clearPatientCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     patientSignatureRef.current?.clear();
   };
   const onSubmit = async (data: DentalRecordFormProps) => {
-    if (!data.patientSig) {
-      errors.patientSig?.message;
+    if (patientSignatureRef.current?.isEmpty()) {
+      toast.error("Patient signature is required", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
     }
     try {
       const patientSig = patientSignatureRef.current?.toDataURL("image/png");
       if (patientSig) {
         data.patientSig = patientSig;
       }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -168,30 +159,21 @@ const DentalRecordForm: React.FC = () => {
               release of their records along with any legal responsibility or
               liability that may arise from this authorization.
             </label>
-            <label className="mt-3 mb-1">
-              Patient Signature *
-              <Controller
-                name="patientSig"
-                control={control}
-                render={({ field }) => (
-                  <SignatureCanvas
-                    {...field}
-                    ref={patientSignatureRef}
-                    onEnd={() => field.onChange(formatIntoPng())}
-                    canvasProps={{
-                      width: 500,
-                      height: 100,
-                      className: "border border-gray-300",
-                    }}
-                  />
-                )}
-              />
-              {initialDentalState.patientSig === undefined && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Signature is required
-                </div>
-              )}
-            </label>
+            <label className="mt-3 mb-1">Patient Signature * </label>
+
+            <SignatureCanvas
+              ref={patientSignatureRef}
+              canvasProps={{
+                width: 500,
+                height: 100,
+                className: "border border-gray-300",
+              }}
+            />
+            {patientSignatureRef.current?.isEmpty() && (
+              <div className={errorClassName} role="alert">
+                <MdOutlineError className="mt-1" /> Signature is required
+              </div>
+            )}
             <button
               className={clearButtonClassName}
               onClick={clearPatientCanvas}
@@ -220,7 +202,7 @@ const DentalRecordForm: React.FC = () => {
                 !formState.isValid && "opacity-30"
               )}
               type="submit"
-              disabled={!formState.isValid && !!errors.patientSig}
+              disabled={!formState.isValid}
               value="Submit Dental Records Release Form"
             />
           </form>

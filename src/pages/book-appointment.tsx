@@ -6,6 +6,7 @@ import { MdOutlineError } from "react-icons/md";
 
 const BookingForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -27,6 +28,7 @@ const BookingForm: React.FC = () => {
         body: JSON.stringify(data),
       });
       const result = await response.json();
+      console.log(result.message);
     } catch (error) {
       console.error(error);
     }
