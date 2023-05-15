@@ -4,7 +4,6 @@ import { FooterProps } from "@/types/component-types";
 import clsx from "clsx";
 import Link from "next/link";
 import DentalInfo from "@/components/DentalInfo";
-// import RichmondLogo from "./images/logo.svg";
 
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (

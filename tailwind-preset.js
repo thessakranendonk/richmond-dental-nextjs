@@ -124,6 +124,9 @@ module.exports = {
         ".br-center": {
           "border-radius": "50%",
         },
+        ".br-right-footer": {
+          "border-radius": "20% 80% 30% 70% /20% 46% 54% 70%",
+        },
         ".img-settings": {
           position: "relative",
           "box-shadow": "0 1px 2px rgba(0, 0, 0, 0.0)",
@@ -137,6 +140,13 @@ module.exports = {
           position: "absolute",
           transition: "all 0.4s ease-in-out",
         },
+        ".img-wrap-footer": {
+          background: "#426781",
+          "box-shadow": "0 0 0 40px rgba(255, 255, 255, 0.4)",
+          perspective: "1000px",
+          position: "absolute",
+          transition: "all 0.4s ease-in-out",
+        },
         ".img-wrap-xl": {
           width: "640px",
           height: "640px",
@@ -144,6 +154,10 @@ module.exports = {
         ".img-wrap-sm": {
           width: "260px",
           height: "260px",
+        },
+        ".img-wrap-md": {
+          width: "500px",
+          height: "300px",
         },
         ".back-img": {
           display: "block",
