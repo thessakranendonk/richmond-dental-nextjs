@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
         className="w-full xl:h-[38rem] z-0 object-cover contrast-more"
         alt="Hero Image"
       />
-      <div className="absolute inset-0 bg-emerald-800/70 z-10 brightness-125"></div>
+      <div className="absolute inset-0 bg-brand-base/70 z-10 brightness-125"></div>
 
       <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 animate-fadeIn transition duration-100">
         <div className="flex flex-col items-center text-center">

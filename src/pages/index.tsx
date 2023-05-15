@@ -9,7 +9,7 @@ import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 
-const iconClassName = "w-24 h-24 text-emerald-700";
+const iconClassName = "w-24 h-24 text-brand-base";
 const HomePageLinks = [
   {
     href: "/services",
@@ -86,7 +86,7 @@ const Home: React.FC = () => {
       >
         <DentalOffer />
       </motion.div>
-      <p className="text-center font-extrabold text-emerald-800">
+      <p className="text-center font-extrabold text-brand-base">
         ________________
       </p>
       <h1 className="text-center font-medium text-4xl xl:text-3xl mt-14 md:mt-24 tracking-widest text-zinc-700">
@@ -114,12 +114,12 @@ const Home: React.FC = () => {
                 repeatDelay: 1,
               }}
             >
-              <RiDoubleQuotesL className="text-emerald-500 border-[1px] border-emerald-600 rounded-full bg-white" />
+              <RiDoubleQuotesL className="text-brand-lightest border-[1px] border-brand-lighter rounded-full bg-white" />
             </motion.div>
           </div>
         </div>
 
-        <div className="max-w-4xl transform skew-y-[12deg] lg:rounded-xl mx-auto bg-emerald-600/20 bg-clip-content bg-gradient-to-tr from-emerald-600 via-emerald-800 to-emerald-600">
+        <div className="max-w-4xl transform skew-y-[12deg] lg:rounded-xl mx-auto bg-brand-lighter/20 bg-clip-content bg-gradient-to-tr from-brand-lighter via-brand-base to-brand-lighter">
           <div className="transform -skew-y-[12deg] mb-24">
             <PatientTestimonials />
           </div>

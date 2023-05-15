@@ -301,7 +301,7 @@ const Header: React.FC<HeaderProps> = ({
         <div className="hidden sm:flex lg:hidden mt-1">
           <Button
             extraClassName={clsx(
-              "bg-emerald-800 px-8 text-sm h-10 mt-1 text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
+              "bg-brand-base px-8 text-sm h-10 mt-1 text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
             )}
             type="button"
           >
@@ -363,7 +363,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="hidden lg:flex">
         <Button
           extraClassName={clsx(
-            "bg-emerald-800 px-8 text-sm h-12 mt-1 mr-2 text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
+            "bg-brand-base px-8 text-sm h-12 mt-1 mr-2 text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
           )}
           type="button"
         >

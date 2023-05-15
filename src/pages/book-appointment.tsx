@@ -43,7 +43,7 @@ const BookingForm: React.FC = () => {
           Request Appointment
         </h1>
       </div>
-      <div className="absolute h-[26rem] inset-0 bg-emerald-700/90 to-black mix-blend-multiply" />
+      <div className="absolute h-[26rem] inset-0 bg-brand-base/90 to-black mix-blend-multiply" />
       <p className="text-center text-lg font-extralight lg:max-w-lg mx-auto pt-20">
         We are always glad to address any questions that you might come up with.
         Please get in touch with us to inquire about anything! We review and
@@ -123,9 +123,9 @@ const BookingForm: React.FC = () => {
             </select>
             <input
               className={clsx(
-                "bg-emerald-800 font-medium px-8 text-sm h-10 mt-5 text-white rounded-full border-2 border-emerald-800",
+                "bg-brand-base font-medium px-8 text-sm h-10 mt-5 text-white rounded-lg border-2 border-brand-base",
                 formState.isValid &&
-                  "hover:text-emerald-800 hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
+                  "hover:text-brand-base hover:shadow-[inset_50rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
                 !formState.isValid && "opacity-30"
               )}
               type="submit"
