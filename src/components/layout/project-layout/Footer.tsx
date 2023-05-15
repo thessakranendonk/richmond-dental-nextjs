@@ -9,7 +9,7 @@ import DentalInfo from "@/components/DentalInfo";
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
     <div className=" text-center border-t-2 border-zinc-700 mx-5">
-      <div className="flex justify-between flex-col justify-between items-center w-[calc(90% - 90px)] md:flex-row md:justify-center md:items-center">
+      <div className="flex justify-between flex-col items-center w-[calc(90% - 90px)] md:flex-row md:justify-center md:items-center">
         <img
           className="w-48 h-48 ml-5"
           src="/images/logo.svg"
