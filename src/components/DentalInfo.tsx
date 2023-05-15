@@ -8,7 +8,7 @@ const DentalInfo = () => {
   const headerClassName = "tracking-widest text-zinc-700";
   return (
     <div>
-      <div className=" flex flex-rowjustify-evenly ">
+      <div className=" flex flex-row justify-evenly ">
         <div className="flex flex-col">
           <div className="mt-5 mb-6">
             <div className="flex flex-row justify-center ">
@@ -42,7 +42,7 @@ const DentalInfo = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="mb-6">
+          <div className=" mt-5 mb-6">
             <div className="flex flex-row justify-center ">
               <h3 className={headerClassName}>
                 <strong>Phone</strong>

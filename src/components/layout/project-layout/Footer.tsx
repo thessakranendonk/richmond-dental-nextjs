@@ -9,7 +9,6 @@ import DentalInfo from "@/components/DentalInfo";
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
     <div className=" text-center border-t-2 border-zinc-700 mx-5">
-      {/* <div className="flex justify-between flex-col items-center w-[calc(90% - 90px)] md:flex-row md:justify-center md:items-center"> */}
       <div className="flex  mb-5">
         <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-zinc-500 mt-5">
           {navigationLinks.map((link) => (
@@ -20,7 +19,6 @@ const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
         </ul>
         <DentalInfo />
       </div>
-      {/* </div> */}
       <div className="mb-12">
         <Button
           extraClassName={clsx(
