@@ -125,7 +125,7 @@ module.exports = {
           "border-radius": "50%",
         },
         ".br-right-footer": {
-          "border-radius": "20% 80% 30% 70% /20% 46% 54% 70%",
+          "border-radius": "25% 55% 30% 70% /15% 25% 54% 67%",
         },
         ".img-settings": {
           position: "relative",
@@ -141,7 +141,7 @@ module.exports = {
           transition: "all 0.4s ease-in-out",
         },
         ".img-wrap-footer": {
-          background: "#426781",
+          background: "#51868E",
           "box-shadow": "0 0 0 40px rgba(255, 255, 255, 0.4)",
           perspective: "1000px",
           position: "absolute",

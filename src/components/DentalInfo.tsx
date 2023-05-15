@@ -4,8 +4,8 @@ import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
 const DentalInfo = () => {
-  const iconClassName = "mt-1 ml-2 w-4 h-4";
-  const headerClassName = "tracking-widest text-sm text-zinc-700";
+  const iconClassName = "mt-1 ml-2 w-4 h-4 text-white";
+  const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
   return (
     <div className="hidden xl:inline-flex">
       <div className="img-wrap-footer img-wrap-md br-right-footer right-[5px]">
