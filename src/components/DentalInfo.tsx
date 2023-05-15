@@ -7,7 +7,7 @@ const DentalInfo = () => {
   const iconClassName = "mt-1 ml-2 w-4 h-4";
   const headerClassName = "tracking-widest text-zinc-700";
   return (
-    <div className="w-1/3">
+    <div>
       <div className=" flex flex-col justify-evenly ">
         <div className="mt-5 mb-6">
           <div className="flex flex-row justify-center ">
@@ -25,6 +25,31 @@ const DentalInfo = () => {
             500 Richmond St. W, Suite 128 <br /> Toronto, ON, M5V 3N4
           </a>
         </div>
+
+        <div className="mb-6">
+          <div className="flex flex-row justify-center ">
+            <h3 className={headerClassName}>
+              <strong>Opening Hours</strong>
+            </h3>
+            <AiOutlineClockCircle className={iconClassName} />
+          </div>
+          <p className="flex justify-center text-left text-sm text-zinc-500">
+            Mon - Thu: 10 AM - 5 PM <br />
+            Fri: 10 AM - 4 PM <br />
+            Every Other Sat: 10 AM - 4 PM <br />
+          </p>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex flex-row justify-center ">
+            <h3 className={headerClassName}>
+              <strong>Phone</strong>
+            </h3>
+            <AiOutlinePhone className={iconClassName} />
+          </div>
+          <p className="text-sm text-zinc-500">+1 416 366 0777</p>
+        </div>
+
         <div className="flex flex-col mb-6">
           <div className="flex flex-row  text-center justify-center">
             <h3 className="tracking-widest">
@@ -40,29 +65,6 @@ const DentalInfo = () => {
               info@richmondwestdental.com
             </a>
           </div>
-        </div>
-
-        <div className="mb-6">
-          <div className="flex flex-row justify-center ">
-            <h3 className={headerClassName}>
-              <strong>Phone</strong>
-            </h3>
-            <AiOutlinePhone className={iconClassName} />
-          </div>
-          <p className="text-sm text-zinc-500">+1 416 366 0777</p>
-        </div>
-        <div className="mb-6">
-          <div className="flex flex-row justify-center ">
-            <h3 className={headerClassName}>
-              <strong>Opening Hours</strong>
-            </h3>
-            <AiOutlineClockCircle className={iconClassName} />
-          </div>
-          <p className="flex justify-center text-left text-sm text-zinc-500">
-            Mon - Thu: 10 AM - 5 PM <br />
-            Fri: 10 AM - 4 PM <br />
-            Every Other Sat: 10 AM - 4 PM <br />
-          </p>
         </div>
       </div>
     </div>
