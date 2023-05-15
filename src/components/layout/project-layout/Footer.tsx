@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
       <div className="mb-12">
         <Button
           extraClassName={clsx(
-            "bg-emerald-800 px-12 py-4 text-2xl text-white hover:text-emerald-800 hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-full border-2 border-emerald-800"
+            "bg-brand-base px-12 py-4 text-2xl text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
           )}
           type="button"
         >

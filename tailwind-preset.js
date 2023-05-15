@@ -19,9 +19,11 @@ module.exports = {
       colors: {
         current: "currentColor",
         brand: {
-          dark: "var(--color-primary)",
-          darkHover: "#2f5c9a",
-          darkest: "#7f1D1D",
+          lightest: "#52868E",
+          lighter: "#4A7B82",
+          base: "#3d6469",
+          dark: "#34565B",
+          darkest: "#2D494E",
         },
         ui: {
           error: red[700],

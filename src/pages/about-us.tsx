@@ -27,7 +27,7 @@ const AboutUs: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="w-screen -ml-8 xl:ml-0 xl:flex xl:flex-row xl:justify-between bg-clip-content text-transparent bg-emerald-600/20 bg-gradient-to-tl from-emerald-600 via-emerald-800 to-emerald-600">
+      <div className="w-screen -ml-8 xl:ml-0 xl:flex xl:flex-row xl:justify-between bg-clip-content text-transparent bg-brand-lightest/20 bg-gradient-to-tl from-brand-lightest via-brand-base to-brand-lightest">
         <div className="w-[calc(10% - 10px)] mx-5 p-0 my-auto md:max-w-5xl text-center md:mx-auto xl:text-left py-12 text-zinc-200">
           <h2 className="font-normal text-shadow-lg shadow-zinc-700 text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-center">
             Why Choose Us?
@@ -77,7 +77,7 @@ const AboutUs: React.FC = () => {
           </p>
         </div>
         <img
-          className="br-right bg-clip-content text-transparent bg-gradient-to-r from-emerald-600 to-emerald-800"
+          className="br-right bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base"
           src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1682865302/richmond-dental/dr-richmond_wfufcc.png"
         />
       </div>
