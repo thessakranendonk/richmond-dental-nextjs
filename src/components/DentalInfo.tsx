@@ -6,6 +6,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 const DentalInfo = () => {
   const iconClassName = "mt-1 ml-2 w-4 h-4 text-white";
   const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
+  const divClassName = "mt-5 mb-6";
   return (
     <div className="hidden xl:inline-flex">
       <div className="img-wrap-footer img-wrap-md br-right-footer right-[5px]">
@@ -14,7 +15,7 @@ const DentalInfo = () => {
           <div className="w-[calc(10% - 10px)]">
             <div className=" flex flex-row text-sm justify-around">
               <div className="flex flex-col justify-evenly">
-                <div className="mt-5 mb-6">
+                <div className={divClassName}>
                   <div className="flex flex-row justify-center ">
                     <h3 className={headerClassName}>
                       <strong>Phone</strong>
@@ -42,7 +43,7 @@ const DentalInfo = () => {
                 </div>
               </div>
               <div className="flex flex-col">
-                <div className="mt-5 mb-6">
+                <div className={divClassName}>
                   <div className="flex flex-row justify-center ">
                     <h3 className={headerClassName}>
                       <strong>Office</strong>{" "}
