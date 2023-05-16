@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React, { FormEvent, useState } from "react";
 import { SubmitHandler, useForm, useFormState } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
+import BookingMap from "@/components/BookingMap";
 
 const BookingForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -38,6 +39,7 @@ const BookingForm: React.FC = () => {
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   return (
     <div>
+      <BookingMap />
       <div className="w-screen pt-24 pb-24 bg-[url('https://res.cloudinary.com/dybcfr6cd/image/upload/v1670110454/nordwood-themes-KcsKWw77Ovw-unsplash_wil93u.jpg')]">
         <h1 className="relative z-10 text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest text-shadow-lg shadow-zinc-700">
           Request Appointment
