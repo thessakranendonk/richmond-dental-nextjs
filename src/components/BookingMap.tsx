@@ -3,8 +3,18 @@ import "leaflet/dist/leaflet.css";
 import { LatLngExpression, Icon } from "leaflet";
 import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { useEffect, useState } from "react";
 
 const BookingMap = () => {
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsMapLoaded(true);
+  }, []);
+
+  if (!isMapLoaded) {
+    return null; // Render null or a loading indicator while the map is being loaded
+  }
   const position: LatLngExpression = [43.64666, -79.394043]; // Latitude and longitude coordinates
 
   const iconClassName = "mt-1 ml-2 w-4 h-4 text-black";

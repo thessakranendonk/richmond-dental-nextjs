@@ -8,6 +8,11 @@ import Hero from "@/components/Hero";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const DynamicMapContainer = dynamic(() => import("../components/BookingMap"), {
+  ssr: false,
+});
 
 const iconClassName = "w-24 h-24 text-brand-base";
 const HomePageLinks = [
@@ -53,6 +58,12 @@ const Home: React.FC = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
   const [isInView, setIsInView] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -125,6 +136,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+      {isClient && <DynamicMapContainer />}
     </div>
   );
 };
