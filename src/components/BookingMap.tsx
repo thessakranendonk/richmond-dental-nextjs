@@ -4,6 +4,7 @@ import { LatLngExpression, Icon } from "leaflet";
 import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import L from "leaflet";
 
 const BookingMap = () => {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -20,9 +21,14 @@ const BookingMap = () => {
   const iconClassName = "mt-1 ml-2 w-4 h-4 text-black";
   const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
   const divClassName = "mt-5 mb-6";
+
+  const locationIcon = L.icon({
+    iconUrl: "/images/location-pin.png",
+    iconSize: [32, 32],
+  });
   return (
-    <div className="flex justify-center items-center mt-5 w-1/2">
-      <div className="flex flex-col">
+    <div className="flex justify-center items-center mt-5 ">
+      <div className="flex flex-col w-1/4">
         <div className={divClassName}>
           <div className="flex flex-row justify-center">
             <h3 className={headerClassName}>
@@ -58,13 +64,13 @@ const BookingMap = () => {
       <MapContainer
         center={position}
         zoom={15}
-        style={{ height: "300px", width: "100%" }}
+        style={{ height: "300px", width: "30%" }}
       >
         <TileLayer
           attribution='Map data &copy; <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position} />
+        <Marker position={position} icon={locationIcon} />
       </MapContainer>
     </div>
   );
