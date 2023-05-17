@@ -7,20 +7,20 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 const BookingMap = () => {
   const position: LatLngExpression = [43.64666, -79.394043]; // Latitude and longitude coordinates
 
-  const iconClassName = "mt-1 ml-2 w-4 h-4 text-white";
+  const iconClassName = "mt-1 ml-2 w-4 h-4 text-black";
   const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
   const divClassName = "mt-5 mb-6";
   return (
-    <div className="flex">
+    <div className="flex flex-col text-center w-1/2">
       <div className={divClassName}>
-        <div className="flex flex-row justify-center">
+        <div>
           <h3 className={headerClassName}>
             <strong>Office</strong>{" "}
           </h3>
           <CiLocationOn className={iconClassName} />
         </div>
         <a
-          className="hover:underline text-sm text-white"
+          className="hover:underline text-sm text-black"
           href="https://www.google.com/maps?q=500+Richmond+St.+W,+Suite+128,+Toronto,+ON,+M5V+3N4"
           target="_blank"
           rel="noopener noreferrer"
@@ -36,7 +36,7 @@ const BookingMap = () => {
           </h3>
           <AiOutlineClockCircle className={iconClassName} />
         </div>
-        <p className="flex justify-center text-left text-sm text-white">
+        <p className="flex justify-center text-left text-sm text-black">
           Mon - Thu: 10 AM - 5 PM <br />
           Fri: 10 AM - 4 PM <br />
           Every Other Sat: 10 AM - 4 PM <br />

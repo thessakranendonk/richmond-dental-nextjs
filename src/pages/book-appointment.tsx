@@ -38,7 +38,7 @@ const BookingForm: React.FC = () => {
   const inputClassName = "mb-2 rounded-xl border-zinc-400/60";
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   return (
-    <div>
+    <div className="flex flex-col">
       <div className="w-screen pt-24 pb-24 bg-[url('https://res.cloudinary.com/dybcfr6cd/image/upload/v1670110454/nordwood-themes-KcsKWw77Ovw-unsplash_wil93u.jpg')]">
         <h1 className="relative z-10 text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest text-shadow-lg shadow-zinc-700">
           Request Appointment
