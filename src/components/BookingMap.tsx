@@ -5,6 +5,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import L from "leaflet";
+import ReactDOM from "react-dom";
 
 const BookingMap = () => {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
@@ -22,10 +23,22 @@ const BookingMap = () => {
   const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
   const divClassName = "mt-5 mb-6";
 
-  const locationIcon = L.icon({
-    iconUrl: "/images/pin.png",
-    iconSize: [32, 32],
+  const LocationIcon = L.Icon.extend({
+    options: {
+      iconSize: [48, 48],
+      iconAnchor: [24, 48],
+      popupAnchor: [0, -48],
+    },
+    createIcon: function () {
+      const iconContainer = document.createElement("div");
+      const icon = <CiLocationOn className={iconClassName} />;
+      ReactDOM.render(icon, iconContainer);
+      return iconContainer;
+    },
   });
+
+  const locationIcon = new LocationIcon();
+
   return (
     <div className="flex justify-center items-center mt-5 ">
       <div className="flex flex-col w-1/4">
