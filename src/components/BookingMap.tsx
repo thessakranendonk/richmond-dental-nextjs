@@ -11,9 +11,9 @@ const BookingMap = () => {
   const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
   const divClassName = "mt-5 mb-6";
   return (
-    <div className="flex flex-col">
+    <div className="flex">
       <div className={divClassName}>
-        <div className="flex flex-row justify-center ">
+        <div className="flex flex-row justify-center">
           <h3 className={headerClassName}>
             <strong>Office</strong>{" "}
           </h3>
