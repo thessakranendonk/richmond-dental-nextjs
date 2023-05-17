@@ -26,14 +26,7 @@ const BookingMap = () => {
 
   const tileLayerUrl =
     "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png";
-  const attribution =
-    'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-    'Tiles &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>';
-
-  const iconClassName = "mt-1 ml-2 w-4 h-4 text-black";
-  const headerClassName = "tracking-widest text-sm text-brand-base pb-1";
-  const divClassName = "mt-5 mb-6";
-  const locationClassName = "w-6 h-6 ";
+  const attribution = "";
 
   const LocationIcon = L.Icon.extend({
     options: {
@@ -51,11 +44,19 @@ const BookingMap = () => {
 
   const locationIcon = new LocationIcon();
 
+  const iconClassName = "mt-1 ml-2 w-4 h-4 text-black";
+  const headerClassName = "tracking-widest text-sm text-brand-base pb-1";
+  const divClassName = "mt-5 mb-6";
+  const locationClassName = "w-6 h-6 text-brand-base font-extrabold";
+  const containerClassName =
+    "flex justify-center items-center mt-5 border-2 border-brand-base";
+  const flexClassName = "flex flex-row justify-center";
+
   return (
-    <div className="flex justify-center items-center mt-5 border-2 border-brand-base  ">
+    <div className={containerClassName}>
       <div className="flex flex-col pr-4 w-2/4">
         <div className={divClassName}>
-          <div className="flex flex-row justify-center">
+          <div className={flexClassName}>
             <h3 className={headerClassName}>
               <strong>Office</strong>{" "}
             </h3>
@@ -72,7 +73,7 @@ const BookingMap = () => {
         </div>
 
         <div className="mb-6">
-          <div className="flex flex-row justify-center">
+          <div className={flexClassName}>
             <h3 className={headerClassName}>
               <strong>Opening Hours</strong>
             </h3>
