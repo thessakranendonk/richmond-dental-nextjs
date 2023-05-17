@@ -20,8 +20,9 @@ const BookingMap = () => {
   const position: LatLngExpression = [43.64666, -79.394043]; // Latitude and longitude coordinates
 
   const iconClassName = "mt-1 ml-2 w-4 h-4 text-black";
-  const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
+  const headerClassName = "tracking-widest text-sm text-brand-base pb-1";
   const divClassName = "mt-5 mb-6";
+  const locationClassName = "w-6 h-6 ";
 
   const LocationIcon = L.Icon.extend({
     options: {
@@ -31,7 +32,7 @@ const BookingMap = () => {
     },
     createIcon: function () {
       const iconContainer = document.createElement("div");
-      const icon = <CiLocationOn className={iconClassName} />;
+      const icon = <CiLocationOn className={locationClassName} />;
       ReactDOM.render(icon, iconContainer);
       return iconContainer;
     },
@@ -40,8 +41,8 @@ const BookingMap = () => {
   const locationIcon = new LocationIcon();
 
   return (
-    <div className="flex justify-center items-center mt-5 ">
-      <div className="flex flex-col w-1/4">
+    <div className="flex justify-center items-center mt-5 border-2 border-brand-base  ">
+      <div className="flex flex-col pr-4 w-2/4">
         <div className={divClassName}>
           <div className="flex flex-row justify-center">
             <h3 className={headerClassName}>
@@ -77,7 +78,7 @@ const BookingMap = () => {
       <MapContainer
         center={position}
         zoom={15}
-        style={{ height: "300px", width: "30%" }}
+        style={{ height: "300px", width: "45%" }}
       >
         <TileLayer
           attribution='Map data &copy; <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'

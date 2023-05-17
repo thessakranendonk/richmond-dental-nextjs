@@ -140,7 +140,11 @@ const BookingForm: React.FC = () => {
           </p>
         )}
       </div>
-      <BookingMap />
+      <div className="flex justify-center">
+        <div className=" w-1/2 pt-4">
+          <BookingMap />
+        </div>
+      </div>
     </div>
   );
 };
