@@ -18,6 +18,17 @@ const BookingMap = () => {
     return null; // Render null or a loading indicator while the map is being loaded
   }
   const position: LatLngExpression = [43.64666, -79.394043]; // Latitude and longitude coordinates
+  //   const tileLayerUrl = "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png";
+  //   const attribution =
+  //     'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+  //     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+  //     'Tiles courtesy of <a href="https://www.openstreetmap.fr/">OpenStreetMap.HOT</a>';
+
+  const tileLayerUrl =
+    "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png";
+  const attribution =
+    'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+    'Tiles &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>';
 
   const iconClassName = "mt-1 ml-2 w-4 h-4 text-black";
   const headerClassName = "tracking-widest text-sm text-brand-base pb-1";
@@ -81,8 +92,12 @@ const BookingMap = () => {
         style={{ height: "300px", width: "45%" }}
       >
         <TileLayer
-          attribution='Map data &copy; <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          //   url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          //   attribution='&copy; <a href="https://www.mapbox.com">Mapbox</a> contributors'
+          url={tileLayerUrl}
+          attribution={attribution}
+          //   url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          //   attribution='Map data &copy; <a href="https://carto.com/">CartoDB</a> contributors'
         />
         <Marker position={position} icon={locationIcon} />
       </MapContainer>
