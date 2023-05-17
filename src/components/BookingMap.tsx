@@ -6,7 +6,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import L from "leaflet";
 import ReactDOM from "react-dom";
-
+import { ImLocation } from "react-icons/im";
 const BookingMap = () => {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
@@ -36,7 +36,7 @@ const BookingMap = () => {
     },
     createIcon: function () {
       const iconContainer = document.createElement("div");
-      const icon = <CiLocationOn className={locationClassName} />;
+      const icon = <ImLocation className={locationClassName} />;
       ReactDOM.render(icon, iconContainer);
       return iconContainer;
     },
