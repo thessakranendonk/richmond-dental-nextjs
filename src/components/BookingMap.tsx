@@ -23,7 +23,7 @@ const BookingMap = () => {
   const divClassName = "mt-5 mb-6";
 
   const locationIcon = L.icon({
-    iconUrl: "/images/location-pin.png",
+    iconUrl: "/images/pin.png",
     iconSize: [32, 32],
   });
   return (
