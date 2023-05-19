@@ -125,7 +125,8 @@ module.exports = {
           "border-radius": "50%",
         },
         ".br-right-footer": {
-          "border-radius": "25% 58% 30% 70% /15% 25% 54% 67%",
+          "border-radius":
+            "w-20 h-20 rounded-[25% 58% 30% 70% / 15% 25% 54% 67%]",
         },
         ".img-settings": {
           position: "relative",
