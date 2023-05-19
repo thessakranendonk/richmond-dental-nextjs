@@ -14,7 +14,7 @@ const DentalInfo = () => {
     <div>
       {/* info */}
       <div>
-        <div className="flex text-sm justify-between">
+        <div className="flex text-sm justify-between mt-3">
           <div className="flex flex-col justify-center">
             <h2 className={headerClassName}>
               <strong>CONTACT</strong>
@@ -47,7 +47,7 @@ const DentalInfo = () => {
             </div>
           </div>
           <div className="flex flex-col ml-10 justify-center">
-            <div className="mb-6">
+            <div className="mb-2">
               <div className="flex flex-row justify-center">
                 <h3 className={headerClassName}>
                   <strong>Opening Hours</strong>
