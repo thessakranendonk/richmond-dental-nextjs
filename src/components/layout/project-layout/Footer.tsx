@@ -7,10 +7,10 @@ import DentalInfo from "@/components/DentalInfo";
 
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
-    <div className=" text-center border-t-2 border-zinc-700  bg-blue-100 ">
+    <div className=" text-center border-t-2 border-zinc-700  bg-gray-500 ">
       <div className="flex justify-evenly flex-col w-[calc(90% - 90px)] md:flex-row">
         <div className="flex mb-5">
-          <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-zinc-500 mt-5">
+          <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-white mt-5">
             {navigationLinks.map((link) => (
               <li key={link.name}>
                 <Link href={link.href}>{snakeCaseToTitleCase(link.name)}</Link>
