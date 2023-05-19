@@ -6,14 +6,19 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 const DentalInfo = () => {
   const iconClassName = "mt-1 mr-2 w-4 h-4 text-white";
   const headerClassName = "tracking-widest text-sm text-white pb-1";
-  const divClassName = " flex flex-row justify-center mt-5 mb-6";
+  const divClassName = " flex flex-row justify-center mt-5 mb-1";
   const hoursClassName = "flex flex-row justify-between";
+  const dayClassName =
+    "flex justify-center text-left text-sm text-white pr-16 pb-1";
   return (
     <div>
       {/* info */}
       <div>
-        <div className="flex text-sm justify-items-start">
-          <div className="flex flex-col">
+        <div className="flex text-sm justify-between">
+          <div className="flex flex-col justify-center">
+            <h2 className={headerClassName}>
+              <strong>CONTACT</strong>
+            </h2>
             <div className={divClassName}>
               <AiOutlinePhone className={iconClassName} />
               <p className="text-sm text-white">+1 416 366 0777</p>
@@ -41,7 +46,7 @@ const DentalInfo = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col ml-10">
+          <div className="flex flex-col ml-10 justify-center">
             <div className="mb-6">
               <div className="flex flex-row justify-center">
                 <h3 className={headerClassName}>
@@ -49,55 +54,32 @@ const DentalInfo = () => {
                 </h3>
                 <AiOutlineClockCircle className={iconClassName} />
               </div>
-              <div>
-                <div className={hoursClassName}>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    Mon
-                  </p>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    10:00 AM - 5:00 PM
-                  </p>
-                </div>
-                <div className={hoursClassName}>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    Tues
-                  </p>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    10:00 AM - 5:00 PM
-                  </p>
-                </div>
-                <div className={hoursClassName}>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    Wed
-                  </p>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    10:00 AM - 5:00 PM
-                  </p>
-                </div>
-                <div className={hoursClassName}>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    Thu
-                  </p>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    10:00 AM - 5:00 PM
-                  </p>
-                </div>
-                <div className={hoursClassName}>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    Fri
-                  </p>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    10:00 AM - 5:00 PM
-                  </p>
-                </div>
-                <div className={hoursClassName}>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    Alt Sat
-                  </p>
-                  <p className="flex justify-center text-left text-sm text-white">
-                    10:00 AM - 4:00 PM
-                  </p>
-                </div>
+            </div>
+
+            <div>
+              <div className={hoursClassName}>
+                <p className={dayClassName}>Monday</p>
+                <p className={dayClassName}>10:00 AM - 5:00 PM</p>
+              </div>
+              <div className={hoursClassName}>
+                <p className={dayClassName}>Tuesday</p>
+                <p className={dayClassName}>10:00 AM - 5:00 PM</p>
+              </div>
+              <div className={hoursClassName}>
+                <p className={dayClassName}>Wednesday</p>
+                <p className={dayClassName}>10:00 AM - 5:00 PM</p>
+              </div>
+              <div className={hoursClassName}>
+                <p className={dayClassName}>Thursday</p>
+                <p className={dayClassName}>10:00 AM - 5:00 PM</p>
+              </div>
+              <div className={hoursClassName}>
+                <p className={dayClassName}>Friday</p>
+                <p className={dayClassName}>10:00 AM - 5:00 PM</p>
+              </div>
+              <div className={hoursClassName}>
+                <p className={dayClassName}>Alt Sat</p>
+                <p className={dayClassName}>10:00 AM - 4:00 PM</p>
               </div>
             </div>
           </div>
