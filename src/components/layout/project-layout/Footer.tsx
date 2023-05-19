@@ -4,21 +4,25 @@ import { FooterProps } from "@/types/component-types";
 import clsx from "clsx";
 import Link from "next/link";
 import DentalInfo from "@/components/DentalInfo";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
     <div className="flex flex-row justify-around text-center border-t-2 border-zinc-700 bg-gray-500 mr-0">
-      <div className="flex flex-col md:flex-row">
-        <div className="flex mb-5">
-          <ul className="flex flex-col justify-center text-sm gap-y-2 pb-10 text-white mt-5">
-            {navigationLinks.map((link) => (
-              <li key={link.name}>
-                <Link href={link.href}>{snakeCaseToTitleCase(link.name)}</Link>
-              </li>
-            ))}
-          </ul>
+      <div className="flex flex-col justify-center">
+        <div className="flex flex-row justify-center mt-5 mb-1">
+          <AiOutlineMenu className="mt-1 mr-2 w-4 h-4 text-white" />
+          <h2 className=" tracking-widest text-sm text-white pb-1">
+            <strong>MENU</strong>
+          </h2>
         </div>
-        <div>{/* <DentalInfo /> */}</div>
+        <ul className="flex flex-col text-sm gap-y-2 pb-10 text-white mt-2">
+          {navigationLinks.map((link) => (
+            <li key={link.name}>
+              <Link href={link.href}>{snakeCaseToTitleCase(link.name)}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="flex flex-col mt-6 pb-9">
         <DentalInfo />
