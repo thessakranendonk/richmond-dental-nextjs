@@ -4,8 +4,8 @@ import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
 const DentalInfo = () => {
-  const iconClassName = "mt-1 ml-2 w-4 h-4 text-brand-base";
-  const headerClassName = "tracking-widest text-sm text-gray-300 pb-1";
+  const iconClassName = "mt-1 ml-2 w-4 h-4 text-white";
+  const headerClassName = "tracking-widest text-sm text-white pb-1";
   const divClassName = "mt-5 mb-6";
   return (
     <div>
@@ -22,7 +22,7 @@ const DentalInfo = () => {
                     </h3>
                     <AiOutlinePhone className={iconClassName} />
                   </div>
-                  <p className="text-sm text-brand-base">+1 416 366 0777</p>
+                  <p className="text-sm text-white">+1 416 366 0777</p>
                 </div>
 
                 <div className="flex flex-col mb-6">
@@ -34,7 +34,7 @@ const DentalInfo = () => {
                   </div>
                   <div>
                     <a
-                      className="hover:underline text-sm text-brand-base"
+                      className="hover:underline text-sm text-white"
                       href="mailto:info@richmondwestdental.com"
                     >
                       info@richmondwestdental.com
@@ -51,7 +51,7 @@ const DentalInfo = () => {
                     <CiLocationOn className={iconClassName} />
                   </div>
                   <a
-                    className="hover:underline text-sm text-brand-base"
+                    className="hover:underline text-sm text-white"
                     href="https://www.google.com/maps?q=500+Richmond+St.+W,+Suite+128,+Toronto,+ON,+M5V+3N4"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -67,7 +67,7 @@ const DentalInfo = () => {
                     </h3>
                     <AiOutlineClockCircle className={iconClassName} />
                   </div>
-                  <p className="flex justify-center text-left text-sm text-brand-base">
+                  <p className="flex justify-center text-left text-sm text-white">
                     Mon - Thu: 10 AM - 5 PM <br />
                     Fri: 10 AM - 4 PM <br />
                     Every Other Sat: 10 AM - 4 PM <br />

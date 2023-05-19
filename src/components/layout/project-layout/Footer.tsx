@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
           <DentalInfo />
         </div>
       </div>
-      <div className="mt-12 pb-12">
+      <div className="mt-6 pb-9">
         <Button
           extraClassName={clsx(
             "bg-brand-base px-12 py-4 text-2xl text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
