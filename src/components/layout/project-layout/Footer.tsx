@@ -10,9 +10,9 @@ const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
   return (
     <div className="flex flex-row justify-around text-center border-t-2 border-zinc-700 bg-gray-500 mr-0">
       <div className="flex flex-col justify-center">
-        <div className="flex flex-row justify-center mt-5 mb-1">
+        <div className="flex flex-row justify-center mb-1">
           <AiOutlineMenu className="mt-1 mr-2 w-4 h-4 text-white" />
-          <h2 className=" tracking-widest text-sm text-white pb-1">
+          <h2 className=" tracking-widest text-md text-white pb-1">
             <strong>MENU</strong>
           </h2>
         </div>
@@ -29,7 +29,7 @@ const Footer: React.FC<FooterProps> = ({ navigationLinks }) => {
         <div className="flex justify-center">
           <Button
             extraClassName={clsx(
-              "bg-brand-base px-10 mt-2 py-2 text-1xl text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
+              "bg-brand-base px-8 mt-3 py-2 text-sm text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
             )}
             type="button"
           >

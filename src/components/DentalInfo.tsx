@@ -6,7 +6,7 @@ import { MdOutlineContactPhone } from "react-icons/md";
 
 const DentalInfo = () => {
   const iconClassName = "mt-1 mr-2 w-4 h-4 text-white";
-  const headerClassName = "tracking-widest text-sm text-white pb-1";
+  const headerClassName = "tracking-widest text-md text-white pb-1";
   const divClassName = " flex flex-row justify-center mt-5 mb-1";
   const hoursClassName = "flex flex-row justify-between";
   const dayClassName =
@@ -15,7 +15,7 @@ const DentalInfo = () => {
     <div>
       {/* info */}
       <div>
-        <div className="flex flex-row text-sm mt-3">
+        <div className="flex flex-row text-sm">
           <div className="flex flex-col justify-center">
             <div className="flex flex-row justify-center">
               <MdOutlineContactPhone className={iconClassName} />
@@ -64,27 +64,27 @@ const DentalInfo = () => {
 
             <div>
               <div className={hoursClassName}>
-                <p className={dayClassName}>Monday</p>
+                <p className={`${dayClassName} font-bold`}>Monday</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={dayClassName}>Tuesday</p>
+                <p className={`${dayClassName} font-bold`}>Tuesday</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={dayClassName}>Wednesday</p>
+                <p className={`${dayClassName} font-bold`}>Wednesday</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={dayClassName}>Thursday</p>
+                <p className={`${dayClassName} font-bold`}>Thursday</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={dayClassName}>Friday</p>
+                <p className={`${dayClassName} font-bold`}>Friday</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={dayClassName}>Alt Sat</p>
+                <p className={`${dayClassName} font-bold`}>Alt Sat</p>
                 <p className={dayClassName}>10:00 AM - 4:00 PM</p>
               </div>
             </div>
