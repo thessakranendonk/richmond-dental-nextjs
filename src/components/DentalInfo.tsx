@@ -13,7 +13,6 @@ const DentalInfo = () => {
     "flex justify-center text-left text-sm text-white pr-16 pb-1";
   return (
     <div>
-      {/* info */}
       <div>
         <div className="flex flex-row text-sm">
           <div className="flex flex-col justify-center">
