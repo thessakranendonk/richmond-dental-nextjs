@@ -51,7 +51,7 @@ const DentalInfo = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col ml-10 justify-center">
+          <div className="flex flex-col ml-20 justify-center">
             <div className="mb-2">
               <div className="flex flex-row justify-center">
                 <AiOutlineClockCircle className={iconClassName} />
@@ -64,23 +64,23 @@ const DentalInfo = () => {
 
             <div>
               <div className={hoursClassName}>
-                <p className={`${dayClassName} font-bold`}>Monday</p>
+                <p className={`${dayClassName} font-bold`}>Mon</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={`${dayClassName} font-bold`}>Tuesday</p>
+                <p className={`${dayClassName} font-bold`}>Tue</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={`${dayClassName} font-bold`}>Wednesday</p>
+                <p className={`${dayClassName} font-bold`}>Wed</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={`${dayClassName} font-bold`}>Thursday</p>
+                <p className={`${dayClassName} font-bold`}>Thu</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
-                <p className={`${dayClassName} font-bold`}>Friday</p>
+                <p className={`${dayClassName} font-bold`}>Fri</p>
                 <p className={dayClassName}>10:00 AM - 5:00 PM</p>
               </div>
               <div className={hoursClassName}>
