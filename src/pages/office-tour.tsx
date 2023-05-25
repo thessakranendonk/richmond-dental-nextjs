@@ -1,4 +1,5 @@
 import ImageGrid from "@/components/ImageGrid";
+import PageHeading from "@/components/ui/PageHeading";
 import clsx from "clsx";
 import { createRef, useState } from "react";
 
@@ -83,10 +84,8 @@ const OfficeTour: React.FC = () => {
         "flex flex-col justify-center items-center w-[calc(10% - 10px)] mx-5 lg:mx-auto pb-8"
       )}
     >
-      <div className="w-screen pt-24 pb-24 bg-brand-base">
-        <h1 className="text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest">
-          Our Practice
-        </h1>
+      <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
+        <PageHeading title="Our Practice" />
       </div>
       <div className={clsx("relative mt-12", photoClassName)}>
         <div

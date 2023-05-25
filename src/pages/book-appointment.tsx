@@ -1,3 +1,4 @@
+import PageHeading from "@/components/ui/PageHeading";
 import { BookingFormProps } from "@/types/forms-interfaces";
 import clsx from "clsx";
 import React, { FormEvent, useState } from "react";
@@ -38,12 +39,9 @@ const BookingForm: React.FC = () => {
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   return (
     <div>
-      <div className="w-screen pt-24 pb-24 bg-[url('https://res.cloudinary.com/dybcfr6cd/image/upload/v1670110454/nordwood-themes-KcsKWw77Ovw-unsplash_wil93u.jpg')]">
-        <h1 className="relative z-10 text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest text-shadow-lg shadow-zinc-700">
-          Request Appointment
-        </h1>
+      <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
+        <PageHeading title="Request An Appointment" />
       </div>
-      <div className="absolute h-[26rem] inset-0 bg-brand-base/90 to-black mix-blend-multiply" />
       <p className="text-center text-lg font-extralight lg:max-w-lg mx-auto pt-20">
         We are always glad to address any questions that you might come up with.
         Please get in touch with us to inquire about anything! We review and

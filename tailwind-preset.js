@@ -157,8 +157,12 @@ module.exports = {
           height: "260px",
         },
         ".img-wrap-md": {
-          width: "480px",
-          height: "300px",
+          width: "440px",
+          height: "440px",
+        },
+        ".img-wrap-xl": {
+          width: "640px",
+          height: "640px",
         },
         ".back-img": {
           display: "block",

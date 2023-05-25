@@ -7,6 +7,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 import LogoAnimation from "@/components/LogoAnimation";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function useOnClickOutside<T extends HTMLDivElement>(
   ref: React.RefObject<T>,
@@ -60,6 +61,32 @@ const LogoLink: React.FC<
   );
 };
 
+const slideVerticalAnimation = {
+  open: {
+    rotateX: 0,
+    y: 0,
+    opacity: 1,
+    height: "auto",
+    transition: {
+      duration: 0.3,
+      mass: 0.8,
+      type: "spring",
+    },
+    display: "block",
+  },
+  close: {
+    rotateX: -15,
+    y: -320,
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
+    transitionEnd: {
+      display: "none",
+    },
+  },
+};
+
 /**
  * Header navigation links rendered as React `NavLink` siblings encapsulated within a fragment.
  *
@@ -76,7 +103,7 @@ const MenuLinks: React.FC<
     | "hoverClassName"
     | "onLinkClick"
     | "textClassName"
-  >
+  > & { onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void }
 > = ({
   navigationLinks,
   currentActiveLocation,
@@ -86,26 +113,137 @@ const MenuLinks: React.FC<
   linkClassName,
   onLinkClick,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <ul>
       {navigationLinks.map((link) => (
-        <li key={link.name}>
-          <Link
-            href={link.href}
-            className={clsx(
-              currentActiveLocation?.includes(link.href)
-                ? activeLinkClassName
-                : linkClassName,
-              hoverClassName,
-              textClassName,
-              "text-center lg:text-left",
-              "flex flex-col"
-            )}
-            onClick={onLinkClick}
-          >
-            {link.name}
-          </Link>
-        </li>
+        <div key={link.name}>
+          {link.name !== "FORMS" ? (
+            <li key={link.name}>
+              <Link
+                href={link.href}
+                className={clsx(
+                  currentActiveLocation?.includes(link.href)
+                    ? activeLinkClassName
+                    : linkClassName,
+                  hoverClassName,
+                  textClassName,
+                  "text-center lg:text-left border-b-[1px] font-light py-[0.75rem]",
+                  "flex flex-col"
+                )}
+                onClick={onLinkClick}
+              >
+                {link.name}
+              </Link>
+            </li>
+          ) : (
+            <motion.div>
+              <AnimatePresence>
+                <div
+                  className={clsx(
+                    currentActiveLocation?.includes(link.href)
+                      ? activeLinkClassName
+                      : linkClassName,
+                    hoverClassName,
+                    textClassName,
+                    "text-center lg:text-left font-light py-2",
+                    "flex flex-col"
+                  )}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  FORMS
+                </div>
+
+                {isOpen && (
+                  <motion.div
+                    key="dropdown-animation"
+                    initial="collapsed"
+                    animate="open"
+                    exit="collapsed"
+                    variants={{
+                      open: {
+                        rotateX: 0,
+                        y: 0,
+                        opacity: 1,
+                        height: "auto",
+                        transition: {
+                          duration: 0.3,
+                          mass: 0.8,
+                          type: "spring",
+                        },
+                        display: "block",
+                      },
+                      collapsed: {
+                        rotateX: -15,
+                        y: -320,
+                        opacity: 0,
+
+                        transition: {
+                          duration: 1,
+                        },
+                        transitionEnd: {
+                          display: "none",
+                        },
+                      },
+                    }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.04, 0.62, 0.23, 0.98],
+                    }}
+                    className={clsx(
+                      "text-center lg:text-left font-light",
+                      "flex flex-col"
+                    )}
+                  >
+                    <div className="flex flex-col">
+                      <p className="text-brand-lighter font-light text-lg">|</p>
+                      {link.dropdown?.map((item) => (
+                        <motion.div
+                          key={item.name}
+                          initial="collapsed"
+                          animate="open"
+                          exit="collapsed"
+                          variants={{
+                            open: { opacity: 1, height: "auto" },
+                            collapsed: { opacity: 0, height: 0 },
+                          }}
+                          transition={{
+                            duration: 0.8,
+                            ease: [0.04, 0.62, 0.23, 0.98],
+                          }}
+                          className={clsx(
+                            "text-center lg:text-left font-light pb-2",
+                            "flex flex-col"
+                          )}
+                        >
+                          <Link
+                            href={item.href}
+                            onClick={onLinkClick}
+                            className={clsx(
+                              currentActiveLocation?.includes(link.href)
+                                ? activeLinkClassName
+                                : linkClassName,
+                              hoverClassName,
+                              textClassName,
+                              "pb-2 text-brand-lighter font-light text-center lg:text-left py-[0.75rem]",
+                              "flex flex-col",
+                              isOpen
+                                ? "opacity-100 transition-all"
+                                : "opacity-0"
+                            )}
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </div>
       ))}
     </ul>
   );
@@ -286,6 +424,12 @@ const Header: React.FC<HeaderProps> = ({
   logoClassName,
   alt,
 }) => {
+  const [isClick, setIsClick] = useState<boolean>(false);
+  const ref = useRef(null);
+  useOnClickOutside(ref, () => {
+    setIsClick(false);
+  });
+
   return (
     <header className="fixed flex justify-between xl:justify-evenly w-screen items-center bg-white z-40 pb-2 md:pb-2 md:pl-4">
       <div className="m-0">
@@ -311,7 +455,7 @@ const Header: React.FC<HeaderProps> = ({
           </Button>
         </div>
         <Popover className="lg:hidden">
-          {({ open }) => (
+          {({ open, close }) => (
             <>
               <Popover.Button
                 className={clsx(
@@ -332,16 +476,19 @@ const Header: React.FC<HeaderProps> = ({
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute left-1/2 z-50 mt-3 w-screen -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl bg-white border-b-[1px]">
-                  <div className="pt-[calc(3%)]">
-                    <MenuLinks
-                      navigationLinks={navigationLinks}
-                      linkClassName={linkClassName}
-                      hoverClassName={hoverClassName}
-                      activeLinkClassName={activeLinkClassName}
-                      currentActiveLocation={currentActiveLocation}
-                    />
-                  </div>
+                <Popover.Panel className="absolute left-1/2 z-50 mt-10 w-screen -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl bg-white border-y-[2px] shadow-xl">
+                  {({ close }) => (
+                    <div>
+                      <MenuLinks
+                        navigationLinks={navigationLinks}
+                        linkClassName={linkClassName}
+                        hoverClassName={hoverClassName}
+                        activeLinkClassName={activeLinkClassName}
+                        currentActiveLocation={currentActiveLocation}
+                        onLinkClick={() => close()}
+                      />
+                    </div>
+                  )}
                 </Popover.Panel>
               </Transition>
             </>
