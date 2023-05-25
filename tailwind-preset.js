@@ -124,6 +124,10 @@ module.exports = {
         ".br-center": {
           "border-radius": "50%",
         },
+        ".br-right-footer": {
+          "border-radius":
+            "w-20 h-20 rounded-[25% 58% 30% 70% / 15% 25% 54% 67%]",
+        },
         ".img-settings": {
           position: "relative",
           "box-shadow": "0 1px 2px rgba(0, 0, 0, 0.0)",
@@ -136,6 +140,17 @@ module.exports = {
           perspective: "1000px",
           position: "absolute",
           transition: "all 0.4s ease-in-out",
+        },
+        ".img-wrap-footer": {
+          background: "#51868E",
+          "box-shadow": "0 0 0 40px rgba(255, 255, 255, 0.4)",
+          perspective: "1000px",
+          position: "absolute",
+          transition: "all 0.4s ease-in-out",
+        },
+        ".img-wrap-xl": {
+          width: "640px",
+          height: "640px",
         },
         ".img-wrap-sm": {
           width: "260px",
