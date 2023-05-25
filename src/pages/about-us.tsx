@@ -84,7 +84,9 @@ const AboutUs: React.FC = () => {
         </div>
         <img
           className="br-right bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base"
-          src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1682865302/richmond-dental/dr-richmond_wfufcc.png"
+          // src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1682865302/richmond-dental/dr-richmond_wfufcc.png"
+          // src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
+          src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_663/v1685050606/image-1_tkf616.png"
         />
       </div>
     </div>
