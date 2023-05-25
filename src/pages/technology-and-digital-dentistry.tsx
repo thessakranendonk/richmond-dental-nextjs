@@ -20,7 +20,7 @@ export interface TechnologyImageProps {
 const Technology: React.FC = () => {
   return (
     <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10 animate-fadeInFast transition">
-      <h1 className="text-center my-12 font-semibold text-2xl xl:text-3xl text-shadow-lg shadow-zinc-300">
+      <h1 className="text-center pt-24 sm:pt-0 my-12 font-semibold text-2xl xl:text-3xl text-shadow-lg shadow-zinc-300">
         Technology & Digital Dentistry
       </h1>
       <p className="font-extralight text-center mb-12 xl:max-w-xl xl:mx-auto xl:text-xl">
@@ -28,9 +28,12 @@ const Technology: React.FC = () => {
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-
-      <ServiceLinks links={RICHMOND_TECHNOLOGY} />
-      <ServiceList links={RICHMOND_TECHNOLOGY} />
+      <div className="mb-12">
+        <ServiceLinks links={RICHMOND_TECHNOLOGY} />
+      </div>
+      <div className="mt-24">
+        <ServiceList links={RICHMOND_TECHNOLOGY} />
+      </div>
     </div>
   );
 };

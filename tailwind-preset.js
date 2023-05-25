@@ -137,13 +137,17 @@ module.exports = {
           position: "absolute",
           transition: "all 0.4s ease-in-out",
         },
-        ".img-wrap-xl": {
-          width: "640px",
-          height: "640px",
-        },
         ".img-wrap-sm": {
           width: "260px",
           height: "260px",
+        },
+        ".img-wrap-md": {
+          width: "440px",
+          height: "440px",
+        },
+        ".img-wrap-xl": {
+          width: "640px",
+          height: "640px",
         },
         ".back-img": {
           display: "block",

@@ -38,14 +38,14 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
       <Header
         logo={logo.src}
         navigationLinks={navigationLinks}
+        currentActiveLocation={location.pathname}
         textClassName="group text-md transition-all duration-300 ease-in-out text-black font-light mx-8 text-zinc-600"
-        linkClassName="flex bg-left-bottom pb-2 lg:text-md mb-3 pt-3"
+        linkClassName="flex bg-left-bottom lg:text-md"
         logoClassName="ml-2 mt-2 mr-1"
         hoverClassName={clsx(
-          "flex bg-left-bottom pb-0.5 bg-gradient-to-r from-brand-lightest/40 to-brand-darkest bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
+          "flex bg-left-bottom hover:text-brand-lightest bg-gradient-to-r from-brand-lightest/40 to-brand-darkest bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
         )}
-        activeLinkClassName="text-brand-lighter lg:text-lg font-light mb-3 pt-3"
-        currentActiveLocation={location.pathname}
+        activeLinkClassName="text-brand-lightest font-normal lg:text-lg font-light"
       />
       <Content>{children}</Content>
       <Footer logo={logo.src} navigationLinks={navigationLinks} />
