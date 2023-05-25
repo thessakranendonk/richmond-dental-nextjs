@@ -5,6 +5,7 @@ import SignatureCanvas from "react-signature-canvas";
 import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
 import { toast } from "react-toastify";
+import PageHeading from "@/components/ui/PageHeading";
 
 const DentalRecordForm: React.FC = () => {
   const {
@@ -66,12 +67,9 @@ const DentalRecordForm: React.FC = () => {
 
   return (
     <div>
-      <div className="w-screen pt-24 pb-24 bg-[url('https://res.cloudinary.com/dybcfr6cd/image/upload/v1670110454/nordwood-themes-KcsKWw77Ovw-unsplash_wil93u.jpg')]">
-        <h1 className="relative z-10 text-center text-3xl xl:text-6xl mb-4 xl:mb-8 mt-8 sm:mt-0 text-white tracking-widest text-shadow-lg shadow-zinc-700">
-          Dental Records Release Form
-        </h1>
+      <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
+        <PageHeading title="Dental Records Release Form" />
       </div>
-      <div className="absolute h-[26rem] inset-0 bg-brand-lighter/90 to-black mix-blend-multiply" />
       <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
         {!isSubmitted ? (
           <form
