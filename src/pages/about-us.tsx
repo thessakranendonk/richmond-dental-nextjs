@@ -2,7 +2,7 @@ const AboutUs: React.FC = () => {
   return (
     <div className="w-[calc(10% - 10px)] mx-8 mt-24 flex flex-col gap-y-10 xl:mx-0 xl:w-screen relative z-10">
       <div className="xl:flex xl:flex-row xl:justify-between md:mt-12 xl:-mt-40">
-        <div className="xl:flex xl:flex-row xl:w-screen xl:justify-between">
+        <div className="hidden xl:flex xl:flex-row xl:w-screen xl:justify-between">
           <img
             className="img img-settings object-none br-left mt-40"
             src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg"
@@ -17,14 +17,20 @@ const AboutUs: React.FC = () => {
         </div>
 
         <div className="p-0 my-auto md:max-w-2xl text-center md:mx-auto xl:text-left px-20">
-          <h1 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-center text-shadow-lg shadow-zinc-300">
+          <h1 className="pt-16 lg:pt-0 font-semibold text-2xl md:text-3xl xl:text-5xl mb-8 xl:w-[32rem] mx-auto text-zinc-800 text-center text-shadow-lg shadow-zinc-300">
             About Us
           </h1>
-          <p className="text-zinc-500 text-center text-sm xl:text-lg">
+          <p className="text-zinc-500 text-center text-md font-light xl:text-lg">
             We believe that everyone can have a healthy smile for life and with
             our help it's easier than you think! We are passionate about helping
             patients to live better lives thanks to good oral health.
           </p>
+        </div>
+        <div className="xl:hidden mt-16">
+          <img
+            className="img-sm md:img-wrap-md img-settings br-left mx-auto mb-12"
+            src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg"
+          />
         </div>
       </div>
       <div className="w-screen -ml-8 xl:ml-0 xl:flex xl:flex-row xl:justify-between bg-clip-content text-transparent bg-brand-lightest/20 bg-gradient-to-tl from-brand-lightest via-brand-base to-brand-lightest">
