@@ -15,7 +15,7 @@ const HomePageLinks = [
     href: "/services",
     name: "Services",
     information:
-      "We can do everything a traditional dentist does with more precision and less waste to preserve and protect your healthy enamel.",
+      "Our team at Richmond West Dental will carefully select the correct treatment for your needs.  The core of all of our services is to maintain your oral health to the highest standards.",
     icon: <RiServiceLine className={iconClassName} />,
     hoverIcon: <RiServiceFill className={iconClassName} />,
   },
@@ -23,7 +23,7 @@ const HomePageLinks = [
     href: "/technology-and-digital-dentistry",
     name: "Technology",
     information:
-      "We can do everything a traditional dentist does with more precision and less waste to preserve and protect your healthy enamel.",
+      "The technology used at our office allows us to treat your dental needs with the highest quality and precision possible.",
     icon: <MdOutlineCamera className={iconClassName} />,
     hoverIcon: <MdCamera className={iconClassName} />,
   },
@@ -31,7 +31,7 @@ const HomePageLinks = [
     href: "/office-tour",
     name: "Office",
     information:
-      "You’ll enjoy a clean and modern aesthetic at our office located in the Lincoln Square neighborhood of Chicago, right next to the Western CTA Brown Line stop.",
+      "Our office is committed to Dental Excellence through maintaining a clean and immaculate environment as well as the most state of the art eulquipment.",
     icon: <HiOutlineOfficeBuilding className={iconClassName} />,
     hoverIcon: <HiOfficeBuilding className={iconClassName} />,
   },
