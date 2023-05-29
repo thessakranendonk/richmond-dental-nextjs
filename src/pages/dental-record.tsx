@@ -164,7 +164,7 @@ const DentalRecordForm: React.FC = () => {
               canvasProps={{
                 width: 500,
                 height: 100,
-                className: "border border-gray-300",
+                className: "border border-gray-300 rounded-lg w-full h-48",
               }}
             />
             {patientSignatureRef.current?.isEmpty() && (
