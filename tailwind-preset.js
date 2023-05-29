@@ -116,11 +116,22 @@ module.exports = {
           width: "680px",
           height: "680px",
         },
+        ".img-about-md": {
+          width: "400px",
+          height: "465px",
+        },
+        ".img-about-sm": {
+          width: "300px",
+          height: "365px",
+        },
         ".br-left": {
           "border-radius": "30% 70% 70% 30% / 30% 46% 54% 70% ",
         },
         ".br-right": {
           "border-radius": "20% 80% 25% 70% /30% 46% 54% 70%",
+        },
+        ".br-right-about": {
+          "border-radius": "30% 80% 25% 90% /40% 46% 54% 62%",
         },
         ".br-center": {
           "border-radius": "50%",
