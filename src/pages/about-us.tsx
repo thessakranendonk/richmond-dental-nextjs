@@ -83,7 +83,7 @@ const AboutUs: React.FC = () => {
           </p>
         </div>
         <img
-          className="md:img-about br-right-about bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base"
+          className="br-right-about bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about lg:h-auto lg:w-auto"
           src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
         />
       </div>
