@@ -117,7 +117,7 @@ module.exports = {
         },
         ".img-about": {
           width: "400px",
-          height: "460px",
+          height: "465px",
         },
         ".br-left": {
           "border-radius": "30% 70% 70% 30% / 30% 46% 54% 70% ",
