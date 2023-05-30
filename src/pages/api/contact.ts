@@ -22,6 +22,15 @@ const createHTMLToSend = (path: any, replacements: any) => {
   return htmlToSend;
 };
 
+export const config = {
+  api: {
+    responseLimit: false,
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+};
+
 const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const {
     email,
@@ -37,7 +46,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     : req.headers.referer?.includes("new-patient-form")
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
-  console.log(req.body);
   const templatePath =
     // "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates";
     "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
@@ -111,7 +119,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  if (patientSig) {
+  if (patientSig || req.body.data.patientSig) {
     pdf.addPage();
     pdf.text("Patient Signature: ", 50, 50);
     pdf.image(patientSig ? patientSig : req.body.data.patientSig, 50, 100, {
@@ -120,13 +128,14 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
-  if (parentSig) {
+  if (parentSig || req.body.data.parentSig) {
     pdf.text("Parent Signature: ", 50, 250);
     pdf.image(parentSig ? parentSig : req.body.data.parentSig, 50, 300, {
       width: 200,
       height: 100,
     });
   }
+
   if (frontInsuranceCardImage || backInsuranceCardImage) pdf.addPage();
   if (frontInsuranceCardImage) {
     pdf.text("Front of Insurance Card", 50, 50);
