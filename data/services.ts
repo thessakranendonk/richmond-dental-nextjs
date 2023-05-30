@@ -10,6 +10,8 @@ export const RICHMOND_SERVICES: {
     href: "/services#teeth-cleaning",
     id: "teeth-cleaning",
     img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_2680/v1685454630/cleanings_zqwvvt.jpg",
+    // img: "http://res.cloudinary.com/dyjj9jfc2/image/upload/v1685467986/cleanings_zqwvvt.jpg",
+
     description:
       "It starts here. A nice clean and healthy mouth will and can prevent tooth decay, gum disease and bad breath. Plus, afterwards your smile will be bright and beautiful! Call us if you haven’t had a cleaning and assessment in a while!",
   },
