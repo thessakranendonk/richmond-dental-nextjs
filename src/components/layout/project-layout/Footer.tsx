@@ -57,23 +57,27 @@ const FooterMenu: React.FC<Pick<FooterProps, "navigationLinks">> = ({
         />
 
         <ul className="flex flex-col mx-auto text-md gap-y-2 font-light text-white mt-4">
-          {navigationLinks.map((link) =>
-            link.name !== "FORMS" ? (
-              <li key={link.name} className="hover:font-medium">
-                <Link href={link.href}>{snakeCaseToTitleCase(link.name)}</Link>
-              </li>
-            ) : (
-              <div className="flex flex-col text-md gap-y-2">
-                {link.dropdown?.map((drop) => (
-                  <li key={drop.name} className="hover:font-medium">
-                    <Link href={drop.href}>
-                      {snakeCaseToTitleCase(drop.name)}
-                    </Link>
-                  </li>
-                ))}
-              </div>
-            )
-          )}
+          {navigationLinks.map((link) => (
+            <li key={link.name}>
+              {link.name !== "FORMS" ? (
+                <div className="hover:font-medium">
+                  <Link href={link.href}>
+                    {snakeCaseToTitleCase(link.name)}
+                  </Link>
+                </div>
+              ) : (
+                <ul className="flex flex-col text-md gap-y-2">
+                  {link.dropdown?.map((drop) => (
+                    <li key={drop.name} className="hover:font-medium">
+                      <Link href={drop.href}>
+                        {snakeCaseToTitleCase(drop.name)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
