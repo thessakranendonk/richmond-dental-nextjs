@@ -17,7 +17,7 @@ export const RICHMOND_TECHNOLOGY: {
     service: "Intra-Oral 3D Scanning with Trios®",
     href: "/technology-and-digital-dentistry#intra-oral-3d-scanning",
     id: "intra-oral-3d-scanning",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1685454625/3shape-3D-scanning_urhl68.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,h_1500,w_1000/v1685454625/3shape-3D-scanning_urhl68.jpg",
     description:
       "Ever have that experience where you have to hold your breath while a gooey, smelly, messy product is placed in your mouth to get a mold? With the introduction of highly precise and accurate Intra-Oral 3D Scanning with Trios®, that’s a thing of the past. 3D Scans are as simple as opening and closing – and the best part? You’re implants, crowns, veneers, and Invisalign treatment will be as accurate as possible!",
   },
