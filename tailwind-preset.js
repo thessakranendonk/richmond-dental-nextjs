@@ -182,6 +182,7 @@ module.exports = {
           width: "100%",
           height: "100%",
           "background-position": "center",
+          "background-size": "100%",
           transition: "all 0.6s ease-in-out",
           "transform-origin": "50% 100%",
           "z-index": "100",

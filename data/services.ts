@@ -9,8 +9,9 @@ export const RICHMOND_SERVICES: {
     service: "Teeth Cleaning",
     href: "/services#teeth-cleaning",
     id: "teeth-cleaning",
-    // img: "https://res.cloudinary.com/dybcfr6cd/image/upload/ar_1:1,c_fill,e_art:hokusai,g_auto,w_1000/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1683482596/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_2680/v1685454630/cleanings_zqwvvt.jpg",
+    // img: "http://res.cloudinary.com/dyjj9jfc2/image/upload/v1685467986/cleanings_zqwvvt.jpg",
+
     description:
       "It starts here. A nice clean and healthy mouth will and can prevent tooth decay, gum disease and bad breath. Plus, afterwards your smile will be bright and beautiful! Call us if you haven’t had a cleaning and assessment in a while!",
   },
@@ -18,7 +19,8 @@ export const RICHMOND_SERVICES: {
     service: "White Fillings & Cosmetic Procedures",
     href: "/services#white-fillings",
     id: "white-fillings",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5542-1-1024x683_qlrvgu.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_1600/v1685454630/white-fillings-and-cosmetics_kyfnid.jpg",
+
     description:
       "Tooth decay can only be cleaned out and replaced with a product that is similar to tooth structure. White composites will help protect your natural teeth and can also help reduce sensitivity or pain from cold or sweet foods. Cosmetic Crowns or Veneers can also help to achieve even better esthetic results! Call us if you think you need a white composite filling!",
   },
@@ -26,7 +28,8 @@ export const RICHMOND_SERVICES: {
     service: "Dental Implants",
     href: "/services#dental-implants",
     id: "dental-implants",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1685454625/dental-implant-downtown-toronto_wh52ov.jpg",
+
     description:
       "Missing a tooth or teeth? Titanium Dental Implants are the solution! They integrate with your natural jaw and gums and can be used to replace all manner of missing teeth. Ask us about this as a treatment option!",
   },
@@ -34,7 +37,8 @@ export const RICHMOND_SERVICES: {
     service: "Invisalign® & Orthodontics",
     href: "/services#invistalign-orthodontics",
     id: "invistalign-orthodontics",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1682719836/richmond-dental/DSC5543-1024x683_zdp76h.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_2100/v1685454625/Invisalign-downtown-toronto_gpfsqs.jpg",
+
     description:
       "A lot of people think that Invisalign helps to improve your cosmetics and smile, and they do! But they also play a key role in managing FUNCTIONAL problems with your teeth. They can improve tight spaces that are impossible to clean and reduce the risk of tooth and jaw damage in the future. Ask us about this if you have any questions!",
   },
@@ -42,7 +46,7 @@ export const RICHMOND_SERVICES: {
     service: "Teeth Whitening",
     href: "/services#teeth-whitening",
     id: "teeth-whitening",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489765/richmond-dental/richmond3_vnds9e.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1685454625/teeth-whitening-downtown-chinatown-toronto_jbf4b8.jpg",
     description:
       "Whiten your teeth to achieve your perfect smile! You know what the best part about teeth whitening is? Once your teeth are white, you will be MORE inclined to keep them as clean as possible, it’s a win-win situation! Not everything however can be whitened so please call us if you need clarification!",
   },
