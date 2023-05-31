@@ -157,12 +157,12 @@ const NewPatientForm: React.FC = () => {
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   const labelClassName = "ml-4 mt-2 text-2xl font-medium";
   const inputClassName =
-    "mb-2 ml-4 mt-4 rounded-xl outline-none border border-zinc-400/60 focus:border-brand-base placeholder-sm";
+    "mb-2 ml-4 mt-4 rounded-xl border border-zinc-400/60 focus:border-brand-base focus:outline-none focus:ring-0 placeholder-sm";
   const selectClassName =
-    "ml-4 mb-2 rounded-xl outline-none border border-zinc-400/60 focus:border-brand-base text-md";
+    "ml-4 mb-2 rounded-xl border border-zinc-400/60 focus:outline-brand-base focus:outline-none focus:ring-0 text-md";
   const subLabelClassName = "ml-6 mt-2 mb-2 font-medium";
   const textAreaClassName =
-    "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl outline-none border border-zinc-400/60 focus:border-brand-base";
+    "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60";
   const clearButtonClassName =
     "bg-brand-base w-1/4 text-center font-medium px-3 text-xs h-6 mt-3 text-white rounded-lg border-2 border-brand-base";
 
