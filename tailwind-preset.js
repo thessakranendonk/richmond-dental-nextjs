@@ -113,8 +113,8 @@ module.exports = {
           height: "280px",
         },
         ".img": {
-          width: "680px",
-          height: "680px",
+          width: "600px",
+          height: "600px",
         },
         ".img-about-md": {
           width: "400px",
@@ -160,10 +160,6 @@ module.exports = {
           position: "absolute",
           transition: "all 0.4s ease-in-out",
         },
-        ".img-wrap-xl": {
-          width: "640px",
-          height: "640px",
-        },
         ".img-wrap-sm": {
           width: "260px",
           height: "260px",
@@ -173,8 +169,8 @@ module.exports = {
           height: "440px",
         },
         ".img-wrap-xl": {
-          width: "640px",
-          height: "640px",
+          width: "560px",
+          height: "560px",
         },
         ".back-img": {
           display: "block",
@@ -182,7 +178,6 @@ module.exports = {
           width: "100%",
           height: "100%",
           "background-position": "center",
-          "background-size": "100%",
           transition: "all 0.6s ease-in-out",
           "transform-origin": "50% 100%",
           "z-index": "100",
