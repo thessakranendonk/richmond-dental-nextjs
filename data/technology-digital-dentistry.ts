@@ -9,7 +9,7 @@ export const RICHMOND_TECHNOLOGY: {
     service: "High Resolution Full Frame DSLR Cameras",
     href: "/technology-and-digital-dentistry#high-resolution-cameras",
     id: "high-resolution-cameras",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1685454625/DSLR-cameras_ezwku4.png",
+    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1685491728/richmond-dental/camera_foueie.jpg",
     description:
       "Digital dentistry starts with what the eyes can see. We use state of the art DSLR Cameras to not only document the initial and improved state of your oral health, but hopefully through time, to help you understand problem areas so that you can continue at home to maintain your oral health in a positive way.",
   },
@@ -25,7 +25,7 @@ export const RICHMOND_TECHNOLOGY: {
     service: "Dental Loupes and Magnification",
     href: "/technology-and-digital-dentistry#dental-loupes-and-magnification",
     id: "dental-loupes-and-magnification",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1685454625/dental-loupes-and-magnification_kgqaxh.png",
+    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1685491730/richmond-dental/glasses-square_ayaazp.jpg",
     description:
       "NO Dental treatment should be done with just the naked eye. We use 4.5x magnification in order to do everything from your cleaning to your implant placement for the most accurate and reliable treatment possible!",
   },
