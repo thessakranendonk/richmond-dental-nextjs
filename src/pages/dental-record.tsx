@@ -77,7 +77,7 @@ const DentalRecordForm: React.FC = () => {
           >
             <input
               type="date"
-              className={`${inputClassName} outline-none border border-zinc-400/60 focus:border-brand-base`}
+              className={`${inputClassName} border border-zinc-400/60 focus:border-brand-base outline-none`}
               {...register("currentDate", { required: true })}
               aria-invalid={errors.currentDate ? "true" : "false"}
             />
