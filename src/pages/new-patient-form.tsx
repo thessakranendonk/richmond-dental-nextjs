@@ -190,7 +190,7 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="First name *"
+              placeholder="First Name (ex: John/Jane) *"
               className={clsx(inputClassName, "w-1/2")}
               {...register("firstName", { required: true, maxLength: 80 })}
               aria-invalid={errors.firstName ? "true" : "false"}
@@ -203,7 +203,7 @@ const NewPatientForm: React.FC = () => {
 
             <input
               type="text"
-              placeholder="Last name *"
+              placeholder="Last Name (ex: Doe) *"
               className={clsx(inputClassName, "w-1/2")}
               {...register("lastName", { required: true, maxLength: 80 })}
               aria-invalid={errors.lastName ? "true" : "false"}
@@ -217,7 +217,7 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Date of Birth *"
+              placeholder="Date of Birth (DD/MM/YYYY) *"
               className={clsx(inputClassName, "w-1/2")}
               {...register("dateOfBirth", { required: true })}
               aria-invalid={errors.dateOfBirth ? "true" : "false"}
@@ -260,26 +260,16 @@ const NewPatientForm: React.FC = () => {
             </div>
           )}
 
-          <label className={subLabelClassName}>Pronoun</label>
-          <Controller
-            render={({ field }) => (
-              <select {...field} className={inputClassName}>
-                <option value="Select">Select</option>
-                <option value="He/Him">Male</option>
-                <option value="She/Her">Female</option>
-                <option value="They/Them">They/Them</option>
-                <option value="Name Only">Name Only</option>
-              </select>
-            )}
-            control={control}
-            aria-invalid={errors.pronouns ? "true" : "false"}
-            name="pronouns"
-          />
-          {errors.gender?.type === "required" && (
-            <div className={errorClassName} role="alert">
-              <MdOutlineError className="mt-1" /> Gender is required
-            </div>
-          )}
+          <label className={subLabelClassName}>Pronouns</label>
+
+          <select className={inputClassName}>
+            <option value="Select">Select</option>
+            <option value="He/Him">Male</option>
+            <option value="She/Her">Female</option>
+            <option value="They/Them">They/Them</option>
+            <option value="Name Only">Name Only</option>
+          </select>
+
           <label className={subLabelClassName}>Marital Status</label>
 
           <select className={inputClassName}>
@@ -294,13 +284,13 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Home Phone"
+              placeholder="Home Phone (123-456-7890)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("homePhone", { minLength: 6, maxLength: 12 })}
             />
             <input
               type="text"
-              placeholder="Mobile number"
+              placeholder="Mobile Phone (123-456-7890)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("mobilePhone", { minLength: 6, maxLength: 12 })}
             />
@@ -308,7 +298,7 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Work Phone"
+              placeholder="Work Phone (123-456-7890)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("workPhone", { minLength: 6, maxLength: 12 })}
             />
@@ -321,7 +311,7 @@ const NewPatientForm: React.FC = () => {
           </div>
           <input
             type="text"
-            placeholder="Email"
+            placeholder="Email (youremail@emailaddress.com)"
             className=" ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
             {...register("email", { pattern: /^\S+@\S+$/i })}
             aria-invalid={errors.email ? "true" : "false"}
@@ -339,15 +329,9 @@ const NewPatientForm: React.FC = () => {
             render={({ field }) => (
               <select {...field} className={inputClassName}>
                 <option value="Select">Select</option>
-                <option value="Search Engine/Social Media">
-                  Search Engine/Social Media
-                </option>
-                <option value="Map">Map</option>
-                <option value="Our Existing Patient">
-                  Our Existing Patient
-                </option>
-                <option value="Newspaper/Flyer">Newspaper/Flyer</option>
-                <option value="Other">Other</option>
+                <option value="GoogleMaps">Google Maps</option>
+                <option value="FriendReferral">Friend Referral</option>
+                <option value="WalkBy">Walk By</option>
               </select>
             )}
             control={control}
@@ -366,7 +350,7 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Street *"
+              placeholder="Street (12 Main Street) *"
               className={clsx(inputClassName, "w-1/2")}
               {...register("address", { required: true })}
               aria-invalid={errors.address ? "true" : "false"}
@@ -387,7 +371,7 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="City *"
+              placeholder="City (Toronto) *"
               className={clsx(inputClassName, "w-1/2")}
               {...register("city", { required: true })}
               aria-invalid={errors.city ? "true" : "false"}
@@ -436,7 +420,7 @@ const NewPatientForm: React.FC = () => {
           </div>
           <input
             type="text"
-            placeholder="Postal Code *"
+            placeholder="Postal Code (L7H 9G6) *"
             className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
             {...register("postalCode", { required: true })}
             aria-invalid={errors.postalCode ? "true" : "false"}
@@ -466,13 +450,13 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Subscriber Name"
+              placeholder="Name of Primary Account Holder (ex: John/Jane Doe)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("subscriberName")}
             />
             <input
               type="text"
-              placeholder="Insurance Company"
+              placeholder="Insurance Company (ex: Canada Life)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("insuranceCompany")}
             />
@@ -480,20 +464,20 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Phone Number"
+              placeholder="Phone Number of Primart Account Holder (123-456-7890)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("insuranceTel", { minLength: 6, maxLength: 12 })}
             />
             <input
               type="text"
-              placeholder="Plan/Policy Number"
+              placeholder="Plan/Policy Number (ex: 634590)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("planNum")}
             />
           </div>
           <input
             type="text"
-            placeholder="Subscriber ID/Certificate #"
+            placeholder="Certificate Number (ex: 123456789)"
             className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
             {...register("subscriberId")}
           />
@@ -517,7 +501,7 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Name *"
+              placeholder="Name of Emergency Contact (ex: Jane/John Doe) *"
               className={clsx(inputClassName, "w-1/2")}
               {...register("emerContact", { required: true })}
               aria-invalid={errors.emerContact ? "true" : "false"}
@@ -530,14 +514,14 @@ const NewPatientForm: React.FC = () => {
 
             <input
               type="text"
-              placeholder="Relationship"
+              placeholder="Relationship (ex: Parent, Sibling, Partner)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("emerRelationship")}
             />
           </div>
           <input
             type="text"
-            placeholder="Phone Number"
+            placeholder="Emergency Contact Phone Number (123-456-7890)"
             className={selectClassName}
             {...register("emerTel", { minLength: 6, maxLength: 12 })}
           />
@@ -545,13 +529,13 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="text"
-              placeholder="Family Doctor's Name"
+              placeholder="Family Doctor's Name (ex: Dr. John/Jane Doe)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("famDocName")}
             />
             <input
               type="text"
-              placeholder="Family Doctor's Address"
+              placeholder="Family Doctor's Address (12 Main Street)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("famDocAddress")}
             />
@@ -559,13 +543,13 @@ const NewPatientForm: React.FC = () => {
           <div className="flex flex-row">
             <input
               type="tel"
-              placeholder="Family Doctor's Phone"
+              placeholder="Family Doctor's Phone (123-456-7890)"
               className={clsx(inputClassName, "w-1/2")}
               {...register("famDocTel", { minLength: 6, maxLength: 12 })}
             />
             <input
               type="text"
-              placeholder="When was your last medical check-up?"
+              placeholder="When was your last medical check-up (DD/MM/YYYY)?"
               className={clsx(inputClassName, "w-1/2")}
               {...register("medCheck")}
             />
@@ -1069,7 +1053,7 @@ const NewPatientForm: React.FC = () => {
           />
           <input
             type="text"
-            placeholder="When was your last dental visit?"
+            placeholder="When was your last dental visit (DD/MM/YYYY)?"
             className="ml-4 mt-4 rounded-xl"
             {...register("lastVisit")}
           />
@@ -1085,7 +1069,7 @@ const NewPatientForm: React.FC = () => {
           </select>
           <input
             type="text"
-            placeholder="When was your last dental x-ray?"
+            placeholder="When was your last dental x-ray (DD/MM/YYYY)?"
             className="ml-4 mt-4 rounded-xl"
             {...register("lastXray")}
           />
