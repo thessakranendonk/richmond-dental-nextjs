@@ -243,7 +243,7 @@ const NewPatientForm: React.FC = () => {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Trans">Other</option>
-                <option value="Other">Other</option>
+                <option value="Non-Binary">Other</option>
                 <option value="Prefer Not To Disclose">Other</option>
               </select>
             )}
