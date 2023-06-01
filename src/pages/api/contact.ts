@@ -107,7 +107,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   pdf.text("Date:", 50, 170);
   pdf.fontSize(14);
   pdf.text(date, 100, 170);
-
+  alterTextForForm(JSON.stringify(req.body.data ? req.body.data : req.body));
   pdf.list(
     alterTextForForm(JSON.stringify(req.body.data ? req.body.data : req.body)),
     50,
