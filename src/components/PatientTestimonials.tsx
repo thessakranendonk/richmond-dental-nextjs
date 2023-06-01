@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { createRef, useState } from "react";
 import { PATIENT_TESTIMONIALS } from "../../data/patient-testimonials";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { RiDoubleQuotesL } from "react-icons/ri";
 
 const slideClassName =
   "h-[32rem] md:h-80 xl:h-[20rem] max-w-3xl rounded-lg shadow-lg bg-white";
@@ -92,7 +91,10 @@ const OfficeTour: React.FC = () => {
                 <div>
                   <div className="flex justify-center pt-12 pb-4">
                     {testimonial.rating.split("").map(() => (
-                      <AiFillStar className="text-amber-500 md:text-xl" />
+                      <AiFillStar
+                        key={i}
+                        className="text-amber-500 md:text-xl"
+                      />
                     ))}
                     {testimonial.rating.split("").length === 4 ? (
                       <AiOutlineStar />
