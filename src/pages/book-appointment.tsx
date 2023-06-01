@@ -34,7 +34,8 @@ const BookingForm: React.FC = () => {
     }
   };
 
-  const inputClassName = "mb-2 rounded-xl border-zinc-400/60";
+  const inputClassName =
+    "mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0";
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   return (
     <div>
