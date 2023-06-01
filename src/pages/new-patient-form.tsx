@@ -263,7 +263,11 @@ const NewPatientForm: React.FC = () => {
 
             <label className={subLabelClassName}>Pronouns</label>
 
-            <select className={inputClassName}>
+            <select
+              id="pronouns"
+              className={inputClassName}
+              {...register("pronouns")}
+            >
               <option value="Select">Select</option>
               <option value="He/Him">Male</option>
               <option value="She/Her">Female</option>
