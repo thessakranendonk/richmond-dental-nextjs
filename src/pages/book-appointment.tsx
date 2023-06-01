@@ -55,7 +55,7 @@ const BookingForm: React.FC = () => {
             <input
               className={inputClassName}
               type="text"
-              placeholder="First name"
+              placeholder="First Name (ex: John/Jane)"
               {...register("firstName", { required: true, maxLength: 80 })}
               aria-invalid={errors.firstName ? "true" : "false"}
             />
@@ -67,7 +67,7 @@ const BookingForm: React.FC = () => {
             <input
               className={inputClassName}
               type="text"
-              placeholder="Last name"
+              placeholder="Last Name (ex: Doe)"
               {...register("lastName", { required: true, maxLength: 100 })}
               aria-invalid={errors.lastName ? "true" : "false"}
             />
@@ -79,7 +79,7 @@ const BookingForm: React.FC = () => {
             <input
               className={inputClassName}
               type="tel"
-              placeholder="Phone number"
+              placeholder="Phone Number (123-456-7890)"
               {...register("phoneNumber", {
                 required: true,
                 minLength: 6,
@@ -95,7 +95,7 @@ const BookingForm: React.FC = () => {
             <input
               className={inputClassName}
               type="text"
-              placeholder="Email"
+              placeholder="Email (youremail@emailaddress.com)"
               {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
               aria-invalid={errors.email ? "true" : "false"}
             />
