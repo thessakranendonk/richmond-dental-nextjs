@@ -242,15 +242,38 @@ const NewPatientForm: React.FC = () => {
                 <option value="Select">Select</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="Trans">Other</option>
-                <option value="Non-Binary">Other</option>
-                <option value="Prefer Not To Disclose">Other</option>
+                <option value="Trans">Trans</option>
+                <option value="Non-Binary">Non-Binary</option>
+                <option value="Prefer Not To Disclose">
+                  Prefer Not To Disclose
+                </option>
               </select>
             )}
             rules={{ required: true }}
             control={control}
             aria-invalid={errors.gender ? "true" : "false"}
             name="gender"
+          />
+          {errors.gender?.type === "required" && (
+            <div className={errorClassName} role="alert">
+              <MdOutlineError className="mt-1" /> Gender is required
+            </div>
+          )}
+
+          <label className={subLabelClassName}>Pronoun</label>
+          <Controller
+            render={({ field }) => (
+              <select {...field} className={inputClassName}>
+                <option value="Select">Select</option>
+                <option value="He/Him">Male</option>
+                <option value="She/Her">Female</option>
+                <option value="They/Them">They/Them</option>
+                <option value="Name Only">Name Only</option>
+              </select>
+            )}
+            control={control}
+            aria-invalid={errors.pronouns ? "true" : "false"}
+            name="pronouns"
           />
           {errors.gender?.type === "required" && (
             <div className={errorClassName} role="alert">
@@ -894,8 +917,8 @@ const NewPatientForm: React.FC = () => {
             {...register("otherAllergies")}
           />
           <label className={subLabelClassName}>
-            Have you taken any long term medicaions in the past? Prescription or
-            Non-Prescription
+            Have you taken any long term medications in the past? Prescription
+            or Non-Prescription
           </label>
           <select className={selectClassName} {...register("longTermMeds")}>
             <option defaultValue="">Select</option>
