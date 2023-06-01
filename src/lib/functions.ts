@@ -12,9 +12,14 @@ export const alterTextForForm = (text: string) => {
     .replace(/:/gm, ": ")
     .replace(/patientSig:(.*)[^}]/gm, "")
     .replace(/File:.*/gm, "");
-  // .match(/(File:)(?s)(.*$)/gm);
-  return removedCharacters
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .split(",")
-    .map((i) => snakeCaseToTitleCase(i));
+  return (
+    removedCharacters
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/,(?=[^\[]*\])/gm, " + ")
+      .replace(/\[|\]/gm, "")
+      // transform props to readable text example: firstName -> First Name
+
+      .split(",")
+      .map((i) => snakeCaseToTitleCase(i))
+  );
 };
