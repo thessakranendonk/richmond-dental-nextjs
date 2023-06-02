@@ -47,8 +47,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
   const templatePath =
-    "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates";
-  // "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
+    // "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates";
+    "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
 
   const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
@@ -72,8 +72,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     let pdfData = Buffer.concat(buffers);
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.office365.com",
-      // host: "smtp.gmail.com",
+      // host: "smtp.office365.com",
+      host: "smtp.gmail.com",
       auth: {
         user: process.env.CONTACT_FORM_RECEIVE_EMAIL,
         pass: process.env.CONTACT_FORM_PASS,
@@ -83,8 +83,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       transporter.sendMail({
         from: email,
-        to: "felix.lai@hotmail.com",
-        // to: "thessakranendonk@gmail.com",
+        // to: "felix.lai@hotmail.com",
+        to: "thessakranendonk@gmail.com",
         subject: `Contact form submission from ${name}`,
         html: htmlToSend,
         attachments: [
