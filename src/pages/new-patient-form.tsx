@@ -6,6 +6,7 @@ import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 import PageHeading from "@/components/ui/PageHeading";
+import { FileInput } from "flowbite-react";
 
 const NewPatientForm: React.FC = () => {
   const {
@@ -488,28 +489,42 @@ const NewPatientForm: React.FC = () => {
               className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
               {...register("subscriberId")}
             />
-            <label
-              className="ml-4 mb-1 block text-sm font-medium text-gray-900 dark:text-white"
-              htmlFor="frontInsuranceCard"
-            >
-              Front of Insurance Card
-            </label>
-            <input
-              className=" block ml-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              type="file"
-              id="frontInsuranceCard"
-              {...register("frontInsuranceCard")}
-              accept="image/"
-              onChange={onFileChangeFront}
-            />
-            <label className="ml-4 mt-3 mb-1">Back of Insurance Card</label>
-            <input
-              className="ml-4 mb-3 border-none"
-              type="file"
-              {...register("backInsuranceCard")}
-              accept="image/"
-              onChange={onFileChangeBack}
-            />
+
+            <div className="flex flex-row">
+              <div>
+                <label
+                  className="ml-4 mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="frontInsuranceCard"
+                >
+                  Front of Insurance Card
+                </label>
+                <input
+                  className="block ml-4 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none "
+                  type="file"
+                  id="frontInsuranceCard"
+                  {...register("frontInsuranceCard")}
+                  accept="image/"
+                  onChange={onFileChangeFront}
+                />
+              </div>
+              <div>
+                <label
+                  className="ml-4 mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="backInsuranceCard"
+                >
+                  Back of Insurance Card
+                </label>
+                <input
+                  className="block ml-4 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none "
+                  id="backInsuranceCard"
+                  type="file"
+                  {...register("backInsuranceCard")}
+                  accept="image/"
+                  onChange={onFileChangeBack}
+                />
+              </div>
+            </div>
+
             <label className={labelClassName}>Emergency Contact *</label>
             <div className="flex flex-row">
               <input
