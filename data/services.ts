@@ -10,8 +10,6 @@ export const RICHMOND_SERVICES: {
     href: "/services#teeth-cleaning",
     id: "teeth-cleaning",
     img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_900/v1685724965/pexels-daniel-xavier-1239291_ul5anf.jpg",
-    // img: "http://res.cloudinary.com/dyjj9jfc2/image/upload/v1685467986/cleanings_zqwvvt.jpg",
-
     description:
       "It starts here. A nice clean and healthy mouth will and can prevent tooth decay, gum disease and bad breath. Plus, afterwards your smile will be bright and beautiful! Call us if you haven’t had a cleaning and assessment in a while!",
   },
@@ -20,7 +18,6 @@ export const RICHMOND_SERVICES: {
     href: "/services#white-fillings",
     id: "white-fillings",
     img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,h_600,w_1100/v1685454630/white-fillings-and-cosmetics_kyfnid.jpg",
-
     description:
       "Tooth decay can only be cleaned out and replaced with a product that is similar to tooth structure. White composites will help protect your natural teeth and can also help reduce sensitivity or pain from cold or sweet foods. Cosmetic Crowns or Veneers can also help to achieve even better esthetic results! Call us if you think you need a white composite filling!",
   },
@@ -29,7 +26,6 @@ export const RICHMOND_SERVICES: {
     href: "/services#dental-implants",
     id: "dental-implants",
     img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_900/v1685454625/dental-implant-downtown-toronto_wh52ov.jpg",
-
     description:
       "Missing a tooth or teeth? Titanium Dental Implants are the solution! They integrate with your natural jaw and gums and can be used to replace all manner of missing teeth. Ask us about this as a treatment option!",
   },
@@ -38,7 +34,6 @@ export const RICHMOND_SERVICES: {
     href: "/services#invistalign-orthodontics",
     id: "invistalign-orthodontics",
     img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1685491725/richmond-dental/dental-smile-square_axqmo2.jpg",
-
     description:
       "A lot of people think that Invisalign helps to improve your cosmetics and smile, and they do! But they also play a key role in managing FUNCTIONAL problems with your teeth. They can improve tight spaces that are impossible to clean and reduce the risk of tooth and jaw damage in the future. Ask us about this if you have any questions!",
   },
