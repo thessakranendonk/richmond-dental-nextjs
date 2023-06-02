@@ -276,8 +276,8 @@ const NewPatientForm: React.FC = () => {
                     {...register("pronouns")}
                   >
                     <option value="Select">Select</option>
-                    <option value="He/Him">Male</option>
-                    <option value="She/Her">Female</option>
+                    <option value="He/Him">He/Him</option>
+                    <option value="She/Her">She/Her</option>
                     <option value="They/Them">They/Them</option>
                     <option value="Name Only">Name Only</option>
                   </select>
@@ -505,7 +505,7 @@ const NewPatientForm: React.FC = () => {
                   className="ml-4 mb-1 block text-sm font-medium text-gray-900 dark:text-white"
                   htmlFor="frontInsuranceCard"
                 >
-                  Front of Insurance Card
+                  Front of Insurance Card (MAX. 10MB)
                 </label>
                 <input
                   className="block ml-4 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none "
@@ -521,7 +521,7 @@ const NewPatientForm: React.FC = () => {
                   className="ml-4 mb-1 block text-sm font-medium text-gray-900 dark:text-white"
                   htmlFor="backInsuranceCard"
                 >
-                  Back of Insurance Card
+                  Back of Insurance Card (MAX. 10MB)
                 </label>
                 <input
                   className="block ml-4 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none "
