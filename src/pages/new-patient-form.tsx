@@ -167,7 +167,7 @@ const NewPatientForm: React.FC = () => {
     "ml-4 mb-2 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0 text-md";
   const subLabelClassName = "ml-6 mt-2 font-medium";
   const textAreaClassName =
-    "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-1";
+    "mb-2 ml-4 mt-4 h-40 ml-4 mt-4 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0";
   const clearButtonClassName =
     "bg-brand-base w-1/4 text-center font-medium px-3 text-xs h-6 mt-3 text-white rounded-lg border-2 border-brand-base";
 
@@ -327,7 +327,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="text"
               placeholder="Email"
-              className=" ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
+              className=" ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0 "
               {...register("email", { pattern: /^\S+@\S+$/i })}
               aria-invalid={errors.email ? "true" : "false"}
             />
@@ -436,7 +436,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="text"
               placeholder="Postal Code (L7H 9G6) *"
-              className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
+              className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0"
               {...register("postalCode", { required: true })}
               aria-invalid={errors.postalCode ? "true" : "false"}
             />
@@ -495,7 +495,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="text"
               placeholder="Certificate Number (ex: 123456789)"
-              className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
+              className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0"
               {...register("subscriberId")}
             />
 
@@ -1095,7 +1095,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="text"
               placeholder="When was your last dental visit (DD/MM/YYYY)?"
-              className="ml-4 mt-4 rounded-xl"
+              className="ml-4 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
               {...register("lastVisit")}
             />
             <label className={subLabelClassName}>
@@ -1111,7 +1111,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="text"
               placeholder="When was your last dental x-ray (DD/MM/YYYY)?"
-              className="ml-4 mt-4 rounded-xl"
+              className="ml-4 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
               {...register("lastXray")}
             />
             <label className={subLabelClassName}>
@@ -1202,7 +1202,7 @@ const NewPatientForm: React.FC = () => {
               * Date:
               <input
                 type="date"
-                className="w-40 ml-1 mt-4 rounded-xl"
+                className="w-40 ml-1 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
                 {...register("date", { required: true })}
                 aria-invalid={errors.date ? "true" : "false"}
               />
