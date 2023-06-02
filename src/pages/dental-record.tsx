@@ -103,7 +103,7 @@ const DentalRecordForm: React.FC = () => {
 
             <input
               type="text"
-              placeholder="First Name (ex: John/Jane)"
+              placeholder="First Name"
               className={`${inputClassName} border border-zinc-400/60 focus:border-brand-base focus:outline-none focus:ring-0`}
               {...register("firstName", { required: true, maxLength: 80 })}
               aria-invalid={errors.firstName ? "true" : "false"}
@@ -115,7 +115,7 @@ const DentalRecordForm: React.FC = () => {
             )}
             <input
               type="text"
-              placeholder="Last name (ex: Doe)"
+              placeholder="Last name"
               className={`${inputClassName} border border-zinc-400/60 focus:border-brand-base focus:outline-none focus:ring-0`}
               {...register("lastName", { required: true, maxLength: 100 })}
               aria-invalid={errors.lastName ? "true" : "false"}
