@@ -17,7 +17,9 @@ export const RICHMOND_SERVICES: {
     service: "White Fillings & Cosmetic Procedures",
     href: "/services#white-fillings",
     id: "white-fillings",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,h_600,w_1100/v1685454630/white-fillings-and-cosmetics_kyfnid.jpg",
+    // img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_600/v1685731055/pexels-polina-zimmerman-4687413_azwk0f.jpg",
+    // img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_500/v1685731414/Screenshot_2023-06-02_at_2.43.25_PM_y90yuo.png",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_900/v1685731060/pexels-cedric-fauntleroy-4269700_kygvnm.jpg",
     description:
       "Tooth decay can only be cleaned out and replaced with a product that is similar to tooth structure. White composites will help protect your natural teeth and can also help reduce sensitivity or pain from cold or sweet foods. Cosmetic Crowns or Veneers can also help to achieve even better esthetic results! Call us if you think you need a white composite filling!",
   },
