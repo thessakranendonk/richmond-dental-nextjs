@@ -17,9 +17,7 @@ export const RICHMOND_SERVICES: {
     service: "White Fillings & Cosmetic Procedures",
     href: "/services#white-fillings",
     id: "white-fillings",
-    // img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_600/v1685731055/pexels-polina-zimmerman-4687413_azwk0f.jpg",
-    // img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_500/v1685731414/Screenshot_2023-06-02_at_2.43.25_PM_y90yuo.png",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_900/v1685731060/pexels-cedric-fauntleroy-4269700_kygvnm.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_1050/v1685736874/white-fillings_guxrqk.png",
     description:
       "Tooth decay can only be cleaned out and replaced with a product that is similar to tooth structure. White composites will help protect your natural teeth and can also help reduce sensitivity or pain from cold or sweet foods. Cosmetic Crowns or Veneers can also help to achieve even better esthetic results! Call us if you think you need a white composite filling!",
   },
@@ -35,7 +33,7 @@ export const RICHMOND_SERVICES: {
     service: "Invisalign® & Orthodontics",
     href: "/services#invistalign-orthodontics",
     id: "invistalign-orthodontics",
-    img: "https://res.cloudinary.com/dybcfr6cd/image/upload/v1685491725/richmond-dental/dental-smile-square_axqmo2.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_750/v1685735849/pexels-arvind-philomin-11887613_qrpuyi.jpg",
     description:
       "A lot of people think that Invisalign helps to improve your cosmetics and smile, and they do! But they also play a key role in managing FUNCTIONAL problems with your teeth. They can improve tight spaces that are impossible to clean and reduce the risk of tooth and jaw damage in the future. Ask us about this if you have any questions!",
   },
