@@ -236,45 +236,54 @@ const NewPatientForm: React.FC = () => {
                 {...register("preferredName")}
               />
             </div>
+            <div>
+              <div className="flex flex-row">
+                <div className="flex flex-col">
+                  <label className={subLabelClassName}>Gender *</label>
+                  <Controller
+                    render={({ field }) => (
+                      <select
+                        {...field}
+                        className={`${inputClassName} lg:w-60 sm:w-32`}
+                      >
+                        <option value="Select">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Trans">Trans</option>
+                        <option value="Non-Binary">Non-Binary</option>
+                        <option value="Prefer Not To Disclose">
+                          Prefer Not To Disclose
+                        </option>
+                      </select>
+                    )}
+                    rules={{ required: true }}
+                    control={control}
+                    aria-invalid={errors.gender ? "true" : "false"}
+                    name="gender"
+                  />
+                  {errors.gender?.type === "required" && (
+                    <div className={errorClassName} role="alert">
+                      <MdOutlineError className="mt-1" /> Gender is required
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <label className={subLabelClassName}>Pronouns</label>
 
-            <label className={subLabelClassName}>Gender *</label>
-            <Controller
-              render={({ field }) => (
-                <select {...field} className={inputClassName}>
-                  <option value="Select">Select</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Trans">Trans</option>
-                  <option value="Non-Binary">Non-Binary</option>
-                  <option value="Prefer Not To Disclose">
-                    Prefer Not To Disclose
-                  </option>
-                </select>
-              )}
-              rules={{ required: true }}
-              control={control}
-              aria-invalid={errors.gender ? "true" : "false"}
-              name="gender"
-            />
-            {errors.gender?.type === "required" && (
-              <div className={errorClassName} role="alert">
-                <MdOutlineError className="mt-1" /> Gender is required
+                  <select
+                    id="pronouns"
+                    className={`${inputClassName} lg:w-60 sm:w-32`}
+                    {...register("pronouns")}
+                  >
+                    <option value="Select">Select</option>
+                    <option value="He/Him">Male</option>
+                    <option value="She/Her">Female</option>
+                    <option value="They/Them">They/Them</option>
+                    <option value="Name Only">Name Only</option>
+                  </select>
+                </div>
               </div>
-            )}
-
-            <label className={subLabelClassName}>Pronouns</label>
-
-            <select
-              id="pronouns"
-              className={inputClassName}
-              {...register("pronouns")}
-            >
-              <option value="Select">Select</option>
-              <option value="He/Him">Male</option>
-              <option value="She/Her">Female</option>
-              <option value="They/Them">They/Them</option>
-              <option value="Name Only">Name Only</option>
-            </select>
+            </div>
 
             <label className={subLabelClassName}>Marital Status</label>
 
