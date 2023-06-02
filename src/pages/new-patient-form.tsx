@@ -533,7 +533,6 @@ const NewPatientForm: React.FC = () => {
                 />
               </div>
             </div>
-
             <label className={labelClassName}>Emergency Contact *</label>
             <div className="flex flex-row">
               <input
@@ -548,7 +547,6 @@ const NewPatientForm: React.FC = () => {
                   <MdOutlineError className="mt-1" /> Name is required
                 </div>
               )}
-
               <input
                 type="text"
                 placeholder="Relationship (ex: Parent, Sibling, Partner)"
