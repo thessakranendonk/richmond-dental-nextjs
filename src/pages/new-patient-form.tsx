@@ -191,7 +191,7 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="First Name (ex: John/Jane) *"
+                placeholder="First Name *"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("firstName", { required: true, maxLength: 80 })}
                 aria-invalid={errors.firstName ? "true" : "false"}
@@ -204,7 +204,7 @@ const NewPatientForm: React.FC = () => {
 
               <input
                 type="text"
-                placeholder="Last Name (ex: Doe) *"
+                placeholder="Last Name *"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("lastName", { required: true, maxLength: 80 })}
                 aria-invalid={errors.lastName ? "true" : "false"}
@@ -289,13 +289,13 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="Home Phone (123-456-7890)"
+                placeholder="Home Phone"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("homePhone", { minLength: 6, maxLength: 12 })}
               />
               <input
                 type="text"
-                placeholder="Mobile Phone (123-456-7890)"
+                placeholder="Mobile Phone"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("mobilePhone", { minLength: 6, maxLength: 12 })}
               />
@@ -303,7 +303,7 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="Work Phone (123-456-7890)"
+                placeholder="Work Phone"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("workPhone", { minLength: 6, maxLength: 12 })}
               />
@@ -316,7 +316,7 @@ const NewPatientForm: React.FC = () => {
             </div>
             <input
               type="text"
-              placeholder="Email (youremail@emailaddress.com)"
+              placeholder="Email"
               className=" ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60"
               {...register("email", { pattern: /^\S+@\S+$/i })}
               aria-invalid={errors.email ? "true" : "false"}
@@ -376,7 +376,7 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="City (Toronto) *"
+                placeholder="City *"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("city", { required: true })}
                 aria-invalid={errors.city ? "true" : "false"}
@@ -457,7 +457,7 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="Name of Primary Account Holder (ex: John/Jane Doe)"
+                placeholder="Name of Primary Account Holder"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("subscriberName")}
               />
@@ -508,7 +508,7 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="Name of Emergency Contact (ex: Jane/John Doe) *"
+                placeholder="Name of Emergency Contact *"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("emerContact", { required: true })}
                 aria-invalid={errors.emerContact ? "true" : "false"}
@@ -528,7 +528,7 @@ const NewPatientForm: React.FC = () => {
             </div>
             <input
               type="text"
-              placeholder="Emergency Contact Phone Number (123-456-7890)"
+              placeholder="Emergency Contact Phone Number"
               className={selectClassName}
               {...register("emerTel", { minLength: 6, maxLength: 12 })}
             />
@@ -536,7 +536,7 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="text"
-                placeholder="Family Doctor's Name (ex: Dr. John/Jane Doe)"
+                placeholder="Family Doctor's Name"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("famDocName")}
               />
@@ -550,7 +550,7 @@ const NewPatientForm: React.FC = () => {
             <div className="flex flex-row">
               <input
                 type="tel"
-                placeholder="Family Doctor's Phone (123-456-7890)"
+                placeholder="Family Doctor's Phone"
                 className={clsx(inputClassName, "w-1/2")}
                 {...register("famDocTel", { minLength: 6, maxLength: 12 })}
               />
