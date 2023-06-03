@@ -46,9 +46,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     : req.headers.referer?.includes("new-patient-form")
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
-  const templatePath =
-    // "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates";
-    "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
+  const templatePath = "src/lib/mail-templates";
+
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
 
   const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
@@ -118,7 +117,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       bulletRadius: 0.01,
     }
   );
-
+  
   if (
     patientSig !== undefined ||
     (req.body.data && req.body.data.patientSig !== undefined)
@@ -149,12 +148,14 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
+
   if (
     parentSig !== undefined ||
     (req.body.data && req.body.data.parentSig !== undefined)
   ) {
     pdf.text("Parent Signature: ", 50, 520);
     pdf.image(parentSig ? parentSig : req.body.data.parentSig, 50, 570, {
+
       width: 200,
       height: 100,
     });
