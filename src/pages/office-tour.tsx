@@ -98,7 +98,7 @@ const OfficeTour: React.FC = () => {
           {images.map((img, i) => (
             <div
               className="w-full flex-shrink-0"
-              key={img}
+              key={`${img} - ${i}`}
               ref={refs[i]}
               id={i.toString()}
             >
