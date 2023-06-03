@@ -82,8 +82,9 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       transporter.sendMail({
         from: email,
-        // to: "felix.lai@hotmail.com;thessakranendonk@gmail.com",
+        // to: "felix.lai@hotmail.com",
         to: "thessakranendonk@gmail.com",
+        // to: "info@richmondwestdental.com",
         subject: `Contact form submission from ${name}`,
         html: htmlToSend,
         attachments: [
@@ -117,7 +118,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       bulletRadius: 0.01,
     }
   );
-  
   if (
     patientSig !== undefined ||
     (req.body.data && req.body.data.patientSig !== undefined)
@@ -147,15 +147,12 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       height: 100,
     });
   }
-
-
   if (
     parentSig !== undefined ||
     (req.body.data && req.body.data.parentSig !== undefined)
   ) {
     pdf.text("Parent Signature: ", 50, 520);
     pdf.image(parentSig ? parentSig : req.body.data.parentSig, 50, 570, {
-
       width: 200,
       height: 100,
     });

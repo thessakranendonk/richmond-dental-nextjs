@@ -13,6 +13,7 @@ export interface NewPatientFormProps extends Patient {
   preferredName: string;
   dateOfBirth: string;
   gender: string;
+  pronouns: string;
   maritalStatus: string;
   homePhone: string;
   mobilePhone: string;

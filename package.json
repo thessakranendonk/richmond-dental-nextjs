@@ -34,6 +34,8 @@
     "dotenv": "^16.0.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "flowbite": "^1.6.5",
+    "flowbite-react": "^0.4.7",
     "form-data": "^4.0.0",
     "framer-motion": "^10.12.4",
     "fs": "^0.0.1-security",

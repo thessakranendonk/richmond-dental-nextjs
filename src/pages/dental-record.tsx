@@ -88,7 +88,7 @@ const DentalRecordForm: React.FC = () => {
             )}
             <input
               type="text"
-              placeholder="To Dental Office"
+              placeholder="To Dental Office/Dr (Name of Dental Office or Doctor's Name)"
               className={`${inputClassName} border border-zinc-400/60 focus:border-brand-base focus:outline-none focus:ring-0`}
               {...register("dentalOfficeDr", {
                 required: true,
@@ -128,7 +128,7 @@ const DentalRecordForm: React.FC = () => {
 
             <input
               type="tel"
-              placeholder="Date of Birth"
+              placeholder="Date of Birth (DD/MM/YYYY)"
               className={`${inputClassName} border border-zinc-400/60 focus:border-brand-base focus:outline-none focus:ring-0`}
               {...register("dateOfBirth", {
                 required: true,

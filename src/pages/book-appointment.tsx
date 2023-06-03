@@ -29,12 +29,14 @@ const BookingForm: React.FC = () => {
         body: JSON.stringify(data),
       });
       const result = await response.json();
+      setIsSubmitted(true);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const inputClassName = "mb-2 rounded-xl border-zinc-400/60";
+  const inputClassName =
+    "mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0";
   const errorClassName = "text-red-700 pb-2 pl-4 flex gap-2";
   return (
     <div>
@@ -55,7 +57,7 @@ const BookingForm: React.FC = () => {
             <input
               className={inputClassName}
               type="text"
-              placeholder="First name"
+              placeholder="First Name"
               {...register("firstName", { required: true, maxLength: 80 })}
               aria-invalid={errors.firstName ? "true" : "false"}
             />
@@ -67,7 +69,7 @@ const BookingForm: React.FC = () => {
             <input
               className={inputClassName}
               type="text"
-              placeholder="Last name"
+              placeholder="Last Name"
               {...register("lastName", { required: true, maxLength: 100 })}
               aria-invalid={errors.lastName ? "true" : "false"}
             />
@@ -79,7 +81,7 @@ const BookingForm: React.FC = () => {
             <input
               className={inputClassName}
               type="tel"
-              placeholder="Phone number"
+              placeholder="Phone Number"
               {...register("phoneNumber", {
                 required: true,
                 minLength: 6,
