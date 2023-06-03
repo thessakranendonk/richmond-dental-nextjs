@@ -43,6 +43,23 @@ const DentalRecordForm: React.FC = () => {
         data.patientSig = patientSig;
       }
 
+      // include release terms in email
+      const emailRelease = `To whom this may concern,
+      
+      We at Richmond West Dental and the below patient, would like to
+      thank you and your staff for the care you have provided.
+      
+      For us to maintain continued and quality care for the patient, we
+      kindly ask if you could forward the most recent radiographs and
+      dental records to our office at your earliest convenience.
+      
+      The signature below represents the patient's authorization and
+      release of their records along with any legal responsibility or
+      liability that may arise from this authorization.
+      
+      Patient Signature: ${data.releaseTerms}`;
+      data.emailRelease = emailRelease;
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {

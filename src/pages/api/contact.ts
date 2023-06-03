@@ -40,6 +40,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     patientSig,
     frontInsuranceCardImage,
     backInsuranceCardImage,
+    releaseTerms,
   } = req.body;
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
@@ -60,9 +61,12 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     subject: subject,
     name: name,
     email: email,
+    releaseTerms: releaseTerms,
   };
 
   let htmlToSend = createHTMLToSend(emailPath, replacements);
+
+  htmlToSend = htmlToSend.replace("{{releaseTerms", releaseTerms);
 
   const buffers: any = [];
 
@@ -71,8 +75,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     let pdfData = Buffer.concat(buffers);
 
     const transporter = nodemailer.createTransport({
-      // host: "smtp.office365.com",
-      host: "smtp.gmail.com",
+      host: "smtp.office365.com",
+      // host: "smtp.gmail.com",
       auth: {
         user: process.env.CONTACT_FORM_RECEIVE_EMAIL,
         pass: process.env.CONTACT_FORM_PASS,
@@ -82,8 +86,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       transporter.sendMail({
         from: email,
-        // to: "felix.lai@hotmail.com;thessakranendonk@gmail.com",
-        to: "thessakranendonk@gmail.com",
+        to: "felix.lai@hotmail.com",
+        // to: "thessakranendonk@gmail.com",
         subject: `Contact form submission from ${name}`,
         html: htmlToSend,
         attachments: [

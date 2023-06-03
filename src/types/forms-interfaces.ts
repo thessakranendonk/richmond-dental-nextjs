@@ -72,6 +72,7 @@ export interface DentalRecordFormProps extends Patient {
   dateOfBirth: string;
   releaseStatement: string;
   releaseTerms: string;
+  emailRelease: string;
   patientSig: string;
 }
 
