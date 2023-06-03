@@ -1148,11 +1148,7 @@ const NewPatientForm: React.FC = () => {
               aria-invalid={errors.date ? "true" : "false"}
             />
           </label>
-          {errors.date?.type === "required" && (
-            <div className={errorClassName} role="alert">
-              <MdOutlineError className="mt-1" /> Please provide a date
-            </div>
-          )}
+
           <button
             className={clsx(
               "bg-brand-base font-medium px-8 text-sm h-10 mt-5 text-white rounded-lg border-2 border-brand-base",
