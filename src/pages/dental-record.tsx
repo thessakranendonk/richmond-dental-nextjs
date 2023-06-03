@@ -157,18 +157,17 @@ const DentalRecordForm: React.FC = () => {
               liability that may arise from this authorization.
             </label>
             <label className="mt-3 mb-1">Patient Signature * </label>
-
+            <input
+              type="hidden"
+              {...(register("patientSig"), { required: true })}
+            />
             <SignatureCanvas
               ref={patientSignatureRef}
               canvasProps={{
                 className: "border border-gray-300 rounded-lg w-full h-48",
               }}
             />
-            {patientSignatureRef.current?.isEmpty() && (
-              <div className={errorClassName} role="alert">
-                <MdOutlineError className="mt-1" /> Signature is required
-              </div>
-            )}
+
             <button
               className={clearButtonClassName}
               onClick={clearPatientCanvas}

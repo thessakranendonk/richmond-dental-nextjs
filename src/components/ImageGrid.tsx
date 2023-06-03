@@ -5,7 +5,10 @@ const ImageGrid: React.FC = () => {
   return (
     <div className="flex flex-wrap justify-center gap-4 w-full mx-auto">
       {images.map((img, i) => (
-        <div className="h-auto max-w-full rounded-lg" key={img}>
+        <div
+          className="h-auto max-w-full rounded-lg"
+          key={`${img} - grid - ${i}`}
+        >
           <motion.div
             className="box"
             whileHover={{ scale: 1.1 }}

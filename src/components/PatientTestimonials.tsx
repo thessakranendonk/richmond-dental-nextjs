@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { createRef, useState } from "react";
 import { PATIENT_TESTIMONIALS } from "../../data/patient-testimonials";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AuthenticationType } from "nodemailer/lib/smtp-connection";
 
 const slideClassName =
   "h-[32rem] md:h-80 xl:h-[20rem] max-w-3xl rounded-lg shadow-lg bg-white";
@@ -80,7 +81,7 @@ const OfficeTour: React.FC = () => {
           {sliderControl(true)}
           {PATIENT_TESTIMONIALS.map((testimonial: any, i: any) => (
             <div
-              key={i}
+              key={testimonial.authorName}
               className={clsx(
                 "flex flex-col w-full h-full flex-shrink-0 mb-10",
                 slideClassName
@@ -90,12 +91,14 @@ const OfficeTour: React.FC = () => {
               <div className="flex flex-col justify-between h-full w-[calc(10% - 10px)] mx-12 md:mx-24 text-zinc-700 text-shadow-sm shadow-zinc-300 pb-6">
                 <div>
                   <div className="flex justify-center pt-12 pb-4">
-                    {testimonial.rating.split("").map(() => (
-                      <AiFillStar
-                        key={i}
-                        className="text-amber-500 md:text-xl"
-                      />
-                    ))}
+                    {testimonial.rating
+                      .split("")
+                      .map((star: any, i: number) => (
+                        <AiFillStar
+                          key={`${i} - star`}
+                          className="text-amber-500 md:text-xl"
+                        />
+                      ))}
                     {testimonial.rating.split("").length === 4 ? (
                       <AiOutlineStar />
                     ) : testimonial.rating.split("").length === 3 ? (
