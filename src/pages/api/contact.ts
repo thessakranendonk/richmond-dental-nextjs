@@ -47,8 +47,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
   const templatePath =
-    // "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates";
-    "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
+    "/Users/felixlai/richmond-dental-nextjs/src/lib/mail-templates";
+  // "/Users/thessakranendonk/Documents/projects/richmond-dental-nextjs/src/lib/mail-templates";
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
 
   const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
@@ -84,7 +84,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       transporter.sendMail({
         from: email,
         // to: "felix.lai@hotmail.com",
-        to: "thessakranendonk@gmail.com",
+        // to: "thessakranendonk@gmail.com",
+        to: "info@richmondwestdental.com",
         subject: `Contact form submission from ${name}`,
         html: htmlToSend,
         attachments: [
@@ -119,7 +120,10 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  if (patientSig || req.body.data.patientSig) {
+  if (
+    patientSig !== undefined ||
+    (req.body.data && req.body.data.patientSig !== undefined)
+  ) {
     pdf.addPage();
     pdf.text("Patient Signature: ", 50, 50);
     pdf.image(patientSig ? patientSig : req.body.data.patientSig, 50, 100, {
@@ -128,7 +132,10 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
-  if (parentSig || req.body.data.parentSig) {
+  if (
+    parentSig !== undefined ||
+    (req.body.data && req.body.data.parentSig !== undefined)
+  ) {
     pdf.text("Parent Signature: ", 50, 250);
     pdf.image(parentSig ? parentSig : req.body.data.parentSig, 50, 300, {
       width: 200,
