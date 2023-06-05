@@ -100,16 +100,16 @@ const ClinicHours = () => {
           </li>
         ))}
       </ul>
-      <div className="flex md:hidden text-white text-sm w-[calc(10% - 10px)] mx-8 pt-8">
-        <div className="flex flex-row justify-between">
+      <div className="flex justify-evenly md:hidden text-white text-sm w-[calc(10% - 10px)] mx-2 pt-8">
+        <div className="flex flex-col text-center md:flex-row justify-between">
           <p>Mon - Thu</p>
           <p>10 AM - 5 PM</p>
         </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-col text-center md:flex-row justify-between">
           <p>Fri</p>
           <p>10 AM - 4 PM</p>
         </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-col md:flex-row j text-center ustify-between">
           <p>Every Other Sat</p>
           <p>10 AM - 4 PM</p>
         </div>

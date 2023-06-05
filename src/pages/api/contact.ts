@@ -71,7 +71,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     let pdfData = Buffer.concat(buffers);
 
     const transporter = nodemailer.createTransport({
-      // host: "smtp.office365.com",
       host: "smtp.gmail.com",
       auth: {
         user: process.env.CONTACT_FORM_RECEIVE_EMAIL,
@@ -82,9 +81,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       transporter.sendMail({
         from: email,
-        // to: "felix.lai@hotmail.com",
-        to: "thessakranendonk@gmail.com",
-        // to: "info@richmondwestdental.com",
+        to: "info@richmondwestdental.com",
         subject: `Contact form submission from ${name}`,
         html: htmlToSend,
         attachments: [
