@@ -73,8 +73,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       auth: {
-        user: process.env.CONTACT_FORM_RECEIVE_EMAIL,
-        pass: process.env.CONTACT_FORM_PASS,
+        user: process.env.NEXT_PUBLIC_CONTACT_FORM_RECEIVE_EMAIL,
+        pass: process.env.NEXT_PUBLIC_CONTACT_FORM_PASS,
       },
     });
 
