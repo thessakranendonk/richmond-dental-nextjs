@@ -91,7 +91,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         ],
       });
-      console.log("send");
     } catch (error: any) {
       return res.status(500).json({ error: error.message || error.toString() });
     }
