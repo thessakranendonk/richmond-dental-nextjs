@@ -80,8 +80,9 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       transporter.sendMail({
-        from: email,
-        to: "info@richmondwestdental.com",
+        from: "info@richmondwestdental.com",
+        // to: "info@richmondwestdental.com",
+        to: process.env.CONTACT_FORM_RECEIVE_EMAIL,
         subject: `Contact form submission from ${name}`,
         html: htmlToSend,
         attachments: [
