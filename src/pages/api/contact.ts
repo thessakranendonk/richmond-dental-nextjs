@@ -81,7 +81,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       transporter.sendMail({
         from: "info@richmondwestdental.com",
-        to: "info@richmondwestdental.com;thessakranendonk@gmail.com",
+        to: "info@richmondwestdental.com",
         subject: `Contact form submission from ${name}`,
         html: htmlToSend,
         attachments: [
