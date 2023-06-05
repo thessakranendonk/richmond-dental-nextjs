@@ -115,7 +115,7 @@ const ServiceDiv = ({
 
         <div className="xl:hidden">
           <img
-            className="img-sm md:img-wrap-md img-settings br-left mx-auto mt-12"
+            className="img-sm md:img-wrap-md object-cover img-settings br-left mx-auto mt-12"
             src={img}
           />
         </div>
