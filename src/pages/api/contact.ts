@@ -7,6 +7,7 @@ import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
 import sgMail from "@sendgrid/mail";
+import { useState } from "react";
 
 require("dotenv").config();
 
@@ -72,8 +73,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   pdf.on("end", () => {
     let pdfData = Buffer.concat(buffers);
 
-    const SENDGRID_KEY: string = process.env.NEXT_PUBLIC_SENDGRID_KEY!;
-
     const nodemailer = require("nodemailer");
 
     let transporter = nodemailer.createTransport({
@@ -85,28 +84,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    // sgMail.setApiKey(SENDGRID_KEY);
-    // const msg = {
-    //   to: "thessakranendonk@gmail.com",
-    //   from: "thessakranendonk@gmail.com",
-    //   subject: `Contact form submission from ${name}`,
-    //   text: ` There is a new: ${subject}, ${name}, ${email} has sent a new request from richmondwestdental.ca.`,
-    //   host: "smtp.sendgrid.net",
-    //   port: "587",
-    //   attachments: [
-    //     {
-    //       content: pdfData.toString("base64"),
-    //       filename: `${filename}.pdf`,
-    //       type: "application/pdf",
-    //       disposition: "attachment",
-    //     },
-    //   ],
-    // };
-
     try {
-      // sgMail.send(msg).then(() => {
-      //   return res.status(200).json("success");
-      // });
       transporter.sendMail(
         {
           from: "thessakranendonk@gmail.com", // verified sender email
@@ -122,15 +100,22 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
             },
           ],
         },
-        function (error: unknown, info: any) {
+        function (error: unknown, res: any) {
           if (error) {
             console.log(error);
+            console.log(res, "RES");
+
+            return res.status(500).json(error);
           } else {
-            console.log("Email sent: " + info.response);
+            console.log("Email sent: " + res.response);
+            console.log(res, "RES OK");
+
+            return res.status(200).json("success");
           }
         }
       );
     } catch (error: unknown) {
+      setStatus(500);
       return res.status(500).json(error);
     }
   });
