@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import nodemailer from "nodemailer";
 import handlebars from "handlebars";
 import path from "path";
 import fs from "fs";
@@ -75,27 +74,64 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const SENDGRID_KEY: string = process.env.NEXT_PUBLIC_SENDGRID_KEY!;
 
-    sgMail.setApiKey(SENDGRID_KEY);
-    const msg = {
-      to: "thessakranendonk@gmail.com",
-      from: "thessakranendonk@gmail.com",
-      subject: `Contact form submission from ${name}`,
-      text: ` There is a new: ${subject}, ${name}, ${email} has sent a new request from richmondwestdental.ca.`,
-      attachments: [
-        {
-          content: pdfData.toString("base64"),
-          filename: `${filename}.pdf`,
-          type: "application/pdf",
-          disposition: "attachment",
-        },
-      ],
-    };
+    const nodemailer = require("nodemailer");
+
+    let transporter = nodemailer.createTransport({
+      host: "smtp.sendgrid.net",
+      port: 587,
+      auth: {
+        user: "apikey",
+        pass: process.env.NEXT_PUBLIC_SENDGRID_KEY,
+      },
+    });
+
+    // sgMail.setApiKey(SENDGRID_KEY);
+    // const msg = {
+    //   to: "thessakranendonk@gmail.com",
+    //   from: "thessakranendonk@gmail.com",
+    //   subject: `Contact form submission from ${name}`,
+    //   text: ` There is a new: ${subject}, ${name}, ${email} has sent a new request from richmondwestdental.ca.`,
+    //   host: "smtp.sendgrid.net",
+    //   port: "587",
+    //   attachments: [
+    //     {
+    //       content: pdfData.toString("base64"),
+    //       filename: `${filename}.pdf`,
+    //       type: "application/pdf",
+    //       disposition: "attachment",
+    //     },
+    //   ],
+    // };
 
     try {
-      sgMail.send(msg);
+      // sgMail.send(msg).then(() => {
+      //   return res.status(200).json("success");
+      // });
+      transporter.sendMail(
+        {
+          from: "thessakranendonk@gmail.com", // verified sender email
+          to: "thessakranendonk@gmail.com", // recipient email
+          subject: `Contact form submission from ${name}`,
+          html: htmlToSend,
+          attachments: [
+            {
+              content: pdfData,
+              filename: `${filename}.pdf`,
+              type: "application/pdf",
+              disposition: "attachment",
+            },
+          ],
+        },
+        function (error: unknown, info: any) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent: " + info.response);
+          }
+        }
+      );
     } catch (error: unknown) {
-      console.log(error);
-      return res.status(500).json({ error: error });
+      return res.status(500).json(error);
     }
   });
 
@@ -168,6 +204,5 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     pdf.image(backInsuranceCardImage, 50, 450, { width: 300 });
   }
   pdf.end();
-  return res.status(200).json({ error: "" });
 };
 export default contact;
