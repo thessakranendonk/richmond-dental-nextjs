@@ -153,6 +153,12 @@ const NewPatientForm: React.FC = () => {
         }),
       });
       const result = await response.json();
+      if (result.responseCode !== 200) {
+        setIsSubmitted(false);
+        console.log(result);
+      } else {
+        setIsSubmitted(true);
+      }
       setIsSubmitted(true);
     } catch (error) {
       console.error(error);
