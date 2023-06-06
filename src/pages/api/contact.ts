@@ -115,7 +115,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       );
     } catch (error: unknown) {
-      setStatus(500);
       return res.status(500).json(error);
     }
   });
