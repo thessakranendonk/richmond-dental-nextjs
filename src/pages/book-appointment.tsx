@@ -29,6 +29,7 @@ const BookingForm: React.FC = () => {
         body: JSON.stringify(data),
       });
       const result = await response.json();
+      console.log(result);
       setIsSubmitted(true);
     } catch (error) {
       console.error(error);

@@ -1,6 +1,6 @@
 import { DentalRecordFormProps } from "@/types/forms-interfaces";
 import React, { useState, useRef } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import SignatureCanvas from "react-signature-canvas";
 import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
@@ -11,7 +11,6 @@ const DentalRecordForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState,
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
@@ -52,6 +51,7 @@ const DentalRecordForm: React.FC = () => {
       });
 
       const result = await response.json();
+      console.log(result);
       setIsSubmitted(true);
     } catch (error) {
       console.error(error);
