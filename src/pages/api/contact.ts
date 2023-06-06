@@ -7,6 +7,9 @@ import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
+import sgMail from "@sendgrid/mail";
+
+require("dotenv").config();
 
 var pdf = new PDFDocument();
 const date = new Date().toDateString();
@@ -70,29 +73,29 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   pdf.on("end", () => {
     let pdfData = Buffer.concat(buffers);
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      auth: {
-        user: process.env.NEXT_PUBLIC_CONTACT_FORM_RECEIVE_EMAIL,
-        pass: process.env.NEXT_PUBLIC_CONTACT_FORM_PASS,
-      },
-    });
+    const SENDGRID_KEY: string = process.env.NEXT_PUBLIC_SENDGRID_KEY!;
+
+    sgMail.setApiKey(SENDGRID_KEY);
+    const msg = {
+      to: "thessakranendonk@gmail.com",
+      from: "thessakranendonk@gmail.com",
+      subject: `Contact form submission from ${name}`,
+      text: ` There is a new: ${subject}, ${name}, ${email} has sent a new request from richmondwestdental.ca.`,
+      attachments: [
+        {
+          content: pdfData.toString("base64"),
+          filename: `${filename}.pdf`,
+          type: "application/pdf",
+          disposition: "attachment",
+        },
+      ],
+    };
 
     try {
-      transporter.sendMail({
-        from: "info@richmondwestdental.com",
-        to: "info@richmondwestdental.com",
-        subject: `Contact form submission from ${name}`,
-        html: htmlToSend,
-        attachments: [
-          {
-            filename: `${filename}.pdf`,
-            content: pdfData,
-          },
-        ],
-      });
-    } catch (error: any) {
-      return res.status(500).json({ error: error.message || error.toString() });
+      sgMail.send(msg);
+    } catch (error: unknown) {
+      console.log(error);
+      return res.status(500).json({ error: error });
     }
   });
 
