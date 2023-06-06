@@ -28,11 +28,13 @@ const Technology: React.FC = () => {
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-      <div className="mb-12">
-        <ServiceLinks links={RICHMOND_TECHNOLOGY} />
-      </div>
-      <div className="mt-24">
-        <ServiceList links={RICHMOND_TECHNOLOGY} />
+      <div className="flex flex-col items-center justify-center">
+        <div className="mb-12">
+          <ServiceLinks links={RICHMOND_TECHNOLOGY} />
+        </div>
+        <div className="mt-24">
+          <ServiceList links={RICHMOND_TECHNOLOGY} />
+        </div>
       </div>
     </div>
   );
