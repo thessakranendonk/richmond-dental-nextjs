@@ -233,9 +233,26 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const convertToPng = async (imageData: string) => {
-  const imageBuffer = Buffer.from(imageData, "base64");
-  const pngBuffer = await sharp(imageBuffer).toFormat("png").toBuffer();
-  return pngBuffer;
+  try {
+    if (!imageData) {
+      throw new Error("Image data is missing");
+    }
+
+    const imageBuffer = Buffer.from(imageData, "base64");
+    if (!imageBuffer || imageBuffer.length === 0) {
+      throw new Error("Invalid image buffer");
+    }
+
+    const pngBuffer = await sharp(imageBuffer).toFormat("png").toBuffer();
+    if (!pngBuffer || pngBuffer.length === 0) {
+      throw new Error("Failed to convert image to PNG");
+    }
+
+    return pngBuffer;
+  } catch (error) {
+    console.error("Error converting image to PNG:", error);
+    throw error;
+  }
 };
 
 export default contact;
