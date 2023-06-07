@@ -160,7 +160,7 @@ const DentalRecordForm: React.FC = () => {
               release of their records along with any legal responsibility or
               liability that may arise from this authorization.
             </label>
-            <label className="mt-3 mb-1">Patient Signature * </label>
+            {/* <label className="mt-3 mb-1">Patient Signature * </label>
             <input
               type="hidden"
               {...(register("patientSig"), { required: true })}
@@ -177,7 +177,7 @@ const DentalRecordForm: React.FC = () => {
               onClick={clearPatientCanvas}
             >
               Clear
-            </button>
+            </button> */}
             <label className="mt-2">
               <input type="hidden" />
               Regards, <br /> Richmond West Dental Team <br /> <br /> 500
