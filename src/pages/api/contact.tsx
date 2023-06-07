@@ -75,31 +75,34 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
   const pdf = await createPdf(req, res);
-  if (pdf)
-    try {
-      const response = await transporter.sendMail({
-        from: "thessakranendonk@gmail.com",
-        to: "thessakranendonk@gmail.com",
-        subject: `Contact form submission from ${firstName}`,
-        html: htmlToSend,
-        attachments: [
-          {
-            content: pdf,
-            filename: `${filename}.pdf`,
-            type: "application/pdf",
-            disposition: "attachment",
-          },
-        ],
-      });
+  setTimeout(async () => {
+    if (!!pdf) {
+      try {
+        const response = await transporter.sendMail({
+          from: "thessakranendonk@gmail.com",
+          to: "thessakranendonk@gmail.com",
+          subject: `Contact form submission from ${firstName}`,
+          html: htmlToSend,
+          attachments: [
+            {
+              content: pdf,
+              filename: `${filename}.pdf`,
+              type: "application/pdf",
+              disposition: "attachment",
+            },
+          ],
+        });
 
-      console.log(response, "response");
-      res.status(200);
-      res.end(JSON.stringify(response));
-    } catch (err: any) {
-      console.log(err);
-      res.json(err);
-      res.status(405).end();
+        console.log(response, "response");
+        res.status(200);
+        res.end(JSON.stringify(response));
+      } catch (err: any) {
+        console.log(err);
+        res.json(err);
+        res.status(405).end();
+      }
     }
+  }, 8000);
 };
 
 const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -178,6 +181,20 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
         height: 100,
       }
     );
+
+    // pdf.image(
+    //   patientSig
+    //     ? patientSig
+    //     : req.body.data.patientSig
+    //     ? req.body.data.patientSig
+    //     : req.body.patientSig,
+    //   50,
+    //   320,
+    //   {
+    //     width: 200,
+    //     height: 100,
+    //   }
+    // );
   }
   if (
     parentSig !== undefined ||

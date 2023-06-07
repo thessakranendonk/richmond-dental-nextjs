@@ -37,7 +37,7 @@ const DentalRecordForm: React.FC = () => {
       return;
     }
     try {
-      const patientSig = patientSignatureRef.current?.toDataURL("image/png");
+      const patientSig = patientSignatureRef.current?.toDataURL("image/jpeg");
       if (patientSig) {
         data.patientSig = patientSig;
       }
