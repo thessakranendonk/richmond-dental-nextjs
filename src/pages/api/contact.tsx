@@ -77,7 +77,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const response = await transporter.sendMail({
       from: "thessakranendonk@gmail.com",
-      to: "info@richmondwestdental.com",
+      to: "thessakranendonk@gmail.com",
       subject: `Contact form submission from ${firstName}`,
       html: htmlToSend,
       attachments: [
