@@ -153,6 +153,12 @@ const NewPatientForm: React.FC = () => {
         }),
       });
       const result = await response.json();
+      if (!result.response.includes("250")) {
+        setIsSubmitted(false);
+        console.log(result);
+      } else {
+        setIsSubmitted(true);
+      }
       setIsSubmitted(true);
     } catch (error) {
       console.error(error);
@@ -1156,7 +1162,7 @@ const NewPatientForm: React.FC = () => {
               information is correct. I understand that any information that I
               refuse to provide may affect my health and dental treatment.
             </label>
-            <label className="mt-3 mb-1">
+            {/* <label className="mt-3 mb-1">
               Patient Signature *
               <input
                 type="hidden"
@@ -1195,7 +1201,7 @@ const NewPatientForm: React.FC = () => {
               onClick={clearParentCanvas}
             >
               Clear
-            </button>
+            </button> */}
             <label>
               * Date:
               <input

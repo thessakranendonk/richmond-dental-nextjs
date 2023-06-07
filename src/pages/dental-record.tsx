@@ -37,7 +37,7 @@ const DentalRecordForm: React.FC = () => {
       return;
     }
     try {
-      const patientSig = patientSignatureRef.current?.toDataURL("image/png");
+      const patientSig = patientSignatureRef.current?.toDataURL("image/jpeg");
       if (patientSig) {
         data.patientSig = patientSig;
       }
@@ -51,8 +51,12 @@ const DentalRecordForm: React.FC = () => {
       });
 
       const result = await response.json();
-      console.log(result);
-      setIsSubmitted(true);
+      if (!result.response.includes("250")) {
+        setIsSubmitted(false);
+        console.log(result);
+      } else {
+        setIsSubmitted(true);
+      }
     } catch (error) {
       console.error(error);
     }
