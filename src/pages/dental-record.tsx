@@ -51,7 +51,7 @@ const DentalRecordForm: React.FC = () => {
       });
 
       const result = await response.json();
-      if (result.responseCode !== 200) {
+      if (!result.response.includes("250")) {
         setIsSubmitted(false);
         console.log(result);
       } else {
