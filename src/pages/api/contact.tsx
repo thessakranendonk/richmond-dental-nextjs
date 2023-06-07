@@ -6,6 +6,7 @@ import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
+import sharp from "sharp";
 
 require("dotenv").config();
 
@@ -168,19 +169,19 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
       );
     }
     pdf.text("Patient Signature: ", 50, 270);
-    pdf.image(
-      patientSig
-        ? patientSig
-        : req.body.data.patientSig
-        ? req.body.data.patientSig
-        : req.body.patientSig,
-      50,
-      320,
-      {
-        width: 200,
-        height: 100,
-      }
-    );
+
+    const patientSigData = patientSig
+      ? patientSig
+      : req.body.data.patientSig
+      ? req.body.data.patientSig
+      : req.body.patientSig;
+
+    const patientSigBuffer = await convertToPng(patientSigData);
+
+    pdf.image(patientSigBuffer, 50, 320, {
+      width: 200,
+      height: 100,
+    });
 
     // pdf.image(
     //   patientSig
@@ -230,4 +231,11 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
   pdf.end();
   return Buffer.concat(buffers);
 };
+
+const convertToPng = async (imageData: string) => {
+  const imageBuffer = Buffer.from(imageData, "base64");
+  const pngBuffer = await sharp(imageBuffer).toFormat("png").toBuffer();
+  return pngBuffer;
+};
+
 export default contact;
