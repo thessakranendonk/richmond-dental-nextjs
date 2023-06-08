@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
+import { pdfLogo } from "@/lib/pdfLogo";
 
 require("dotenv").config();
 
@@ -175,7 +176,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
 
-  console.log();
+
   try {
     const response = await transporter.sendMail({
       from: "thessakranendonk@gmail.com",
@@ -190,7 +191,9 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(err);
     res.json(err);
     res.status(405).end();
-  }
+}
+
+
 };
 
 export default contact;

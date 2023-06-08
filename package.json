@@ -57,6 +57,7 @@
     "react-signature-canvas": "^1.0.6",
     "react-toastify": "^9.1.2",
     "sendgrid": "^5.2.3",
+    "sharp": "^0.32.1",
     "tailwindcss": "3.3.1",
     "techtessy": "^0.0.9",
     "ts-node": "^10.9.1",
