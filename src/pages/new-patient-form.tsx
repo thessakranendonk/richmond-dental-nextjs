@@ -200,7 +200,10 @@ const NewPatientForm: React.FC = () => {
               <input
                 type="text"
                 placeholder="First Name *"
-                className={clsx(inputClassName, "w-1/2")}
+                className={clsx(
+                  inputClassName,
+                  "w-1/2 bg-red-100 placeholder-black"
+                )}
                 {...register("firstName", { required: true, maxLength: 80 })}
                 aria-invalid={errors.firstName ? "true" : "false"}
               />
@@ -213,7 +216,10 @@ const NewPatientForm: React.FC = () => {
               <input
                 type="text"
                 placeholder="Last Name *"
-                className={clsx(inputClassName, "w-1/2")}
+                className={clsx(
+                  inputClassName,
+                  "w-1/2 bg-red-100 placeholder-black"
+                )}
                 {...register("lastName", { required: true, maxLength: 80 })}
                 aria-invalid={errors.lastName ? "true" : "false"}
               />
@@ -227,7 +233,10 @@ const NewPatientForm: React.FC = () => {
               <input
                 type="text"
                 placeholder="Date of Birth (DD/MM/YYYY) *"
-                className={clsx(inputClassName, "w-1/2")}
+                className={clsx(
+                  inputClassName,
+                  "w-1/2 bg-red-100 placeholder-black"
+                )}
                 {...register("dateOfBirth", { required: true })}
                 aria-invalid={errors.dateOfBirth ? "true" : "false"}
               />
@@ -243,7 +252,6 @@ const NewPatientForm: React.FC = () => {
                 {...register("preferredName")}
               />
             </div>
-
             <div className="flex flex-row w-full">
               <div className="flex flex-col w-1/2">
                 <label className={clsx(subLabelClassName, "w-1/2")}>
@@ -251,7 +259,10 @@ const NewPatientForm: React.FC = () => {
                 </label>
                 <Controller
                   render={({ field }) => (
-                    <select {...field} className={inputClassName}>
+                    <select
+                      {...field}
+                      className={`${inputClassName} bg-red-100 placeholder-black`}
+                    >
                       <option value="Select">Select</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
@@ -291,9 +302,7 @@ const NewPatientForm: React.FC = () => {
                 </select>
               </div>
             </div>
-
             <label className={subLabelClassName}>Marital Status</label>
-
             <select className={inputClassName}>
               <option value="Select">Select Marital Status</option>
               <option value="Single">Single</option>
@@ -302,7 +311,6 @@ const NewPatientForm: React.FC = () => {
               <option value="Widow">Widow</option>
               <option value="Child">Child</option>
             </select>
-
             <div className="flex flex-row">
               <input
                 type="text"
@@ -343,13 +351,15 @@ const NewPatientForm: React.FC = () => {
                 <MdOutlineError className="mt-1" /> Your email is incorrect
               </div>
             )}
-
             <label className={subLabelClassName}>
               How did you hear about us? *
             </label>
             <Controller
               render={({ field }) => (
-                <select {...field} className={inputClassName}>
+                <select
+                  {...field}
+                  className={`${inputClassName} bg-red-100 placeholder-black`}
+                >
                   <option value="Select">Select</option>
                   <option value="GoogleMaps">Google Maps</option>
                   <option value="FriendReferral">Friend Referral</option>
@@ -367,13 +377,15 @@ const NewPatientForm: React.FC = () => {
                 following
               </div>
             )}
-
             <label className={labelClassName}>Address *</label>
             <div className="flex flex-row">
               <input
                 type="text"
                 placeholder="Street (12 Main Street) *"
-                className={clsx(inputClassName, "w-1/2")}
+                className={clsx(
+                  inputClassName,
+                  "w-1/2 bg-red-100 placeholder-black"
+                )}
                 {...register("address", { required: true })}
                 aria-invalid={errors.address ? "true" : "false"}
               />
@@ -394,7 +406,10 @@ const NewPatientForm: React.FC = () => {
               <input
                 type="text"
                 placeholder="City *"
-                className={clsx(inputClassName, "w-1/2")}
+                className={clsx(
+                  inputClassName,
+                  "w-1/2 placeholder-black bg-red-100"
+                )}
                 {...register("city", { required: true })}
                 aria-invalid={errors.city ? "true" : "false"}
               />
@@ -406,7 +421,13 @@ const NewPatientForm: React.FC = () => {
 
               <Controller
                 render={({ field }) => (
-                  <select {...field} className={clsx(inputClassName, "w-1/2")}>
+                  <select
+                    {...field}
+                    className={clsx(
+                      inputClassName,
+                      "w-1/2 placeholder-black bg-red-100"
+                    )}
+                  >
                     <option value="Select">Select Province *</option>
                     <option value="Alberta">Alberta</option>
                     <option value="British Columbia">British Columbia</option>
@@ -443,7 +464,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="text"
               placeholder="Postal Code (L7H 9G6) *"
-              className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0"
+              className="placeholder-black bg-red-100 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0"
               {...register("postalCode", { required: true })}
               aria-invalid={errors.postalCode ? "true" : "false"}
             />
@@ -455,11 +476,9 @@ const NewPatientForm: React.FC = () => {
             <label className={labelClassName}>
               Primary Dental Benefit Plan
             </label>
-
             <label className={subLabelClassName}>
               Relationship to Subscriber
             </label>
-
             <select
               id="subscriber"
               className={selectClassName}
@@ -470,7 +489,6 @@ const NewPatientForm: React.FC = () => {
               <option value="Spouse">Spouse</option>
               <option value="Child">Child</option>
             </select>
-
             <div className="flex flex-row">
               <input
                 type="text"
@@ -505,7 +523,6 @@ const NewPatientForm: React.FC = () => {
               className="ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0"
               {...register("subscriberId")}
             />
-
             <div className="flex flex-row">
               <div>
                 <label
@@ -545,7 +562,10 @@ const NewPatientForm: React.FC = () => {
               <input
                 type="text"
                 placeholder="Name of Emergency Contact *"
-                className={clsx(inputClassName, "w-1/2")}
+                className={clsx(
+                  inputClassName,
+                  "w-1/2 placeholder-black bg-red-100"
+                )}
                 {...register("emerContact", { required: true })}
                 aria-invalid={errors.emerContact ? "true" : "false"}
               />
@@ -1207,17 +1227,17 @@ const NewPatientForm: React.FC = () => {
               * Date:
               <input
                 type="date"
-                className="w-40 ml-1 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
+                className="placeholder-black bg-red-100 w-40 ml-1 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
                 {...register("date", { required: true })}
                 aria-invalid={errors.date ? "true" : "false"}
               />
             </label>
+
             {errors.date?.type === "required" && (
               <div className={errorClassName} role="alert">
                 <MdOutlineError className="mt-1" /> Please provide a date
               </div>
             )}
-
             <button
               className={clsx(
                 "bg-brand-base font-medium px-8 text-sm h-10 mt-5 text-white rounded-lg border-2 border-brand-base",
