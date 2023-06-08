@@ -18,8 +18,7 @@ export const alterTextForForm = (text: string) => {
       .replace(/,(?=[^\[]*\])/gm, " + ")
       .replace(/\[|\]/gm, "")
       // transform props to readable text example: firstName -> First Name
-
       .split(",")
-      .map((i) => snakeCaseToTitleCase(i))
+      .map((i) => `${snakeCaseToTitleCase(i)} \n`)
   );
 };
