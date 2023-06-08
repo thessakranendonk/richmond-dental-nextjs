@@ -2,11 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import handlebars from "handlebars";
 import path from "path";
 import fs from "fs";
-import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
-import sharp from "sharp";
 
 require("dotenv").config();
 
@@ -40,8 +38,56 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     lastName,
     parentSig,
     patientSig,
-    frontInsuranceCardImage,
-    backInsuranceCardImage,
+    preferredName,
+    dateOfBirth,
+    gender,
+    pronouns,
+    maritalStatus,
+    phoneNumber,
+    homePhone,
+    mobilePhone,
+    workPhone,
+    ext,
+    referral,
+    address,
+    suite,
+    city,
+    province,
+    postalCode,
+    subscriber,
+    subscriberName,
+    insuranceCompany,
+    insuranceTel,
+    planNum,
+    subscriberId,
+    emerContact,
+    emerRelationship,
+    emerTel,
+    famDocName,
+    famDocAddress,
+    famDocTel,
+    medCheck,
+    smoke,
+    medConditions,
+    otherMedConditions,
+    allergies,
+    otherAllergies,
+    longTermMeds,
+    dentalInjection,
+    immuneSystem,
+    hospital,
+    illness,
+    otherIllness,
+    pregnant,
+    visitReason,
+    lastVisit,
+    nervous,
+    lastXray,
+    dentalSpecialist,
+    gumBleed,
+    antibiotics,
+    jawPain,
+    date,
   } = req.body;
 
   const nodemailer = require("nodemailer");
@@ -69,190 +115,85 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     subject: subject,
     name: name,
     email: email,
+    firstName: firstName,
+    lastName: lastName,
+    preferredName: preferredName,
+    dateOfBirth: dateOfBirth,
+    gender: gender,
+    pronouns: pronouns,
+    maritalStatus: maritalStatus,
+    phoneNumber: phoneNumber,
+    homePhone: homePhone,
+    mobilePhone: mobilePhone,
+    workPhone: workPhone,
+    ext: ext,
+    referral: referral,
+    address: address,
+    suite: suite,
+    city: city,
+    province: province,
+    postalCode: postalCode,
+    subscriber: subscriber,
+    subscriberName: subscriberName,
+    insuranceCompany: insuranceCompany,
+    insuranceTel: insuranceTel,
+    planNum: planNum,
+    subscriberId: subscriberId,
+    emerContact: emerContact,
+    emerRelationship: emerRelationship,
+    emerTel: emerTel,
+    famDocName: famDocName,
+    famDocAddress: famDocAddress,
+    famDocTel: famDocTel,
+    medCheck: medCheck,
+    smoke: smoke,
+    medConditions: medConditions,
+    otherMedConditions: otherMedConditions,
+    allergies: allergies,
+    otherAllergies: otherAllergies,
+    longTermMeds: longTermMeds,
+    dentalInjection: dentalInjection,
+    immuneSystem: immuneSystem,
+    hospital: hospital,
+    illness: illness,
+    otherIllness: otherIllness,
+    pregnant: pregnant,
+    visitReason: visitReason,
+    lastVisit: lastVisit,
+    nervous: nervous,
+    lastXray: lastXray,
+    dentalSpecialist: dentalSpecialist,
+    gumBleed: gumBleed,
+    antibiotics: antibiotics,
+    jawPain: jawPain,
+    patientSig: patientSig,
+    parentSig: parentSig,
+    date: date,
   };
 
   const templatePath = "src/lib/mail-templates";
 
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
-  const pdf = await createPdf(req, res);
-  setTimeout(async () => {
-    if (!!pdf) {
-      try {
-        const response = await transporter.sendMail({
-          from: "thessakranendonk@gmail.com",
-          to: "thessakranendonk@gmail.com",
-          subject: `Contact form submission from ${firstName}`,
-          html: htmlToSend,
-          attachments: [
-            {
-              content: pdf,
-              filename: `${filename}.pdf`,
-              type: "application/pdf",
-              disposition: "attachment",
-            },
-          ],
-        });
 
-        console.log(response, "response");
-        res.status(200);
-        res.end(JSON.stringify(response));
-      } catch (err: any) {
-        console.log(err);
-        res.json(err);
-        res.status(405).end();
-      }
-    }
-  }, 8000);
-};
 
-const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
-  const {
-    parentSig,
-    patientSig,
-    frontInsuranceCardImage,
-    backInsuranceCardImage,
-  } = req.body;
-  const subject = req.headers.referer?.includes("dental-record")
-    ? "Dental Record Request"
-    : req.headers.referer?.includes("new-patient-form")
-    ? "New Patient Sign Up Form"
-    : "New Appointment Request";
-  // let pdfData;
-  const buffers: any = [];
-  pdf.on("data", buffers.push.bind(buffers));
-
-  // pdf.on("end", () => {
-  //   pdfData = Buffer.concat(buffers);
-  // });
-  pdf.image(pdfLogo, 50, 10, { width: 200, height: 100 });
-
-  pdf.fontSize(30);
-  pdf.text(subject, 50, 130);
-  pdf.fontSize(14);
-  pdf.text("Date:", 50, 170);
-  pdf.fontSize(14);
-  pdf.text(date, 100, 170);
-  alterTextForForm(JSON.stringify(req.body.data ? req.body.data : req.body));
-  pdf.list(
-    alterTextForForm(JSON.stringify(req.body.data ? req.body.data : req.body)),
-    50,
-    200,
-    {
-      align: "left",
-      listType: "bullet",
-      bulletRadius: 0.01,
-    }
-  );
-  if (
-    patientSig ||
-    (req.body.data && req.body.data.patientSig !== undefined) ||
-    (req.body && req.body.patientSig !== undefined)
-  ) {
-    pdf.addPage();
-    if (req.headers.referer?.includes("dental-record")) {
-      pdf.text("To whom this may concern,", 50, 50);
-      pdf.text(
-        "We at Richmond West Dental and the below patient, would like to thank you and your staff for the care you have provided.",
-        50,
-        70
-      );
-      pdf.text(
-        "For us to maintain continued and quality care for the patient, we kindly ask if you could forward the most recent radiographs and dental records to our office at your earliest convenience.",
-        50,
-        120
-      );
-      pdf.text(
-        "The signature below represents the patient's authorization and release of their records along with any legal responsibility or liability that may arise from this authorization.",
-        50,
-        180
-      );
-    }
-    pdf.text("Patient Signature: ", 50, 270);
-
-    const patientSigData = patientSig
-      ? patientSig
-      : req.body.data.patientSig
-      ? req.body.data.patientSig
-      : req.body.patientSig;
-
-    const patientSigBuffer = await convertToPng(patientSigData);
-
-    pdf.image(patientSigBuffer, 50, 320, {
-      width: 200,
-      height: 100,
+  try {
+    const response = await transporter.sendMail({
+      from: "thessakranendonk@gmail.com",
+      to: "thessakranendonk@gmail.com",
+      subject: `Contact form submission from ${firstName}`,
+      html: htmlToSend,
     });
 
-    // pdf.image(
-    //   patientSig
-    //     ? patientSig
-    //     : req.body.data.patientSig
-    //     ? req.body.data.patientSig
-    //     : req.body.patientSig,
-    //   50,
-    //   320,
-    //   {
-    //     width: 200,
-    //     height: 100,
-    //   }
-    // );
-  }
-  if (
-    parentSig !== undefined ||
-    (req.body.data && req.body.data.parentSig !== undefined) ||
-    (req.body && req.body.parentSig !== undefined)
-  ) {
-    pdf.text("Parent Signature: ", 50, 520);
-    pdf.image(
-      parentSig
-        ? parentSig
-        : req.body.data.parentSig
-        ? req.body.data.parentSig
-        : req.body.parentSig,
-      50,
-      570,
-      {
-        width: 200,
-        height: 100,
-      }
-    );
-  }
+    res.status(200);
+    res.end(JSON.stringify(response));
+  } catch (err: any) {
+    console.log(err);
+    res.json(err);
+    res.status(405).end();
+}
 
-  // if (frontInsuranceCardImage || backInsuranceCardImage) pdf.addPage();
-  // if (frontInsuranceCardImage) {
-  //   pdf.text("Front of Insurance Card", 50, 50);
-  //   pdf.image(frontInsuranceCardImage, 50, 100, { width: 300 });
-  // }
-  // if (backInsuranceCardImage) {
-  //   pdf.text("Back of Insurance Card", 50, 400);
-  //   pdf.image(backInsuranceCardImage, 50, 450, { width: 300 });
-  // }
 
-  pdf.end();
-  return Buffer.concat(buffers);
-};
-
-const convertToPng = async (imageData: string) => {
-  try {
-    if (!imageData) {
-      throw new Error("Image data is missing");
-    }
-
-    const imageBuffer = Buffer.from(imageData, "base64");
-    if (!imageBuffer || imageBuffer.length === 0) {
-      throw new Error("Invalid image buffer");
-    }
-
-    const pngBuffer = await sharp(imageBuffer).toFormat("png").toBuffer();
-    if (!pngBuffer || pngBuffer.length === 0) {
-      throw new Error("Failed to convert image to PNG");
-    }
-
-    return pngBuffer;
-  } catch (error) {
-    console.error("Error converting image to PNG:", error);
-    throw error;
-  }
 };
 
 export default contact;

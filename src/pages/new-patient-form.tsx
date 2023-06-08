@@ -153,6 +153,7 @@ const NewPatientForm: React.FC = () => {
         }),
       });
       const result = await response.json();
+      console.log(result);
       if (!result.response.includes("250")) {
         setIsSubmitted(false);
         console.log(result);
@@ -518,7 +519,7 @@ const NewPatientForm: React.FC = () => {
                   type="file"
                   id="frontInsuranceCard"
                   {...register("frontInsuranceCard")}
-                  accept="image/"
+                  accept="image/jpeg"
                   onChange={onFileChangeFront}
                 />
               </div>
@@ -534,7 +535,7 @@ const NewPatientForm: React.FC = () => {
                   id="backInsuranceCard"
                   type="file"
                   {...register("backInsuranceCard")}
-                  accept="image/"
+                  accept="image/jpeg"
                   onChange={onFileChangeBack}
                 />
               </div>
