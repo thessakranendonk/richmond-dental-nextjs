@@ -442,7 +442,7 @@ const Header: React.FC<HeaderProps> = ({
         )}
       </div>
       <div className="flex">
-        <div className="hidden sm:flex lg:hidden mt-1">
+        <div className="sm:flex lg:hidden mt-1">
           <Button
             extraClassName={clsx(
               "bg-brand-base px-8 text-sm h-10 mt-1 text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
