@@ -14,6 +14,7 @@ const NewPatientForm: React.FC = () => {
     handleSubmit,
     formState,
     control,
+
     formState: { errors },
   } = useForm<NewPatientFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -197,7 +198,7 @@ const NewPatientForm: React.FC = () => {
             </p>
             <label className={labelClassName}>Personal Information *</label>
             <div className="flex flex-row">
-              <input
+              {/* <input
                 type="text"
                 placeholder="First Name *"
                 className={clsx(
@@ -210,6 +211,24 @@ const NewPatientForm: React.FC = () => {
               {errors.firstName?.type === "required" && (
                 <div className={errorClassName} role="alert">
                   <MdOutlineError className="mt-1" /> First name is required
+                </div>
+              )} */}
+
+              <input
+                type="text"
+                placeholder="First Name *"
+                className={clsx(
+                  inputClassName,
+                  "w-1/2 bg-red-100 placeholder-black"
+                )}
+                {...register("firstName", { required: true, maxLength: 80 })}
+                aria-invalid={errors.firstName ? "true" : "false"}
+              />
+              {errors.firstName?.type === "required" && (
+                <div className={errorClassName} role="alert">
+                  <span className="text-red-500 mt-1">
+                    First name is required
+                  </span>
                 </div>
               )}
 
