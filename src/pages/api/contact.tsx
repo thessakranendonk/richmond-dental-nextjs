@@ -88,6 +88,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     antibiotics,
     jawPain,
     date,
+    timeFrame,
   } = req.body;
 
   const nodemailer = require("nodemailer");
@@ -169,13 +170,13 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     patientSig: patientSig,
     parentSig: parentSig,
     date: date,
+    timeFrame: timeFrame,
   };
 
   const templatePath = "src/lib/mail-templates";
 
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
-
 
   try {
     const response = await transporter.sendMail({
@@ -191,9 +192,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(err);
     res.json(err);
     res.status(405).end();
-}
-
-
+  }
 };
 
 export default contact;
