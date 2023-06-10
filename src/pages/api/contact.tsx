@@ -26,7 +26,7 @@ export const config = {
   api: {
     responseLimit: false,
     bodyParser: {
-      sizeLimit: "10mb",
+      sizeLimit: "30mb",
     },
   },
 };
@@ -176,7 +176,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
 
-
   try {
     const response = await transporter.sendMail({
       from: "thessakranendonk@gmail.com",
@@ -191,9 +190,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(err);
     res.json(err);
     res.status(405).end();
-}
-
-
+  }
 };
 
 export default contact;
