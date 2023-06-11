@@ -101,7 +101,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       res.json(err);
       res.status(405).end();
     }
-  });
+  }, 3000);
 };
 
 const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
