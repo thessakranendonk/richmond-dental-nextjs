@@ -71,41 +71,35 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   const templatePath = "src/lib/mail-templates";
+  const tester = patientSig.replace(/data:image\/png;base64,/gm, "");
 
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
-
   const pdf = await createPdf(req, res);
+  // if (pdf)
+  try {
+    const response = await transporter.sendMail({
+      from: "thessakranendonk@gmail.com",
+      to: "thessakranendonk@gmail.com",
+      subject: `Contact form submission from ${firstName}`,
+      html: htmlToSend,
+      attachments: [
+        {
+          content: pdf,
+          filename: `${filename}.pdf`,
+          type: "application/pdf",
+          disposition: "attachment",
+        },
+      ],
+    });
 
-  if (pdf) {
-    // setTimeout(async () => {
-    if (!!pdf) {
-      try {
-        const response = await transporter.sendMail({
-          from: "thessakranendonk@gmail.com",
-          to: "thessakranendonk@gmail.com",
-          subject: `Contact form submission from ${firstName}`,
-          html: htmlToSend,
-          attachments: [
-            {
-              content: pdf,
-              filename: `${filename}.pdf`,
-              type: "application/pdf",
-              disposition: "attachment",
-            },
-          ],
-        });
-
-        console.log(response, "response");
-        res.status(200);
-        res.end(JSON.stringify(response));
-      } catch (err: any) {
-        console.log(err);
-        res.json(err);
-        res.status(405).end();
-      }
-    }
-    // }, 8000);
+    console.log("response");
+    res.status(200);
+    res.end(JSON.stringify(response));
+  } catch (err: any) {
+    console.log(err);
+    res.json(err);
+    res.status(405).end();
   }
 };
 
@@ -121,10 +115,10 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
     : req.headers.referer?.includes("new-patient-form")
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
-  // let pdfData;
+  console.log(patientSig);
   const buffers: any = [];
   pdf.on("data", buffers.push.bind(buffers));
-
+  // let pdfData;
   // pdf.on("end", () => {
   //   pdfData = Buffer.concat(buffers);
   // });
@@ -136,17 +130,11 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
   pdf.text("Date:", 50, 170);
   pdf.fontSize(14);
   pdf.text(date, 100, 170);
-  alterTextForForm(JSON.stringify(req.body.data ? req.body.data : req.body));
-  pdf.list(
-    alterTextForForm(JSON.stringify(req.body.data ? req.body.data : req.body)),
-    50,
-    200,
-    {
-      align: "left",
-      listType: "bullet",
-      bulletRadius: 0.01,
-    }
-  );
+  pdf.list(alterTextForForm(JSON.stringify(req.body)), 50, 200, {
+    align: "left",
+    listType: "bullet",
+    bulletRadius: 0.01,
+  });
   if (
     patientSig ||
     (req.body.data && req.body.data.patientSig !== undefined) ||
@@ -173,11 +161,12 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     pdf.text("Patient Signature: ", 50, 270);
     pdf.image(
-      patientSig
-        ? patientSig
-        : req.body.data.patientSig
-        ? req.body.data.patientSig
-        : req.body.patientSig,
+      patientSig,
+      // Buffer.from(tester),
+      // ? patientSig
+      // : req.body.data.patientSig
+      // ? req.body.data.patientSig
+      // : req.body.patientSig,
       50,
       320,
       {
@@ -185,20 +174,6 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
         height: 100,
       }
     );
-
-    // pdf.image(
-    //   patientSig
-    //     ? patientSig
-    //     : req.body.data.patientSig
-    //     ? req.body.data.patientSig
-    //     : req.body.patientSig,
-    //   50,
-    //   320,
-    //   {
-    //     width: 200,
-    //     height: 100,
-    //   }
-    // );
   }
   if (
     parentSig !== undefined ||
@@ -221,15 +196,15 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
     );
   }
 
-  // if (frontInsuranceCardImage || backInsuranceCardImage) pdf.addPage();
-  // if (frontInsuranceCardImage) {
-  //   pdf.text("Front of Insurance Card", 50, 50);
-  //   pdf.image(frontInsuranceCardImage, 50, 100, { width: 300 });
-  // }
-  // if (backInsuranceCardImage) {
-  //   pdf.text("Back of Insurance Card", 50, 400);
-  //   pdf.image(backInsuranceCardImage, 50, 450, { width: 300 });
-  // }
+  if (frontInsuranceCardImage || backInsuranceCardImage) pdf.addPage();
+  if (frontInsuranceCardImage) {
+    pdf.text("Front of Insurance Card", 50, 50);
+    pdf.image(frontInsuranceCardImage, 50, 100, { width: 300 });
+  }
+  if (backInsuranceCardImage) {
+    pdf.text("Back of Insurance Card", 50, 400);
+    pdf.image(backInsuranceCardImage, 50, 450, { width: 300 });
+  }
 
   pdf.end();
   return Buffer.concat(buffers);
