@@ -32,7 +32,7 @@ export const config = {
   },
 };
 
-const contact = async (req: NextApiRequest, res: NextApiResponse) => {
+async function contact(req: NextApiRequest, res: NextApiResponse) {
   const {
     email,
     firstName,
@@ -74,10 +74,13 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
-  const pdf = await createPdf(req, res);
+  // const pdf = await createPdf(req, res);
+  const pdf = new Promise((resolve, reject) => {
+    resolve(createPdf(req, res));
+  });
 
-  setTimeout(async () => {
-    try {
+  pdf
+    .then(async () => {
       const response = await transporter.sendMail({
         from: "thessakranendonk@gmail.com",
         to: "thessakranendonk@gmail.com",
@@ -85,24 +88,49 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
         html: htmlToSend,
         attachments: [
           {
-            content: pdf,
+            content: await pdf,
             filename: `${filename}.pdf`,
             type: "application/pdf",
             disposition: "attachment",
           },
         ],
       });
-
-      console.log("response");
       res.status(200);
       res.end(JSON.stringify(response));
-    } catch (err: any) {
+    })
+    .catch((err: unknown) => {
       console.log(err);
       res.json(err);
       res.status(405).end();
-    }
-  }, 3000);
-};
+    });
+}
+
+//   setTimeout(async () => {
+//     try {
+//       const response = await transporter.sendMail({
+//         from: "thessakranendonk@gmail.com",
+//         to: "thessakranendonk@gmail.com",
+//         subject: `Contact form submission from ${firstName}`,
+//         html: htmlToSend,
+//         attachments: [
+//           {
+//             content: await pdf,
+//             filename: `${filename}.pdf`,
+//             type: "application/pdf",
+//             disposition: "attachment",
+//           },
+//         ],
+//       });
+
+//       res.status(200);
+//       res.end(JSON.stringify(response));
+//     } catch (err: any) {
+//       console.log(err);
+//       res.json(err);
+//       res.status(405).end();
+//     }
+//   }, 3000);
+// }
 
 const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
   const {
@@ -111,18 +139,20 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
     frontInsuranceCardImage,
     backInsuranceCardImage,
   } = req.body;
+  console.log(req.body);
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
     : req.headers.referer?.includes("new-patient-form")
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
-  console.log(patientSig);
+
   const buffers: any = [];
   pdf.on("data", buffers.push.bind(buffers));
-  // let pdfData;
-  // pdf.on("end", () => {
-  //   pdfData = Buffer.concat(buffers);
-  // });
+  let pdfData;
+  pdf.on("end", () => {
+    pdfData = Buffer.concat(buffers);
+    return pdfData;
+  });
   pdf.image(pdfLogo, 50, 10, { width: 200, height: 100 });
 
   pdf.fontSize(30);
