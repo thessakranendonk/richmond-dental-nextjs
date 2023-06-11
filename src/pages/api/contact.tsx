@@ -75,7 +75,8 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
   const pdf = await createPdf(req, res);
-  if (pdf)
+
+  setTimeout(async () => {
     try {
       const response = await transporter.sendMail({
         from: "thessakranendonk@gmail.com",
@@ -100,6 +101,7 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
       res.json(err);
       res.status(405).end();
     }
+  });
 };
 
 const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
