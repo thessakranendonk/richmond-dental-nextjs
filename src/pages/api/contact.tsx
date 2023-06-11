@@ -71,36 +71,35 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   const templatePath = "src/lib/mail-templates";
-  const tester = patientSig.replace(/data:image\/png;base64,/gm, "");
 
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
   const pdf = await createPdf(req, res);
-  // if (pdf)
-  try {
-    const response = await transporter.sendMail({
-      from: "thessakranendonk@gmail.com",
-      to: "thessakranendonk@gmail.com",
-      subject: `Contact form submission from ${firstName}`,
-      html: htmlToSend,
-      attachments: [
-        {
-          content: pdf,
-          filename: `${filename}.pdf`,
-          type: "application/pdf",
-          disposition: "attachment",
-        },
-      ],
-    });
+  if (pdf)
+    try {
+      const response = await transporter.sendMail({
+        from: "thessakranendonk@gmail.com",
+        to: "thessakranendonk@gmail.com",
+        subject: `Contact form submission from ${firstName}`,
+        html: htmlToSend,
+        attachments: [
+          {
+            content: pdf,
+            filename: `${filename}.pdf`,
+            type: "application/pdf",
+            disposition: "attachment",
+          },
+        ],
+      });
 
-    console.log("response");
-    res.status(200);
-    res.end(JSON.stringify(response));
-  } catch (err: any) {
-    console.log(err);
-    res.json(err);
-    res.status(405).end();
-  }
+      console.log("response");
+      res.status(200);
+      res.end(JSON.stringify(response));
+    } catch (err: any) {
+      console.log(err);
+      res.json(err);
+      res.status(405).end();
+    }
 };
 
 const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -161,12 +160,11 @@ const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     pdf.text("Patient Signature: ", 50, 270);
     pdf.image(
-      patientSig,
-      // Buffer.from(tester),
-      // ? patientSig
-      // : req.body.data.patientSig
-      // ? req.body.data.patientSig
-      // : req.body.patientSig,
+      patientSig
+        ? patientSig
+        : req.body.data.patientSig
+        ? req.body.data.patientSig
+        : req.body.patientSig,
       50,
       320,
       {

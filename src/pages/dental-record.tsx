@@ -16,22 +16,6 @@ const DentalRecordForm: React.FC = () => {
   } = useForm<DentalRecordFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const toBase64 = (file: File) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
   const patientSignatureRef = useRef<SignatureCanvas>(null);
 
   const clearPatientCanvas = (event: React.MouseEvent<HTMLButtonElement>) => {

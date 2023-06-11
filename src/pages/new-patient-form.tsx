@@ -141,6 +141,7 @@ const NewPatientForm: React.FC = () => {
       if (parentSig) {
         data.parentSig = parentSig;
       }
+
       removeEmptyValuesFromData(data);
 
       const response = await fetch("/api/contact", {
@@ -153,7 +154,6 @@ const NewPatientForm: React.FC = () => {
         }),
       });
       const result = await response.json();
-      console.log(result);
       if (!result.response.includes("250")) {
         setIsSubmitted(false);
         console.log(result);
