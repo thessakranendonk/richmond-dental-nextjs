@@ -6,7 +6,6 @@ import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
 import { toast } from "react-toastify";
 import PageHeading from "@/components/ui/PageHeading";
-import * as Jimp from "jimp";
 
 const DentalRecordForm: React.FC = () => {
   const {
