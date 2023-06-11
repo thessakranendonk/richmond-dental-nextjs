@@ -75,10 +75,14 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
   // const pdf = await createPdf(req, res);
-  const pdf = new Promise((resolve, reject) => {
-    resolve(createPdf(req, res));
+  const pdf = new Promise(async (resolve, reject) => {
+    const pdfResult = await createPdf(req, res);
+    if (pdfResult) {
+      resolve("Promise is resolved successfully.");
+    } else {
+      reject("Promise is rejected");
+    }
   });
-
   pdf
     .then(async () => {
       const response = await transporter.sendMail({
