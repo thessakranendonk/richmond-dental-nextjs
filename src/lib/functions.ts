@@ -11,7 +11,8 @@ export const alterTextForForm = (text: string) => {
     .replace(/"|'/gm, "")
     .replace(/:/gm, ": ")
     .replace(/patientSig:(.*)[^}]/gm, "")
-    .replace(/File:.*/gm, "");
+    .replace(/File:.*/gm, "")
+    .replace(/data:image\/png;base64,/gm, "");
   return (
     removedCharacters
       .replace(/([a-z])([A-Z])/g, "$1 $2")
@@ -19,6 +20,23 @@ export const alterTextForForm = (text: string) => {
       .replace(/\[|\]/gm, "")
       // transform props to readable text example: firstName -> First Name
       .split(",")
-      .map((i) => `${snakeCaseToTitleCase(i)} \n`)
+      .map((i) => `${snakeCaseToTitleCase(i)}`)
   );
 };
+
+// const removedCharacters = text
+// .replace(/{/, "")
+// .replace(/}/gm, "")
+// .replace(/"|'/gm, "")
+// .replace(/:/gm, ": ")
+// .replace(/patientSig:(.*)[^}]/gm, "")
+// .replace(/File:.*/gm, "");
+// return (
+// removedCharacters
+//   .replace(/([a-z])([A-Z])/g, "$1 $2")
+//   .replace(/,(?=[^\[]*\])/gm, " + ")
+//   .replace(/\[|\]/gm, "")
+//   // transform props to readable text example: firstName -> First Name
+//   .split(",")
+//   .map((i) => `${snakeCaseToTitleCase(i)} \n`)
+// );

@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
 import { toast } from "react-toastify";
 import PageHeading from "@/components/ui/PageHeading";
+import * as Jimp from "jimp";
 
 const DentalRecordForm: React.FC = () => {
   const {
@@ -15,6 +16,22 @@ const DentalRecordForm: React.FC = () => {
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const toBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const patientSignatureRef = useRef<SignatureCanvas>(null);
 
@@ -36,8 +53,10 @@ const DentalRecordForm: React.FC = () => {
       });
       return;
     }
+
     try {
       const patientSig = patientSignatureRef.current?.toDataURL("image/jpeg");
+
       if (patientSig) {
         data.patientSig = patientSig;
       }
@@ -167,6 +186,7 @@ const DentalRecordForm: React.FC = () => {
             />
             <SignatureCanvas
               ref={patientSignatureRef}
+              backgroundColor="white"
               canvasProps={{
                 className: "border border-gray-300 rounded-lg w-full h-48",
               }}

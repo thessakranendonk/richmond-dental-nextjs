@@ -73,7 +73,7 @@ export interface DentalRecordFormProps extends Patient {
   dateOfBirth: string;
   releaseStatement: string;
   releaseTerms: string;
-  patientSig: string;
+  patientSig: string | any;
 }
 
 export interface BookingFormProps extends Patient {

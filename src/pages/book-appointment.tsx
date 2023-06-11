@@ -20,6 +20,7 @@ const BookingForm: React.FC = () => {
   const onSubmit: SubmitHandler<BookingFormProps> = async (
     data: BookingFormProps
   ) => {
+    console.log(data, "data");
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
