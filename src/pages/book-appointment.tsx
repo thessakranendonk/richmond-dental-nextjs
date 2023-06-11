@@ -20,7 +20,6 @@ const BookingForm: React.FC = () => {
   const onSubmit: SubmitHandler<BookingFormProps> = async (
     data: BookingFormProps
   ) => {
-    console.log(data, "data");
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -34,6 +33,7 @@ const BookingForm: React.FC = () => {
         setIsSubmitted(false);
         console.log(result);
       } else {
+        console.log(result);
         setIsSubmitted(true);
       }
     } catch (error) {

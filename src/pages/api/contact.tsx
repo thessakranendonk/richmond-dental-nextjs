@@ -71,7 +71,6 @@ const contact = async (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   const templatePath = "src/lib/mail-templates";
-  const tester = patientSig.replace(/data:image\/png;base64,/gm, "");
 
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);

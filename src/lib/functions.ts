@@ -11,8 +11,7 @@ export const alterTextForForm = (text: string) => {
     .replace(/"|'/gm, "")
     .replace(/:/gm, ": ")
     .replace(/patientSig:(.*)[^}]/gm, "")
-    .replace(/File:.*/gm, "")
-    .replace(/data:image\/png;base64,/gm, "");
+    .replace(/File:.*/gm, "");
   return (
     removedCharacters
       .replace(/([a-z])([A-Z])/g, "$1 $2")
