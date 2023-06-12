@@ -35,7 +35,6 @@ export const config = {
 };
 
 async function contact(req: NextApiRequest, res: NextApiResponse) {
-  console.log("clicked");
   const {
     email,
     firstName,
@@ -94,7 +93,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
       .then(async () => {
         const attachments: { filename: string; content: Buffer }[] = [];
 
-        if (patientSig | req.body.data.patientSig) {
+        if (patientSig || req.body.data.patientSig) {
           const signature = patientSig ? patientSig : req.body.data.patientSig;
           const patientSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
@@ -139,11 +138,12 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
             content: backInsuranceCardImageBuffer,
           });
         }
-        console.log(attachments, "attach2");
         const response = await transporter.sendMail({
           from: "thessakranendonk@gmail.com",
           to: "thessakranendonk@gmail.com",
-          subject: `Contact form submission from ${firstName}`,
+          subject: `Contact form submission from ${
+            firstName ? firstName : req.body.data.firstName
+          }`,
           html: htmlToSend,
           attachments: [
             {
