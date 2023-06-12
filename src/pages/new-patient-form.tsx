@@ -138,7 +138,7 @@ const NewPatientForm: React.FC = () => {
       }
 
       const parentSig = parentSignatureRef.current?.toDataURL("image/jpeg");
-      if (parentSig) {
+      if (parentSig && !parentSignatureRef.current?.isEmpty()) {
         data.parentSig = parentSig;
       }
 
