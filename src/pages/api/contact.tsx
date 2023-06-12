@@ -6,10 +6,12 @@ import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
+import getStream from "get-stream";
+import { getStreamAsBuffer } from "get-stream";
 
 require("dotenv").config();
 
-var pdf = new PDFDocument();
+// var pdf = new PDFDocument();
 const date = new Date().toDateString();
 
 const createHTMLToSend = (path: any, replacements: any) => {
@@ -33,6 +35,7 @@ export const config = {
 };
 
 async function contact(req: NextApiRequest, res: NextApiResponse) {
+  console.log("clicked");
   const {
     email,
     firstName,
@@ -75,172 +78,239 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
   let htmlToSend = createHTMLToSend(emailPath, replacements);
   // const pdf = await createPdf(req, res);
+
   const pdf = new Promise(async (resolve, reject) => {
     const pdfResult = await createPdf(req, res);
+    console.log("promise");
     if (pdfResult) {
-      resolve("Promise is resolved successfully.");
+      console.log("promise 2");
+      resolve(pdfResult);
+      console.log(pdfResult, "pdfResult");
     } else {
       reject("Promise is rejected");
     }
+    return pdfResult;
   });
-  pdf
-    .then(async () => {
-      const response = await transporter.sendMail({
-        from: "thessakranendonk@gmail.com",
-        to: "thessakranendonk@gmail.com",
-        subject: `Contact form submission from ${firstName}`,
-        html: htmlToSend,
-        attachments: [
-          {
-            content: await pdf,
-            filename: `${filename}.pdf`,
-            type: "application/pdf",
-            disposition: "attachment",
-          },
-        ],
+  console.log("WHAT?");
+  console.log(await pdf);
+  console.log(await pdf, "pdf");
+  console.log(Buffer.isBuffer(await pdf));
+  if (Buffer.isBuffer(await pdf)) {
+    pdf
+      .then(async () => {
+        const response = await transporter.sendMail({
+          from: "thessakranendonk@gmail.com",
+          to: "thessakranendonk@gmail.com",
+          subject: `Contact form submission from ${firstName}`,
+          html: htmlToSend,
+          attachments: [
+            {
+              content: await pdf,
+              filename: `${filename}.pdf`,
+              type: "application/pdf",
+              disposition: "attachment",
+            },
+          ],
+        });
+        res.status(200);
+        res.end(JSON.stringify(response));
+      })
+      .catch((err: unknown) => {
+        console.log(err);
+        res.json(err);
+        res.status(405).end();
       });
-      res.status(200);
-      res.end(JSON.stringify(response));
-    })
-    .catch((err: unknown) => {
-      console.log(err);
-      res.json(err);
-      res.status(405).end();
-    });
+  }
 }
-
-//   setTimeout(async () => {
-//     try {
-//       const response = await transporter.sendMail({
-//         from: "thessakranendonk@gmail.com",
-//         to: "thessakranendonk@gmail.com",
-//         subject: `Contact form submission from ${firstName}`,
-//         html: htmlToSend,
-//         attachments: [
-//           {
-//             content: await pdf,
-//             filename: `${filename}.pdf`,
-//             type: "application/pdf",
-//             disposition: "attachment",
-//           },
-//         ],
-//       });
-
-//       res.status(200);
-//       res.end(JSON.stringify(response));
-//     } catch (err: any) {
-//       console.log(err);
-//       res.json(err);
-//       res.status(405).end();
-//     }
-//   }, 3000);
-// }
-
-const createPdf = async (req: NextApiRequest, res: NextApiResponse) => {
+async function createPdf(req: NextApiRequest, res: NextApiResponse) {
   const {
     parentSig,
     patientSig,
     frontInsuranceCardImage,
     backInsuranceCardImage,
   } = req.body;
-  console.log(req.body);
+  // var pdf = new PDFDocument();
+  // console.log("CREATE");
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
     : req.headers.referer?.includes("new-patient-form")
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
 
-  const buffers: any = [];
-  pdf.on("data", buffers.push.bind(buffers));
-  let pdfData;
-  pdf.on("end", () => {
-    pdfData = Buffer.concat(buffers);
-    return pdfData;
-  });
-  pdf.image(pdfLogo, 50, 10, { width: 200, height: 100 });
+  // const buffers: Buffer[] = [];
+  // pdf.on("data", buffers.push.bind(buffers));
+  // pdf.image(pdfLogo, 50, 10, { width: 200, height: 100 });
 
-  pdf.fontSize(30);
-  pdf.text(subject, 50, 130);
-  pdf.fontSize(14);
-  pdf.text("Date:", 50, 170);
-  pdf.fontSize(14);
-  pdf.text(date, 100, 170);
-  pdf.list(alterTextForForm(JSON.stringify(req.body)), 50, 200, {
+  // pdf.fontSize(30);
+  // pdf.text(subject, 50, 130);
+  // pdf.fontSize(14);
+  // pdf.text("Date:", 50, 170);
+  // pdf.fontSize(14);
+  // pdf.text(date, 100, 170);
+  // pdf.list(alterTextForForm(JSON.stringify(req.body)), 50, 200, {
+  //   align: "left",
+  //   listType: "bullet",
+  //   bulletRadius: 0.01,
+  // });
+  // if (
+  //   patientSig ||
+  //   (req.body.data && req.body.data.patientSig !== undefined) ||
+  //   (req.body && req.body.patientSig !== undefined)
+  // ) {
+  //   pdf.addPage();
+  //   if (req.headers.referer?.includes("dental-record")) {
+  //     pdf.text("To whom this may concern,", 50, 50);
+  //     pdf.text(
+  //       "We at Richmond West Dental and the below patient, would like to thank you and your staff for the care you have provided.",
+  //       50,
+  //       70
+  //     );
+  //     pdf.text(
+  //       "For us to maintain continued and quality care for the patient, we kindly ask if you could forward the most recent radiographs and dental records to our office at your earliest convenience.",
+  //       50,
+  //       120
+  //     );
+  //     pdf.text(
+  //       "The signature below represents the patient's authorization and release of their records along with any legal responsibility or liability that may arise from this authorization.",
+  //       50,
+  //       180
+  //     );
+  //   }
+  //   pdf.text("Patient Signature: ", 50, 270);
+  //   pdf.image(
+  //     patientSig
+  //       ? patientSig
+  //       : req.body.data.patientSig
+  //       ? req.body.data.patientSig
+  //       : req.body.patientSig,
+  //     50,
+  //     320,
+  //     {
+  //       width: 200,
+  //       height: 100,
+  //     }
+  //   );
+  // }
+  // if (
+  //   parentSig !== undefined ||
+  //   (req.body.data && req.body.data.parentSig !== undefined) ||
+  //   (req.body && req.body.parentSig !== undefined)
+  // ) {
+  //   pdf.text("Parent Signature: ", 50, 520);
+  //   pdf.image(
+  //     parentSig
+  //       ? parentSig
+  //       : req.body.data.parentSig
+  //       ? req.body.data.parentSig
+  //       : req.body.parentSig,
+  //     50,
+  //     570,
+  //     {
+  //       width: 200,
+  //       height: 100,
+  //     }
+  //   );
+  // }
+
+  // if (frontInsuranceCardImage || backInsuranceCardImage) pdf.addPage();
+  // if (frontInsuranceCardImage) {
+  //   pdf.text("Front of Insurance Card", 50, 50);
+  //   pdf.image(frontInsuranceCardImage, 50, 100, { width: 300 });
+  // }
+  // if (backInsuranceCardImage) {
+  //   pdf.text("Back of Insurance Card", 50, 400);
+  //   pdf.image(backInsuranceCardImage, 50, 450, { width: 300 });
+  // }
+  // pdf.end();
+  // pdf.on("finish", () => {
+  //   const a = Buffer.concat(buffers);
+  //   console.log(a, "AAA");
+  // });
+  // let tester;
+
+  // return Buffer.concat(buffers);
+  // const a = Buffer.concat(buffers);
+  // let dataTest = await getStreamAsBuffer(Buffer.concat(buffers));
+  // let tester = dataTest.toString("base64");
+  // console.log(tester, "tester");
+  // return tester;
+
+  const doc = new PDFDocument();
+  // doc.image(pdfLogo, 50, 10, { width: 200, height: 100 });
+
+  doc.fontSize(30);
+  doc.text(subject, 50, 130);
+  doc.fontSize(14);
+  doc.text("Date:", 50, 170);
+  doc.fontSize(14);
+  doc.text(date, 100, 170);
+  doc.list(alterTextForForm(JSON.stringify(req.body)), 50, 200, {
     align: "left",
     listType: "bullet",
     bulletRadius: 0.01,
   });
-  if (
-    patientSig ||
-    (req.body.data && req.body.data.patientSig !== undefined) ||
-    (req.body && req.body.patientSig !== undefined)
-  ) {
-    pdf.addPage();
-    if (req.headers.referer?.includes("dental-record")) {
-      pdf.text("To whom this may concern,", 50, 50);
-      pdf.text(
-        "We at Richmond West Dental and the below patient, would like to thank you and your staff for the care you have provided.",
-        50,
-        70
-      );
-      pdf.text(
-        "For us to maintain continued and quality care for the patient, we kindly ask if you could forward the most recent radiographs and dental records to our office at your earliest convenience.",
-        50,
-        120
-      );
-      pdf.text(
-        "The signature below represents the patient's authorization and release of their records along with any legal responsibility or liability that may arise from this authorization.",
-        50,
-        180
-      );
-    }
-    pdf.text("Patient Signature: ", 50, 270);
-    pdf.image(
-      patientSig
-        ? patientSig
-        : req.body.data.patientSig
-        ? req.body.data.patientSig
-        : req.body.patientSig,
-      50,
-      320,
-      {
-        width: 200,
-        height: 100,
-      }
-    );
-  }
-  if (
-    parentSig !== undefined ||
-    (req.body.data && req.body.data.parentSig !== undefined) ||
-    (req.body && req.body.parentSig !== undefined)
-  ) {
-    pdf.text("Parent Signature: ", 50, 520);
-    pdf.image(
-      parentSig
-        ? parentSig
-        : req.body.data.parentSig
-        ? req.body.data.parentSig
-        : req.body.parentSig,
-      50,
-      570,
-      {
-        width: 200,
-        height: 100,
-      }
-    );
-  }
 
-  if (frontInsuranceCardImage || backInsuranceCardImage) pdf.addPage();
-  if (frontInsuranceCardImage) {
-    pdf.text("Front of Insurance Card", 50, 50);
-    pdf.image(frontInsuranceCardImage, 50, 100, { width: 300 });
-  }
-  if (backInsuranceCardImage) {
-    pdf.text("Back of Insurance Card", 50, 400);
-    pdf.image(backInsuranceCardImage, 50, 450, { width: 300 });
-  }
+  // if (
+  //   patientSig ||
+  //   (req.body.data && req.body.data.patientSig !== undefined) ||
+  //   (req.body && req.body.patientSig !== undefined)
+  // ) {
+  //   doc.addPage();
+  //   if (req.headers.referer?.includes("dental-record")) {
+  //     doc.text("To whom this may concern,", 50, 50);
+  //     doc.text(
+  //       "We at Richmond West Dental and the below patient, would like to thank you and your staff for the care you have provided.",
+  //       50,
+  //       70
+  //     );
+  //     doc.text(
+  //       "For us to maintain continued and quality care for the patient, we kindly ask if you could forward the most recent radiographs and dental records to our office at your earliest convenience.",
+  //       50,
+  //       120
+  //     );
+  //     doc.text(
+  //       "The signature below represents the patient's authorization and release of their records along with any legal responsibility or liability that may arise from this authorization.",
+  //       50,
+  //       180
+  //     );
+  // }
+  // doc.text("Patient Signature: ", 50, 270);
+  // doc.image(
+  //   patientSig
+  //     ? patientSig
+  //     : req.body.data.patientSig
+  //     ? req.body.data.patientSig
+  //     : req.body.patientSig,
+  //   50,
+  //   320,
+  //   {
+  //     width: 200,
+  //     height: 100,
+  //   }
+  // );
+  // }
+  // if (
+  //   parentSig !== undefined ||
+  //   (req.body.data && req.body.data.parentSig !== undefined) ||
+  //   (req.body && req.body.parentSig !== undefined)
+  // ) {
+  // doc.text("Parent Signature: ", 50, 520);
+  // doc.image(
+  //   parentSig
+  //     ? parentSig
+  //     : req.body.data.parentSig
+  //     ? req.body.data.parentSig
+  //     : req.body.parentSig,
+  //   50,
+  //   570,
+  //   {
+  //     width: 200,
+  //     height: 100,
+  //   }
+  // );
+  // }
 
-  pdf.end();
-  return Buffer.concat(buffers);
-};
+  doc.end();
+  return await getStreamAsBuffer(doc);
+}
 export default contact;
