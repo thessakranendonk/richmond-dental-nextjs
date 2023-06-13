@@ -6,12 +6,10 @@ import { Buffer } from "buffer";
 import PDFDocument from "pdfkit";
 import { alterTextForForm } from "@/lib/functions";
 import { pdfLogo } from "@/lib/pdfLogo";
-import getStream from "get-stream";
 import { getStreamAsBuffer } from "get-stream";
 
 require("dotenv").config();
 
-// var pdf = new PDFDocument();
 const date = new Date().toDateString();
 
 const createHTMLToSend = (path: any, replacements: any) => {
@@ -44,7 +42,6 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     frontInsuranceCardImage,
     backInsuranceCardImage,
   } = req.body;
-
   const nodemailer = require("nodemailer");
   let transporter = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
@@ -92,9 +89,8 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     pdf
       .then(async () => {
         const attachments: { filename: string; content: Buffer }[] = [];
-
-        if (patientSig || req.body.data.patientSig) {
-          const signature = patientSig ? patientSig : req.body.data.patientSig;
+        if (patientSig || (req.body.data && req.body.data.patientSig)) {
+          const signature = patientSig;
           const patientSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
             "base64"
@@ -105,7 +101,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
           });
         }
 
-        if (parentSig || req.body.data.parentSig) {
+        if (parentSig || (req.body.data && req.body.data.parentSig)) {
           const signature = parentSig ? parentSig : req.body.data.parentSig;
           const parentSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
@@ -166,14 +162,6 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 async function createPdf(req: NextApiRequest, res: NextApiResponse) {
-  const {
-    parentSig,
-    patientSig,
-    frontInsuranceCardImage,
-    backInsuranceCardImage,
-  } = req.body;
-  // var pdf = new PDFDocument();
-  // console.log("CREATE");
   const subject = req.headers.referer?.includes("dental-record")
     ? "Dental Record Request"
     : req.headers.referer?.includes("new-patient-form")
@@ -184,12 +172,12 @@ async function createPdf(req: NextApiRequest, res: NextApiResponse) {
   // doc.image(pdfLogo, 50, 10, { width: 200, height: 100 });
 
   doc.fontSize(30);
-  doc.text(subject, 50, 130);
+  doc.text(subject, 50, 60);
   doc.fontSize(14);
-  doc.text("Date:", 50, 170);
+  doc.text("Date:", 50, 90);
   doc.fontSize(14);
-  doc.text(date, 100, 170);
-  doc.list(alterTextForForm(JSON.stringify(req.body)), 50, 200, {
+  doc.text(date, 100, 90);
+  doc.list(alterTextForForm(JSON.stringify(req.body)), 50, 130, {
     align: "left",
     listType: "bullet",
     bulletRadius: 0.01,
