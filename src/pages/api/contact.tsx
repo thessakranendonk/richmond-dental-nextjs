@@ -89,7 +89,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     pdf
       .then(async () => {
         const attachments: { filename: string; content: Buffer }[] = [];
-        if (patientSig || (req.body.data && req.body.data.patientSig)) {
+        if ((req.body.data && req.body.data.patientSig) || patientSig) {
           const signature = patientSig;
           const patientSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
@@ -101,7 +101,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
           });
         }
 
-        if (parentSig || (req.body.data && req.body.data.parentSig)) {
+        if ((req.body.data && req.body.data.parentSig) || parentSig) {
           const signature = parentSig ? parentSig : req.body.data.parentSig;
           const parentSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
