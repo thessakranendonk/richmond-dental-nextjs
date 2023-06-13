@@ -132,16 +132,15 @@ const NewPatientForm: React.FC = () => {
         : data;
 
     try {
-      const patientSig = patientSignatureRef.current?.toDataURL("image/jpeg");
+      const patientSig = patientSignatureRef.current?.toDataURL("image/png");
       if (patientSig) {
         data.patientSig = patientSig;
       }
 
-      const parentSig = parentSignatureRef.current?.toDataURL("image/jpeg");
-      if (parentSig && !parentSignatureRef.current?.isEmpty()) {
+      const parentSig = parentSignatureRef.current?.toDataURL("image/png");
+      if (parentSig) {
         data.parentSig = parentSig;
       }
-
       removeEmptyValuesFromData(data);
 
       const response = await fetch("/api/contact", {
@@ -153,16 +152,18 @@ const NewPatientForm: React.FC = () => {
           ...allData,
         }),
       });
+
       const result = await response.json();
-      if (!result.response.includes("250")) {
-        setIsSubmitted(false);
-        console.log(result);
-      } else {
+      console.log(result.response.includes("250"), "RESULT");
+
+      if (result.response.includes("250")) {
         setIsSubmitted(true);
+      } else {
+        setIsSubmitted(false);
       }
-      setIsSubmitted(true);
     } catch (error) {
       console.error(error);
+      setIsSubmitted(false);
     }
   };
 
@@ -1191,7 +1192,6 @@ const NewPatientForm: React.FC = () => {
               />
               <SignatureCanvas
                 ref={patientSignatureRef}
-                backgroundColor="white"
                 canvasProps={{
                   className: "border border-gray-300 rounded-lg w-full h-48",
                 }}
@@ -1213,7 +1213,6 @@ const NewPatientForm: React.FC = () => {
               <input type="hidden" {...register("parentSig")} />
               <SignatureCanvas
                 ref={parentSignatureRef}
-                backgroundColor="white"
                 canvasProps={{
                   className: "border border-gray-300 rounded-lg w-full h-48",
                 }}
