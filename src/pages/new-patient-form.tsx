@@ -138,7 +138,7 @@ const NewPatientForm: React.FC = () => {
       }
 
       const parentSig = parentSignatureRef.current?.toDataURL("image/png");
-      if (parentSig) {
+      if (parentSig && !parentSignatureRef.current?.isEmpty()) {
         data.parentSig = parentSig;
       }
       removeEmptyValuesFromData(data);
@@ -154,8 +154,6 @@ const NewPatientForm: React.FC = () => {
       });
 
       const result = await response.json();
-      console.log(result.response.includes("250"), "RESULT");
-
       if (result.response.includes("250")) {
         setIsSubmitted(true);
       } else {
@@ -1192,6 +1190,7 @@ const NewPatientForm: React.FC = () => {
               />
               <SignatureCanvas
                 ref={patientSignatureRef}
+                backgroundColor="white"
                 canvasProps={{
                   className: "border border-gray-300 rounded-lg w-full h-48",
                 }}
@@ -1213,6 +1212,7 @@ const NewPatientForm: React.FC = () => {
               <input type="hidden" {...register("parentSig")} />
               <SignatureCanvas
                 ref={parentSignatureRef}
+                backgroundColor="white"
                 canvasProps={{
                   className: "border border-gray-300 rounded-lg w-full h-48",
                 }}
