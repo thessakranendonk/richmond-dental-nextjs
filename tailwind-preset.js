@@ -117,12 +117,12 @@ module.exports = {
           height: "600px",
         },
         ".img-about-md": {
-          width: "400px",
-          height: "465px",
+          width: "600px",
+          height: "600px",
         },
         ".img-about-sm": {
-          width: "300px",
-          height: "365px",
+          width: "600px",
+          height: "600px",
         },
         ".br-left": {
           "border-radius": "30% 70% 70% 30% / 30% 46% 54% 70% ",
@@ -131,7 +131,7 @@ module.exports = {
           "border-radius": "20% 80% 25% 70% /30% 46% 54% 70%",
         },
         ".br-right-about": {
-          "border-radius": "30% 80% 25% 90% /40% 46% 54% 62%",
+          "border-radius": "64% 39% 25% 73% / 56% 43% 44% 44%",
         },
         ".br-center": {
           "border-radius": "50%",

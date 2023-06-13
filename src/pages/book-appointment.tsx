@@ -29,15 +29,14 @@ const BookingForm: React.FC = () => {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      if (!result.response.includes("250")) {
-        setIsSubmitted(false);
-        console.log(result);
-      } else {
-        console.log(result);
+      if (result.response.includes("250")) {
         setIsSubmitted(true);
+      } else {
+        setIsSubmitted(false);
       }
     } catch (error) {
       console.error(error, "ERR");
+      setIsSubmitted(false);
     }
   };
 
