@@ -82,7 +82,7 @@ const AboutUs: React.FC = () => {
             TMJ/Grinding and Clenching.
           </p>
         </div>
-        <div className="relative">
+        <div className="relative hidden xl:flex">
           <img
             className="br-right-about object-none bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about-md img-about-sm img-settings"
             src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
@@ -93,6 +93,12 @@ const AboutUs: React.FC = () => {
               src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
             />
           </div>
+        </div>
+        <div className="xl:hidden mt-16">
+          <img
+            className="img-sm md:img-wrap-md img-settings br-left mx-auto mb-12 object-cover bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base"
+            src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
+          />
         </div>
       </div>
     </div>
