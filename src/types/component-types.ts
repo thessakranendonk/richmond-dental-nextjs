@@ -34,6 +34,8 @@ export interface ButtonProps {
   type: "button" | "submit";
   extraClassName?: string;
   onSubmit?: (event: React.FormEvent<HTMLButtonElement>) => void;
+  content: string;
+  href: string;
 }
 
 export interface LinkCardProps {

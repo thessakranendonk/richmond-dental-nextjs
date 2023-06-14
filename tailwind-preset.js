@@ -121,8 +121,12 @@ module.exports = {
           height: "600px",
         },
         ".img-about-sm": {
-          width: "600px",
-          height: "600px",
+          width: "280px",
+          height: "280px",
+        },
+        ".img-about-xxl": {
+          width: "800px",
+          height: "800px",
         },
         ".br-left": {
           "border-radius": "30% 70% 70% 30% / 30% 46% 54% 70% ",
@@ -171,6 +175,10 @@ module.exports = {
         ".img-wrap-xl": {
           width: "560px",
           height: "560px",
+        },
+        ".img-wrap-xxl": {
+          width: "800px",
+          height: "800px",
         },
         ".back-img": {
           display: "block",

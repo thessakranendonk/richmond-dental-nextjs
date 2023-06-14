@@ -169,7 +169,6 @@ async function createPdf(req: NextApiRequest, res: NextApiResponse) {
     : "New Appointment Request";
 
   const doc = new PDFDocument();
-  // doc.image(pdfLogo, 50, 10, { width: 200, height: 100 });
 
   doc.fontSize(30);
   doc.text(subject, 50, 60);
