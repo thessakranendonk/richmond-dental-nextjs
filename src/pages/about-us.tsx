@@ -1,8 +1,8 @@
 const AboutUs: React.FC = () => {
   return (
     <div className="w-[calc(10% - 10px)] mx-8 mt-24 flex flex-col gap-y-10 xl:mx-0 xl:w-screen relative z-10">
-      <div className="xl:flex xl:flex-row xl:justify-between md:mt-12 xl:-mt-40">
-        <div className="hidden xl:flex xl:flex-row xl:w-screen xl:justify-between">
+      <div className="xl:flex xl:flex-row xl:justify-evenly md:mt-12 xl:-mt-40">
+        <div className="hidden xl:flex xl:flex-row lg:w-1/2">
           <img
             className="img img-settings object-none br-left mt-40"
             src="https://res.cloudinary.com/dybcfr6cd/image/upload/v1683489767/richmond-dental/richmond2_wxsckg.jpg"
@@ -16,7 +16,7 @@ const AboutUs: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-0 my-auto md:max-w-2xl text-center md:mx-auto xl:text-left px-20">
+        <div className="p-0 my-auto md:w-1/2 text-center md:mx-auto xl:text-left px-20 xl:pl-0 xl:pr-48">
           <h1 className="pt-16 lg:pt-0 font-semibold text-2xl md:text-3xl xl:text-5xl mb-8 xl:w-[32rem] mx-auto text-zinc-800 text-center text-shadow-lg shadow-zinc-300">
             About Us
           </h1>
@@ -82,20 +82,14 @@ const AboutUs: React.FC = () => {
             TMJ/Grinding and Clenching.
           </p>
         </div>
-        {/* <img
-          className="br-right-about object-cover object-top bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about-md lg:img-about-md img-about-sm img-settings"
-          src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
-        /> */}
-        <div className="relative w-[600px] h-[600px]">
+        <div className="relative">
           <img
-            // className="img img-settings object-none br-left mt-40"
-            className="br-right-about object-cover object-top object- bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about-md img-about-sm img-settings"
+            className="br-right-about object-none bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about-md img-about-sm img-settings"
             src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
           />
           <div className="img-wrap img-wrap-xl br-right-about top-[20px] right-[20px]">
-            <div className="back-img br-left"></div>
             <img
-              className="back-img br-right-about object-cover object-top bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base"
+              className="back-img br-right-about object-none bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base"
               src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
             />
           </div>
