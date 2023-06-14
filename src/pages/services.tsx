@@ -61,7 +61,6 @@ export const fadeInFromLeft = {
 
 const ServiceDiv = ({
   img,
-  name,
   evenOrUneven,
   service,
   description,
@@ -105,10 +104,13 @@ const ServiceDiv = ({
         </div>
         {!evenOrUneven && (
           <div className="hidden xl:inline-flex">
-            <img className="img img-settings object-none br-right" src={img} />
-            <div className="img-wrap img-wrap-xl br-right top-[20px] right-[20px]">
-              <div className="back-img br-right"></div>
-              <img className="back-img object-none br-right" src={img} />
+            <img
+              className="img img-settings object-none br-right-about"
+              src={img}
+            />
+            <div className="img-wrap img-wrap-xl br-right-about top-[20px] right-[20px]">
+              <div className="back-img br-right-about"></div>
+              <img className="back-img object-none br-right-about" src={img} />
             </div>
           </div>
         )}
