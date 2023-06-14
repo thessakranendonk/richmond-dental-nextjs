@@ -15,6 +15,7 @@ const DentalRecordForm: React.FC = () => {
     formState: { errors },
   } = useForm<DentalRecordFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const patientSignatureRef = useRef<SignatureCanvas>(null);
 
@@ -56,11 +57,11 @@ const DentalRecordForm: React.FC = () => {
       if (result.response.includes("250")) {
         setIsSubmitted(true);
       } else {
-        setIsSubmitted(false);
+        setIsError(true);
       }
     } catch (error) {
       console.error(error);
-      setIsSubmitted(false);
+      setIsError(true);
     }
   };
 
@@ -76,7 +77,7 @@ const DentalRecordForm: React.FC = () => {
         <PageHeading title="Dental Records Release Form" />
       </div>
       <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
-        {!isSubmitted ? (
+        {!isSubmitted && !isError && (
           <form
             className="flex flex-col mt-8 xl:mt-12 text-sm"
             onSubmit={handleSubmit(onSubmit)}
@@ -207,9 +208,16 @@ const DentalRecordForm: React.FC = () => {
               value="Submit Dental Records Release Form"
             />
           </form>
-        ) : (
+        )}
+        {isSubmitted && (
           <p className="text-center text-xl font-extralight pt-20">
             Your Dental Records Release Form has been successfully submitted!
+          </p>
+        )}
+        {isError && (
+          <p className="text-center text-xl font-normal pt-20 text-red-600">
+            An error occurred please contact the office to request your dental
+            records.
           </p>
         )}
       </div>

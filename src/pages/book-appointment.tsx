@@ -1,12 +1,13 @@
 import PageHeading from "@/components/ui/PageHeading";
 import { BookingFormProps } from "@/types/forms-interfaces";
 import clsx from "clsx";
-import React, { FormEvent, useState } from "react";
-import { SubmitHandler, useForm, useFormState } from "react-hook-form";
+import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
 
 const BookingForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const {
     register,
@@ -32,11 +33,11 @@ const BookingForm: React.FC = () => {
       if (result.response.includes("250")) {
         setIsSubmitted(true);
       } else {
-        setIsSubmitted(false);
+        setIsError(true);
       }
     } catch (error) {
       console.error(error, "ERR");
-      setIsSubmitted(false);
+      setIsError(true);
     }
   };
 
@@ -54,7 +55,7 @@ const BookingForm: React.FC = () => {
         accept patient’s requests on within a 24 hour basis.
       </p>
       <div>
-        {!isSubmitted ? (
+        {!isSubmitted && (
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col mt-8 xl:mt-12 text-sm mx-auto lg:max-w-lg"
@@ -137,9 +138,16 @@ const BookingForm: React.FC = () => {
               value="Request An Appointment"
             />
           </form>
-        ) : (
+        )}
+        {isSubmitted && (
           <p className="text-center text-xl font-extralight pt-20">
             Your appointment request has been successfully submitted!
+          </p>
+        )}
+        {isError && (
+          <p className="text-center text-xl font-normal pt-20 text-red-600">
+            An error occurred please contact the office to request your dental
+            appointment.
           </p>
         )}
       </div>

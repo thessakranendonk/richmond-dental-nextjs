@@ -17,6 +17,7 @@ const NewPatientForm: React.FC = () => {
     formState: { errors },
   } = useForm<NewPatientFormProps>();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [frontImage, setFrontImage] = useState<File | null>(null);
   const [backImage, setBackImage] = useState<File | null>(null);
   const [base64Front, setBase64Front] = useState<string | null>(null);
@@ -157,11 +158,11 @@ const NewPatientForm: React.FC = () => {
       if (result.response.includes("250")) {
         setIsSubmitted(true);
       } else {
-        setIsSubmitted(false);
+        setIsError(true);
       }
     } catch (error) {
       console.error(error);
-      setIsSubmitted(false);
+      setIsError(true);
     }
   };
 
@@ -185,7 +186,7 @@ const NewPatientForm: React.FC = () => {
       </div>
 
       <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-5xl lg:mx-auto">
-        {!isSubmitted ? (
+        {!isSubmitted && !isError && (
           <form
             className="flex flex-col mt-8 xl:mt-12 text-sm"
             onSubmit={handleSubmit(onSubmit)}
@@ -1253,9 +1254,16 @@ const NewPatientForm: React.FC = () => {
               Submit
             </button>
           </form>
-        ) : (
+        )}
+        {isSubmitted && (
           <p className="text-center text-xl font-extralight pt-20">
             Your submission has been successfully received!
+          </p>
+        )}
+        {isError && (
+          <p className="text-center text-xl font-normal pt-20 text-red-600">
+            An error occurred please contact the office to sign up as a new
+            patient.
           </p>
         )}
       </div>
