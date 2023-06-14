@@ -49,7 +49,7 @@ const BookingForm: React.FC = () => {
       <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
         <PageHeading title="Request An Appointment" />
       </div>
-      <p className="text-center text-lg font-extralight lg:max-w-lg mx-auto pt-20">
+      <p className="text-center text-lg font-extralight w-[calc(10% - 10px)] mx-10 lg:max-w-lg lg:mx-auto pt-20">
         We are always glad to address any questions that you might come up with.
         Please get in touch with us to inquire about anything! We review and
         accept patient’s requests on within a 24 hour basis.
@@ -58,7 +58,7 @@ const BookingForm: React.FC = () => {
         {!isSubmitted && (
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col mt-8 xl:mt-12 text-sm mx-auto lg:max-w-lg"
+            className="flex flex-col mt-8 xl:mt-12 text-sm w-[calc(10% - 10px)] mx-10 lg:mx-auto lg:max-w-lg"
           >
             <input
               className={inputClassName}
