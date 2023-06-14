@@ -36,8 +36,10 @@ const DentalRecordForm: React.FC = () => {
       });
       return;
     }
+
     try {
       const patientSig = patientSignatureRef.current?.toDataURL("image/jpeg");
+
       if (patientSig) {
         data.patientSig = patientSig;
       }
@@ -51,14 +53,14 @@ const DentalRecordForm: React.FC = () => {
       });
 
       const result = await response.json();
-      if (!result.response.includes("250")) {
-        setIsSubmitted(false);
-        console.log(result);
-      } else {
+      if (result.response.includes("250")) {
         setIsSubmitted(true);
+      } else {
+        setIsSubmitted(false);
       }
     } catch (error) {
       console.error(error);
+      setIsSubmitted(false);
     }
   };
 
@@ -167,6 +169,7 @@ const DentalRecordForm: React.FC = () => {
             />
             <SignatureCanvas
               ref={patientSignatureRef}
+              backgroundColor="white"
               canvasProps={{
                 className: "border border-gray-300 rounded-lg w-full h-48",
               }}

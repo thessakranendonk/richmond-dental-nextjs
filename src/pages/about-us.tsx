@@ -82,10 +82,24 @@ const AboutUs: React.FC = () => {
             TMJ/Grinding and Clenching.
           </p>
         </div>
-        <img
-          className="br-right-about bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about-md lg:h-auto lg:w-auto sm:img-about-sm"
+        {/* <img
+          className="br-right-about object-cover object-top bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about-md lg:img-about-md img-about-sm img-settings"
           src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
-        />
+        /> */}
+        <div className="relative w-[600px] h-[600px]">
+          <img
+            // className="img img-settings object-none br-left mt-40"
+            className="br-right-about object-cover object-top object- bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base md:img-about-md img-about-sm img-settings"
+            src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
+          />
+          <div className="img-wrap img-wrap-xl br-right-about top-[20px] right-[20px]">
+            <div className="back-img br-left"></div>
+            <img
+              className="back-img br-right-about object-cover object-top bg-clip-content text-transparent bg-gradient-to-r from-brand-lightest to-brand-base"
+              src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
