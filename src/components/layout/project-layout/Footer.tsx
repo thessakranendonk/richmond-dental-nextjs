@@ -163,11 +163,9 @@ const ClinicContact = () => {
               "bg-brand-darkest px-8 mt-3 py-2 text-sm text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-darkest md:border-brand-lightest"
             )}
             type="button"
-          >
-            <Link href="/book-appointment" className="font-semibold">
-              BOOK NOW
-            </Link>
-          </Button>
+            content="BOOK NOW"
+            href="/book-appointment"
+          />
         </div>
       </div>
     </div>
