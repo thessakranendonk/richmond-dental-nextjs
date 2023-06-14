@@ -448,11 +448,9 @@ const Header: React.FC<HeaderProps> = ({
               "bg-brand-base px-8 text-sm h-10 mt-1 text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
             )}
             type="button"
-          >
-            <Link href="/book-appointment" className="font-medium">
-              BOOK NOW
-            </Link>
-          </Button>
+            content="BOOK NOW"
+            href="/book-appointment"
+          />
         </div>
         <Popover className="lg:hidden">
           {({ open, close }) => (
@@ -513,11 +511,9 @@ const Header: React.FC<HeaderProps> = ({
             "bg-brand-base px-8 text-sm h-12 mt-1 mr-2 text-white hover:text-brand-base hover:shadow-[inset_15rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow] rounded-lg border-2 border-brand-base"
           )}
           type="button"
-        >
-          <Link href="/book-appointment" className="font-medium">
-            BOOK NOW
-          </Link>
-        </Button>
+          content="BOOK NOW"
+          href="/book-appointment"
+        />
       </div>
     </header>
   );
