@@ -170,6 +170,26 @@ async function createPdf(req: NextApiRequest, res: NextApiResponse) {
 
   const doc = new PDFDocument();
 
+  if (req.headers.referer?.includes("dental-record")) {
+    doc.addPage();
+    doc.text("To whom this may concern,", 50, 50);
+    doc.text(
+      "We at Richmond West Dental and the below patient, would like to thank you and your staff for the care you have provided.",
+      50,
+      70
+    );
+    doc.text(
+      "For us to maintain continued and quality care for the patient, we kindly ask if you could forward the most recent radiographs and dental records to our office at your earliest convenience.",
+      50,
+      120
+    );
+    doc.text(
+      "The signature below represents the patient's authorization and release of their records along with any legal responsibility or liability that may arise from this authorization.",
+      50,
+      180
+    );
+  }
+
   doc.fontSize(30);
   doc.text(subject, 50, 60);
   doc.fontSize(14);
