@@ -135,8 +135,8 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
           });
         }
         const response = await transporter.sendMail({
-          from: "thessakranendonk@gmail.com",
-          to: "thessakranendonk@gmail.com",
+          from: "info@richmondwestdental.com",
+          to: "info@richmondwestdental.com",
           subject: `Contact form submission from ${
             firstName ? firstName : req.body.data.firstName
           }`,
