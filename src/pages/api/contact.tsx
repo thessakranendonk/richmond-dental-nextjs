@@ -203,6 +203,12 @@ async function createPdf(req: NextApiRequest, res: NextApiResponse) {
   }
   if (req.headers.referer?.includes("new-patient-form")) {
     doc.addPage();
+    doc.text(
+      "I, understand, certify that to the best of my knowledge, the above information is correct. I understand that any information that I refuse to provide may affect my health and dental treatment.",
+      50,
+      50
+    );
+    doc.text("Patient Signature:", 50, 250);
   }
   if (req.body.patientSig) {
     doc.image(req.body.patientSig, 50, 300, {
@@ -212,7 +218,8 @@ async function createPdf(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (req.body.parentSig) {
-    doc.image(req.body.parentSig, 50, 500, {
+    doc.text("Parent Signature:", 50, 500);
+    doc.image(req.body.parentSig, 50, 600, {
       align: "center",
       height: 100,
     });
