@@ -170,6 +170,18 @@ async function createPdf(req: NextApiRequest, res: NextApiResponse) {
 
   const doc = new PDFDocument();
 
+  doc.fontSize(30);
+  doc.text(subject, 50, 60);
+  doc.fontSize(14);
+  doc.text("Date:", 50, 90);
+  doc.fontSize(14);
+  doc.text(date, 100, 90);
+  doc.list(alterTextForForm(JSON.stringify(req.body)), 50, 130, {
+    align: "left",
+    listType: "bullet",
+    bulletRadius: 0.01,
+  });
+
   if (req.headers.referer?.includes("dental-record")) {
     doc.addPage();
     doc.text("To whom this may concern,", 50, 50);
@@ -189,19 +201,22 @@ async function createPdf(req: NextApiRequest, res: NextApiResponse) {
       180
     );
   }
+  if (req.headers.referer?.includes("new-patient-form")) {
+    doc.addPage();
+  }
+  if (req.body.patientSig) {
+    doc.image(req.body.patientSig, 50, 300, {
+      align: "center",
+      height: 100,
+    });
+  }
 
-  doc.fontSize(30);
-  doc.text(subject, 50, 60);
-  doc.fontSize(14);
-  doc.text("Date:", 50, 90);
-  doc.fontSize(14);
-  doc.text(date, 100, 90);
-  doc.list(alterTextForForm(JSON.stringify(req.body)), 50, 130, {
-    align: "left",
-    listType: "bullet",
-    bulletRadius: 0.01,
-  });
-
+  if (req.body.parentSig) {
+    doc.image(req.body.parentSig, 50, 500, {
+      align: "center",
+      height: 100,
+    });
+  }
   doc.end();
   return await getStreamAsBuffer(doc);
 }
