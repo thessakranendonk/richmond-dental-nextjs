@@ -202,7 +202,7 @@ const NewPatientForm: React.FC = () => {
                 placeholder="First Name *"
                 className={clsx(
                   inputClassName,
-                  "w-1/2 bg-red-100 placeholder-black"
+                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
                 )}
                 {...register("firstName", { required: true, maxLength: 80 })}
                 aria-invalid={errors.firstName ? "true" : "false"}
@@ -218,7 +218,7 @@ const NewPatientForm: React.FC = () => {
                 placeholder="Last Name *"
                 className={clsx(
                   inputClassName,
-                  "w-1/2 bg-red-100 placeholder-black"
+                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
                 )}
                 {...register("lastName", { required: true, maxLength: 80 })}
                 aria-invalid={errors.lastName ? "true" : "false"}
@@ -235,7 +235,7 @@ const NewPatientForm: React.FC = () => {
                 placeholder="Date of Birth (DD/MM/YYYY) *"
                 className={clsx(
                   inputClassName,
-                  "w-1/2 bg-red-100 placeholder-black"
+                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
                 )}
                 {...register("dateOfBirth", { required: true })}
                 aria-invalid={errors.dateOfBirth ? "true" : "false"}
@@ -261,7 +261,7 @@ const NewPatientForm: React.FC = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className={`${inputClassName} bg-red-100 placeholder-black`}
+                      className={`${inputClassName} placeholder-shown:bg-red-100/70 placeholder-black`}
                     >
                       <option value="Select">Select</option>
                       <option value="Male">Male</option>
@@ -358,7 +358,7 @@ const NewPatientForm: React.FC = () => {
               render={({ field }) => (
                 <select
                   {...field}
-                  className={`${inputClassName} bg-red-100 placeholder-black`}
+                  className={`${inputClassName} placeholder-shown:bg-red-100/70 placeholder-black`}
                 >
                   <option value="Select">Select</option>
                   <option value="GoogleMaps">Google Maps</option>
@@ -384,7 +384,7 @@ const NewPatientForm: React.FC = () => {
                 placeholder="Street (12 Main Street) *"
                 className={clsx(
                   inputClassName,
-                  "w-1/2 bg-red-100 placeholder-black"
+                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
                 )}
                 {...register("address", { required: true })}
                 aria-invalid={errors.address ? "true" : "false"}
@@ -408,7 +408,7 @@ const NewPatientForm: React.FC = () => {
                 placeholder="City *"
                 className={clsx(
                   inputClassName,
-                  "w-1/2 placeholder-black bg-red-100"
+                  "w-1/2 placeholder-black placeholder-shown:bg-red-100/70"
                 )}
                 {...register("city", { required: true })}
                 aria-invalid={errors.city ? "true" : "false"}
@@ -425,7 +425,7 @@ const NewPatientForm: React.FC = () => {
                     {...field}
                     className={clsx(
                       inputClassName,
-                      "w-1/2 placeholder-black bg-red-100"
+                      "w-1/2 placeholder-black placeholder-shown:bg-red-100/70"
                     )}
                   >
                     <option value="Select">Select Province *</option>
@@ -464,7 +464,7 @@ const NewPatientForm: React.FC = () => {
             <input
               type="text"
               placeholder="Postal Code (L7H 9G6) *"
-              className="placeholder-black bg-red-100 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0"
+              className="placeholder-black placeholder-shown:bg-red-100/70 ml-4 mt-4 mb-2 rounded-xl border-zinc-400/60 focus:border-none focus:outline-brand-lightest focus:ring-0"
               {...register("postalCode", { required: true })}
               aria-invalid={errors.postalCode ? "true" : "false"}
             />
@@ -564,7 +564,7 @@ const NewPatientForm: React.FC = () => {
                 placeholder="Name of Emergency Contact *"
                 className={clsx(
                   inputClassName,
-                  "w-1/2 placeholder-black bg-red-100"
+                  "w-1/2 placeholder-black placeholder-shown:bg-red-100/70"
                 )}
                 {...register("emerContact", { required: true })}
                 aria-invalid={errors.emerContact ? "true" : "false"}
@@ -1229,7 +1229,7 @@ const NewPatientForm: React.FC = () => {
               * Date:
               <input
                 type="date"
-                className="placeholder-black bg-red-100 w-40 ml-1 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
+                className="placeholder-black placeholder-shown:bg-red-100/70 w-40 ml-1 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
                 {...register("date", { required: true })}
                 aria-invalid={errors.date ? "true" : "false"}
               />
