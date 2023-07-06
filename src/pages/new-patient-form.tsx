@@ -261,7 +261,7 @@ const NewPatientForm: React.FC = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className={`${inputClassName} placeholder-shown:bg-red-100/70 placeholder-black`}
+                      className={`${inputClassName} placeholder-shown:bg-red-100/70`}
                     >
                       <option value="Select">Select</option>
                       <option value="Male">Male</option>
