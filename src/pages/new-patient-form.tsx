@@ -22,6 +22,13 @@ const NewPatientForm: React.FC = () => {
   const [backImage, setBackImage] = useState<File | null>(null);
   const [base64Front, setBase64Front] = useState<string | null>(null);
   const [base64Back, setBase64Back] = useState<string | null>(null);
+  const [isPlaceholderShown, setIsPlaceholderShown] = useState(true);
+
+  const handleSelectChange = (
+    event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => {
+    setIsPlaceholderShown(event.target.value === "");
+  };
 
   const toBase64 = (file: File) => {
     return new Promise((resolve, reject) => {
@@ -235,7 +242,7 @@ const NewPatientForm: React.FC = () => {
                 placeholder="Date of Birth (DD/MM/YYYY) *"
                 className={clsx(
                   inputClassName,
-                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
+                  "w-1/2 placeholder-shown:bg-red-100/70"
                 )}
                 {...register("dateOfBirth", { required: true })}
                 aria-invalid={errors.dateOfBirth ? "true" : "false"}
@@ -261,7 +268,10 @@ const NewPatientForm: React.FC = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className={`${inputClassName} placeholder-shown:bg-red-100/70`}
+                      className={`${inputClassName} ${
+                        isPlaceholderShown ? "bg-red-100/70" : ""
+                      }`}
+                      onChange={handleSelectChange}
                     >
                       <option value="Select">Select</option>
                       <option value="Male">Male</option>
@@ -358,7 +368,10 @@ const NewPatientForm: React.FC = () => {
               render={({ field }) => (
                 <select
                   {...field}
-                  className={`${inputClassName} placeholder-shown:bg-red-100/70 placeholder-black`}
+                  className={`${inputClassName} ${
+                    isPlaceholderShown ? "bg-red-100/70" : ""
+                  }`}
+                  onChange={handleSelectChange}
                 >
                   <option value="Select">Select</option>
                   <option value="GoogleMaps">Google Maps</option>
@@ -425,8 +438,11 @@ const NewPatientForm: React.FC = () => {
                     {...field}
                     className={clsx(
                       inputClassName,
-                      "w-1/2 placeholder-black placeholder-shown:bg-red-100/70"
+                      "w-1/2",
+                      "placeholder-black",
+                      { "bg-red-100/70": isPlaceholderShown }
                     )}
+                    onChange={handleSelectChange}
                   >
                     <option value="Select">Select Province *</option>
                     <option value="Alberta">Alberta</option>
@@ -1229,9 +1245,20 @@ const NewPatientForm: React.FC = () => {
               * Date:
               <input
                 type="date"
-                className="placeholder-black placeholder-shown:bg-red-100/70 w-40 ml-1 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
+                className={clsx(
+                  isPlaceholderShown ? "bg-red-100/70" : "",
+                  "placeholder-black",
+                  "w-40",
+                  "ml-1",
+                  "mt-4",
+                  "rounded-xl",
+                  "focus:border-none",
+                  "focus:outline-brand-lightest",
+                  "focus:ring-0"
+                )}
                 {...register("date", { required: true })}
                 aria-invalid={errors.date ? "true" : "false"}
+                onChange={handleSelectChange}
               />
             </label>
 
