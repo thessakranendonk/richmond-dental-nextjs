@@ -48,7 +48,7 @@ const LogoLink: React.FC<
       <Link
         href="/"
         className={clsx(
-          "flex lg:inline-block w- relative",
+          "flex lg:inline-block relative",
           "focus:outline-none focus-visible:ring focus-visible:ring-black/20 focus-visible:border-transparent",
 
           logoClassName
