@@ -30,9 +30,11 @@ const LogoAnimation = () => {
       {isFadeIn ? (
         <FadeInImage
           src="/images/logo.svg"
-          alt="logo"
+          alt="Richmond West Dental"
           width={150}
           height={150}
+          priority={true}
+          className=""
         />
       ) : null}
     </div>
