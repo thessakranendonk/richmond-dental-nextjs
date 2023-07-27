@@ -6,7 +6,6 @@ import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 import PageHeading from "@/components/ui/PageHeading";
-import { FileInput } from "flowbite-react";
 
 const NewPatientForm: React.FC = () => {
   const {
@@ -22,12 +21,11 @@ const NewPatientForm: React.FC = () => {
   const [backImage, setBackImage] = useState<File | null>(null);
   const [base64Front, setBase64Front] = useState<string | null>(null);
   const [base64Back, setBase64Back] = useState<string | null>(null);
-  const [isPlaceholderShown, setIsPlaceholderShown] = useState(true);
+  const [usedDropdowns, setUsedDropdowns] = useState<string[]>([]);
 
-  const handleSelectChange = (
-    event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
-  ) => {
-    setIsPlaceholderShown(event.target.value === "");
+  const handleSelectChange = (input: string) => {
+    const usedInputs = [input, ...usedDropdowns];
+    setUsedDropdowns(usedInputs);
   };
 
   const toBase64 = (file: File) => {
@@ -87,6 +85,7 @@ const NewPatientForm: React.FC = () => {
   const onSubmit: SubmitHandler<NewPatientFormProps> = async (
     data: NewPatientFormProps
   ) => {
+    console.log(data, "data");
     if (patientSignatureRef.current?.isEmpty()) {
       toast.error("Patient signature is required", {
         position: "bottom-right",
@@ -186,6 +185,7 @@ const NewPatientForm: React.FC = () => {
     "bg-brand-base w-1/4 text-center font-medium px-3 text-xs h-6 mt-3 text-white rounded-lg border-2 border-brand-base";
 
   const checkboxClassName = "rounded-md mr-2";
+
   return (
     <div>
       <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
@@ -264,30 +264,26 @@ const NewPatientForm: React.FC = () => {
                 <label className={clsx(subLabelClassName, "w-1/2")}>
                   Gender *
                 </label>
-                <Controller
-                  render={({ field }) => (
-                    <select
-                      {...field}
-                      className={`${inputClassName} ${
-                        isPlaceholderShown ? "bg-red-100/70" : ""
-                      }`}
-                      onChange={handleSelectChange}
-                    >
-                      <option value="Select">Select</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Trans">Trans</option>
-                      <option value="Non-Binary">Non-Binary</option>
-                      <option value="Prefer Not To Disclose">
-                        Prefer Not To Disclose
-                      </option>
-                    </select>
+                <select
+                  className={clsx(
+                    inputClassName,
+                    !usedDropdowns?.includes("gender") && "bg-red-100/70"
                   )}
-                  rules={{ required: true }}
-                  control={control}
-                  aria-invalid={errors.gender ? "true" : "false"}
-                  name="gender"
-                />
+                  {...register("gender", {
+                    required: true,
+                    pattern: /^(?!Select).*$/gi,
+                  })}
+                  onChange={() => handleSelectChange("gender")}
+                >
+                  <option value="Select">Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Trans">Trans</option>
+                  <option value="Non-Binary">Non-Binary</option>
+                  <option value="Prefer Not To Disclose">
+                    Prefer Not To Disclose
+                  </option>
+                </select>
                 {errors.gender?.type === "required" && (
                   <div className={errorClassName} role="alert">
                     <MdOutlineError className="mt-1" /> Gender is required
@@ -364,26 +360,22 @@ const NewPatientForm: React.FC = () => {
             <label className={subLabelClassName}>
               How did you hear about us? *
             </label>
-            <Controller
-              render={({ field }) => (
-                <select
-                  {...field}
-                  className={`${inputClassName} ${
-                    isPlaceholderShown ? "bg-red-100/70" : ""
-                  }`}
-                  onChange={handleSelectChange}
-                >
-                  <option value="Select">Select</option>
-                  <option value="GoogleMaps">Google Maps</option>
-                  <option value="FriendReferral">Friend Referral</option>
-                  <option value="WalkBy">Walk By</option>
-                </select>
+            <select
+              className={clsx(
+                inputClassName,
+                !usedDropdowns?.includes("referral") && "bg-red-100/70"
               )}
-              control={control}
-              aria-invalid={errors.referral ? "true" : "false"}
-              rules={{ required: true }}
-              name="referral"
-            />
+              {...register("referral", {
+                required: true,
+                pattern: /^(?!Select).*$/gi,
+              })}
+              onChange={() => handleSelectChange("referral")}
+            >
+              <option value="Select">Select</option>
+              <option value="GoogleMaps">Google Maps</option>
+              <option value="FriendReferral">Friend Referral</option>
+              <option value="WalkBy">Walk By</option>
+            </select>
             {errors.referral?.type === "required" && (
               <div className={errorClassName} role="alert">
                 <MdOutlineError className="mt-1" /> Please select one of the
@@ -431,49 +423,42 @@ const NewPatientForm: React.FC = () => {
                   <MdOutlineError className="mt-1" /> City is required
                 </div>
               )}
-
-              <Controller
-                render={({ field }) => (
-                  <select
-                    {...field}
-                    className={clsx(
-                      inputClassName,
-                      "w-1/2",
-                      "placeholder-black",
-                      { "bg-red-100/70": isPlaceholderShown }
-                    )}
-                    onChange={handleSelectChange}
-                  >
-                    <option value="Select">Select Province *</option>
-                    <option value="Alberta">Alberta</option>
-                    <option value="British Columbia">British Columbia</option>
-                    <option value="Manitoba">Manitoba</option>
-                    <option value="New Brunswick">New Brunswick</option>
-                    <option value="Newfoundland and Labrador">
-                      Newfoundland and Labrador
-                    </option>
-                    <option value="Northwest Territories">
-                      Northwest Territories
-                    </option>
-                    <option value="Nova Scotia">Nova Scotia</option>
-                    <option value="Nunavut">Nunavut</option>
-                    <option value="Ontario">Ontario</option>
-                    <option value="Prince Edward Island">
-                      Prince Edward Island
-                    </option>
-                    <option value="Quebec">Quebec</option>
-                    <option value="Saskatchewan">Saskatchewan</option>
-                    <option value="Yukon">Yukon</option>
-                  </select>
+              <select
+                className={clsx(
+                  inputClassName,
+                  !usedDropdowns?.includes("province") && "bg-red-100/70",
+                  "w-1/2 placeholder-black"
                 )}
-                control={control}
-                aria-invalid={errors.province ? "true" : "false"}
-                name="province"
-                rules={{ required: true }}
-              />
+                {...register("province", {
+                  required: true,
+                  pattern: /^(?!Select).*$/gi,
+                })}
+                onChange={() => handleSelectChange("province")}
+              >
+                <option value="Select">Select Province *</option>
+                <option value="Alberta">Alberta</option>
+                <option value="British Columbia">British Columbia</option>
+                <option value="Manitoba">Manitoba</option>
+                <option value="New Brunswick">New Brunswick</option>
+                <option value="Newfoundland and Labrador">
+                  Newfoundland and Labrador
+                </option>
+                <option value="Northwest Territories">
+                  Northwest Territories
+                </option>
+                <option value="Nova Scotia">Nova Scotia</option>
+                <option value="Nunavut">Nunavut</option>
+                <option value="Ontario">Ontario</option>
+                <option value="Prince Edward Island">
+                  Prince Edward Island
+                </option>
+                <option value="Quebec">Quebec</option>
+                <option value="Saskatchewan">Saskatchewan</option>
+                <option value="Yukon">Yukon</option>
+              </select>
               {errors.province?.type === "required" && (
                 <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Please select a provence
+                  <MdOutlineError className="mt-1" /> Please select a province
                 </div>
               )}
             </div>
@@ -1246,19 +1231,12 @@ const NewPatientForm: React.FC = () => {
               <input
                 type="date"
                 className={clsx(
-                  isPlaceholderShown ? "bg-red-100/70" : "",
-                  "placeholder-black",
-                  "w-40",
-                  "ml-1",
-                  "mt-4",
-                  "rounded-xl",
-                  "focus:border-none",
-                  "focus:outline-brand-lightest",
-                  "focus:ring-0"
+                  !usedDropdowns?.includes("date") && "bg-red-100/70",
+                  "placeholder-black w-40 ml-1 mt-4 rounded-xl focus:border-none focus:outline-brand-lightest focus:ring-0"
                 )}
                 {...register("date", { required: true })}
                 aria-invalid={errors.date ? "true" : "false"}
-                onChange={handleSelectChange}
+                onChange={() => handleSelectChange("date")}
               />
             </label>
 
