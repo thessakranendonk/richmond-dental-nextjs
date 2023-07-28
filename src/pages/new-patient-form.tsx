@@ -85,7 +85,6 @@ const NewPatientForm: React.FC = () => {
   const onSubmit: SubmitHandler<NewPatientFormProps> = async (
     data: NewPatientFormProps
   ) => {
-    console.log(data, "data");
     if (patientSignatureRef.current?.isEmpty()) {
       toast.error("Patient signature is required", {
         position: "bottom-right",
@@ -204,54 +203,60 @@ const NewPatientForm: React.FC = () => {
             </p>
             <label className={labelClassName}>Personal Information *</label>
             <div className="flex flex-row">
-              <input
-                type="text"
-                placeholder="First Name *"
-                className={clsx(
-                  inputClassName,
-                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
+              <div className="flex flex-col w-1/2">
+                <input
+                  type="text"
+                  placeholder="First Name *"
+                  className={clsx(
+                    inputClassName,
+                    "placeholder-shown:bg-red-100/70 placeholder-black"
+                  )}
+                  {...register("firstName", { required: true, maxLength: 80 })}
+                  aria-invalid={errors.firstName ? "true" : "false"}
+                />
+                {errors.firstName?.type === "required" && (
+                  <div className={errorClassName} role="alert">
+                    <MdOutlineError className="mt-1" /> First name is required
+                  </div>
                 )}
-                {...register("firstName", { required: true, maxLength: 80 })}
-                aria-invalid={errors.firstName ? "true" : "false"}
-              />
-              {errors.firstName?.type === "required" && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> First name is required
-                </div>
-              )}
-
-              <input
-                type="text"
-                placeholder="Last Name *"
-                className={clsx(
-                  inputClassName,
-                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
+              </div>
+              <div className="flex flex-col w-1/2">
+                <input
+                  type="text"
+                  placeholder="Last Name *"
+                  className={clsx(
+                    inputClassName,
+                    "placeholder-shown:bg-red-100/70 placeholder-black"
+                  )}
+                  {...register("lastName", { required: true, maxLength: 80 })}
+                  aria-invalid={errors.lastName ? "true" : "false"}
+                />
+                {errors.lastName?.type === "required" && (
+                  <div className={errorClassName} role="alert">
+                    <MdOutlineError className="mt-1" /> Last name is required
+                  </div>
                 )}
-                {...register("lastName", { required: true, maxLength: 80 })}
-                aria-invalid={errors.lastName ? "true" : "false"}
-              />
-              {errors.lastName?.type === "required" && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Last name is required
-                </div>
-              )}
+              </div>
             </div>
             <div className="flex flex-row">
-              <input
-                type="text"
-                placeholder="Date of Birth (DD/MM/YYYY) *"
-                className={clsx(
-                  inputClassName,
-                  "w-1/2 placeholder-shown:bg-red-100/70"
+              <div className="flex flex-col w-1/2">
+                <input
+                  type="text"
+                  placeholder="Date of Birth (DD/MM/YYYY) *"
+                  className={clsx(
+                    inputClassName,
+                    "placeholder-shown:bg-red-100/70"
+                  )}
+                  {...register("dateOfBirth", { required: true })}
+                  aria-invalid={errors.dateOfBirth ? "true" : "false"}
+                />
+                {errors.dateOfBirth?.type === "required" && (
+                  <div className={errorClassName} role="alert">
+                    <MdOutlineError className="mt-1" /> Date Of Birth is
+                    required
+                  </div>
                 )}
-                {...register("dateOfBirth", { required: true })}
-                aria-invalid={errors.dateOfBirth ? "true" : "false"}
-              />
-              {errors.dateOfBirth?.type === "required" && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Date Of Birth is required
-                </div>
-              )}
+              </div>
               <input
                 type="text"
                 placeholder="Preferred Name"
@@ -269,13 +274,13 @@ const NewPatientForm: React.FC = () => {
                     inputClassName,
                     !usedDropdowns?.includes("gender") && "bg-red-100/70"
                   )}
-                  {...register("gender", {
-                    required: true,
-                    pattern: /^(?!Select).*$/gi,
-                  })}
+                  defaultValue=""
+                  {...register("gender", { required: true })}
                   onChange={() => handleSelectChange("gender")}
                 >
-                  <option value="Select">Select</option>
+                  <option value="" disabled>
+                    Select
+                  </option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Trans">Trans</option>
@@ -284,7 +289,7 @@ const NewPatientForm: React.FC = () => {
                     Prefer Not To Disclose
                   </option>
                 </select>
-                {errors.gender?.type === "required" && (
+                {errors.gender && (
                   <div className={errorClassName} role="alert">
                     <MdOutlineError className="mt-1" /> Gender is required
                   </div>
@@ -365,18 +370,20 @@ const NewPatientForm: React.FC = () => {
                 inputClassName,
                 !usedDropdowns?.includes("referral") && "bg-red-100/70"
               )}
+              defaultValue=""
               {...register("referral", {
                 required: true,
-                pattern: /^(?!Select).*$/gi,
               })}
               onChange={() => handleSelectChange("referral")}
             >
-              <option value="Select">Select</option>
+              <option value="" disabled>
+                Select
+              </option>
               <option value="GoogleMaps">Google Maps</option>
               <option value="FriendReferral">Friend Referral</option>
               <option value="WalkBy">Walk By</option>
             </select>
-            {errors.referral?.type === "required" && (
+            {errors.referral && (
               <div className={errorClassName} role="alert">
                 <MdOutlineError className="mt-1" /> Please select one of the
                 following
@@ -384,22 +391,23 @@ const NewPatientForm: React.FC = () => {
             )}
             <label className={labelClassName}>Address *</label>
             <div className="flex flex-row">
-              <input
-                type="text"
-                placeholder="Street (12 Main Street) *"
-                className={clsx(
-                  inputClassName,
-                  "w-1/2 placeholder-shown:bg-red-100/70 placeholder-black"
+              <div className="flex flex-col w-1/2">
+                <input
+                  type="text"
+                  placeholder="Street (12 Main Street) *"
+                  className={clsx(
+                    inputClassName,
+                    "placeholder-shown:bg-red-100/70 placeholder-black"
+                  )}
+                  {...register("address", { required: true })}
+                  aria-invalid={errors.address ? "true" : "false"}
+                />
+                {errors.address?.type === "required" && (
+                  <div className={errorClassName} role="alert">
+                    <MdOutlineError className="mt-1" /> Address is required
+                  </div>
                 )}
-                {...register("address", { required: true })}
-                aria-invalid={errors.address ? "true" : "false"}
-              />
-              {errors.address?.type === "required" && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Address is required
-                </div>
-              )}
-
+              </div>
               <input
                 type="text"
                 placeholder="Suite/Unit #"
@@ -408,59 +416,65 @@ const NewPatientForm: React.FC = () => {
               />
             </div>
             <div className="flex flex-row">
-              <input
-                type="text"
-                placeholder="City *"
-                className={clsx(
-                  inputClassName,
-                  "w-1/2 placeholder-black placeholder-shown:bg-red-100/70"
+              <div className="flex flex-col w-1/2">
+                <input
+                  type="text"
+                  placeholder="City *"
+                  className={clsx(
+                    inputClassName,
+                    "placeholder-black placeholder-shown:bg-red-100/70"
+                  )}
+                  {...register("city", { required: true })}
+                  aria-invalid={errors.city ? "true" : "false"}
+                />
+                {errors.city?.type === "required" && (
+                  <div className={errorClassName} role="alert">
+                    <MdOutlineError className="mt-1" /> City is required
+                  </div>
                 )}
-                {...register("city", { required: true })}
-                aria-invalid={errors.city ? "true" : "false"}
-              />
-              {errors.city?.type === "required" && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> City is required
-                </div>
-              )}
-              <select
-                className={clsx(
-                  inputClassName,
-                  !usedDropdowns?.includes("province") && "bg-red-100/70",
-                  "w-1/2 placeholder-black"
+              </div>
+              <div className="flex flex-col w-1/2">
+                <select
+                  className={clsx(
+                    inputClassName,
+                    !usedDropdowns?.includes("province") && "bg-red-100/70",
+                    "placeholder-black"
+                  )}
+                  defaultValue=""
+                  {...register("province", {
+                    required: true,
+                  })}
+                  onChange={() => handleSelectChange("province")}
+                >
+                  <option value="" disabled>
+                    Select a province
+                  </option>
+                  <option value="Alberta">Alberta</option>
+                  <option value="British Columbia">British Columbia</option>
+                  <option value="Manitoba">Manitoba</option>
+                  <option value="New Brunswick">New Brunswick</option>
+                  <option value="Newfoundland and Labrador">
+                    Newfoundland and Labrador
+                  </option>
+                  <option value="Northwest Territories">
+                    Northwest Territories
+                  </option>
+                  <option value="Nova Scotia">Nova Scotia</option>
+                  <option value="Nunavut">Nunavut</option>
+                  <option value="Ontario">Ontario</option>
+                  <option value="Prince Edward Island">
+                    Prince Edward Island
+                  </option>
+                  <option value="Quebec">Quebec</option>
+                  <option value="Saskatchewan">Saskatchewan</option>
+                  <option value="Yukon">Yukon</option>
+                </select>
+                {errors.province && (
+                  <div className={errorClassName} role="alert">
+                    <MdOutlineError className="mt-1" /> Please select a province
+                  </div>
                 )}
-                {...register("province", {
-                  required: true,
-                  pattern: /^(?!Select).*$/gi,
-                })}
-                onChange={() => handleSelectChange("province")}
-              >
-                <option value="Select">Select Province *</option>
-                <option value="Alberta">Alberta</option>
-                <option value="British Columbia">British Columbia</option>
-                <option value="Manitoba">Manitoba</option>
-                <option value="New Brunswick">New Brunswick</option>
-                <option value="Newfoundland and Labrador">
-                  Newfoundland and Labrador
-                </option>
-                <option value="Northwest Territories">
-                  Northwest Territories
-                </option>
-                <option value="Nova Scotia">Nova Scotia</option>
-                <option value="Nunavut">Nunavut</option>
-                <option value="Ontario">Ontario</option>
-                <option value="Prince Edward Island">
-                  Prince Edward Island
-                </option>
-                <option value="Quebec">Quebec</option>
-                <option value="Saskatchewan">Saskatchewan</option>
-                <option value="Yukon">Yukon</option>
-              </select>
-              {errors.province?.type === "required" && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Please select a province
-                </div>
-              )}
+              </div>
             </div>
             <input
               type="text"
@@ -560,21 +574,23 @@ const NewPatientForm: React.FC = () => {
             </div>
             <label className={labelClassName}>Emergency Contact *</label>
             <div className="flex flex-row">
-              <input
-                type="text"
-                placeholder="Name of Emergency Contact *"
-                className={clsx(
-                  inputClassName,
-                  "w-1/2 placeholder-black placeholder-shown:bg-red-100/70"
+              <div className="flex flex-col w-1/2">
+                <input
+                  type="text"
+                  placeholder="Name of Emergency Contact *"
+                  className={clsx(
+                    inputClassName,
+                    "placeholder-black placeholder-shown:bg-red-100/70"
+                  )}
+                  {...register("emerContact", { required: true })}
+                  aria-invalid={errors.emerContact ? "true" : "false"}
+                />
+                {errors.emerContact?.type === "required" && (
+                  <div className={errorClassName} role="alert">
+                    <MdOutlineError className="mt-1" /> Name is required
+                  </div>
                 )}
-                {...register("emerContact", { required: true })}
-                aria-invalid={errors.emerContact ? "true" : "false"}
-              />
-              {errors.emerContact?.type === "required" && (
-                <div className={errorClassName} role="alert">
-                  <MdOutlineError className="mt-1" /> Name is required
-                </div>
-              )}
+              </div>
               <input
                 type="text"
                 placeholder="Relationship (ex: Parent, Sibling, Partner)"
@@ -1247,13 +1263,9 @@ const NewPatientForm: React.FC = () => {
             )}
             <button
               className={clsx(
-                "bg-brand-base font-medium px-8 text-sm h-10 mt-5 text-white rounded-lg border-2 border-brand-base",
-                formState.isValid &&
-                  "hover:text-brand-base hover:shadow-[inset_80rem_0_0_0] hover:shadow-white duration-[400ms] transition-[color,box-shadow]",
-                !formState.isValid && "opacity-30"
+                "bg-brand-base font-medium px-8 text-sm h-10 mt-5 text-white rounded-lg border-2 border-brand-base"
               )}
               type="submit"
-              disabled={!formState.isValid}
               value="Submit Application"
             >
               Submit
