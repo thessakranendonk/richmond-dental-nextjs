@@ -1210,7 +1210,8 @@ const NewPatientForm: React.FC = () => {
                 ref={patientSignatureRef}
                 backgroundColor="white"
                 canvasProps={{
-                  className: "border border-gray-300 rounded-lg w-full h-48",
+                  className:
+                    "border border-gray-300 rounded-lg w-96 h-32 md:w-full md:h-48 focus:border-none focus:outline-brand-lightest focus:ring-0",
                 }}
               />
               {patientSignatureRef.current?.isEmpty() && (
@@ -1232,7 +1233,8 @@ const NewPatientForm: React.FC = () => {
                 ref={parentSignatureRef}
                 backgroundColor="white"
                 canvasProps={{
-                  className: "border border-gray-300 rounded-lg w-full h-48",
+                  className:
+                    "border border-gray-300 rounded-lg w-full h-48 focus:border-none focus:outline-brand-lightest focus:ring-0",
                 }}
               />
             </label>
