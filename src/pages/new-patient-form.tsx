@@ -164,10 +164,36 @@ const NewPatientForm: React.FC = () => {
         setIsSubmitted(true);
       } else {
         setIsError(true);
+        toast.error(
+          "Something went wrong with your submission, please check your fields and try again",
+          {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
       }
     } catch (error) {
       console.error(error);
       setIsError(true);
+      toast.error(
+        "something went wrong with your submission, please check your fields and try again",
+        {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
     }
   };
 
