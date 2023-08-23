@@ -42,6 +42,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     frontInsuranceCardImage,
     backInsuranceCardImage,
   } = req.body;
+  console.log(req.body);
   const nodemailer = require("nodemailer");
   let transporter = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
@@ -57,12 +58,8 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
 
-  const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
-    lastName ? lastName : req.body.data.lastName
-  }`;
-  const filename = `${firstName ? firstName : req.body.data.firstName}-${
-    lastName ? lastName : req.body.data.lastName
-  }`;
+  const name = `${firstName}${" "}${lastName}`;
+  const filename = `${firstName}-${lastName}`;
   const replacements = {
     subject: subject,
     name: name,
@@ -137,9 +134,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
         const response = await transporter.sendMail({
           from: "info@richmondwestdental.com",
           to: "info@richmondwestdental.com",
-          subject: `Contact form submission from ${
-            firstName ? firstName : req.body.data.firstName
-          }`,
+          subject: `Contact form submission from ${firstName}`,
           html: htmlToSend,
           attachments: [
             {
@@ -151,13 +146,12 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
             ...attachments,
           ],
         });
-        res.status(200);
-        res.end(JSON.stringify(response));
+        return res.status(200).json(response);
       })
       .catch((err: unknown) => {
         console.log(err);
-        res.json(err);
-        res.status(405).end();
+
+        return res.status(405).json(err);
       });
   }
 }
