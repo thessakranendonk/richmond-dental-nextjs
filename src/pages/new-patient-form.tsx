@@ -164,10 +164,36 @@ const NewPatientForm: React.FC = () => {
         setIsSubmitted(true);
       } else {
         setIsError(true);
+        toast.error(
+          "Something went wrong with your submission, please check your fields and try again",
+          {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
       }
     } catch (error) {
       console.error(error);
       setIsError(true);
+      toast.error(
+        "something went wrong with your submission, please check your fields and try again",
+        {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
     }
   };
 
@@ -1213,6 +1239,7 @@ const NewPatientForm: React.FC = () => {
                   className:
                     "border border-gray-300 rounded-lg w-96 h-32 md:w-full md:h-48 focus:border-none focus:outline-brand-lightest focus:ring-0",
                 }}
+                clearOnResize={false}
               />
               {patientSignatureRef.current?.isEmpty() && (
                 <div className={errorClassName} role="alert">
@@ -1236,6 +1263,7 @@ const NewPatientForm: React.FC = () => {
                   className:
                     "border border-gray-300 rounded-lg w-full h-48 focus:border-none focus:outline-brand-lightest focus:ring-0",
                 }}
+                clearOnResize={false}
               />
             </label>
             <button
