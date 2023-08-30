@@ -42,7 +42,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     frontInsuranceCardImage,
     backInsuranceCardImage,
   } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   const nodemailer = require("nodemailer");
   let transporter = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
@@ -61,17 +61,17 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
   const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
     lastName ? lastName : req.body.data.lastName
   }`;
-  console.log(name);
+  // console.log(name);
   const filename = `${firstName ? firstName : req.body.data.firstName}-${
     lastName ? lastName : req.body.data.lastName
   }`;
-  console.log(filename);
+  // console.log(filename);
   const replacements = {
     subject: subject,
     name: name,
     email: email,
   };
-
+  // console.log(replacements);
   const templatePath = "src/lib/mail-templates";
 
   const emailPath = path.resolve(templatePath, "emailTemplate.html");
