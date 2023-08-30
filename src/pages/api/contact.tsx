@@ -27,7 +27,7 @@ export const config = {
   api: {
     responseLimit: false,
     bodyParser: {
-      sizeLimit: "30mb",
+      sizeLimit: "50mb",
     },
   },
 };
@@ -42,7 +42,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     frontInsuranceCardImage,
     backInsuranceCardImage,
   } = req.body;
-  // console.log(req.body);
+  // console.log(firstName);
   const nodemailer = require("nodemailer");
   let transporter = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
@@ -58,12 +58,22 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
 
-  const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
-    lastName ? lastName : req.body.data.lastName
+  const name = `${
+    firstName
+      ? firstName
+      : req.body.firstName
+      ? req.body.firstName
+      : req.body.firstName
+  }${" "}${
+    lastName
+      ? lastName
+      : req.body.lastName
+      ? req.body.lastName
+      : req.body.lastName
   }`;
-  // console.log(name);
-  const filename = `${firstName ? firstName : req.body.data.firstName}-${
-    lastName ? lastName : req.body.data.lastName
+  console.log(name);
+  const filename = `${firstName ? firstName : req.body.firstName}-${
+    lastName ? lastName : req.body.lastName
   }`;
   // console.log(filename);
   const replacements = {
@@ -92,7 +102,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     pdf
       .then(async () => {
         const attachments: { filename: string; content: Buffer }[] = [];
-        if ((req.body.data && req.body.data.patientSig) || patientSig) {
+        if ((req.body && req.body.patientSig) || patientSig) {
           const signature = patientSig;
           const patientSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
@@ -104,8 +114,8 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
           });
         }
 
-        if ((req.body.data && req.body.data.parentSig) || parentSig) {
-          const signature = parentSig ? parentSig : req.body.data.parentSig;
+        if ((req.body && req.body.parentSig) || parentSig) {
+          const signature = parentSig ? parentSig : req.body.parentSig;
           const parentSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
             "base64"
@@ -141,7 +151,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
           from: "info@richmondwestdental.com",
           to: "info@richmondwestdental.com",
           subject: `Contact form submission from ${
-            firstName ? firstName : req.body.data.firstName
+            firstName ? firstName : req.body.firstName
           }`,
           html: htmlToSend,
           attachments: [
