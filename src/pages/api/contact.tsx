@@ -42,7 +42,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     frontInsuranceCardImage,
     backInsuranceCardImage,
   } = req.body;
-  // console.log(firstName);
+  console.log(email);
   const nodemailer = require("nodemailer");
   let transporter = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
@@ -71,7 +71,7 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
       ? req.body.lastName
       : req.body.lastName
   }`;
-  console.log(name);
+  // console.log(name);
   const filename = `${firstName ? firstName : req.body.firstName}-${
     lastName ? lastName : req.body.lastName
   }`;
