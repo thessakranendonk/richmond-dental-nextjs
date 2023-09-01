@@ -26,6 +26,7 @@ const createHTMLToSend = (path: any, replacements: any) => {
 export const config = {
   api: {
     responseLimit: false,
+    externalResolver: true,
     bodyParser: {
       sizeLimit: "30mb",
     },
@@ -57,11 +58,11 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
     ? "New Patient Sign Up Form"
     : "New Appointment Request";
 
-  const name = `${firstName ? firstName : req.body.data.firstName}${" "}${
-    lastName ? lastName : req.body.data.lastName
+  const name = `${firstName ? firstName : req.body.firstName}${" "}${
+    lastName ? lastName : req.body.lastName
   }`;
-  const filename = `${firstName ? firstName : req.body.data.firstName}-${
-    lastName ? lastName : req.body.data.lastName
+  const filename = `${firstName ? firstName : req.body.firstName}-${
+    lastName ? lastName : req.body.lastName
   }`;
   const replacements = {
     subject: subject,
@@ -79,17 +80,17 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
 
     if (pdfResult) {
       resolve(pdfResult);
+      return pdfResult;
     } else {
       reject("Promise is rejected");
     }
-    return pdfResult;
   });
 
   if (Buffer.isBuffer(await pdf)) {
     pdf
       .then(async () => {
         const attachments: { filename: string; content: Buffer }[] = [];
-        if ((req.body.data && req.body.data.patientSig) || patientSig) {
+        if ((req.body && req.body.patientSig) || patientSig) {
           const signature = patientSig;
           const patientSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
@@ -101,8 +102,8 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
           });
         }
 
-        if ((req.body.data && req.body.data.parentSig) || parentSig) {
-          const signature = parentSig ? parentSig : req.body.data.parentSig;
+        if ((req.body && req.body.parentSig) || parentSig) {
+          const signature = parentSig ? parentSig : req.body.parentSig;
           const parentSigBuffer = Buffer.from(
             signature.replace(/^data:image\/\w+;base64,/, ""),
             "base64"
@@ -134,30 +135,30 @@ async function contact(req: NextApiRequest, res: NextApiResponse) {
             content: backInsuranceCardImageBuffer,
           });
         }
-        const response = await transporter.sendMail({
-          from: "info@richmondwestdental.com",
-          to: "info@richmondwestdental.com",
-          subject: `Contact form submission from ${
-            firstName ? firstName : req.body.data.firstName
-          }`,
-          html: htmlToSend,
-          attachments: [
-            {
-              content: await pdf,
-              filename: `${filename}.pdf`,
-              type: "application/pdf",
-              disposition: "attachment",
-            },
-            ...attachments,
-          ],
-        });
-        res.status(200);
-        res.end(JSON.stringify(response));
+        // const response = await transporter.sendMail({
+        //   from: "info@richmondwestdental.com",
+        //   to: "info@richmondwestdental.com",
+        //   subject: `Contact form submission from ${
+        //     firstName ? firstName : req.body.firstName
+        //   }`,
+        //   html: htmlToSend,
+        //   attachments: [
+        //     {
+        //       content: await pdf,
+        //       filename: `${filename}.pdf`,
+        //       type: "application/pdf",
+        //       disposition: "attachment",
+        //     },
+        //     ...attachments,
+        //   ],
+        // });
+        res.statusCode = 200;
+        // res.end(JSON.stringify(response));
       })
       .catch((err: unknown) => {
-        console.log(err);
+        console.error(err);
         res.json(err);
-        res.status(405).end();
+        res.status(405).send("");
       });
   }
 }

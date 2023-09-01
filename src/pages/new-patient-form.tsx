@@ -85,6 +85,8 @@ const NewPatientForm: React.FC = () => {
   const onSubmit: SubmitHandler<NewPatientFormProps> = async (
     data: NewPatientFormProps
   ) => {
+    console.log("onSubmit function called");
+
     if (patientSignatureRef.current?.isEmpty()) {
       toast.error("Patient signature is required", {
         position: "bottom-right",
@@ -149,6 +151,10 @@ const NewPatientForm: React.FC = () => {
       }
       removeEmptyValuesFromData(data);
 
+      if (!allData) {
+        console.error("No data");
+        return;
+      }
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
