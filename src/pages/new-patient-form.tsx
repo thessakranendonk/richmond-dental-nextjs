@@ -167,6 +167,7 @@ const NewPatientForm: React.FC = () => {
 
       const result = await response.json();
       if (result.response.includes("250")) {
+        console.log(result);
         setIsSubmitted(true);
       } else {
         setIsError(true);
