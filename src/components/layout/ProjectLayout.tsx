@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { SERVICES_DROPDOWN } from "../../../data/services";
 import { TECHNOLOGY_DROPDOWN } from "../../../data/technology-digital-dentistry";
 import { FORMS_DROPDOWN } from "../../../data/form-dropdown";
-
+import NewPatientIntake from "@/pages/new-patient-intake";
 /**
  * Responsive web UI layout for RheumInfo.
  * Includes a header with responsive navigation menu and a footer.
@@ -31,6 +31,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
     { name: "ABOUT US", href: "/about-us" },
     { name: "OFFICE TOUR", href: "/office-tour" },
     { name: "FORMS", href: "#", dropdown: FORMS_DROPDOWN },
+    { name: "PATIENTINTAKE", href: "/new-patient-intake" },
   ];
 
   return (
