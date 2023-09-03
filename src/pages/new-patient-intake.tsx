@@ -1,7 +1,10 @@
+import PageHeading from "@/components/ui/PageHeading";
 const NewPatientIntake: React.FC = () => {
   return (
     <div>
-      {" "}
+      <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
+        <PageHeading title="Patient Intake Form" />
+      </div>{" "}
       <iframe
         id="JotFormIFrame-232445360571049"
         title="Form"
@@ -14,7 +17,7 @@ const NewPatientIntake: React.FC = () => {
         style={{
           minWidth: "100%",
           maxWidth: "100%",
-          height: "539px",
+          height: "100rem",
           border: "none",
         }}
       ></iframe>
