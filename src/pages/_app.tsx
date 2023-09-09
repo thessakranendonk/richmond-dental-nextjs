@@ -1,5 +1,6 @@
 import { ProjectLayout } from "@/components/layout/ProjectLayout";
 import "@/styles/globals.css";
+import "../styles/NewPatientIntake.module.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";

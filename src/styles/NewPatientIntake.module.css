@@ -1,0 +1,6 @@
+.cog-form__container {
+  display: flex;
+}
+.cog-form__content {
+  align-items: center;
+}
