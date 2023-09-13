@@ -512,7 +512,7 @@ const Header: React.FC<HeaderProps> = ({
           )}
           type="button"
           content="BOOK NOW"
-          href="/book-appointment"
+          href="/new-appointment"
         />
       </div>
     </header>
