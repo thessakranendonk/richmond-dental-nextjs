@@ -1,3 +1,5 @@
+import OfficeTour from "./office-tour";
+
 const AboutUs: React.FC = () => {
   return (
     <div className="w-[calc(10% - 10px)] mx-8 mt-24 flex flex-col gap-y-10 xl:mx-0 xl:w-screen relative z-10">
@@ -100,7 +102,9 @@ const AboutUs: React.FC = () => {
             src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
           />
         </div>
+       
       </div>
+       <OfficeTour />
     </div>
   );
 };
