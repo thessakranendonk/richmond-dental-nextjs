@@ -23,11 +23,11 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
 
   const navigationLinks: Array<NavigationLink> = [
     { name: "SERVICES", href: "/services", dropdown: SERVICES_DROPDOWN },
-    {
-      name: "TECHNOLOGY",
-      href: "/technology-and-digital-dentistry",
-      dropdown: TECHNOLOGY_DROPDOWN,
-    },
+    // {
+    //   name: "TECHNOLOGY",
+    //   href: "/technology-and-digital-dentistry",
+    //   dropdown: TECHNOLOGY_DROPDOWN,
+    // },
     { name: "ABOUT US", href: "/about-us" },
     { name: "OFFICE TOUR", href: "/office-tour" },
     { name: "FORMS", href: "#", dropdown: FORMS_DROPDOWN },
