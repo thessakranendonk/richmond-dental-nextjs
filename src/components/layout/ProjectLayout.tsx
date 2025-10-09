@@ -29,7 +29,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
       dropdown: TECHNOLOGY_DROPDOWN,
     },
     { name: "ABOUT US", href: "/about-us" },
-    { name: "OFFICE TOUR", href: "/office-tour" },
+    // { name: "OFFICE TOUR", href: "/office-tour" },
     { name: "FORMS", href: "#", dropdown: FORMS_DROPDOWN },
   ];
 
