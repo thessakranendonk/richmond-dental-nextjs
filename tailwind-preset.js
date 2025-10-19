@@ -185,6 +185,7 @@ module.exports = {
           position: "absolute",
           width: "100%",
           height: "100%",
+          margins: "1rem",
           "background-position": "center",
           transition: "all 0.6s ease-in-out",
           "transform-origin": "50% 100%",

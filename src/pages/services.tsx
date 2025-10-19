@@ -9,12 +9,12 @@ export interface ServiceImageProps {
   name: string;
   evenOrUneven: boolean;
   service: string;
-  description: string;
+  // description: string;
 }
 
 export interface ServiceLinkProps {
   service: string;
-  description: string;
+  // description: string;
   href: string;
   img: string;
   id: string;
@@ -63,7 +63,7 @@ const ServiceDiv = ({
   img,
   evenOrUneven,
   service,
-  description,
+  // description,
 }: ServiceImageProps) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.2 });
@@ -81,7 +81,7 @@ const ServiceDiv = ({
       initial="hidden"
       variants={evenOrUneven ? fadeInFromRight : fadeInFromLeft}
     >
-      <motion.div className="xl:flex xl:flex-row xl:w-screen xl:justify-between">
+      <motion.div className="xl:flex xl:flex-row xl:w-auto">
         {evenOrUneven && (
           <>
             <div className="hidden xl:inline-flex">
@@ -98,9 +98,9 @@ const ServiceDiv = ({
           <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
             {service}
           </h2>
-          <p className="font-extralight text-md md:pb-8 xl:pb-24 xl:text-xl xl:w-[32rem] mx-auto text-zinc-600">
+          {/* <p className="font-extralight text-md md:pb-8 xl:pb-24 xl:text-xl xl:w-[32rem] mx-auto text-zinc-600">
             {description}
-          </p>
+          </p> */}
         </div>
         {!evenOrUneven && (
           <div className="hidden xl:inline-flex">
@@ -132,7 +132,7 @@ export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
       {links.map((link) => (
         <li
           key={link.service}
-          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 mx-auto md:mx-0"
+          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 md:mx-0"
         >
           <motion.div
             className="box"
@@ -168,7 +168,7 @@ export const ServiceList: React.FC<ServiceLinkArr> = ({ links }) => {
                 name={service.service}
                 evenOrUneven={i % 2 === 0}
                 service={service.service}
-                description={service.description}
+                // description={service.description}
               />
             </AnimatePresence>
           </li>
