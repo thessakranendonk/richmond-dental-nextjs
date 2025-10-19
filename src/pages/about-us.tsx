@@ -1,3 +1,5 @@
+import OfficeTour from "./office-tour";
+
 const AboutUs: React.FC = () => {
   return (
     <div className="w-[calc(10% - 10px)] mx-8 mt-24 flex flex-col gap-y-10 xl:mx-0 xl:w-screen relative z-10">
@@ -101,6 +103,8 @@ const AboutUs: React.FC = () => {
           />
         </div>
       </div>
+
+      <OfficeTour />
     </div>
   );
 };
