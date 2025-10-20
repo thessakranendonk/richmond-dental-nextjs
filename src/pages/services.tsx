@@ -84,77 +84,77 @@ const ServiceDiv = ({
       <motion.div className="xl:flex xl:flex-row xl:w-auto">
         {evenOrUneven && (
           <>
-            {/* <div className="hidden xl:inline-flex"> */}
-              {/* <img className="img img-settings object-none br-left" src={img} /> */}
-              {/* <div className="img-wrap xl:img-wrap-xl br-left top-[20px] left-[20px]">
-                <div className="back-img br-left"></div> */}
-                {/* <img className="back-img object-none br-left" src={img} /> */}
-              {/* </div>
-            </div> */}
+            <div className="hidden xl:inline-flex">
+              <img className="img img-settings object-fit br-left" src={img} />
+              <div className="img-wrap xl:img-wrap-xl br-left top-[20px] left-[20px]">
+                <div className="back-img br-left"></div>
+                <img className="back-img object-fit br-left" src={img} />
+              </div>
+            </div>
           </>
         )}
 
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left md:mt-8 xl:my-auto">
-          {/* <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
+          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
             {service}
-          </h2> */}
+          </h2>
           {/* <p className="font-extralight text-md md:pb-8 xl:pb-24 xl:text-xl xl:w-[32rem] mx-auto text-zinc-600">
             {description}
           </p> */}
         </div>
         {!evenOrUneven && (
           <div className="hidden xl:inline-flex">
-            {/* <img
-              className="img img-settings object-none br-right-about"
+            <img
+              className="img img-settings object-fit br-right-about"
               src={img}
-            /> */}
-            {/* <div className="img-wrap img-wrap-xl br-right-about top-[20px] right-[20px]"> */}
-              {/* <div className="back-img br-right-about"></div> */}
-              {/* <img className="back-img object-none br-right-about" src={img} /> */}
-            {/* </div> */}
+            />
+            <div className="img-wrap img-wrap-xl br-right-about top-[20px] right-[20px]">
+              <div className="back-img br-right-about"></div>
+              <img className="back-img object-fit br-right-about" src={img} />
+            </div>
           </div>
         )}
 
         <div className="xl:hidden">
-          {/* <img
+          <img
             className="img-sm md:img-wrap-md object-cover img-settings br-left mx-auto mt-12"
             src={img}
-          /> */}
+          />
         </div>
       </motion.div>
     </motion.div>
   );
 };
 
-export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
-  return (
-    <ul className="flex flex-wrap md:px-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
-      {links.map((link) => (
-        <li
-          key={link.service}
-          className="flex flex-column  md:w-1/5 justify-center xl:w-fit md:ease-in-out md:pt-12 md:mx-0"
-        >
-          {/* <motion.div */}
-            {/* className="box"
-            // whileHover={{ scale: 1.5 }}
-            // transition={{ type: "spring", stiffness: 200, damping: 10 }} */}
-          {/* > */}
-            <Link href={link.href}>
-              <img
-                src={link.img}
-                alt={link.service}
-                className="z-10 h-25 w-30 mx-auto mt-3 "
-              />
-              <h2 className="font-extralight text-lg text-center py-4 xl:text-lg">
-                {link.service}
-              </h2>
-            </Link>
-          {/* </motion.div> */}
-        </li>
-      ))}
-    </ul>
-  );
-};
+// export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
+//   return (
+//     <ul className="flex flex-wrap md:px-12 overflow-y-hidden xl:w-screen md:justify-center xl:gap-12 relative z-10">
+//       {links.map((link) => (
+//         <li
+//           key={link.service}
+//           className="flex flex-column  md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 md:mx-0"
+//         >
+//           <motion.div
+//             className="box"
+//             whileHover={{ scale: 1.5 }}
+//             transition={{ type: "spring", stiffness: 200, damping: 10 }}
+//           >
+//             <Link href={link.href}>
+//               <img
+//                 src={link.img}
+//                 alt={link.service}
+//                 className="z-10 h-25 w-25 mx-auto  hover:img-hover mt-3 "
+//               />
+//               <p className="font-extralight text-sm text-center py-4 xl:text-lg">
+//                 {link.service}
+//               </p>
+//             </Link>
+//           </motion.div>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// };
 
 export const ServiceList: React.FC<ServiceLinkArr> = ({ links }) => {
   return (
@@ -196,9 +196,9 @@ const Services: React.FC = () => {
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-      <div className="mb-12">
+      {/* <div className="mb-12">
         <ServiceLinks links={RICHMOND_SERVICES} />
-      </div>
+      </div> */}
       <div className="mt-24">
         <ServiceList links={RICHMOND_SERVICES} />
       </div>

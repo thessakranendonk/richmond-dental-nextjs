@@ -9,7 +9,7 @@ export const RICHMOND_SERVICES: {
     service: "Correct & Improve Your Smile",
     href: "/services#correct-improve-your-smile",
     id: "correct-improve-your-smile",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760835889/PHOTO-2025-10-06-14-09-36_l3ig0k.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760987527/Untitled_design_1_glgrze.png",
     // description:
     //   "Enhance your confidence with personalized cosmetic treatments designed to align, whiten, and perfect your smile. Whether through braces, Invisalign, or professional whitening, we help you achieve a smile that looks and feels amazing.",
   },
@@ -17,7 +17,7 @@ export const RICHMOND_SERVICES: {
     service: "Fix Broken Teeth",
     href: "/services#broken-teeth",
     id: "broken-teeth",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760835894/PHOTO-2025-10-06-14-09-36_votogb.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760988118/3_xxykfa.png",
     // description:
     //   "Don’t let chipped, cracked, or broken teeth affect your smile or confidence. Our restorative treatments — including crowns, veneers, and bonding — repair damage seamlessly, bringing strength and beauty back to your teeth.",
   },
@@ -25,7 +25,7 @@ export const RICHMOND_SERVICES: {
     service: "Resolve Tooth Pain & Bleeding Gums",
     href: "/services#tooth-pain-bleeding-gums",
     id: "tooth-pain-bleeding-gums",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760835889/PHOTO-2025-10-06-14-09-36_l3ig0k.jpg",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760988117/2_sajnnj.png",
     // description:
     //   "Toothaches and gum issues can be signs of deeper oral health problems. We identify the cause and provide gentle, effective care to relieve pain, treat infections, and restore your gums and teeth to full health.",
   },

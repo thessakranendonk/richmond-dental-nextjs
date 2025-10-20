@@ -135,7 +135,7 @@ module.exports = {
           "border-radius": "20% 80% 25% 70% /30% 46% 54% 70%",
         },
         ".br-right-about": {
-          "border-radius": "10% 10% 8% 8% / 20% 18% 12% 12%",
+          "border-radius": "64% 39% 25% 73% / 56% 43% 44% 44%",
        
         },
         ".br-center": {
