@@ -95,9 +95,9 @@ const ServiceDiv = ({
         )}
 
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left md:mt-8 xl:my-auto">
-          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
+          {/* <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
             {service}
-          </h2>
+          </h2> */}
           {/* <p className="font-extralight text-md md:pb-8 xl:pb-24 xl:text-xl xl:w-[32rem] mx-auto text-zinc-600">
             {description}
           </p> */}
@@ -132,24 +132,24 @@ export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
       {links.map((link) => (
         <li
           key={link.service}
-          className="flex flex-column  md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 md:mx-0"
+          className="flex flex-column  md:w-1/5 justify-center xl:w-fit md:ease-in-out md:pt-12 md:mx-0"
         >
-          <motion.div
-            className="box"
+          {/* <motion.div */}
+            {/* className="box"
             // whileHover={{ scale: 1.5 }}
-            transition={{ type: "spring", stiffness: 200, damping: 10 }}
-          >
+            // transition={{ type: "spring", stiffness: 200, damping: 10 }} */}
+          {/* > */}
             <Link href={link.href}>
               <img
                 src={link.img}
                 alt={link.service}
-                className="z-10 h-25 w-25 mx-auto  hover:img-hover mt-3 "
+                className="z-10 h-25 w-30 mx-auto mt-3 "
               />
-              <p className="font-extralight text-sm text-center py-4 xl:text-lg">
+              <h2 className="font-extralight text-lg text-center py-4 xl:text-lg">
                 {link.service}
-              </p>
+              </h2>
             </Link>
-          </motion.div>
+          {/* </motion.div> */}
         </li>
       ))}
     </ul>
