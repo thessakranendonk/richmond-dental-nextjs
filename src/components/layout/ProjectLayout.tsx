@@ -24,8 +24,9 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
   const navigationLinks: Array<NavigationLink> = [
     { name: "SERVICES", href: "/services", dropdown: SERVICES_DROPDOWN },
     { name: "ABOUT US", href: "/about-us" },
-    { name: "OFFICE TOUR", href: "/office-tour" },
-    { name: "FORMS", href: "#", dropdown: FORMS_DROPDOWN },
+    { name: "NEW PATIENT FORM", href: "/new-patient-form" },
+    { name: "DENTAL RELEASE FORM", href: "/dental-record" },
+
   ];
 
   return (
