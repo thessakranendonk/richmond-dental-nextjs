@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { RICHMOND_SERVICES } from "../../data/services";
 
 export interface ServiceImageProps {
-  img: string;
+  img?: string;
   name: string;
   evenOrUneven: boolean;
   service: string;
@@ -16,7 +16,7 @@ export interface ServiceLinkProps {
   service: string;
   // description: string;
   href: string;
-  img: string;
+  img?: string;
   id: string;
 }
 export interface ServiceLinkArr {
@@ -84,13 +84,13 @@ const ServiceDiv = ({
       <motion.div className="xl:flex xl:flex-row xl:w-auto">
         {evenOrUneven && (
           <>
-            <div className="hidden xl:inline-flex">
-              <img className="img img-settings object-none br-left" src={img} />
-              <div className="img-wrap xl:img-wrap-xl br-left top-[20px] left-[20px]">
-                <div className="back-img br-left"></div>
-                <img className="back-img object-none br-left" src={img} />
-              </div>
-            </div>
+            {/* <div className="hidden xl:inline-flex"> */}
+              {/* <img className="img img-settings object-none br-left" src={img} /> */}
+              {/* <div className="img-wrap xl:img-wrap-xl br-left top-[20px] left-[20px]">
+                <div className="back-img br-left"></div> */}
+                {/* <img className="back-img object-none br-left" src={img} /> */}
+              {/* </div>
+            </div> */}
           </>
         )}
 
@@ -104,22 +104,22 @@ const ServiceDiv = ({
         </div>
         {!evenOrUneven && (
           <div className="hidden xl:inline-flex">
-            <img
+            {/* <img
               className="img img-settings object-none br-right-about"
               src={img}
-            />
-            <div className="img-wrap img-wrap-xl br-right-about top-[20px] right-[20px]">
-              <div className="back-img br-right-about"></div>
-              <img className="back-img object-none br-right-about" src={img} />
-            </div>
+            /> */}
+            {/* <div className="img-wrap img-wrap-xl br-right-about top-[20px] right-[20px]"> */}
+              {/* <div className="back-img br-right-about"></div> */}
+              {/* <img className="back-img object-none br-right-about" src={img} /> */}
+            {/* </div> */}
           </div>
         )}
 
         <div className="xl:hidden">
-          <img
+          {/* <img
             className="img-sm md:img-wrap-md object-cover img-settings br-left mx-auto mt-12"
             src={img}
-          />
+          /> */}
         </div>
       </motion.div>
     </motion.div>
@@ -132,18 +132,18 @@ export const ServiceLinks: React.FC<ServiceLinkArr> = ({ links }) => {
       {links.map((link) => (
         <li
           key={link.service}
-          className="flex w-1/2 md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 md:mx-0"
+          className="flex flex-column  md:w-1/5 justify-center xl:w-fit md:hover:scale-110 md:ease-in-out md:duration-200 md:pt-12 md:mx-0"
         >
           <motion.div
             className="box"
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            // whileHover={{ scale: 1.5 }}
+            transition={{ type: "spring", stiffness: 200, damping: 10 }}
           >
             <Link href={link.href}>
               <img
                 src={link.img}
                 alt={link.service}
-                className="rounded-full z-10 h-24 w-24 mx-auto object-cover hover:img-hover mt-3"
+                className="z-10 h-25 w-25 mx-auto  hover:img-hover mt-3 "
               />
               <p className="font-extralight text-sm text-center py-4 xl:text-lg">
                 {link.service}

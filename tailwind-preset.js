@@ -129,13 +129,14 @@ module.exports = {
           height: "800px",
         },
         ".br-left": {
-          "border-radius": "30% 70% 70% 30% / 30% 46% 54% 70% ",
+          "border-radius": "15% 85% 85% 15% / 28% 44% 56% 72% ",
         },
         ".br-right": {
           "border-radius": "20% 80% 25% 70% /30% 46% 54% 70%",
         },
         ".br-right-about": {
-          "border-radius": "64% 39% 25% 73% / 56% 43% 44% 44%",
+          "border-radius": "10% 10% 8% 8% / 20% 18% 12% 12%",
+       
         },
         ".br-center": {
           "border-radius": "50%",
@@ -185,7 +186,6 @@ module.exports = {
           position: "absolute",
           width: "100%",
           height: "100%",
-          margins: "1rem",
           "background-position": "center",
           transition: "all 0.6s ease-in-out",
           "transform-origin": "50% 100%",
