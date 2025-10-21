@@ -102,9 +102,9 @@ const AboutUs: React.FC = () => {
             src="https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_552/v1685050606/image-1_tkf616.png"
           />
         </div>
+       
       </div>
-
-      <OfficeTour />
+       <OfficeTour />
     </div>
   );
 };

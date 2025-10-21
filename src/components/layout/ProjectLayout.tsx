@@ -22,12 +22,11 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
   const location = useRouter();
 
   const navigationLinks: Array<NavigationLink> = [
-    { name: "SERVICES", href: "/services"},
-
+    { name: "SERVICES", href: "/services", dropdown: SERVICES_DROPDOWN },
     { name: "ABOUT US", href: "/about-us" },
-     { name: "NEW PATIENT FORM", href: "/new-patient-form" },
-      { name: "DENTAL RELEASE FORM", href: "/dental-release-form" },
-    
+    { name: "NEW PATIENT FORM", href: "/new-patient-form" },
+    { name: "DENTAL RELEASE FORM", href: "/dental-record" },
+
   ];
 
   return (

@@ -449,7 +449,7 @@ const Header: React.FC<HeaderProps> = ({
             )}
             type="button"
             content="BOOK NOW"
-            href="/book-appointment"
+            href="/new-appointment"
           />
         </div>
         <Popover className="lg:hidden">
@@ -512,7 +512,7 @@ const Header: React.FC<HeaderProps> = ({
           )}
           type="button"
           content="BOOK NOW"
-          href="/book-appointment"
+          href="/new-appointment"
         />
       </div>
     </header>
