@@ -1,62 +1,54 @@
 export const RICHMOND_SERVICES: {
   service: string;
-  description: string;
+  // description: string;
   href: string;
-  img: string;
+  img?: string;
   id: string;
 }[] = [
   {
-    service: "Teeth Cleaning",
-    href: "/services#teeth-cleaning",
-    id: "teeth-cleaning",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_900/v1685724965/pexels-daniel-xavier-1239291_ul5anf.jpg",
-    description:
-      "It starts here. A nice clean and healthy mouth will and can prevent tooth decay, gum disease and bad breath. Plus, afterwards your smile will be bright and beautiful! Call us if you haven’t had a cleaning and assessment in a while!",
+    service: "Correct & Improve Your Smile",
+    href: "/services#correct-improve-your-smile",
+    id: "correct-improve-your-smile",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760987527/Untitled_design_1_glgrze.png",
+    // description:
+    //   "Enhance your confidence with personalized cosmetic treatments designed to align, whiten, and perfect your smile. Whether through braces, Invisalign, or professional whitening, we help you achieve a smile that looks and feels amazing.",
   },
   {
-    service: "White Fillings & Cosmetic Procedures",
-    href: "/services#white-fillings",
-    id: "white-fillings",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_980/v1685737507/Screenshot_2023-06-02_at_4.24.50_PM_fj8l8h.png",
-    description:
-      "Tooth decay can only be cleaned out and replaced with a product that is similar to tooth structure. White composites will help protect your natural teeth and can also help reduce sensitivity or pain from cold or sweet foods. Cosmetic Crowns or Veneers can also help to achieve even better esthetic results! Call us if you think you need a white composite filling!",
+    service: "Fix Broken Teeth",
+    href: "/services#broken-teeth",
+    id: "broken-teeth",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760988118/3_xxykfa.png",
+    // description:
+    //   "Don’t let chipped, cracked, or broken teeth affect your smile or confidence. Our restorative treatments — including crowns, veneers, and bonding — repair damage seamlessly, bringing strength and beauty back to your teeth.",
   },
   {
-    service: "Dental Implants",
-    href: "/services#dental-implants",
-    id: "dental-implants",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_900/v1685454625/dental-implant-downtown-toronto_wh52ov.jpg",
-    description:
-      "Missing a tooth or teeth? Titanium Dental Implants are the solution! They integrate with your natural jaw and gums and can be used to replace all manner of missing teeth. Ask us about this as a treatment option!",
+    service: "Resolve Tooth Pain & Bleeding Gums",
+    href: "/services#tooth-pain-bleeding-gums",
+    id: "tooth-pain-bleeding-gums",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760988117/2_sajnnj.png",
+    // description:
+    //   "Toothaches and gum issues can be signs of deeper oral health problems. We identify the cause and provide gentle, effective care to relieve pain, treat infections, and restore your gums and teeth to full health.",
   },
-  {
-    service: "Invisalign® & Orthodontics",
-    href: "/services#invistalign-orthodontics",
-    id: "invistalign-orthodontics",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_750/v1685735849/pexels-arvind-philomin-11887613_qrpuyi.jpg",
-    description:
-      "A lot of people think that Invisalign helps to improve your cosmetics and smile, and they do! But they also play a key role in managing FUNCTIONAL problems with your teeth. They can improve tight spaces that are impossible to clean and reduce the risk of tooth and jaw damage in the future. Ask us about this if you have any questions!",
-  },
-  {
-    service: "Teeth Whitening",
-    href: "/services#teeth-whitening",
-    id: "teeth-whitening",
-    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/c_scale,w_600/v1685724964/michael-dam-mEZ3PoFGs_k-unsplash_okuhbo.jpg",
-    description:
-      "Whiten your teeth to achieve your perfect smile! You know what the best part about teeth whitening is? Once your teeth are white, you will be MORE inclined to keep them as clean as possible, it’s a win-win situation! Not everything however can be whitened so please call us if you need clarification!",
+   {
+    service: "Improve Jaw & Facial Pain",
+    href: "/services#jaw-facial-pain",
+    id: "jaw-facial-pain",
+    img: "https://res.cloudinary.com/dyjj9jfc2/image/upload/v1760981543/pexels-arvind-philomin-11887613_qrpuyi_n55oiu.jpg",
+    // description:
+    //   "If you experience tension, clicking, or discomfort in your jaw, our team can help. We diagnose and treat TMJ disorders and muscle-related pain to restore comfort and balance to your bite and facial structure.",
   },
 ];
 
 export const SERVICES_DROPDOWN = [
-  { name: "Teeth Cleaning", href: "/services#teeth-cleaning" },
+  { name: "Correct & Improve Your Smile", href: "/services#correct-improve-your-smile" },
+
+  { name: "Fix Broken Teeth", href: "/services#broken-teeth" },
   {
-    name: "White Fillings & Cosmetic Procedures",
-    href: "/services#white-fillings",
+    name: "Resolve Tooth Pain & Bleeding Gums",
+    href: "/services#tooth-pain-bleeding-gums",
   },
-  { name: "Dental Implants", href: "/services#teeth-cleaning" },
-  {
-    name: "Invisalign® & Orthodontics",
-    href: "/services#invistalign-orthodontics",
+    {
+    name: "Improve Jaw & Facial Pain",
+    href: "/services#jaw-facial-pain",
   },
-  { name: "Teeth Whitening", href: "/services#teeth-whitening" },
 ];
