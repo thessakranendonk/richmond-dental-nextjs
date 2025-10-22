@@ -14,9 +14,9 @@ export interface ServiceImageProps {
 
 export interface ServiceLinkProps {
   service: string;
-  description: string;
+  // description: string;
   href: string;
-  img: string;
+  img?: string;
   id: string;
 }
 export interface ServiceLinkArr {
