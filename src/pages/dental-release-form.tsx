@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { MdOutlineError } from "react-icons/md";
 import { toast } from "react-toastify";
 import PageHeading from "@/components/ui/PageHeading";
+import DentalCognitoForm from "@/components/DentalCognitoForm";
 
 const DentalRecordForm: React.FC = () => {
   const {
@@ -76,7 +77,7 @@ const DentalRecordForm: React.FC = () => {
       <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
         <PageHeading title="Dental Records Release Form" />
       </div>
-      <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
+      {/* <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
         {!isSubmitted && !isError && (
           <form
             className="flex flex-col mt-8 xl:mt-12 text-sm"
@@ -220,7 +221,8 @@ const DentalRecordForm: React.FC = () => {
             records.
           </p>
         )}
-      </div>
+      </div> */}
+      <DentalCognitoForm />
     </div>
   );
 };

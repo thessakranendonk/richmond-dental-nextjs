@@ -6,6 +6,7 @@ import clsx from "clsx";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 import PageHeading from "@/components/ui/PageHeading";
+import CognitoFormEmbed from "@/components/NewPatientCognitoForms";
 
 const NewPatientForm: React.FC = () => {
   const {
@@ -217,7 +218,7 @@ const NewPatientForm: React.FC = () => {
         <PageHeading title="Patient Intake Form" />
       </div>
 
-      <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-5xl lg:mx-auto">
+      {/* <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-5xl lg:mx-auto">
         {!isSubmitted && !isError && (
           <form
             className="flex flex-col mt-8 xl:mt-12 text-sm"
@@ -1313,7 +1314,8 @@ const NewPatientForm: React.FC = () => {
             patient.
           </p>
         )}
-      </div>
+      </div> */}
+      <CognitoFormEmbed />
     </div>
   );
 };
