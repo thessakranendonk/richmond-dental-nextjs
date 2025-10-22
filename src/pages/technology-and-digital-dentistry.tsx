@@ -6,7 +6,7 @@ import { RICHMOND_TECHNOLOGY } from "../../data/technology-digital-dentistry";
 import {
   fadeInFromLeft,
   fadeInFromRight,
-  ServiceLinks,
+  
   ServiceList,
 } from "./services";
 
@@ -28,9 +28,9 @@ const Technology: React.FC = () => {
         at the cutting-edge of dentistry. No matter how small or large your
         problem is, or if you only need dental maintenance, we can help.
       </p>
-      <div className="mb-12">
+      {/* <div className="mb-12">
         <ServiceLinks links={RICHMOND_TECHNOLOGY} />
-      </div>
+      </div> */}
       <div className="mt-24">
         <ServiceList links={RICHMOND_TECHNOLOGY} />
       </div>
