@@ -4,7 +4,7 @@ import clsx from "clsx";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { MdOutlineError } from "react-icons/md";
-
+import BookCognitoForm from "@/components/BookCognitoForms";
 const BookingForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -54,7 +54,7 @@ const BookingForm: React.FC = () => {
         Please get in touch with us to inquire about anything! We review and
         accept patient’s requests on within a 24 hour basis.
       </p>
-      <div>
+      {/* <div>
         {!isSubmitted && (
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -150,7 +150,8 @@ const BookingForm: React.FC = () => {
             appointment.
           </p>
         )}
-      </div>
+      </div> */}
+      <BookCognitoForm />
     </div>
   );
 };
