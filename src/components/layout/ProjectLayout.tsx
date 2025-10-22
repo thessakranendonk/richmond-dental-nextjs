@@ -25,7 +25,7 @@ export const ProjectLayout: React.FC<PropsWithChildren> = (
     { name: "SERVICES", href: "/services"},
     { name: "ABOUT US", href: "/about-us" },
     { name: "NEW PATIENT FORM", href: "/new-patient-form" },
-    { name: "DENTAL RELEASE FORM", href: "/dental-record" },
+    { name: "DENTAL RELEASE FORM", href: "/dental-release-form" },
 
   ];
 
