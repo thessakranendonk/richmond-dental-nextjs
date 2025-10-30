@@ -89,7 +89,7 @@ const Home: React.FC = () => {
       <p className="text-center font-extrabold text-brand-base">
         ________________
       </p>
-      <h1 className="text-center font-medium text-3xl xl:text-4xl mt-14 md:mt-24 tracking-widest text-zinc-700">
+      <h1 className="text-center uppercase font-medium text-3xl xl:text-4xl mt-14 md:mt-24 tracking-widest text-zinc-700">
         Patient Testimonials
       </h1>
       <div className="bg-zinc-200 relative mx-auto mt-24">

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAnimation, motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RICHMOND_SERVICES } from "../../data/services";
+import PageHeading from "@/components/ui/PageHeading";
 
 export interface ServiceImageProps {
   img?: string;
@@ -95,7 +96,7 @@ const ServiceDiv = ({
         )}
 
         <div className="p-0 my-auto xl:w-1/2 md:max-w-2xl text-center md:mx-auto xl:text-left md:mt-8 xl:my-auto">
-          <h2 className="font-semibold text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
+          <h2 className="font-semibold uppercase text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-zinc-800 text-shadow-lg shadow-zinc-300">
             {service}
           </h2>
           {/* <p className="font-extralight text-md md:pb-8 xl:pb-24 xl:text-xl xl:w-[32rem] mx-auto text-zinc-600">
@@ -188,7 +189,7 @@ const Services: React.FC = () => {
   }, [controls, inView]);
   return (
     <div className="w-[calc(10% - 10px)] mx-10 xl:mx-0 relative z-10 animate-fadeInFast transition">
-      <h1 className="text-center pt-24 sm:pt-0 my-12 font-semibold text-2xl xl:text-3xl text-shadow-lg shadow-zinc-300">
+      <h1 className="text-center uppercase pt-24 sm:pt-0 my-12 font-semibold text-2xl xl:text-[3rem] text-shadow-lg shadow-zinc-300">
         Services
       </h1>
       <p className="font-extralight text-center mb-12 xl:max-w-xl xl:mx-auto xl:text-xl">
