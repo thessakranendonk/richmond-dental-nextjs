@@ -60,7 +60,7 @@ const DentalOffer: React.FC = () => {
       <p className="text-center font-extrabold text-brand-base">
         ________________
       </p>
-      <h1 className="text-center tracking-widest my-12 font-medium text-3xl xl:text-4xl text-zinc-700">
+      <h1 className="text-center uppercase tracking-widest my-12 font-medium text-3xl xl:text-4xl text-zinc-700">
         What We Offer
       </h1>
       <p className="font-extralight text-center xl:max-w-3xl xl:mx-auto xl:text-xl pb-10 text-zinc-500 text-lg">

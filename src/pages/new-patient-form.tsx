@@ -215,7 +215,7 @@ const NewPatientForm: React.FC = () => {
   return (
     <div>
       <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
-        <PageHeading title="Patient Intake Form" />
+        <PageHeading title="New Patient Form" />
       </div>
 
       {/* <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-5xl lg:mx-auto">

@@ -75,7 +75,7 @@ const DentalRecordForm: React.FC = () => {
   return (
     <div>
       <div className="relative pt-10 sm:pt-0 h-[14rem] md:h-[18rem]">
-        <PageHeading title="Dental Records Release Form" />
+        <PageHeading title="Dental Release Form" />
       </div>
       {/* <div className="flex flex-col w-[calc(10% - 10px)] mx-12 my-5 lg:max-w-lg lg:mx-auto">
         {!isSubmitted && !isError && (

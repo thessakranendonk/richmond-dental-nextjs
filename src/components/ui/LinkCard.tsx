@@ -21,7 +21,7 @@ const LinkCard: React.FC<LinkCardProps> = ({
         {iconType === "icon" ? icon : hoverIcon}
       </div>
 
-      <h2 className="text-xl lg:text-2xl font-normal">{name}</h2>
+      <h2 className="text-xl uppercase lg:text-2xl font-normal">{name}</h2>
 
       <p className="text-lg lg:text-xl text-zinc-400 font-extralight">
         {information}
