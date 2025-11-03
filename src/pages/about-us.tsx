@@ -19,7 +19,7 @@ const AboutUs: React.FC = () => {
         </div>
 
         <div className="p-0 my-auto md:w-1/2 text-center md:mx-auto xl:text-left px-20 xl:pl-0 xl:pr-48">
-          <h1 className="pt-16 lg:pt-0 font-semibold text-2xl md:text-3xl xl:text-5xl mb-8 xl:w-[32rem] mx-auto text-zinc-800 text-center text-shadow-lg shadow-zinc-300">
+          <h1 className="pt-16 lg:pt-0 uppercase font-semibold text-2xl md:text-3xl xl:text-5xl mb-8 xl:w-[32rem] mx-auto text-zinc-800 text-center text-shadow-lg shadow-zinc-300">
             About Us
           </h1>
           <p className="text-zinc-500 text-center text-md font-light xl:text-lg">
@@ -37,7 +37,7 @@ const AboutUs: React.FC = () => {
       </div>
       <div className="w-screen -ml-8 xl:ml-0 xl:flex xl:flex-row xl:justify-between bg-clip-content text-transparent bg-brand-lightest/20 bg-gradient-to-tl from-brand-lightest via-brand-base to-brand-lightest">
         <div className="w-[calc(10% - 10px)] mx-5 p-0 my-auto md:max-w-5xl text-center md:mx-auto xl:text-left py-12 text-zinc-200">
-          <h2 className="font-normal text-shadow-lg shadow-zinc-700 text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-center">
+          <h2 className="font-normal text-shadow-lg uppercase shadow-zinc-700 text-2xl md:text-3xl xl:text-5xl mb-12 xl:w-[32rem] mx-auto text-center">
             Why Choose Us?
           </h2>
           <p className="text-center text-sm xl:text-lg font-extralight pb-6 text-shadow-lg shadow-zinc-700">
